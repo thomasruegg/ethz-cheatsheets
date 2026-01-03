@@ -430,7 +430,7 @@ Given $A = mat(e_1, e_2, e_3)$ and $B = mat(b_1, b_2, b_3)$:
 
 = Eigenvalues and Eigenvectors
 
-Basically we want to find the Eigenvalues $lambda$ s.t. $A x = lambda x => (A - lambda I) x = 0 => det(A-lambda I) = 0$, where the $x$ which satisfy this for their given $lambda$ are called Eigenvectors.
+Basically we want to find the Eigenvalues $lambda$ s.t.: \ $A x = lambda x => (A - lambda I) x = 0 => det(A-lambda I) = 0$, where the $x$ which satisfy this for their given $lambda$ are called Eigenvectors.
 
 Since $A v_i = lambda_i v_i = v_i lambda_i => A V = V Lambda => A = V Lambda V^(-1) => A^k = V Lambda^k V^(-1)$.
 
@@ -438,7 +438,7 @@ Since $A v_i = lambda_i v_i = v_i lambda_i => A V = V Lambda => A = V Lambda V^(
 == Terms
 
 - The set of Eigenvectors is called the *spectrum*.
-- The *characteristic polynomial* is $det(A - lambda I) = 0$
+- The *characteristic polynomial* is $det(A - lambda I) = 0$. A specific polynomial equation used to find the eigenvalues of a square matrix.
 - The set of vectors corresponding to a $lambda$ s.t. $A v = lambda v$ are called an *Eigenspace*.
 - *Multiplicities:*
   - The number of times an eigenvalue appears as a root of the characteristic polynomial is called *algebraic multiplicity*.
@@ -454,7 +454,7 @@ Since $A v_i = lambda_i v_i = v_i lambda_i => A V = V Lambda => A = V Lambda V^(
 - $det(A - lambda I)$ is a polynomial in $lambda$ with degree $n$.
   - The coefficient of $lambda^n$ is $(-1)^n$.
 - For $k$ distinct Eigenvalues, there exist $k$ independent Eigenvectors.
-- The characteristic polynomial can be factored as $0 = det(A-x I) = (-1)^n (x - lambda_1)dot ... dot (x-lambda_n)$.
+- The characteristic polynomial can be factored as \ $0 = det(A-x I) = (-1)^n (x - lambda_1)dot ... dot (x-lambda_n)$.
 - $det(A) = product lambda_i$ because $det(A) = det(A - 0 I) = (-1)^n dot (lambda_1) dot ... dot (-lambda_n)$
 - $"Tr"(A) = sum lambda_i$. (Also $"Tr"(A B) = "Tr"(B A) and "Tr"(A (B C)) = "Tr"((B C) A)$)
 - A projection matrix $P$ projecting onto $U in RR^n$ has two Eigenvalues of $0, 1$.
@@ -510,12 +510,13 @@ $G = V^T V$, $G$ is called a Gram matrix.
 Any matrix $A$ can be factored as $A = U Sigma V^T$.
 
 - $U$ has the *left-singular vectors* and is orthonormal.
-- $V$ has the *right-singular vectors* and is orthonormal.
 - $Sigma$ has the *singular values* and contains non-negative values only.
+- $V$ has the *right-singular vectors* and is orthonormal.
 
 *Construction:*
 
-- $A^T A = U Lambda_1 U^T$. Here we have that $Lambda_1 = Sigma^T Sigma$. $Sigma = "diag"(sigma_1, ..., sigma_k) "s.t." k = min(n,m)$
-- $A A^T = V Lambda_2 V^T$. Here we have that $Lambda_2 = Sigma Sigma^T$. $Sigma = "diag"(sigma_1, ..., sigma_k) "s.t." k = min(n,m)$
+- $A^T A = V Lambda_1 V^T$. Here we have that $Lambda_1 = Sigma^T Sigma$. \ $Sigma = "diag"(sigma_1, ..., sigma_k) "s.t." k = min(n,m)$
+- $A A^T = U Lambda_2 U^T$. Here we have that $Lambda_2 = Sigma Sigma^T$. \ $Sigma = "diag"(sigma_1, ..., sigma_k) "s.t." k = min(n,m)$
 - $sigma_i = sqrt(lambda_i)$.
-- For both: $Sigma$ is constructed s.t. $sigma_1 >= ... >= sigma_k >= 0$. Rank: number of non-zero singular values.
+- For both: $Sigma$ is constructed s.t. $sigma_1 >= ... >= sigma_k >= 0$ (they are ordered and all $sigma_i$ are non-zero, then filled with 0 to fit the dimensions). Rank: number of non-zero singular values.
+#image("svd.png")
