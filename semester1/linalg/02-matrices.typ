@@ -7,11 +7,10 @@
   content,
 )
 
-
 #cblock[
   = Matrices (Def. 2.1)
 
-  An $m times n$ matrix is a rectangular array or numbers with $m$ columns and $n$ rows, i.e.,
+  An $m times n$ matrix is a rectangular array of numbers with $m$ columns and $n$ rows, i.e.,
 
   $
     A in RR^(m times n) := mat(a_11, a_12, ..., a_(1n); a_21, a_22, ..., a_(2n); dots.v, dots.v, dots.down, dots.v; a_(m 1), a_(m 2), ..., a_(m n);).
@@ -19,17 +18,17 @@
 ]
 
 #cblock[
-  == The Rank (Def. 2.9)
+  == The Rank (Def. 2.10)
 
   The _rank_ of a matrix $A in RR^(m times n)$ is its number of _linearly independent_ columns.
 ]
 
 #cblock[
-  == The Transpose (Def. 2.11)
+  == The Transpose (Def. 2.12)
 
   Let $A in RR^(m times n)$, the transpose of $A$, $A^T$, is equal to $A$ with interchanged rows and columns.
 
-  Moreover, $(A B)^T = B^T A^T$ for any $A in RR^(n times k)$ and $B in RR^(k times m)$ (Lemma 2.19).
+  Moreover, $(A B)^T = B^T A^T$ for any $A in RR^(n times k)$ and $B in RR^(k times m)$ (Lemma 2.40).
 ]
 
 #cblock[
@@ -44,7 +43,7 @@
 ]
 
 #cblock[
-  == Symmetric Matrices (Obs. 2.12)
+  == Symmetric Matrices (Obs. 2.13)
 
   Let $A in RR^(m times m)$, $A$ is symmetric $<==>$ $A = A^T$.
 ]
@@ -71,7 +70,7 @@ $
   mat(bar.v, , bar.v; bold(w)_1, ..., bold(w)_n; bar.v, , bar.v;) vec(x_1, x_2, dots.v, x_n) = x_1 dot bold(w)_1 + x_2 dot bold(w)_2 + ... + x_n dot bold(w)_n.
 $
 
-== Matrix-Matrix Multiplication (Def. 2.16)
+== Matrix-Matrix Multiplication (Def. 2.36)
 
 For any two matrices $A in RR^(m times k)$ and $B in RR^(k times n)$, the product $A B in RR^(m times n)$ can also be understood in three ways:
 
@@ -95,7 +94,7 @@ $
 
 #linebreak()
 
-=== Distributivity and Associativity (Lemma 2.22)
+=== Distributivity and Associativity (Lemma 2.42)
 
 Let $A$, $B$, $C$ and $D$ be four matrices, then
 
@@ -104,11 +103,11 @@ Let $A$, $B$, $C$ and $D$ be four matrices, then
 
 Keep in mind, that *MATRIX MULTIPLICATION IS NOT COMMUTATIVE*.
 
-== $A = C R$
+== $A = C R'$ (Theo. 2.46)
 
-Let $A in RR^(m times n)$ with rank $r$. Let $C in RR^(m times r)$ be the submatrix of $A$ containing all its independent columns. Then there exists a unique $R in RR^(r times n)$ such that $ A = C R. $
+Let $A in RR^(m times n)$ with rank $r$. Let $C in RR^(m times r)$ be the submatrix of $A$ containing all its independent columns. Then there exists a unique $R' in RR^(r times n)$ such that $ A = C R'. $
 
-In other words, $C$ describes the linearly independent columns, while $R$ shows how to combine them to create $A$. For instance,
+In other words, $C$ describes the linearly independent columns, while $R'$ shows how to combine them to create $A$. For instance,
 
 $
   mat(1, 2, 0, 3; 2, 4, 1, 4; 3, 6, 2, 5;) = mat(1, 0; 2, 1; 3, 2;) mat(1, 2, 0, 3; 0, 0, 1, -2;).
@@ -117,7 +116,7 @@ $
 #v(15pt)
 
 #cblock[
-  == Linear Transformation (Def. 2.27)
+  == Linear Transformation (Def. 2.21)
 
   Let $T: RR^n -> RR^m$ be a function. $T$ is called a linear transformation if $forall bold(v), bold(w) in RR^n "and" forall lambda, mu in RR$,
 
@@ -136,13 +135,13 @@ $
 ]
 
 #cblock[
-  === $T = T_A$ (Theo. 2.29)
+  === $T = T_A$ (Theo. 2.26)
 
   Let $T: RR^n -> RR^m$ be a linear transformation, there exists a unique $A in RR^(m times n)$ such that $T = T_A$.
 ]
 
 #cblock[
-  === Kernel and Image (Def. 2.31)
+  === Kernel and Image (Def. 2.27)
 
   Let $T: RR^n -> RR^m$ be a linear transformation,
 
