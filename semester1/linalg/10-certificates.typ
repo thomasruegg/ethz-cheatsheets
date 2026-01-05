@@ -29,14 +29,15 @@ To find $bold(z)$, use Gaussian elimination (RREF) on the augmented matrix: $ ma
 == The Set of All Solutions (Theorem 6.2.2)
 If the system is solvable, the set of all solutions is a shifted copy of the nullspace:
 $ {bold(x) in RR^n | A bold(x) = bold(b)} = bold(x)_r + N(A) $
-where $bold(x)_r$ is the *unique* vector in the row space $R(A) = C(A^T)$ such that $A bold(x)_r = bold(b)$. This is because every solution $bold(x)$ is a mix of two perpendicular parts:
+where $bold(x)_r$ is the *unique* vector in the row space $R(A) = C(A^T)$ such that $A bold(x)_r = bold(b)$. This uniqueness is guaranteed because $A$ acts injectively on its row space (Lemma 6.2.1).
+
+Every solution $bold(x)$ is a mix of two perpendicular parts:
 $ bold(x) = underbrace(bold(x)_r, "Row Space (unique)") + underbrace(bold(x)_n, "Nullspace (any)") $
 
 1. *The "Pure" Solution ($bold(x)_r$):*
-  There is exactly one solution living entirely in the Row Space (the "Active Zone" of $A$). This is the solution with the _shortest length_ because it contains no "waste."
+  There is exactly one solution living entirely in the Row Space (the "Active Zone" of $A$). This is the solution with the _shortest length_ because it contains no "waste" (Lemma 6.4.5).
 
 2. *The "Invisible" Noise ($bold(x)_n$):*
   You can add _any_ vector $bold(x)_n$ from the Nullspace to $bold(x)_r$ without changing the result.
   *Why?* Because the matrix is blind to it:
   $ A(bold(x)_r + bold(x)_n) = A bold(x)_r + A bold(x)_n = bold(b) + 0 = bold(b) $
-
