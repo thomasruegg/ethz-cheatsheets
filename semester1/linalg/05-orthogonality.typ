@@ -12,15 +12,20 @@
 
 Two subspaces $V$ and $W$ are orthogonal if for all $bold(v) in V$ and $bold(w) in W$, $v dot w = 0$.
 
-More specifically, this also holds for the bases, i.e., hhjklhjklhjklhjhjklhjklh $v_1,...,v_k$ be a basis of $V$ and $w_1,...,w_l$ be a basis of $W$. $V$ and $W$ are orthogonal if and only if $v_i dot w_j = 0$ $forall i in [k] "and" j in [l]$ (Lemma 5.1.2).
+More specifically, this also holds for the bases, i.e., let $v_1,...,v_k$ be a basis of $V$ and $w_1,...,w_l$ be a basis of $W$. $V$ and $W$ are orthogonal if and only if $v_i dot w_j = 0$ $forall i in [k] "and" j in [l]$ (Lemma 5.1.2).
 
 == Orthogonal Complement (Def. 5.1.5)
 
-Let $V$ be a subspace of $RR^n$, the orthogonal complement to $V$,
+Let $V$ be a subspace of $RR^n$, the orthogonal complement to $V$ is defined as
 
 $
   V^bot := {bold(w) in RR^n : bold(w) dot bold(v) = 0 "for all" bold(v) in V}.
 $
+
+  == Double Complement (Lemma 5.1.8)
+  Let $V$ be a subspace of $RR^n$. Then:
+  $ V = (V^bot)^bot $
+
 
 #cblock[
   == Orthogonal Decomp. (Theo. 5.1.7)
@@ -32,8 +37,12 @@ $
   3. Every $bold(u) in RR^n$ can be written as $bold(u) = bold(v) + bold(w) "with" bold(v) in V " and" bold(w) in W$.
 ]
 
+== Intersection of Orthogonal Subspaces (Cor. 5.1.4)
+Let $V$ and $W$ be orthogonal subspaces. Then their intersection is trivially only at the origin:
+$ V inter W = {0} $
+
 #cblock[
-  == Orthogonal Matrix Subspaces (Cor. 5.1.9)
+  == Orthogonal Matrix Subspaces (Cor. 5.1.9 & Lemma 5.1.10)
 
   Let $A in RR^(m times n)$, then
   1. $"N"(A) = "C"(A^T)^bot$, also $N(A) = N(A^T A)$,
@@ -52,7 +61,7 @@ $
 // ]
 
 #cblock[
-  == Decomp. of the Sol. Space (Theo. 5.1.10)
+  == Decomp. of the Sol. Space (Theo. 6.2.2)
 
   Let $A in RR^(m times n)$ and $bold(b) in RR^m$. $"Sol"(A, bold(b)) = bold(x)_1 + "N"(A)$ with $bold(x)_1 in "R"(A)$ such that $A bold(x)_1 = b$.
 ]
