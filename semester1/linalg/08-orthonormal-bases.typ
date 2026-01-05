@@ -42,7 +42,7 @@ Vectors $bold(q)_1, ..., bold(q)_n in RR^m$ are orthonormal if they are orthogon
 
 == QR-Decomposition (Def. 6.3.10)
 
-Let $A in RR^(m times n)$ with linearly independent columns. $ A = Q R $ where $Q$ is an $m times n$ matrix with orthonormal columns and $R$ is an upper triangular matrix given by $R = Q^T A$.
+Let $A in RR^(m times n)$ with linearly independent columns. $ A = Q R $ where $Q$ is an $m times n$ matrix with orthonormal columns and $R$ is an upper triangular matrix given by $R = Q^T A$. Use Gram-Schmidt on the columns of $A$ to get $Q$.
 
 == Projections with QR (Fact 6.3.12)
 
