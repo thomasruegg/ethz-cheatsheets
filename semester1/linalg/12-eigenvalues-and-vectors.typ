@@ -69,15 +69,18 @@ To find zeros of $a x^2 + b x + c = 0$ are given by $ x = (-b plus.minus sqrt(b^
   == Eigenvalues, Trace & Determinant (Def. 8.3.4, Lemma 8.3.6)
 
   The *characteristic polynomial* of $A in RR^(n times n)$ is given by:
-  $ P(z) &= (-1)^n det(A-z I) \ &=det(z I - A) = (z - lambda_1)(z - lambda_2)dots(z - lambda_n) $
+  $
+    P(z) & = (-1)^n det(A-z I) \
+         & =det(z I - A) = (z - lambda_1)(z - lambda_2)dots(z - lambda_n)
+  $
   The roots $lambda_i$ are the eigenvalues, and their *algebraic multiplicity* is the number of times they appear as roots.
 
   *Key Properties:*
   The coefficients of the polynomial reveal the sum and product of eigenvalues:
   1. *Determinant:* The product of eigenvalues.
-     $ "det"(A) = product_(i=1)^n lambda_i $
+    $ "det"(A) = product_(i=1)^n lambda_i $
   2. *Trace:* The sum of diagonal elements equals the sum of eigenvalues.
-     $ "Tr"(A) = sum_(i=1)^n A_(i i) = sum_(i=1)^n lambda_i $
+    $ "Tr"(A) = sum_(i=1)^n A_(i i) = sum_(i=1)^n lambda_i $
 
   === Complex Eigenvalues & Conjugates
   If $A$ is a real matrix, complex eigenvalues come in *conjugate pairs*.
@@ -93,7 +96,7 @@ To find zeros of $a x^2 + b x + c = 0$ are given by $ x = (-b plus.minus sqrt(b^
 3. Let $A in RR^(n times n)$, the eigenvalues of $A$ are the same ones as of $A^T$. Proof: $det(A-z I)=det((A-z I)^T)=det(A^T-z I)$ (Prop. 8.3.5).
 4. Let $Q in RR^(n times n)$ be an orthogonal matrix, if $lambda$ is an eigenvalue of $Q$, then $abs(lambda) = 1$. Proof: $||v||^2=||Q v||^2=||lambda v||^2=|lambda| dot ||v||^2$ (Prop. 8.2.7).
 6. Let $A in RR^(n times n)$, if $(lambda, bold(v))$ is an eigenvalue-eigenvector pair of $A$, then $(overline(lambda), overline(bold(v)))$ is an eigenvalue-eigenvector pair of $A$ too. Thus, if $lambda in CC$ is an eigenvalue of $A$, then $overline(lambda)$ is also an eigenvalue of $A$ (Prop. 8.2.8).
-6. Let $P in RR^(n times n)$ be a projection matrix, then $P$ has two eigenvalues, $0$ and $1$ and a _complete set_ of eigenvectors (Prop. 7.1.21).
+6. Let $P in RR^(n times n)$ be a projection matrix, then $P$ has two distinct eigenvalues, $0$ and $1$ (every single one of the $n$ eigenvalues is either 0 or 1) and a _complete set_ of eigenvectors (Prop. 9.1.6).
 7. Let $D in RR^(n times n)$ be a diagonal matrix, then its eigenvalues are its diagonal entries and the canonical basis is a set of eigenvectors of $D$ (Ex. 7.1.23).
 8. Let $T in RR^(n times n)$ be a triangular matrix, then its eigenvalues are its diagonal entries, however, $T$ might not have a complete set of eigenvectors (Fact 45).
 
@@ -146,9 +149,11 @@ Let $A in RR^(n times n)$ with eigenvalue $lambda$, we call the dimension of $"N
 
 == Characteristic Polynomial
 
-Let $A in RR^(m times n)$, the _characteristic polynomial_ of $A$ is 
-$ P(z) = (-1)^n "det"(A - z I) = (z - lambda_1) (z - lambda_2) dots (z - lambda_n) $ 
-#text(fill: luma(50%))[$ = z^n + underbrace((-sum_(i=1)^n lambda_i), - "Tr"(A)) z^(n-1) + underbrace(sum_(k=1)^(n-2)b_k z^k, "messy middle terms") + underbrace((-1)^n product_(i=1)^n lambda_i, (-1)^n "det"(A)). $]
+Let $A in RR^(m times n)$, the _characteristic polynomial_ of $A$ is
+$ P(z) = (-1)^n "det"(A - z I) = (z - lambda_1) (z - lambda_2) dots (z - lambda_n) $
+#text(fill: luma(50%))[$
+  = z^n + underbrace((-sum_(i=1)^n lambda_i), - "Tr"(A)) z^(n-1) + underbrace(sum_(k=1)^(n-2)b_k z^k, "messy middle terms") + underbrace((-1)^n product_(i=1)^n lambda_i, (-1)^n "det"(A)).
+$]
 
 
 == Trace and Determinant (Prop. 7.1.12)
@@ -161,35 +166,43 @@ Following, for matrices $A$, $B$ and $C$ $in RR^(n times n)$,
 2. $"Tr"(A B C) = "Tr"(B C A) = "Tr"(C A B)$.
 
 #cblock[
-  == Diagonalization (Theo. 7.2.1)
+  == Diagonalization (Theo. 9.1.1)
 
-  Let $A in RR^(n times n)$ be a matrix with a complete set of eigenvectors. Let $V = mat(bar.v, , bar.v; bold(v)_1, ..., bold(v)_n; bar.v, , bar.v;) in RR^(n times n)$ be the matrix whose columns are the eigenvectors, and $Lambda in RR^(n times n)$ the matrix whose diagonal entries are the eigenvalues ($Lambda_(i i) = lambda_i$ for all $i in [n]$), then $ A = V Lambda V^(-1). $
+  Let $A in RR^(n times n)$ be a matrix with a complete set of eigenvectors. Let $V = mat(bar.v, , bar.v; bold(v)_1, ..., bold(v)_n; bar.v, , bar.v;) in RR^(n times n)$ be the matrix whose columns are the eigenvectors, and $Lambda in RR^(n times n)$ the matrix whose diagonal entries are the eigenvalues ($Lambda_(i i) = lambda_i$ for all $i in [n]$), then $ A = V Lambda V^(-1) \
+  A V = V Lambda \
+  [A bold(v)_1, A bold(v)_2, ..., A bold(v)_n] = [lambda_1 bold(v)_1, lambda_2 bold(v)_2, ..., lambda_n bold(v)_n] $
 ]
 
-== Diagonalizable Matrix (Def. 7.2.2)
+== Diagonalizable Matrix (Def. 9.1.2)
 
-A matrix $A in RR^(n times n)$ is said to be _diagonalizable_ if there exists an invertible matrix $V$, such that $V A V^(-1) = Lambda$, where $Lambda$ is a diagonal matrix.
+A matrix $A in RR^(n times n)$ is said to be _diagonalizable_, if there are $n$ independent eigenvectors (complete set of eigenvectors), and thus there exists an invertible matrix $V$, such that $V A V^(-1) = Lambda$, where $Lambda$ is a diagonal matrix.
 
-== Similar Matrices (Def. 7.2.3)
+== Complete Set of Eigenvectors (Lemma 9.1.11)
+A matrix has a complete set of eigenvectors if all its eigenvalues are real and the geometric multiplicities are the same as the algebraic multiplicities of all its eigenvalus.
+
+If given a matrix $A in RR^(n times n)$, we can build a basis of $RR^n$ with eigenvectors of $A$, we say that $A$ has a _complete set_ of eigenvectors (Def. 9.1.3).
+
+== Similar Matrices (Def. 9.1.7)
 
 Two matrices $A$ and $B$ $in RR^(n times n)$ are _similar_, if exists an invertible matrix $S$, such that $ B = S^(-1) A S. $
 \
-Similar matrices are clones of each other. They represent the exact same linear transformation, just viewed from a different coordinate system.
-Similar matrices have the same eigenvalues (Prop. 7.2.4).
+Similar matrices have the same eigenvalues. Proof: $A v = lambda v <==> lambda S^(-1) v = S^(-1) A v = S^(-1) A underbrace(S S^(-1), I) v = B(S^(-1) v)$ (Prop. 9.1.8).
+
+Similar matrices are clones of each other. They represent the exact same linear transformation, just viewed from a different coordinate system ($S$ is a change of basis matrix).
 
 #cblock(fill: luma(240))[
   == Example
 
-  Assume that $A, B in RR^(n times n)$ are similar, prove that their characteristic polynomials are equal. #line(length: 100%, stroke: 0.75pt) As $A$ and $B$ are similar, there exists a matrix $S$ such that $B = S^(-1)A S$. Recall that $"det"(S)"det"(S^(-1)) = 1$. Thus, $"det"(A-z I) = "det"(S^(-1))"det"(A-z I)"det"(S) = "det"(S^(-1)(A-z I)S) = "det"(B-z S^(-1) I S) = "det"(B-z I)$.
+  Assume that $A, B in RR^(n times n)$ are similar, prove that their characteristic polynomials are equal. #line(length: 100%, stroke: 0.75pt) As $A$ and $B$ are similar, there exists a matrix $S$ such that $B = S^(-1)A S$. Recall that $"det"(S)"det"(S^(-1)) = 1$. Thus, $"det"(A-z I) = "det"(S^(-1))"det"(A-z I)"det"(S) = "det"(S^(-1)(A-z I)S) = "det"(S^(-1) A S -z S^(-1) I S) = "det"(B-z I)$.
 ]
 
 #cblock[
-  == Spectral Theorem (Theo. 7.3.1)
+  == Spectral Theorem (Theo. 9.2.1)
 
-  Any symmetric matrix $A in RR^(n times n)$ has $n$ real eigenvalues and an orthonormal basis made of eigenvectors of $A$.
+  Any symmetric matrix $A in RR^(n times n)$ has $n$ real eigenvalues and an orthonormal basis consisting of its eigenvectors.
 ]
 
-=== Diag. for Sym. Matrices (Cor. 7.3.2)
+=== Diag. for Symmetric Matrices (Cor. 9.2.2)
 
 For any symmetric matrix $A in RR^(n times n)$, there exists an orthogonal matrix $V in RR^(n times n)$ (whose columns are the eigenvectors of $A$) and a diagonal matrix $Lambda$ whose entries are the eigenvalues of $A$, such that $ A = V Lambda V^T "and" V^T V = I. $ (This is also called the _eigendecomposition_).
 
@@ -198,15 +211,17 @@ For any symmetric matrix $A in RR^(n times n)$, there exists an orthogonal matri
 
   Find a matrix $A$ with orthonormal eigenvectors $ bold(v)_1 = 1/9vec(1, 8, -4), bold(v)_2 = 1/9vec(-4, 4, 7), bold(v)_3 = 1/9vec(8, 1, 4) $ and corresponding eigenvalues $lambda_1 = 1, lambda_2 = -1, lambda_3 = 0$. #line(length: 100%, stroke: 0.75pt) Let $V$ be the $3 times 3$ matrix with $bold(v)_1, bold(v)_2, bold(v)_3$ as its columns and $D$ the diagonal matrix with $lambda_1, lambda_2, lambda_3$ on its diagonals, then $A = V D V^T$.
 ]
+
 #cblock[
-  == Eigenvalues of Sym. Matrices
+  == Eigenvalues of Sym. Matrices (Cor. 9.2.4)
+  The rank of a real symmetric matrix $A$ is the number of non-zero eigenvalues (counting repetitions). 
 
-  The rank of a real, symmetric matrix $A$ is the number of non-zero eigenvalues (Cor. 7.3.4).
+  For general $n times n$ (non-symmetric) matrices, the rank is $n$ minus the dimension of the nullspace, so it is $n$ minus the geometric multiplicity of $lambda = 0$. Since symmetric matrices always havea complete set of eigenvalues and eigenvectors, the geometric multiplicities are always the same as thealgebraic multiplicities (Remark 9.2.5).
 
-  Every symmetric matrix has a real eigenvalue (Cor. 7.3.8).
+  Every symmetric matrix has a real eigenvalue (Cor. 9.2.9).
 ]
 
-== Rayleigh Quotient (Prop 7.3.10)
+== Rayleigh Quotient (Prop 9.2.10)
 
 Let $A in RR^(n times n)$ be a symmetric matrix, the _Rayleight Quotient_, defined for $bold(x) in RR^n without {bold(0)}$, as $ R(bold(x)) = (bold(x)^T A bold(x)) / (bold(x)^T bold(x)), $ attains its maximum at $R(bold(v)_"max") = lambda_"max"$ and its minimum at $R(bold(v)_"min") = lambda_"min"$, where $lambda_"max"$ and $lambda_"min"$ are the maximum and minimum eigenvalues of $A$ and $bold(v)_"max"$ and $bold(v)_"min"$ their associated eigenvectors.
 
@@ -214,29 +229,29 @@ Let $A in RR^(n times n)$ be a symmetric matrix, the _Rayleight Quotient_, defin
 
 A symmetric matrix $A in RR^(n times n)$ is said to be _positive semidefinite_ (PSD) if all its eigenvalues are $>= 0$ and _positive definite_ they are $> 0$. Moreover, (as per Prop. 7.3.12) $A$ is
 
-1. PSD $<==>$ $bold(x)^T A bold(x) >= 0$ for all $bold(x) in RR^n without {bold(0)}$,
+1. PSD $<==>$ $bold(x)^T A bold(x) >= 0$ for all $bold(x) in RR^n$,
 2. PD $<==>$ $bold(x)^T A bold(x) > 0$ for all $bold(x) in RR^n without {bold(0)}$.
 
-Given two matrices $A$ and $B$ that are PSD (PD), their sum is also PSD (PD) (Fact 7.3.13).
+Given two matrices $A$ and $B$ that are PSD (PD), their sum is also PSD (PD), i.e. they are closed under taking addition.
 
-== Gram Matrix (Def. 7.3.14)
+== Gram Matrix (Def. 9.2.13)
 
 Let $V in RR^(m times n)$, the Gram matrix of $V$ is the inner product of the columns of $V$, i.e., $ G = V^T V. $
 
-Sometimes $V V^T$ is also called a Gram matrix of $V$ (the inner product of the rows) (Remark 7.3.15).
+Sometimes $V V^T$ is also called a Gram matrix of $V$ (the inner product of the rows) (Remark 9.2.14).
 
-== Gram and Eigenvalues (Prop. 7.3.16)
+== Gram and Eigenvalues (Prop. 9.2.15)
 
 Let $A in RR^(m times n)$, the non-zero eigenvalues of $A^T A$ are the same as the ones of $A A^T$. Both matrices are symmetric and PSD.
 
-== Cholesky Decomposition (Prop. 7.3.17)
+== Cholesky Decomposition (Prop. 9.2.16)
 
-Every symmetric, PSD matrix $M$ is a gram matrix of an upper triangular matrix $C$, i.e., $ M = C^T C. $
+Every symmetric, PSD matrix $M$ is a gram matrix of an _upper triangular matrix_ $C$, i.e., $ M = C^T C. $
 
 #cblock(fill: luma(240))[
   === Calculating the Cholesky Decomposition
 
-  1. Let $M$ be symmetric and PSD, the eigendecomposition (Cor. 7.3.2) gives us $M = V Lambda V^T$
+  1. Let $M$ be symmetric and PSD, the eigendecomposition (Cor. 9.2.2) gives us $M = V Lambda V^T$
   2. We build $Lambda^(1/2)$ by taking the square root of each entry of $Lambda$, following, $M = (V Lambda^(1/2)) (V Lambda^(1/2))^T$.
-  3. We then take the QR decomposition $(V Lambda^(1/2))^T = Q R$, following, $M = (Q R)^T (Q R) = R^T Q^T Q R = R^T R$.
+  3. We then take the QR decomposition $(V Lambda^(1/2))^T = Q R$, following, $M = (Q R)^T (Q R) = R^T Q^T Q R = R^T R = C^T C$.
 ]
