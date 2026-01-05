@@ -50,7 +50,7 @@ $ abs(bold(v) dot bold(w)) <= norm(bold(v)) dot norm(bold(w)). $
 
 Equality holds when one is a scalar multiple of the other.
 
-=== Triangle Inequality (Lemma 1.16)
+=== Triangle Inequality (Lemma 1.17)
 
 Let $bold(v), bold(w) in RR^m$. Then
 
@@ -65,9 +65,9 @@ $ bold(v) dot bold(w) = 0, $
 i.e., the angle between them is $alpha = 90°$.
 
 #cblock[
-  == Linear Independence (Cor. 1.20)
+  == Linear Independence (Cor. 1.23)
 
-  Let $bold(v)_1, bold(v)_2, ..., bold(v)_n in RR^m$. They are linearly depedent if
+  Let $bold(v)_1, bold(v)_2, ..., bold(v)_n in RR^m$. They are linearly indepedent if
 
   1. none of the vectors is a linear combination of the other ones,
   2. there are no scalars $lambda_1, lambda_2, ..., lambda_n$ besides $0, 0, ..., 0$ such that $sum_(j=1)^n lambda_j bold(v)_j = bold(0)$,
@@ -76,7 +76,7 @@ i.e., the angle between them is $alpha = 90°$.
   Following, the columns of a matrix $A$ are linearly independent if there is no $bold(x)$ besides $bold(0)$ such that $A bold(x) = 0$.
 ]
 
-== The Span (Def. 1.22)
+== The Span (Def. 1.25)
 
 Let $bold(v)_1, bold(v)_2, ..., bold(v)_n in RR^m$, their Span is defined as the set of all linear combination, i.e.,
 
