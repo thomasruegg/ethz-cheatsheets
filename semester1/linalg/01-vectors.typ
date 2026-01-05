@@ -19,7 +19,7 @@
 A linear combination $lambda_1 bold(v)_1 + lambda_2 bold(v)_2 + ... + lambda_n bold(v)_n$ is
 
 1. _affine_ if $lambda_1 + lambda_2 + ... + lambda_n = 1$,
-2. _conic_ if $lambda_i >= 1$ for $i = 1, 2, ..., n$,
+2. _conic_ if $lambda_i >= 0$ for $i = 1, 2, ..., n$,
 3. _convex_ if it is both affine and conic.
 
 #cblock[
