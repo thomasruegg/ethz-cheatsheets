@@ -8,8 +8,16 @@
 
 = Projections
 
+== Projection (Def. 5.2.1)
+The projection of a vector $bold(b) in RR^m$ on a subspace $S$ is the point in $S$ closest to $bold(b)$:
+$ "proj"_S (bold(b)) = "argmin"_(bold(p) in S) ||bold(b) - bold(p)|| $
+
+== Normal Equations (Lemma 5.2.3)
+The projection of $bold(b)$ on $S = C(A)$ is well defined and given by $bold(p) = A bold(hat(x))$, where $bold(hat(x))$ satisfies the *normal equations*:
+$A^T A bold(hat(x)) = A^T bold(b)$
+
 #cblock[
-  == Projection Matrix (Theo. 5.2.6)
+  == Projection Matrix (Theo. 5.2.5)
 
   Let $S$ be a subspace of $RR^m$ and $A$ be a matrix with columns that are a basis of $S$. The projection of $bold(b) in RR^m$ on $S$ is given by
 
@@ -17,12 +25,10 @@
 
   Moreover,
   1. $A^T A$ is invertible $<==>$ $A$ has linearly independent columns (Lemma 5.2.4),
-  2. if $A$ has linearly independent columns, then $A^T A$ is square, invertible and symmetric (Cor. 5.2.5).
+  2. if $A$ has linearly independent columns, then $A^T A$ is square, invertible and symmetric.
 ]
 
-
-
-=== Remark 5.2.7 // TODO: I think it should be Remark 5.2.6 now
+=== Remark 5.2.6
 
 For any projection matrix $P$ and corresponding subspace $S$,
 
