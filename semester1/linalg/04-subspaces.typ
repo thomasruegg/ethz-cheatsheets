@@ -8,7 +8,7 @@
 
 = The Four Fundamental Subspaces
 
-== Vectorspaces (Def. 4.1)
+== Vector Spaces (Def. 4.1)
 
 A vector space is a triple $(V, +, dot)$, where
 
@@ -61,13 +61,13 @@ Let $V$ be a vector space, a non-empty subset $U subset.eq V$ is called a subspa
 == Bases and Dimensions
 
 #cblock[
-  === Basis (Def. 4.16)
+  === Basis (Def. 4.18)
   Let $V$ be a vector space. A subset $B subset.eq V$ is called a _basis_ of $V$ if $B$ is linearly independent and $"Span"(B) = V$.
 ]
 
 #cblock[
-  === Dimensions (Def. 4.23)
-  Let $V$ be a finitely generated vector space. Then $"dim"(V) = abs(B)$, for any basis $B subset.eq V$. Moreover, the size of all bases of a vector space is equal (Theo. 4.20).
+  === Dimensions (Def. 4.25)
+  Let $V$ be a finitely generated vector space. Then $"dim"(V) = abs(B)$, for any basis $B subset.eq V$. Moreover, the size of all bases of a vector space is equal (Theo. 4.24).
 ]
 
 #cblock(fill: luma(240))[
@@ -82,7 +82,7 @@ Let $V$ be a vector space, a non-empty subset $U subset.eq V$ is called a subspa
   3. dimension is the cardinality of the base.
 ]
 
-=== Steinitz Exchange Lemma (Lemma 4.19)
+=== Steinitz Exchange Lemma (Lemma 4.23)
 
 Let $V$ be a vector space, $F subset.eq V$ a _finite_ set of linearly independent vectors, and $G subset.eq V$ a finite set of vectors with $"Span"(G) = V$. Then
 
@@ -90,7 +90,7 @@ Let $V$ be a vector space, $F subset.eq V$ a _finite_ set of linearly independen
 2. there is some subset $E subset.eq G$ with $abs(E) = abs(G) - abs(F)$ such that $"Span"(F union E) = V$.
 
 #cblock[
-  == The Column Space of $A$ (Def. 2.8)
+  == The Column Space of $A$ (Def. 2.9)
 
   Let $A in RR^(m times n)$. The _column space_ of $A$ is the span of its columns,
 
@@ -101,12 +101,12 @@ Let $V$ be a vector space, $F subset.eq V$ a _finite_ set of linearly independen
 ]
 
 #cblock[
-  === Basis of $"C"(A)$ (Theo. 4.25)
+  === Basis of $"C"(A)$ (Theo. 4.31)
 
-  The basis of $"C"(A)$ is the set of its _linearly independent columns_, and hence $"dim"("C"(A)) = "rank"(A)$. These can be calculated using Gauss-Jordan ($C$ matrix of $A = C R$).
+  The basis of $"C"(A)$ is the set of its _linearly independent columns_, and hence $"dim"("C"(A)) = "rank"(A)$. These can be calculated using Gauss-Jordan ($C$ matrix of $A = C R'$).
 ]
 
-== The Row Space of $A$ (Def. 2.13)
+== The Row Space of $A$ (Def. 2.14)
 
 Let $A in RR^(m times n)$. The _row space_ of $A$ is the span of its rows,
 
@@ -122,23 +122,23 @@ $ c_1 [1, 0, 2] + c_2 [0, 1, 0] = [c_1, c_2, 2c_1] $
 The row space is the set of vectors $(x, y, z) in RR^3$ satisfying $z = 2x$ (one less free variable $=>$ a plane through the origin).
 
 
-=== Basis of $"R"(A)$ (Theo. 4.28)
+=== Basis of $"R"(A)$ (Theo. 4.32)
 
 The basis of $"R"(A)$ is the set of its _linearly independent rows_, and hence $"dim"("R"(A)) = "dim"("C"(A)) = "rank"(A)$. These correspond to the first $r$ rows of $A$ in REF, where $r$ is the rank of $A$.
 
-== Bases in $A = C R$ (Theo. 4.30)
+== Bases in $A = C R'$ (Theo. 3.18)
 
-Let $A = C R$, then the columns of $C$ form a basis of $"C"(A)$ and the columns of $R$ form a basis of $"R"(A)$.
+Let $A = C R'$, then the columns of $C$ form a basis of $"C"(A)$ and the rows of $R'$ form a basis of $"R"(A)$.
 
 #cblock[
-  == The Nullspace of $A$ (Def. 4.31)
+  == The Nullspace of $A$ (Def. 2.17)
 
   Let $A in RR^(m times n)$. The _nullspace_ of $A$ is the set of all solutions to $A bold(x) = bold(0)$,
 
   $ "N"(A) := {bold(x) in RR : A bold(x) = 0} subset.eq RR^n. $
 ]
 
-=== Basis of $"N"(A)$ (Lemma 4.34)
+=== Basis of $"N"(A)$ (Theo. 4.36)
 
 We can calcuate a basis of $"N"(A)$, by converting $A$ to $R$ in RREF through Gauss-Jordan and then solving $R bold(x) = bold(0)$ with the _special cases_ where $bold(x)_i = 1$ for every $i = 1, ..., n$ for every linerly *dependent* columns in $R$.
 
@@ -158,37 +158,32 @@ $
 $
 
 
-4. Any basis of $"N"(R)$ is also a basis of $"N"(A)$ (Lemma 4.33).
+4. Any basis of $"N"(R)$ is also a basis of $"N"(A)$ (Lemma 3.3).
 
-Following, $"dim"("N"(A)) = n - "rank"(A)$ (Theo. 4.35).
+Following, $"dim"("N"(A)) = n - "rank"(A)$ (Theo. 4.36).
 
-== Left Nullspace of $A$ (Def. 4.36)
-
-Let $A in RR^(m times n)$. The _left nullspace_ of $A$ is the set of all solutions to $A^T bold(y) = bold(0)$,
-
-$ "LN"(A) := "N"(A^T) subset.eq RR^m. $
-
-=== Basis of $"LN"(A)$ (Theo. 3.48)
-
-We can calculate a basis of $"LN"(A)$ by,
-
-1. convert $A -> R_0$ through Gauss-Jordan,
-2. the last $m-r$ rows of the row operation matrix $M$ used in Gauss-Jordan form a basis of $"LN"(A)$.
-
-Following, $"dim"("LN")(A) = m - "rank"(A)$.
+// == Left Nullspace of $A$
+// REMOVED from notes (see footnote page 126 of notes_part_I.pdf).
+// Let $A in RR^(m times n)$. The _left nullspace_ of $A$ is the set of all solutions to $A^T bold(y) = bold(0)$,
+// $ "LN"(A) := "N"(A^T) subset.eq RR^m. $
+// === Basis of $"LN"(A)$
+// We can calculate a basis of $"LN"(A)$ by,
+// 1. convert $A -> R_0$ through Gauss-Jordan,
+// 2. the last $m-r$ rows of the row operation matrix $M$ used in Gauss-Jordan form a basis of $"LN"(A)$.
+// Following, $"dim"("LN")(A) = m - "rank"(A)$.
 
 #cblock(fill: luma(240))[
   #align(
     center,
     table(
-      columns: 5,
-      [*subspace*], [$ "C"(A) $], [$ "R"(A) $], [$ "N"(A) $], [$ "LN"(A) $],
-      [*dimensions*], [$ r $], [$ r $], [$ n - r $], [$ m - r $],
+      columns: 4,
+      [*subspace*], [$ "C"(A) $], [$ "R"(A) $], [$ "N"(A) $],
+      [*dimensions*], [$ r $], [$ r $], [$ n - r $],
     ),
   )
 ]
 
-== The Solution Space of $A bold(x) = bold(b)$ (Def. 4.39)
+== The Solution Space of $A bold(x) = bold(b)$ (Def. 4.37)
 
 Let $A in RR^(m times n)$, and $bold(b) in RR^m$, then _solution space_ of $A bold(x) = bold(b)$ is the set
 
@@ -217,10 +212,9 @@ For any $A bold(x) = bold(b)$ we have three options, 1. no solutions, 2. one sol
 ]
 
 #cblock[
-  === Sol. Space is shifted Nullspace (Theo. 4.40)
+  === Sol. Space is shifted Nullspace (Theo. 4.38)
 
   Let $A in RR^(m times n)$ and $bold(b) in RR^m$. Let $bold(s)$ some solution for $bold(x)$ to $A bold(x) = bold(b)$, then
 
   $ "Sol"(A, bold(b)) = { bold(s) + bold(n) : bold(n) in "N"(A) }. $
 ]
-
