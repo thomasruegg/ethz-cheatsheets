@@ -7,16 +7,16 @@
 )
 
 #cblock[
-  = Eigenvalues/vectors (Def. 7.1.1)
+  = Eigenvalues/vectors (Def. 8.2.1)
 
   Let $A in RR^(n times n)$, $lambda in CC$ is an eigenvalue of $A$ and $bold(v) in CC^n without {bold(0)}$ is the associated eigenvector of $A$, if $ A bold(v) = lambda bold(v). $
 
-  To calculate eigenvalue/vector pairs, we use Prop. 7.1.2:
+  To calculate eigenvalue/vector pairs, we use Lemma 8.2.3:
 
   1. $"det"(A-lambda I) = 0 <==>$ $lambda$ is an eigenvalue of $A$,
   2. $bold(v)$ is an eigenvector of $A$ (associated with $lambda$) $<==>$ $bold(v) in "N"(A-lambda I)$ and $bold(v) != bold(0)$.
 
-  Every matrix $A in RR^(n times n)$ has an eigenvalue (Theo 7.1.4).
+  Every matrix $A in RR^(n times n)$ has an eigenvalue (Theo. 8.2.5).
 ]
 
 #cblock(fill: luma(240))[
@@ -93,12 +93,12 @@ To find zeros of $a x^2 + b x + c = 0$ are given by $ x = (-b plus.minus sqrt(b^
 
 1. If $lambda$ and $bold(v)$ are an eigenvalue-eigenvector pair of $A$, then $lambda^k$ and $bold(v)$ are one for $A^k$. Induction Proof: $A^k v = A(A^(k-1) v)=A(lambda^(k-1) v)=lambda^(k-1)(A v)=lambda^k v$ (Prop. 8.3.1).
 2. Let $A$ be invertible, if $lambda$ and $bold(v)$ are an eigenvalue-eigenvector pair of $A$, then $1/lambda$ and $bold(v)$ are an eigenvalue-eigenvector pair of $A^(-1)$. Proof: $A v=lambda v <==> v=A^(-1)(lambda v) <==> lambda A^(-1) v = v <==> A^(-1) v = 1/lambda v$ (works since $lambda != 0$) (Prop. 8.3.1).
-3. Let $A in RR^(n times n)$, the eigenvalues of $A$ are the same ones as of $A^T$. Proof: $det(A-z I)=det((A-z I)^T)=det(A^T-z I)$ (Prop. 8.3.5).
+3. Let $A in RR^(n times n)$, the eigenvalues of $A$ are the same ones as of $A^T$. Proof: $det(A-z I)=det((A-z I)^T)=det(A^T-z I)$ (Lemma 8.3.5).
 4. Let $Q in RR^(n times n)$ be an orthogonal matrix, if $lambda$ is an eigenvalue of $Q$, then $abs(lambda) = 1$. Proof: $||v||^2=||Q v||^2=||lambda v||^2=|lambda| dot ||v||^2$ (Prop. 8.2.7).
-6. Let $A in RR^(n times n)$, if $(lambda, bold(v))$ is an eigenvalue-eigenvector pair of $A$, then $(overline(lambda), overline(bold(v)))$ is an eigenvalue-eigenvector pair of $A$ too. Thus, if $lambda in CC$ is an eigenvalue of $A$, then $overline(lambda)$ is also an eigenvalue of $A$ (Prop. 8.2.8).
+5. Let $A in RR^(n times n)$, if $(lambda, bold(v))$ is an eigenvalue-eigenvector pair of $A$, then $(overline(lambda), overline(bold(v)))$ is an eigenvalue-eigenvector pair of $A$ too. Thus, if $lambda in CC$ is an eigenvalue of $A$, then $overline(lambda)$ is also an eigenvalue of $A$ (Lemma 8.2.8).
 6. Let $P in RR^(n times n)$ be a projection matrix, then $P$ has two distinct eigenvalues, $0$ and $1$ (every single one of the $n$ eigenvalues is either 0 or 1) and a _complete set_ of eigenvectors (Prop. 9.1.6).
-7. Let $D in RR^(n times n)$ be a diagonal matrix, then its eigenvalues are its diagonal entries and the canonical basis is a set of eigenvectors of $D$ (Ex. 7.1.23).
-8. Let $T in RR^(n times n)$ be a triangular matrix, then its eigenvalues are its diagonal entries, however, $T$ might not have a complete set of eigenvectors (Fact 45).
+7. Let $D in RR^(n times n)$ be a diagonal matrix, then its eigenvalues are its diagonal entries and the canonical basis is a complete set of eigenvectors of $D$ (Example 9.1.4).
+8. Let $T in RR^(n times n)$ be a triangular matrix, then its eigenvalues are its diagonal entries, however, $T$ might not have a complete set of eigenvectors (Example 9.1.5).
 
 == Important Words Of Caution
 
@@ -108,9 +108,9 @@ To find zeros of $a x^2 + b x + c = 0$ are given by $ x = (-b plus.minus sqrt(b^
 4. _*Gaussian Elimination does not preserve eigenvalues and eigenvectors*_!
 
 #cblock[
-  == Distinct Eigenvalues (Theo. 7.1.9)
+  == Distinct Eigenvalues (Theo. 8.3.3)
 
-  Let $A in RR^(n times n)$ with $n$ distinct, real eigenvalues, then there is a basis of $RR^n$ made up of eigenvectors of $A$. We also say that $A$ has a _complete set_ of eigenvectors (Def. 7.1.20).
+  Let $A in RR^(n times n)$ with $n$ distinct, real eigenvalues, then there is a basis of $RR^n$ made up of eigenvectors of $A$. We also say that $A$ has a _complete set_ of eigenvectors (Def. 9.1.3).
 ]
 
 == Complex Numbers
@@ -156,11 +156,11 @@ $ P(z) = (-1)^n "det"(A - z I) = (z - lambda_1) (z - lambda_2) dots (z - lambda_
 $]
 
 
-== Trace and Determinant (Prop. 7.1.12)
+== Trace and Determinant (Lemma 8.3.6)
 
 Let $A in RR^(n times n)$ and $lambda_1, ..., lambda_n$ its $n$ eigenvalues, then $ "Tr"(A) & = sum_(i=1)^n lambda_i "and" "det"(A) & = Pi_(i=1)^n lambda_i. $
 
-Following, for matrices $A$, $B$ and $C$ $in RR^(n times n)$,
+Following (Lemma 8.3.7), for matrices $A$, $B$ and $C$ $in RR^(n times n)$,
 
 1. $"Tr"(A B) = "Tr"(B A)$,
 2. $"Tr"(A B C) = "Tr"(B C A) = "Tr"(C A B)$.
@@ -221,13 +221,13 @@ For any symmetric matrix $A in RR^(n times n)$, there exists an orthogonal matri
   Every symmetric matrix has a real eigenvalue (Cor. 9.2.9).
 ]
 
-== Rayleigh Quotient (Prop 9.2.10)
+== Rayleigh Quotient (Prop. 9.2.10)
 
 Let $A in RR^(n times n)$ be a symmetric matrix, the _Rayleight Quotient_, defined for $bold(x) in RR^n without {bold(0)}$, as $ R(bold(x)) = (bold(x)^T A bold(x)) / (bold(x)^T bold(x)), $ attains its maximum at $R(bold(v)_"max") = lambda_"max"$ and its minimum at $R(bold(v)_"min") = lambda_"min"$, where $lambda_"max"$ and $lambda_"min"$ are the maximum and minimum eigenvalues of $A$ and $bold(v)_"max"$ and $bold(v)_"min"$ their associated eigenvectors.
 
-== Positive (Semi)-Definite (Def. 7.3.11)
+== Positive (Semi)-Definite (Def. 9.2.11)
 
-A symmetric matrix $A in RR^(n times n)$ is said to be _positive semidefinite_ (PSD) if all its eigenvalues are $>= 0$ and _positive definite_ they are $> 0$. Moreover, (as per Prop. 7.3.12) $A$ is
+A symmetric matrix $A in RR^(n times n)$ is said to be _positive semidefinite_ (PSD) if all its eigenvalues are $>= 0$ and _positive definite_ they are $> 0$. Moreover, (as per Prop. 9.2.12) $A$ is
 
 1. PSD $<==>$ $bold(x)^T A bold(x) >= 0$ for all $bold(x) in RR^n$,
 2. PD $<==>$ $bold(x)^T A bold(x) > 0$ for all $bold(x) in RR^n without {bold(0)}$.
