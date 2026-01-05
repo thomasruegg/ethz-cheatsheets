@@ -21,30 +21,78 @@
 
 #cblock(fill: luma(240))[
   == Example
-  Consider the sequence of numbers given by $a_0 = 1$, $a_1 = 1$ and $a_n = -a_(n-1)+6a_(n_2) "for" n >= 2$. Find $alpha, beta in RR$ such that $a_n = 4/5alpha^n + 1/5beta^n$ for all $n in NN_0$. Prove your answer. #line(length: 100%, stroke: 0.75pt)
-  1. Define sequence algebraically: $ underbrace(mat(-1, 6; 1, 0;), A) vec(a_(n-1), a_(n-2)) = vec(a_n, a_(n-1)), $
-  2. Find eigenvalues of $A$: $ "det"(A-lambda I) = 0 ==> lambda_1 = 2, lambda_2 = -3, $
-  3. Find the corresponding eigenvectors : $ (A-lambda_i I)bold(x) = 0 ==> bold(v)_1 = vec(-3, 1), bold(v)_2 = vec(2, 1), $
-  4. Express $bold(v)_0$ in terms of $bold(v)_1$ and $bold(v)_2$: $ vec(a_0, a_1) = vec(1, 1) = 1/5bold(v)_1 + 4/5bold(v)_2, $
-  5. Rewrite $v_n = A^n v_0$ as $ v_n & = A^n (1/5bold(v)_1 + 4/5bold(v)_2) \
-        & = 1/5 A^n bold(v)_1 + 4/5 A^n bold(v)_2 \
-        & = 1/5 lambda_1^n bold(v)_1 + 4/5 lambda_2 bold(v)_2 \
-        & = 1/5 (-3)^n vec(-3, 1) + 4/5 2^n vec(2, 1). $
-  6. Consider second component: $a_n = 4/5 2^n + 1/5 (-3)^n$.
+  Consider the sequence of numbers given by $a_0 = 1$, $a_1 = 1$ and $a_n = -a_(n-1)+6a_(n-2) "for" n >= 2$. Find $alpha, beta in RR$ such that $a_n = 4/5alpha^n + 1/5beta^n$ for all $n in NN_0$. Prove your answer. #line(length: 100%, stroke: 0.75pt)
+
+  1. Define sequence algebraically: Let $bold(v)_n = vec(a_(n+1), a_n)$. We translate the recurrence $a_n = -a_(n-1) + 6a_(n-2)$ into matrix form.
+    $
+      underbrace(vec(a_n, a_(n-1)), bold(v)_(n-1)) = underbrace(mat(-1, 6; 1, 0;), A) underbrace(vec(a_(n-1), a_(n-2)), bold(v)_(n-2))
+    $
+    *Note:* Since $bold(v)_0 = vec(a_1, a_0)$ has $a_0$ at the bottom, our target $a_n$ (which we'll need later) will always correspond to the *bottom component* of $bold(v)_n$. This is more clear if we shift the above stated matrix equation:
+    $
+      underbrace(vec(a_(n+1), a_n), bold(v)_(n)) = underbrace(mat(-1, 6; 1, 0;), A) underbrace(vec(a_n, a_(n-1)), bold(v)_(n-1))
+    $
+  3. Find the corresponding eigenvectors $bold(v)_i in N(A-lambda_i I)$: $                                     (A-lambda_i I)bold(v)_i = 0 \
+    mat(-3, 6; 1, -2) mat((bold(v)_1)_1; (bold(v)_1)_2) = vec(0, 0) & ==> bold(v)_1 = vec(2, 1), \
+      mat(2, 6; 1, 3) mat((bold(v)_2)_1; (bold(v)_2)_2) = vec(0, 0) & ==> bold(v)_2 = vec(-3, 1), $
+  4. Express $bold(v)_0$ as a linear combination $c_1 bold(v)_1 + c_2 bold(v)_2$:
+    We solve the system for the initial vector $bold(v)_0 = vec(1, 1)$:
+    $
+      c_1 vec(2, 1) + c_2 vec(-3, 1) = vec(1, 1)
+      ==> cases(
+        2c_1 - 3c_2 & = 1,
+        c_1 + space c_2 & = 1
+      )
+    $
+    From the second equation, $c_1 = 1 - c_2$. Substituting into the first:
+    $
+      2(1 - c_2) - 3c_2 = 1 \
+      2 - 5c_2 = 1 ==> 5c_2 = 1 ==> c_2 = 1/5
+    $
+    Then, $c_1 = 1 - 1/5 = 4/5$.
+    Thus:
+    $ vec(a_1, a_0) = vec(1, 1) = 4/5 bold(v)_1 + 1/5 bold(v)_2 $
+  5. Rewrite $bold(v_n) = vec(a_(n+1), a_n)= A^n bold(v_0)$ as $ bold(v_n) & = A^n (4/5bold(v)_1 + 1/5bold(v)_2) \
+              & = 4/5 A^n bold(v)_1 + 1/5 A^n bold(v)_2 \
+              & = 4/5 lambda_1^n bold(v)_1 + 1/5 lambda_2^n bold(v)_2 \
+              & = 4/5 2^n vec(2, 1) + 1/5 (-3)^n vec(-3, 1). $
+  6. Consider second component: $a_n = 4/5 dot 2^n dot 1 + 1/5 dot (-3)^n dot 1$.
 ]
 
 #cblock(fill: luma(240))[
-  == Example
-  Construct a square matrix $B$ with eigenvalues $0, 1, 2$, such that $B$ is not a diagonal matrix. #line(length: 100%, stroke: 0.75pt) Let $A$ be the diagonal matrix with $0, 1, 2$ on its diagonals and let $V = mat(bar.v, bar.v, bar.v; bold(e)_1 + bold(e)_2, bold(e)_1 - bold(e)_2, bold(e)_3; bar.v, bar.v, bar.v)$, then $B = V A V^-1$.
+  == Reverse Diagonalization Example
+  Construct a square matrix $B$ with eigenvalues $0, 1, 2$, such that $B$ is not a diagonal matrix. #line(length: 100%, stroke: 0.75pt) Let $A$ be the diagonal matrix with $0, 1, 2$ on its diagonals and let $V = mat(bar.v, bar.v, bar.v; bold(e)_1 + bold(e)_2, bold(e)_1 - bold(e)_2, bold(e)_3; bar.v, bar.v, bar.v)$, then $B = V A V^(-1)$. Ensure $det(V) != 0.$
+]
+== Quadratic Formula (for finding $lambda$)
+To find zeros of $a x^2 + b x + c = 0$ are given by $ x = (-b plus.minus sqrt(b^2 - 4 a c)) / (2a). $
+
+#cblock[
+  == Eigenvalues, Trace & Determinant (Def. 8.3.4, Lemma 8.3.6)
+
+  The *characteristic polynomial* of $A in RR^(n times n)$ is given by:
+  $ P(z) &= (-1)^n det(A-z I) \ &=det(z I - A) = (z - lambda_1)(z - lambda_2)dots(z - lambda_n) $
+  The roots $lambda_i$ are the eigenvalues, and their *algebraic multiplicity* is the number of times they appear as roots.
+
+  *Key Properties:*
+  The coefficients of the polynomial reveal the sum and product of eigenvalues:
+  1. *Determinant:* The product of eigenvalues.
+     $ "det"(A) = product_(i=1)^n lambda_i $
+  2. *Trace:* The sum of diagonal elements equals the sum of eigenvalues.
+     $ "Tr"(A) = sum_(i=1)^n A_(i i) = sum_(i=1)^n lambda_i $
+
+  === Complex Eigenvalues & Conjugates
+  If $A$ is a real matrix, complex eigenvalues come in *conjugate pairs*.
+  If $A bold(v) = lambda bold(v)$, then taking the conjugate of both sides gives:
+  $ A bar(bold(v)) = bar(A bold(v)) = bar(lambda bold(v)) = bar(lambda) bar(bold(v)) $
+  *Conclusion:* If $lambda$ is an eigenvalue with eigenvector $bold(v)$, then $bar(lambda)$ is an eigenvalue with eigenvector $bar(bold(v))$.
 ]
 
 == Special Eigenvalues
 
-1. If $lambda$ and $bold(v)$ are an eigenvalue-eigenvector pair of $A$, then $lambda^k$ and $bold(v)$ are one for $A^k$ (Prop. 7.1.6).
-2. Let $A$ be invertible, if $lambda$ and $bold(v)$ are an eigenvalue-eigenvector pair of $A$, then $1/lambda$ and $bold(v)$ are an eigenvalue-eigenvector pair of $A^(-1)$ (Prop. 7.1.7).
-3. Let $A in RR^(n times n)$, the eigenvalue of $A$ are the same ones as of $A^T$ (Prop. 7.1.10).
-4. Let $Q in RR^(n times n)$ be an orthogonal matrix, if $lambda$ is an eigenvalue of $Q$, then $abs(lambda) = 1$ (Prop. 7.1.17).
-5. Let $A in RR^(n times n)$, if $lambda in CC$ is an eigenvalue of $A$, then $overline(lambda)$ is also ein eigenvalue of $A$ (Fact 40).
+1. If $lambda$ and $bold(v)$ are an eigenvalue-eigenvector pair of $A$, then $lambda^k$ and $bold(v)$ are one for $A^k$. Induction Proof: $A^k v = A(A^(k-1) v)=A(lambda^(k-1) v)=lambda^(k-1)(A v)=lambda^k v$ (Prop. 8.3.1).
+2. Let $A$ be invertible, if $lambda$ and $bold(v)$ are an eigenvalue-eigenvector pair of $A$, then $1/lambda$ and $bold(v)$ are an eigenvalue-eigenvector pair of $A^(-1)$. Proof: $A v=lambda v <==> v=A^(-1)(lambda v) <==> lambda A^(-1) v = v <==> A^(-1) v = 1/lambda v$ (works since $lambda != 0$) (Prop. 8.3.1).
+3. Let $A in RR^(n times n)$, the eigenvalues of $A$ are the same ones as of $A^T$. Proof: $det(A-z I)=det((A-z I)^T)=det(A^T-z I)$ (Prop. 8.3.5).
+4. Let $Q in RR^(n times n)$ be an orthogonal matrix, if $lambda$ is an eigenvalue of $Q$, then $abs(lambda) = 1$. Proof: $||v||^2=||Q v||^2=||lambda v||^2=|lambda| dot ||v||^2$ (Prop. 8.2.7).
+6. Let $A in RR^(n times n)$, if $(lambda, bold(v))$ is an eigenvalue-eigenvector pair of $A$, then $(overline(lambda), overline(bold(v)))$ is an eigenvalue-eigenvector pair of $A$ too. Thus, if $lambda in CC$ is an eigenvalue of $A$, then $overline(lambda)$ is also an eigenvalue of $A$ (Prop. 8.2.8).
 6. Let $P in RR^(n times n)$ be a projection matrix, then $P$ has two eigenvalues, $0$ and $1$ and a _complete set_ of eigenvectors (Prop. 7.1.21).
 7. Let $D in RR^(n times n)$ be a diagonal matrix, then its eigenvalues are its diagonal entries and the canonical basis is a set of eigenvectors of $D$ (Ex. 7.1.23).
 8. Let $T in RR^(n times n)$ be a triangular matrix, then its eigenvalues are its diagonal entries, however, $T$ might not have a complete set of eigenvectors (Fact 45).
@@ -64,12 +112,12 @@
 
 == Complex Numbers
 
-Complex numbers are of the form $z = a + i b$ with $a, b in RR$ and $i^2 = -1$. The following operations are defined:
+Complex numbers are of the form $z = (a + i b) in CC$ with $a, b in RR$ and $i^2 = -1$. The following operations are defined:
 
 1. $(a+i b) + (x+i y) = (a+x) + i(b+y)$.
 2. $(a+i b) dot (x+i y) = (a x-b y) + i(a y+b x)$.
 3. $(a+i b) dot (a-i b) = a^2+b^2$.
-4. $(a+i b)/(x+i y) = ((a x+b y)/(x^2+y^2))+i((b x-a y)/(x^2+y^2))$.
+4. $(a+i b)/(x+i y) = ((a+i b)(x-i y))/((x+i y)(x-i y)) = ((a x+b y) + i(b x - a y))/((x^2+ y^2)) = ((a x+b y)/(x^2+y^2))+i((b x-a y)/(x^2+y^2))$.
 5. $abs(z) = sqrt(a^2+b^2)$ #h(1fr) (modulus).
 6. $overline(a+i b) = a-i b$ #h(1fr) (conjugate).
 7. $abs(z)^2 = z overline(z)$.
@@ -84,21 +132,24 @@ Let $A in CC^(m times n)$, the _conjugate transpose_ $A^* = overline(A)^T$.
 
 Given $bold(v) in CC^n$, we have $ norm(bold(v))^2 = bold(v)^* bold(v) = overline(bold(v))^T bold(v) = sum_(i=1)^n overline(v)_i v_i = sum_(i=1)^n abs(v_i)^2. $
 
-#cblock[
-  == Fund. Theorem of LinAlg (Theo. 7.0.3)
+The dot-product in $CC^n$ is given by $chevron.l bold(v), bold(w) chevron.r = bold(w)^* bold(v)$.
 
-  Any degree $n >= 1$ polynomial $P(z) = alpha_n z^n + ... + a_1 z + a_0$ with $a_0 != 0$ has $n$ zeros: $lambda_y, ...., lambda_n in CC$ such that $ P(z) = alpha_n (z-lambda_1) ... (z-lambda_n). $ The number of times $lambda in CC$ appears in this expression is called the _algebraic multiplicity_ of the zero (Cor. 7.0.4).
+#cblock[
+  == Fund. Theorem of Algebra (Cor. 8.1.3)
+
+  Any degree $n >= 1$ polynomial $P(z) = alpha_n z^n + ... + a_1 z + a_0$ with $a_n != 0$ has $n$ zeros: $lambda_1, ..., lambda_n in CC$ such that $ P(z) = alpha_n (z-lambda_1) ... (z-lambda_n). $ The number of times $lambda in CC$ appears in this expression is called the _algebraic multiplicity_ of the zero (i.e. of the $P(lambda)=0$). This guarantees that an $n times n$ matrix always has exactly $n$ eigenvalues (if you count repeats and complex eigenvalues).
 ]
 
 == Geometric Multiplicity
 
 Let $A in RR^(n times n)$ with eigenvalue $lambda$, we call the dimension of $"N"(A - lambda I)$ the _geometric multiplicity_ of $lambda$.
 
-#v(1cm)
-
 == Characteristic Polynomial
 
-Let $A in RR^(m times n)$, the _characteristic polynomial_ of $A$ is $ (-1)^n "det"(A - z I) = (z - lambda_1) (z - lambda_2) ... (z - lambda_n) \ = z^n + (-sum_(i=1)^n lambda_i)z^(n-1) + sum_(k=1)^(n-2)b_k z^k + (-1)^n product_(i=1)^n lambda_i . $
+Let $A in RR^(m times n)$, the _characteristic polynomial_ of $A$ is 
+$ P(z) = (-1)^n "det"(A - z I) = (z - lambda_1) (z - lambda_2) dots (z - lambda_n) $ 
+#text(fill: luma(50%))[$ = z^n + underbrace((-sum_(i=1)^n lambda_i), - "Tr"(A)) z^(n-1) + underbrace(sum_(k=1)^(n-2)b_k z^k, "messy middle terms") + underbrace((-1)^n product_(i=1)^n lambda_i, (-1)^n "det"(A)). $]
+
 
 == Trace and Determinant (Prop. 7.1.12)
 
@@ -112,7 +163,7 @@ Following, for matrices $A$, $B$ and $C$ $in RR^(n times n)$,
 #cblock[
   == Diagonalization (Theo. 7.2.1)
 
-  Let $A in RR^(n times n)$ be a matrix with a complete set of eigenvectors. Let $V = mat(bar.v, , bar.v; bold(v)_1, ..., bold(v)_n; bar.v, , bar.v;) in RR^(n times n)$ be the matrix whose columns are the eigenvectors and $Lambda in RR^(n times n)$ the matrix whose diagonal entries are the eigenvalues ($Lambda_(i i) = lambda_i$ for all $i in [n]$), then $ A = V Lambda V^(-1). $
+  Let $A in RR^(n times n)$ be a matrix with a complete set of eigenvectors. Let $V = mat(bar.v, , bar.v; bold(v)_1, ..., bold(v)_n; bar.v, , bar.v;) in RR^(n times n)$ be the matrix whose columns are the eigenvectors, and $Lambda in RR^(n times n)$ the matrix whose diagonal entries are the eigenvalues ($Lambda_(i i) = lambda_i$ for all $i in [n]$), then $ A = V Lambda V^(-1). $
 ]
 
 == Diagonalizable Matrix (Def. 7.2.2)
@@ -121,8 +172,9 @@ A matrix $A in RR^(n times n)$ is said to be _diagonalizable_ if there exists an
 
 == Similar Matrices (Def. 7.2.3)
 
-Two matrices $A$ and $B$ $in RR^(n times n)$ are _similar_, if exists an invertible matrix $S$, such that $B = S^(-1) A S$.
-
+Two matrices $A$ and $B$ $in RR^(n times n)$ are _similar_, if exists an invertible matrix $S$, such that $ B = S^(-1) A S. $
+\
+Similar matrices are clones of each other. They represent the exact same linear transformation, just viewed from a different coordinate system.
 Similar matrices have the same eigenvalues (Prop. 7.2.4).
 
 #cblock(fill: luma(240))[
@@ -136,8 +188,6 @@ Similar matrices have the same eigenvalues (Prop. 7.2.4).
 
   Any symmetric matrix $A in RR^(n times n)$ has $n$ real eigenvalues and an orthonormal basis made of eigenvectors of $A$.
 ]
-
-#v(1cm)
 
 === Diag. for Sym. Matrices (Cor. 7.3.2)
 

@@ -19,7 +19,7 @@ Vectors $bold(q)_1, ..., bold(q)_n in RR^m$ are orthonormal if they are orthogon
 
   Additionally, orthogonal matrices _preserve norm and dot product_, i.e., $ norm(Q bold(x)) = norm(bold(x)) "and" (Q bold(x))^T (Q bold(y)) = bold(x)^T bold(y), $
 
-  for all $bold(x), bold(y) in RR^n$ (Prop. 5.4.6).
+  for all $bold(x), bold(y) in RR^n$ (Prop. 5.4.6). // TODO: I think it's now Prop. 6.3.6
 ]
 
 #cblock[
@@ -37,16 +37,16 @@ Vectors $bold(q)_1, ..., bold(q)_n in RR^m$ are orthonormal if they are orthogon
 #cblock(fill: luma(240))[
   == Example
 
-  An upper triangular $n times n$ matrix with non-zero diagonals that does not yield the canoncial basis after the Gram-Schmidt process is $-I$.
+  An upper triangular $n times n$ matrix with non-zero diagonals that does *not* yield the canonical basis after the Gram-Schmidt process is $-I$.
 ]
 
 == QR-Decomposition
 
 Let $A in RR^(m times n)$ with linearly independent columns. $ A = Q R $ where $Q$ is an $m times n$ matrix with orthonormal columns and $R$ is an upper triangular matrix given by $R = Q^T A$.
 
-== Projections with QR (Fact 5.4.13)
+== Projections with QR (Fact 5.4.13) // TODO: I think it's now Fact 6.3.12
 
-1. Any projection on $C(A)$ can also be done by $Q$, following $"proj"_(C(A)) (bold(b)) = Q Q^T b$.
+1. Any projection on $C(A)$ can also be done by $Q$, following $"proj"_(C(A)) (bold(b)) = Q(Q^T Q)^(-1) Q^T bold(b) = Q Q^T bold(b)$.
 2. The normal equation can be re-written as $ A^T A accent(x, hat) & = A^T b \
-  R^T R accent(x, hat) & = R^T Q^T bold(b) \
-      R accent(x, hat) & = Q^T bold(b). $
+  R^T R accent(x, hat) & = R^T Q^T bold(b) " ("R^T "is invertible)" \
+      R accent(x, hat) & = Q^T bold(b). "(useful for least squares)" $

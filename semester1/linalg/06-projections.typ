@@ -11,7 +11,7 @@
 #cblock[
   == Projection Matrix (Theo. 5.2.6)
 
-  Let $S$ be a subspace of $RR^m$ and $A$ be a matrix with columns are a basis of $S$. The projection of $bold(b) in RR^m$ on $S$ is given by
+  Let $S$ be a subspace of $RR^m$ and $A$ be a matrix with columns that are a basis of $S$. The projection of $bold(b) in RR^m$ on $S$ is given by
 
   $ "proj"_S (bold(b)) = P bold(b) "with" P = A(A^T A)^(-1) A^T. $
 
@@ -22,9 +22,9 @@
 
 
 
-=== Remark 5.2.7
+=== Remark 5.2.7 // TODO: I think it should be Remark 5.2.6 now
 
 For any projection matrix $P$ and corresponding subspace $S$,
 
-1. $P^2 = P$,
-2. $"proj"_(S^bot) (bold(b)) = (I - P) bold(b)$.
+1. $P^2 = (A (A^T A)^(-1) A^T)^2 = A (A^T A)^(-1) overbrace(A^T A (A^T A)^(-1), I) A^T = A (A^T A)^(-1) A^T = P$
+2. $"proj"_(S^bot) (bold(b)) = bold(b)-P bold(b) = (I - P) bold(b)$.

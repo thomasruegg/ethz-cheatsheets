@@ -111,8 +111,6 @@ For invertible matrices, the following hold
   3. The columns of $A$ are linearly independent.
 ]
 
-#v(1.5cm)
-
 #cblock(fill: luma(240))[
   === Example
 
@@ -129,30 +127,33 @@ For invertible matrices, the following hold
 
 Let $A = mat(a, b; b, c;)$, then $ A^(-1) = 1/(a d - b c) mat(d, -b; -c, a;) ("if" a d - b c != 0). $
 
-== LU Decomposition (Theo. 3.13)
+=== Inverse of a $n times n$ matrix
+TODO: DID WE HAVE THAT??
 
-Let $A in RR^(m times m)$. If Gauss succeeds on $A$ without row exchanges, resulting in $U$. Then $L = E^(-1)$, where $E$ is the product of all elimination matrices and $A = L U$.
+// == LU Decomposition (Theo. 3.13)
 
-#align(
-  center,
-  grid(
-    align: horizon,
-    columns: 2,
-    [
-      $
-        E^(-1) = mat(1, , , ; c_21, 1, , ; dots.v, , dots.down, ; c_(m 1), ..., c_(m, m-1), 1;)
-      $
-    ],
-    grid.vline(stroke: 0.5pt),
-    [
-      $c_(i j)$ is the multiple of row $j$ subtracted from row $i$.
-    ],
-  ),
-)
+// Let $A in RR^(m times m)$. If Gauss succeeds on $A$ without row exchanges, resulting in $U$. Then $L = E^(-1)$, where $E$ is the product of all elimination matrices and $A = L U$.
 
-== LUP Decomposition (Theo. 3.18)
+// #align(
+//   center,
+//   grid(
+//     align: horizon,
+//     columns: 2,
+//     [
+//       $
+//         E^(-1) = mat(1, , , ; c_21, 1, , ; dots.v, , dots.down, ; c_(m 1), ..., c_(m, m-1), 1;)
+//       $
+//     ],
+//     grid.vline(stroke: 0.5pt),
+//     [
+//       $c_(i j)$ is the multiple of row $j$ subtracted from row $i$.
+//     ],
+//   ),
+// )
 
-Otherwise, $P A = L U$, where $P$ is the product of all permutation matrices.
+// == LUP Decomposition (Theo. 3.18)
+
+// Otherwise, $P A = L U$, where $P$ is the product of all permutation matrices.
 
 == Gauss-Jordan Elimination
 

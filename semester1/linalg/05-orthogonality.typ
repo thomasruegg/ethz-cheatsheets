@@ -1,8 +1,8 @@
-#let cblock(content) = block(
+#let cblock(content, fill: rgb("#FFADAD")) = block(
   width: 100%,
   inset: 0.75em,
   radius: 1pt,
-  fill: rgb("#FFADAD"),
+  fill: fill,
   content,
 )
 
@@ -12,11 +12,11 @@
 
 Two subspaces $V$ and $W$ are orthogonal if for all $bold(v) in V$ and $bold(w) in W$, $v dot w = 0$.
 
-More specifically, this also holds for the bases, i.e., let $v_1,...,v_k$ be a basis of $V$ and $w_1,...,w_l$ be a basis of $W$. $V$ and $W$ are orthogonal if and only if $v_i dot w_j = 0$ $forall i in [k] "and" j in [l]$ (Lemma 5.1.2).
+More specifically, this also holds for the bases, i.e., hhjklhjklhjklhjhjklhjklh $v_1,...,v_k$ be a basis of $V$ and $w_1,...,w_l$ be a basis of $W$. $V$ and $W$ are orthogonal if and only if $v_i dot w_j = 0$ $forall i in [k] "and" j in [l]$ (Lemma 5.1.2).
 
 == Orthogonal Complement (Def. 5.1.5)
 
-Let $V$ be a subspaces of $RR^n$, the orthogonal complement to $V$,
+Let $V$ be a subspace of $RR^n$, the orthogonal complement to $V$,
 
 $
   V^bot := {bold(w) in RR^n : bold(w) dot bold(v) = 0 "for all" bold(v) in V}.
@@ -36,9 +36,20 @@ $
   == Orthogonal Matrix Subspaces (Cor. 5.1.9)
 
   Let $A in RR^(m times n)$, then
-  1. $"N"(A) = "C"(A^T)^bot$,
-  2. $"C"(A^T) = "N"(A)^bot$.
+  1. $"N"(A) = "C"(A^T)^bot$, also $N(A) = N(A^T A)$,
+  2. $"C"(A^T) = "N"(A)^bot$, also $C(A^T) = C(A^T A)$.
 ]
+
+// #cblock(fill: luma(240))[
+//   *Proof $N(A) = C(A^T)^bot$:*
+//   Let $bold(x) in N(A)$, then $A bold(x) = bold(0)$. For any $bold(y) in RR^m$, we have $(A^T bold(y)) dot bold(x) = bold(y)^T (A bold(x)) = bold(y)^T bold(0) = 0$, thus $bold(x) in C(A^T)^bot$. \
+
+//   *Proof $N(A) = N(A^T A)$:*
+//   Let $bold(x) in N(A)$, then $A bold(x) = bold(0)$, so $A^T A bold(x) = A^T bold(0) = bold(0)$, thus $bold(x) in N(A^T A)$. Conversely, let $bold(x) in N(A^T A)$, then $A^T A bold(x) = bold(0)$, so $bold(x)^T A^T A bold(x) = 0$, which implies $A bold(x)^T A bold(x) = 0$, hence $A bold(x) = 0$, so $bold(x) in N(A)$.
+
+//   *Proof $C(A^T) = C(A^T A)$:*
+//   $C(A^T) = N(A)^bot = N(A^T A)^bot = C((A^T A)^T) = C(A^T A)$.
+// ]
 
 #cblock[
   == Decomp. of the Sol. Space (Theo. 5.1.10)

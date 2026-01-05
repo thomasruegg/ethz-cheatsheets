@@ -53,11 +53,10 @@ Let $V$ be a vector space, a non-empty subset $U subset.eq V$ is called a subspa
 
   #line(length: 100%, stroke: 0.75pt)
 
-  "$<==$": Assume $U subset.eq W$, then $U union W = W$, which is a subspace of $V$ be assumption. (Analogous for $W subset.eq U$).
-  "$==>$": Assume $U union W$ is a subspace of $V$ and $W subset.eq.not U$, then there is some $bold(w) in W without U$. Let $bold(u) in U$ be arbitrary, then $bold(w) + bold(u) in W union U$. If $bold(w) + bold(u) in U$, then $bold(w)$ also $in U$ (not possible), thus $bold(w) + bold(u) in W$. Following, $bold(u) in W$, thus $U subset.eq W$.
+  "$<==$": Assume $U subset.eq W$, then $U union W = W$, which is a subspace of $V$ by assumption. (Analogous for $W subset.eq U$).
+  "$==>$": Assume $U union W$ is a subspace of $V$ and $W subset.eq.not U$, then there is some $bold(w) in W without U$. Let $bold(u) in U$ be arbitrary, then $bold(w) + bold(u) in W union U$. If $bold(w) + bold(u) in U$, then $bold(w)$ also $in U$ (bc of additivity, but this is not possible bc we said $bold(w) in W without U$). Thus $bold(w) + bold(u) in W$ must hold, and bc of additivity, $bold(u) in W$. So we started with an arbitrary $bold(u) in U$ and proved it must land in $W$, as in $bold(u) in W$. Thus, $U subset.eq W$. 
+  Intuition: Union of two subspaces is only a subspace if one is contained in the other (think x-y-axes).
 ]
-
-#v(1cm)
 
 == Bases and Dimensions
 
@@ -96,19 +95,32 @@ Let $V$ be a vector space, $F subset.eq V$ a _finite_ set of linearly independen
   Let $A in RR^(m times n)$. The _column space_ of $A$ is the span of its columns,
 
   $ "C"(A) := {A bold(x) : bold(x) in RR^n} subset.eq RR^m. $
+  The set of all vectors you can get by combining the columns of the matrix.
+  For a matrix transformation $A bold(x)= bold(b)$, the column space is the set of all possible output vectors $ bold(b)$ for which a solution $ bold(x)$ exists.
+
 ]
 
 #cblock[
   === Basis of $"C"(A)$ (Theo. 4.25)
 
-  The basis of $"C"(A)$ is the set of its _linearly independent columns_, and hence $"dim"("C"(A)) = "rank"(A)$. These can be calculated using Gauss-Jordan.
+  The basis of $"C"(A)$ is the set of its _linearly independent columns_, and hence $"dim"("C"(A)) = "rank"(A)$. These can be calculated using Gauss-Jordan ($C$ matrix of $A = C R$).
 ]
 
 == The Row Space of $A$ (Def. 2.13)
 
 Let $A in RR^(m times n)$. The _row space_ of $A$ is the span of its rows,
 
-$ "R" := {A^T bold(x) : bold(x) in RR^m} = "C"(A^T) subset.eq RR^n. $
+$ "R"(A) := {A^T bold(x) : bold(x) in RR^m} = "C"(A^T) subset.eq RR^n. $
+
+It tells about the fundamental, independent equations in a system. If a new equation is a combination of existing rows, it's in the row space. I.e. if a vector satisfies this new equation, it's in the row space.
+
+
+For example, let $A = mat(delim: "[", 1, 0, 2; 0, 1, 0)$, with row vectors $bold(r)_1 = [1, 0, 2]$ and $bold(r)_2 = [0, 1, 0]$.
+A linear combination of these is:
+$ c_1 [1, 0, 2] + c_2 [0, 1, 0] = [c_1, c_2, 2c_1] $
+
+The row space is the set of vectors $(x, y, z) in RR^3$ satisfying $z = 2x$ (one less free variable $=>$ a plane through the origin).
+
 
 === Basis of $"R"(A)$ (Theo. 4.28)
 
@@ -133,7 +145,7 @@ We can calcuate a basis of $"N"(A)$, by converting $A$ to $R$ in RREF through Ga
 For example, $A in RR^(2 times 4)$,
 
 1. convert $A -> R$ through Gauss-Jordan,
-2. solve $R bold(x) = bold(0)$ with special cases,
+2. solve $R bold(x) = bold(0)$ with special cases (per special case: set one free variable (one variable of the *dependent* rows) e.g. $x_2 = 1$, the other free variables to 0), solve for $bold(x)$
 
 $
   underbrace(mat(1, 2, 0, 3; 0, 0, 1, -2), A "in RREF") vec(x_1, x_2, x_3, x_4) = bold(0) "with" bold(x) = underbrace(vec(x_1, 1, x_3, x_4) "and" vec(x_1, x_2, x_3, 1), "special cases").
@@ -142,8 +154,9 @@ $
 3. The solutions $x_1, ..., x_n$ form a Basis of $"N"(R)$,
 
 $
-  bold(x)_1 = vec(-1, 1, 0, 0), bold(x)_2 = vec(-3, 0, 2, 1) => {bold(x)_1, bold(x)_2} "is a basis of N"(R).
+  bold(x)_1 = vec(-2, 1, 0, 0), bold(x)_2 = vec(-3, 0, 2, 1) => {bold(x)_1, bold(x)_2} "is a basis of N"(R).
 $
+
 
 4. Any basis of $"N"(R)$ is also a basis of $"N"(A)$ (Lemma 4.33).
 
@@ -186,8 +199,8 @@ $
 For any $A bold(x) = bold(b)$ we have three options, 1. no solutions, 2. one solution and 3. infinite solutions.
 
 1. If $A$ is not invertible and $bold(b) in.not "C"(A)$ then no solution exists.
-3. If $A$ is is invertible then exactly one solution exists.
-3. If $A$ is not invertible, but $bold(b) in "C"(A)$, then we can shift the non-trivial nullspace using a solution to get inifite solutions: $A(bold(x)+bold(y)= A bold(x) + 0 = bold(b)$ with $bold(y) in "N"(A)$.
+2. If $A$ is invertible $=> N(A)={bold(0)}$ then exactly one solution exists.
+3. If $A$ is not invertible, but $bold(b) in "C"(A)$, then $exists bold(s)$ and we can shift the non-trivial nullspace using  $bold(s)$ to get inifite solutions: $A underbrace((bold(s)+bold(n)), "x") = A bold(s) + 0 = bold(b)$ with $bold(n) in "N"(A)$.
 #cblock(fill: luma(240))[
   #table(
     columns: 3,
@@ -206,8 +219,8 @@ For any $A bold(x) = bold(b)$ we have three options, 1. no solutions, 2. one sol
 #cblock[
   === Sol. Space is shifted Nullspace (Theo. 4.40)
 
-  Let $A in RR^(m times n)$ and $bold(b) in RR^m$. Let $bold(s)$ some solution to $A bold(x) = bold(b)$, then
+  Let $A in RR^(m times n)$ and $bold(b) in RR^m$. Let $bold(s)$ some solution for $bold(x)$ to $A bold(x) = bold(b)$, then
 
-  $ "Sol"(A, bold(b)) = { bold(s) + bold(x) : bold(x) in "N"(A) }. $
+  $ "Sol"(A, bold(b)) = { bold(s) + bold(n) : bold(n) in "N"(A) }. $
 ]
 

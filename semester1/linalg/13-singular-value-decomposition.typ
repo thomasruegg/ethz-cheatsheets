@@ -32,7 +32,6 @@ If $A$ has rank $r$, the SVD can be written in a compact form: $ A = U_r Sigma_R
 
 Let $A in RR^(m times n)$ and $A = U Sigma V^T$ be its SVD, then $ A A^T = U (Sigma Sigma^T) U^T "and" A^T A = V (Sigma^T Sigma) V^T. $
 
-#v(1cm)
 
 In other words, the SVD of $A$ can be calculated by
 1. Taking the eigendecomposition of $A A^T$ or $A^T A$.
