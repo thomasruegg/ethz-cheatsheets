@@ -34,9 +34,11 @@ Let $A in RR^(m times n)$ and $A = U Sigma V^T$ be its SVD, then $ A A^T = U (Si
 
 In other words, the SVD of $A$ can be calculated by
 1. Taking the eigendecomposition of $A A^T$ or $A^T A$.
-2. Then $U$ corresponds to the eigenvectors of $A A^T$,
-3. Or $V$ corresponds to the eigenvectors of $A^T A$,
-4. $Sigma$ to the square roots of the shared non-zero eigenvalues.
+2. $U=$ eigenvector matrix of $A A^T$,
+3. $V=$ eigenvector matrix of $A^T A$,
+4. $Sigma=$ descending ordered square roots of eigenvalues of $A A^T, A^T A$.
+5. If $A$ is invertible, then $A^(-1) = (U Sigma V^T)^(-1) = V^T^(-1) Sigma^(-1) U^(-1) = V Sigma^(-1) U^T$ (as $V^T V = I, U^T U = I$)
+6. If $U,V$ are PSD $=>$ singular values are $>= 0$ 
 
 == Rank $r$ Matrices (Prop. 9.3.4)
 
