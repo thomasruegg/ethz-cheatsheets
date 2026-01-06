@@ -20,7 +20,7 @@
   To minimize error, the error vector must be orthogonal to columns of $A$, so the minimizer satisfies the *normal equations* (Fact 6.1.1):
   $
     A^T (bold(b)-A bold(alpha)) &= 0 \
-    A^T A bold(alpha) &= A^T bold(b) quad "(\"normal equation\")" \
+    A^T A bold(alpha) &= A^T bold(b) "(\"normal equation\", Gauss-J" mat(A^T A | A^T bold(b))")" \
     bold(alpha) &= (A^T A)^(-1)A^T bold(b) \
     vec(alpha_0, alpha_1) &= mat(m, sum_(k=1)^m t_k; sum_(k=1)^m t_k, sum_(k=1)^m t_k^2;)^(-1) vec(sum_(k=1)^m b_k, sum_(k=1)^m t_k b_k).
   $
