@@ -42,6 +42,28 @@ A linear combination $lambda_1 bold(v)_1 + lambda_2 bold(v)_2 + ... + lambda_n b
   where $-1 <= alpha <= 1$.
 ]
 
+#cblock(fill: luma(240))[
+  == Prove Formula Defines a Scalar Product
+
+  Let $bold(A) = mat(3, -1; -1, 3)$. Prove that the following formula defines a scalar product in $V = RR^2$:
+  $ chevron.l bold(x), bold(y) chevron.r_bold(A) = chevron.l vec(x_1, x_2), vec(y_1, y_2) chevron.r_bold(A) = vec(x_1, x_2)^T bold(A) vec(y_1, y_2). $
+
+  #line(length: 100%, stroke: 0.75pt)
+
+  To be a scalar product, three conditions must be satisfied:
+
+  1. *Symmetry:* Since $bold(A)^T = bold(A)$, the matrix is symmetric. Thus,
+  $ chevron.l bold(x), bold(y) chevron.r_bold(A) = bold(x)^T bold(A) bold(y) = (bold(x)^T bold(A) bold(y))^T = bold(y)^T bold(A)^T bold(x) = bold(y)^T bold(A) bold(x). $
+
+  2. *Bilinearity:* Linearity in the first argument holds due to distributivity of matrix multiplication:
+  $ (alpha bold(x) + beta bold(z))^T bold(A) bold(y) &= (alpha bold(x)^T + beta bold(z)^T) bold(A) bold(y) \ &= alpha bold(x)^T bold(A) bold(y) + beta bold(z)^T bold(A) bold(y). $
+
+  3. *Positive Definiteness:* We determine if $bold(A)$ is Positive Definite by checking its eigenvalues via $det(bold(A) - lambda I) = 0$:
+  $ det mat(3-lambda, -1; -1, 3-lambda) = (3-lambda)^2 - 1 = lambda^2 - 6lambda + 8 = (lambda - 4)(lambda - 2). $
+  The eigenvalues are $lambda_1 = 4$ and $lambda_2 = 2$. Since all eigenvalues are strictly positive ($lambda_i > 0$), $bold(A)$ is Positive Definite. By Prop 9.2.12, this implies:
+  $chevron.l bold(x), bold(x) chevron.r_bold(A) = bold(x)^T bold(A) bold(x) > 0 quad forall bold(x) != 0.$
+]
+
 === Cauchy-Schwarz (Lemma 1.12)
 
 For any two vectors $bold(v), bold(w) in RR^m$
