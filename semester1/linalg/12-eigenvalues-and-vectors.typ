@@ -65,30 +65,6 @@
 == Quadratic Formula (for finding $lambda$)
 To find zeros of $a x^2 + b x + c = 0$ are given by $ x = (-b plus.minus sqrt(b^2 - 4 a c)) / (2a). $
 
-#cblock[
-  == Eigenvalues, Trace & Determinant (Def. 8.3.4, Lemma 8.3.6)
-
-  The *characteristic polynomial* of $A in RR^(n times n)$ is given by:
-  $
-    P(z) & = (-1)^n det(A-z I) \
-         & =det(z I - A) = (z - lambda_1)(z - lambda_2)dots(z - lambda_n)
-  $
-  The roots $lambda_i$ are the eigenvalues, and their *algebraic multiplicity* is the number of times they appear as roots.
-
-  *Key Properties:*
-  The coefficients of the polynomial reveal the sum and product of eigenvalues:
-  1. *Determinant:* The product of eigenvalues.
-    $ "det"(A) = product_(i=1)^n lambda_i $
-  2. *Trace:* The sum of diagonal elements equals the sum of eigenvalues.
-    $ "Tr"(A) = sum_(i=1)^n A_(i i) = sum_(i=1)^n lambda_i $
-
-  === Complex Eigenvalues & Conjugates
-  If $A$ is a real matrix, complex eigenvalues come in *conjugate pairs*.
-  If $A bold(v) = lambda bold(v)$, then taking the conjugate of both sides gives:
-  $ A bar(bold(v)) = bar(A bold(v)) = bar(lambda bold(v)) = bar(lambda) bar(bold(v)) $
-  *Conclusion:* If $lambda$ is an eigenvalue with eigenvector $bold(v)$, then $bar(lambda)$ is an eigenvalue with eigenvector $bar(bold(v))$.
-]
-
 == Special Eigenvalues
 
 1. If $lambda$ and $bold(v)$ are an eigenvalue-eigenvector pair of $A$, then $lambda^k$ and $bold(v)$ are one for $A^k$. Induction Proof: $A^k v = A(A^(k-1) v)=A(lambda^(k-1) v)=lambda^(k-1)(A v)=lambda^k v$ (Prop. 8.3.1).
@@ -99,6 +75,8 @@ To find zeros of $a x^2 + b x + c = 0$ are given by $ x = (-b plus.minus sqrt(b^
 6. Let $P in RR^(n times n)$ be a projection matrix, then $P$ has two distinct eigenvalues, $0$ and $1$ (every single one of the $n$ eigenvalues is either 0 or 1) and a _complete set_ of eigenvectors (Prop. 9.1.6).
 7. Let $D in RR^(n times n)$ be a diagonal matrix, then its eigenvalues are its diagonal entries and the canonical basis is a complete set of eigenvectors of $D$ (Example 9.1.4).
 8. Let $T in RR^(n times n)$ be a triangular matrix, then its eigenvalues are its diagonal entries, however, $T$ might not have a complete set of eigenvectors (Example 9.1.5).
+8. $A + (k dot I) <==>$ adding $k$ to all eigenvalues of $A$. Eigenvectors stay the same. Proof: $A x = lambda x => (A + 3 I) x = lambda x + 3x = (lambda + 3) x$
+9. For $A in RR^(2 times 2)$, $lambda_1, lambda_2 = m plus.minus sqrt(m^2 - p), m = (a + d)/2, p = det(A)$
 
 == Important Words Of Caution
 
