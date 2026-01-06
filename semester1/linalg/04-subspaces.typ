@@ -54,7 +54,7 @@ Let $V$ be a vector space, a non-empty subset $U subset.eq V$ is called a subspa
   #line(length: 100%, stroke: 0.75pt)
 
   "$<==$": Assume $U subset.eq W$, then $U union W = W$, which is a subspace of $V$ by assumption. (Analogous for $W subset.eq U$).
-  "$==>$": Assume $U union W$ is a subspace of $V$ and $W subset.eq.not U$, then there is some $bold(w) in W without U$. Let $bold(u) in U$ be arbitrary, then $bold(w) + bold(u) in W union U$. If $bold(w) + bold(u) in U$, then $bold(w)$ also $in U$ (bc of additivity, but this is not possible bc we said $bold(w) in W without U$). Thus $bold(w) + bold(u) in W$ must hold, and bc of additivity, $bold(u) in W$. So we started with an arbitrary $bold(u) in U$ and proved it must land in $W$, as in $bold(u) in W$. Thus, $U subset.eq W$. 
+  "$==>$": Assume $U union W$ is a subspace of $V$ and $W subset.eq.not U$, then there is some $bold(w) in W without U$. Let $bold(u) in U$ be arbitrary, then $bold(w) + bold(u) in W union U$. If $bold(w) + bold(u) in U$, then $bold(w)$ also $in U$ (bc of additivity, but this is not possible bc we said $bold(w) in W without U$). Thus $bold(w) + bold(u) in W$ must hold, and bc of additivity, $bold(u) in W$. So we started with an arbitrary $bold(u) in U$ and proved it must land in $W$, as in $bold(u) in W$. Thus, $U subset.eq W$.
   Intuition: Union of two subspaces is only a subspace if one is contained in the other (think x-y-axes).
 ]
 
@@ -96,7 +96,7 @@ Let $V$ be a vector space, $F subset.eq V$ a _finite_ set of linearly independen
 
   $ "C"(A) := {A bold(x) : bold(x) in RR^n} subset.eq RR^m. $
   The set of all vectors you can get by combining the columns of the matrix.
-  For a matrix transformation $A bold(x)= bold(b)$, the column space is the set of all possible output vectors $ bold(b)$ for which a solution $ bold(x)$ exists.
+  For a matrix transformation $A bold(x)= bold(b)$, the column space is the set of all possible output vectors $bold(b)$ for which a solution $bold(x)$ exists.
 
 ]
 
@@ -176,12 +176,16 @@ Following, $"dim"("N"(A)) = n - "rank"(A)$ (Theo. 4.36).
   #align(
     center,
     table(
-      columns: 4,
-      [*subspace*], [$ "C"(A) $], [$ "R"(A) $], [$ "N"(A) $],
-      [*dimensions*], [$ r $], [$ r $], [$ n - r $],
+      columns: 5,
+      [*subspace*], [$ "C"(A) $], [$ "R"(A) $], [$ "N"(A) $], [$ N(A^T) $],
+      [*dimensions*], [$ r $], [$ r $], [$ n - r $], [$ m - r $],
+      [*subspace of*], [$ RR^m $], [$ RR^n $], [$ RR^n $], [$ RR^m $],
     ),
   )
 ]
+#image("img/FourSpaces.png")
+
+#image("img/FourSpaces2.png")
 
 == The Solution Space of $A bold(x) = bold(b)$ (Def. 4.37)
 
@@ -201,13 +205,9 @@ For any $A bold(x) = bold(b)$ we have three options, 1. no solutions, 2. one sol
     columns: 3,
     align: center,
     [], [$r=n$ \ (full rank)], [$r<n$ \ (dependent cols)],
-    [$r=m$ \ (full rank)],
-    [invertible $==>$ one solution],
-    [underdetermined $==>$ $infinity$ solutions],
+    [$r=m$ \ (full rank)], [invertible $==>$ one solution], [underdetermined $==>$ $infinity$ solutions],
 
-    [$r <m$ \ (zero rows)],
-    [overdetermined $==>$ $0$ or $1$ solution],
-    [$0$ or $infinity$ solutions],
+    [$r <m$ \ (zero rows)], [overdetermined $==>$ $0$ or $1$ solution], [$0$ or $infinity$ solutions],
   )
 ]
 
