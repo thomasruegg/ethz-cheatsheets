@@ -67,15 +67,15 @@ To find zeros of $a x^2 + b x + c = 0$ are given by $ x = (-b plus.minus sqrt(b^
 
 == Special Eigenvalues
 
-1. If $lambda$ and $bold(v)$ are an eigenvalue-eigenvector pair of $A$, then $lambda^k$ and $bold(v)$ are one for $A^k$. Induction Proof: $A^k v = A(A^(k-1) v)=A(lambda^(k-1) v)=lambda^(k-1)(A v)=lambda^k v$ (Prop. 8.3.1).
-2. Let $A$ be invertible, if $lambda$ and $bold(v)$ are an eigenvalue-eigenvector pair of $A$, then $1/lambda$ and $bold(v)$ are an eigenvalue-eigenvector pair of $A^(-1)$. Proof: $A v=lambda v <==> v=A^(-1)(lambda v) <==> lambda A^(-1) v = v <==> A^(-1) v = 1/lambda v$ (works since $lambda != 0$) (Prop. 8.3.1).
+1. If $lambda$ and $bold(v)$ are an eigenvalue-eigenvector pair of $A$, then $lambda^k$ and $bold(v)$ are one for $A^k$. Induction Proof: $A^k bold(v) = A(A^(k-1) bold(v))=A(lambda^(k-1) bold(v))=lambda^(k-1)(A bold(v))=lambda^k bold(v)$ (Prop. 8.3.1).
+2. Let $A$ be invertible, if $lambda$ and $bold(v)$ are an eigenvalue-eigenvector pair of $A$, then $1/lambda$ and $bold(v)$ are an eigenvalue-eigenvector pair of $A^(-1)$. Proof: $A bold(v)=lambda bold(v) <==> bold(v)=A^(-1)(lambda bold(v)) <==> lambda A^(-1) bold(v) = bold(v) <==> A^(-1) bold(v) = 1/lambda bold(v)$ (works since $lambda != 0$) (Prop. 8.3.1).
 3. Let $A in RR^(n times n)$, the eigenvalues of $A$ are the same ones as of $A^T$. Proof: $det(A-z I)=det((A-z I)^T)=det(A^T-z I)$ (Lemma 8.3.5).
-4. Let $Q in RR^(n times n)$ be an orthogonal matrix, if $lambda$ is an eigenvalue of $Q$, then $abs(lambda) = 1$. Proof: $||v||^2=||Q v||^2=||lambda v||^2=|lambda| dot ||v||^2$ (Prop. 8.2.7).
+4. Let $Q in RR^(n times n)$ be an orthogonal matrix, if $lambda$ is an eigenvalue of $Q$, then $abs(lambda) = 1$. Proof: $||bold(v)||^2=||Q bold(v)||^2=||lambda bold(v)||^2=|lambda| dot ||bold(v)||^2$ (Prop. 8.2.7).
 5. Let $A in RR^(n times n)$, if $(lambda, bold(v))$ is an eigenvalue-eigenvector pair of $A$, then $(overline(lambda), overline(bold(v)))$ is an eigenvalue-eigenvector pair of $A$ too. Thus, if $lambda in CC$ is an eigenvalue of $A$, then $overline(lambda)$ is also an eigenvalue of $A$ (Lemma 8.2.8).
 6. Let $P in RR^(n times n)$ be a projection matrix, then $P$ has two distinct eigenvalues, $0$ and $1$ (every single one of the $n$ eigenvalues is either 0 or 1) and a _complete set_ of eigenvectors (Prop. 9.1.6).
 7. Let $D in RR^(n times n)$ be a diagonal matrix, then its eigenvalues are its diagonal entries and the canonical basis is a complete set of eigenvectors of $D$ (Example 9.1.4).
 8. Let $T in RR^(n times n)$ be a triangular matrix, then its eigenvalues are its diagonal entries, however, $T$ might not have a complete set of eigenvectors (Example 9.1.5).
-8. $A + (k dot I) <==>$ adding $k$ to all eigenvalues of $A$. Eigenvectors stay the same. Proof: $A x = lambda x => (A + 3 I) x = lambda x + 3x = (lambda + 3) x$
+8. $A + (k dot I) <==>$ adding $k$ to all eigenvalues of $A$. Eigenvectors stay the same. Proof: $A bold(v) = lambda bold(v) => (A + 3 I) bold(v) = lambda bold(v) + 3bold(v) = (lambda + 3) bold(v)$
 9. For $A in RR^(2 times 2)$, $lambda_1, lambda_2 = m plus.minus sqrt(m^2 - p), m = (a + d)/2, p = det(A)$
 
 == Important Words Of Caution
