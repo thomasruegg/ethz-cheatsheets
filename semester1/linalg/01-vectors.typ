@@ -86,6 +86,8 @@ $ bold(v) dot bold(w) = 0, $
 
 i.e., the angle between them is $alpha = 90°$.
 
+Note: If $bold(v) "and" bold(w)$ are orthogonal, then $||bold(v)+bold(w)||^2 = (bold(v)+bold(w))^T (bold(v)+bold(w)) = bold(v)^T bold(v) + bold(v)^T bold(w) + bold(w)^T bold(v) + bold(w)^T bold(w) = ||bold(v)||^2 + ||bold(w)||^2$
+
 #cblock[
   == Linear Independence (Cor. 1.23)
 

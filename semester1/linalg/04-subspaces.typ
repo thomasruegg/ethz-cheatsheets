@@ -53,7 +53,7 @@ Let $V$ be a vector space, a non-empty subset $U subset.eq V$ is called a subspa
 
   #line(length: 100%, stroke: 0.75pt)
 
-  "$<==$": Assume $U subset.eq W$, then $U union W = W$, which is a subspace of $V$ by assumption. (Analogous for $W subset.eq U$).
+  "$<==$": Assume $U subset.eq W$, then $U union W = W$, which is a subspace of $V$ by assumption. (Analogous for $W subset.eq U$). \
   "$==>$": Assume $U union W$ is a subspace of $V$ and $W subset.eq.not U$, then there is some $bold(w) in W without U$. Let $bold(u) in U$ be arbitrary, then $bold(w) + bold(u) in W union U$. If $bold(w) + bold(u) in U$, then $bold(w)$ also $in U$ (bc of additivity, but this is not possible bc we said $bold(w) in W without U$). Thus $bold(w) + bold(u) in W$ must hold, and bc of additivity, $bold(u) in W$. So we started with an arbitrary $bold(u) in U$ and proved it must land in $W$, as in $bold(u) in W$. Thus, $U subset.eq W$.
   Intuition: Union of two subspaces is only a subspace if one is contained in the other (think x-y-axes).
 ]
@@ -145,10 +145,10 @@ We can calcuate a basis of $"N"(A)$, by converting $A$ to $R$ in RREF through Ga
 For example, $A in RR^(2 times 4)$,
 
 1. convert $A -> R$ through Gauss-Jordan,
-2. solve $R bold(x) = bold(0)$ with special cases (per special case: set one free variable (one variable of the *dependent* rows) e.g. $x_2 = 1$, the other free variables to 0), solve for $bold(x)$
+2. solve $R bold(x) = bold(0)$ with special cases (per special case: set one free variable (one variable of the *dependent* columns) e.g. $x_2 = 1$, the other free variables to 0), solve for $bold(x)$
 
 $
-  underbrace(mat(1, 2, 0, 3; 0, 0, 1, -2), A "in RREF") vec(x_1, x_2, x_3, x_4) = bold(0) "with" bold(x) = underbrace(vec(x_1, 1, x_3, x_4) "and" vec(x_1, x_2, x_3, 1), "special cases").
+  underbrace(mat(1, 2, 0, 3; 0, 0, 1, -2), A "in RREF" = R) vec(x_1, x_2, x_3, x_4) = bold(0) "with" bold(x) = underbrace(vec(x_1, 1, x_3, x_4) "and" vec(x_1, x_2, x_3, 1), "special cases").
 $
 
 3. The solutions $x_1, ..., x_n$ form a Basis of $"N"(R)$,

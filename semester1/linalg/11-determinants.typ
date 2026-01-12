@@ -27,6 +27,7 @@
   )
 ]
 
+- $det(A+B) != det(A) + det(B)$
 - If any two rows are equal, then $det(A) = 0$.
 - If $A$ has a row of zeros, then $det(A) = 0$.
 - If any Eigenvalue of $A$ is $0$, then $det(A) = 0$.

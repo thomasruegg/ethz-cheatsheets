@@ -22,6 +22,8 @@ Vectors $bold(q)_1, ..., bold(q)_n in RR^m$ are orthonormal if they are orthogon
   for all $bold(x), bold(y) in RR^n$ (Prop. 6.3.6).
 ]
 
+- If $A$ and $B$ are orthogonal, then so is $A B$.
+
 #cblock[
   == Gram-Schmidt (Alg. 6.3.8)
 
