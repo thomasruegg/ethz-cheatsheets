@@ -1,8 +1,8 @@
-#let cblock(content) = block(
+#let cblock(content, fill: rgb("#8AF0BF")) = block(
   width: 100%,
   inset: 0.75em,
   radius: 1pt,
-  fill: rgb("#8AF0BF"),
+  fill: fill,
   content,
 )
 
@@ -35,3 +35,17 @@ If the columns of $A$ are pairwise orthogonal (which corresponds to $sum_(k=1)^m
 $
   vec(alpha_0, alpha_1) = mat(1 / m, 0; 0, 1 / (sum_(k=1)^m t_k^2)) vec(sum_(k=1)^m b_k, sum_(k=1)^m t_k b_k) = vec(1/m sum_(k=1)^m b_k, (sum_(k=1)^m t_k b_k) / (sum_(k=1)^m t_k^2))
 $
+
+#cblock(fill: luma(240))[
+  == Least Squares Example
+
+  Find $a, b in RR$ for the function $f(x) = a x^2 + b$ that minimizes the squared error for the data points $(-1, 2), (0, 1), "and" (1, 3)$.
+
+  #line(length: 100%, stroke: 0.75pt)
+
+  We set up the system $A bold(x) approx bold(y)$ where unknowns are $bold(x) = vec(b, a)$ corresponding to basis functions $1$ and $x^2$:
+  $ A = mat(1, (-1)^2; 1, 0^2; 1, 1^2) = mat(1, 1; 1, 0; 1, 1), quad bold(y) = vec(2, 1, 3). $
+  Solve via normal equations $A^T A bold(x) = A^T bold(y)$:
+  $ A^T A = mat(3, 2; 2, 2), quad A^T bold(y) = vec(6, 5) => mat(3, 2; 2, 2) vec(b, a) = vec(6, 5). $
+  Row reduction or substitution yields $b = 1$ and $a = 3/2$.
+]
