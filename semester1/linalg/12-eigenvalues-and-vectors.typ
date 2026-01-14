@@ -133,15 +133,16 @@ $ P(z) = (-1)^n "det"(A - z I) = (z - lambda_1) (z - lambda_2) dots (z - lambda_
   = z^n + underbrace((-sum_(i=1)^n lambda_i), - "Tr"(A)) z^(n-1) + underbrace(sum_(k=1)^(n-2)b_k z^k, "messy middle terms") + underbrace((-1)^n product_(i=1)^n lambda_i, (-1)^n "det"(A)).
 $]
 
+#cblock[
+  == Trace and Determinant (Lemma 8.3.6)
 
-== Trace and Determinant (Lemma 8.3.6)
+  Let $A in RR^(n times n)$ and $lambda_1, ..., lambda_n$ its $n$ eigenvalues, then $ "Tr"(A) & = sum_(i=1)^n lambda_i "and" "det"(A) & = Pi_(i=1)^n lambda_i. $
 
-Let $A in RR^(n times n)$ and $lambda_1, ..., lambda_n$ its $n$ eigenvalues, then $ "Tr"(A) & = sum_(i=1)^n lambda_i "and" "det"(A) & = Pi_(i=1)^n lambda_i. $
+  Following (Lemma 8.3.7), for matrices $A$, $B$ and $C$ $in RR^(n times n)$,
 
-Following (Lemma 8.3.7), for matrices $A$, $B$ and $C$ $in RR^(n times n)$,
-
-1. $"Tr"(A B) = "Tr"(B A)$,
-2. $"Tr"(A B C) = "Tr"(B C A) = "Tr"(C A B)$.
+  1. $"Tr"(A B) = "Tr"(B A)$,
+  2. $"Tr"(A B C) = "Tr"(B C A) = "Tr"(C A B)$.
+]
 
 #cblock[
   == Diagonalization (Theo. 9.1.1)
