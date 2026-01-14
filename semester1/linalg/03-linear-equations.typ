@@ -53,12 +53,11 @@ We can directly solve $A bold(x) = bold(b)$, when $A$ is an _upper triangular_ m
   grid(
     columns: 2,
     [
-      Transform $A x = b$ to $U x = c$, where $U$ is upper triangular, by performing
+      Transform $A bold(x) = bold(b)$ to $U bold(x) = bold(c)$, where $U$ is upper triangular, by performing
       1. _row exchanges_,
       2. _scalar multiplication_,
       3. _row subtraction_.
     ],
-    grid.vline(stroke: 0.5pt),
     [
       $
         mat(augment: #(-1), u_11, ..., , , c_1; 0, u_22, ..., , c_2; 0, 0, dots.down, ..., dots.v; 0, 0, ..., u_(r m), c_r; dots.v, dots.v, dots.down, dots.v, dots.v; 0, 0, ..., 0, c_m;)

@@ -100,6 +100,14 @@ Note: If $bold(v) "and" bold(w)$ are orthogonal, then $||bold(v)+bold(w)||^2 = (
   Following, the columns of a matrix $A$ are linearly independent if there is no $bold(x)$ besides $bold(0)$ such that $A bold(x) = 0$.
 ]
 
+#cblock(fill: luma(240))[
+  == Linear Dependence Example
+
+  Let $bold(u), bold(v), bold(w), bold(z) in RR^2$. Prove there exist non-zero scalars $c_u, c_v, c_w, c_z$ such that $c_u + c_v + c_w + c_z = 0$ and $c_u bold(u) + c_v bold(v) + c_w bold(w) + c_z bold(z) = bold(0)$. 
+  #line(length: 100%, stroke: 0.75pt) 
+  Define augmented vectors in $RR^3$ by appending a 1, e.g., $bold(u)' = vec(u_1, u_2, 1)$. Since there are 4 vectors in $RR^3$, they must be linearly dependent. The relation $c_u bold(u)' + c_v bold(v)' + c_w bold(w)' + c_z bold(z)' = bold(0)$ implies the vector sum is zero (first two coordinates) and the scalar sum is zero (last coordinate).
+]
+
 == The Span (Def. 1.25)
 
 Let $bold(v)_1, bold(v)_2, ..., bold(v)_n in RR^m$, their Span is defined as the set of all linear combination, i.e.,
@@ -109,7 +117,7 @@ $
 $
 
 #cblock(fill: luma(240))[
-  == Example
+  == Span Proof Example
 
   Let $bold(v) = vec(v_1, v_2) "and" bold(w) = vec(w_1, w_2) in RR^2$ be arbitrary and assume $bold(v) != 0 "and" bold(w) != lambda bold(v), forall lambda in RR$. Show that $"Span"(bold(v), bold(w)) = RR^2$.
 

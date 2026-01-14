@@ -44,8 +44,8 @@ In words: $A^+ bold(b)$ is the solution to the least squares problem with the sm
 
 1. $A A^+ A = A$
 2. $A^+ A A^+ = A^+$
-3. $A A^+$ is symmetric & the projection matrix on $C(A)$.
-4. $A^+ A$ is symmetric & the projection matrix on $C(A^T)$.
+3. $A A^+_"left"$ is symmetric & the projection matrix on $C(A)$.
+4. $A^+_"right" A$ is symmetric & the projection matrix on $C(A^T)$.
 5. $(A^T)^+ = (A^+)^T$.
 
 #cblock(fill: luma(240))[

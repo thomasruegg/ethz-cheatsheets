@@ -212,6 +212,8 @@ A symmetric matrix $A in RR^(n times n)$ is said to be _positive semidefinite_ (
 
 Given two matrices $A$ and $B$ that are PSD (PD), their sum is also PSD (PD), i.e. they are closed under taking addition.
 
+- A diagonal dominant matrix (diagonal entries are greater than the *absolute* sum of rest of the row's elements) is always PSD!
+
 == Gram Matrix (Def. 9.2.13)
 
 Let $V in RR^(m times n)$, the Gram matrix of $V$ is the inner product of the columns of $V$, i.e., $ G = V^T V. $
