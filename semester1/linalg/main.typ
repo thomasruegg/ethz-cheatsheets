@@ -6,7 +6,7 @@
 #set block(above: 0.95em, below: 0.95em)
 
 #set text(7pt)
-#set page(paper: "a4", flipped: true, margin: 0.5cm)
+#set page(paper: "a4", flipped: true, margin: 0.5cm, numbering: "1", number-align: end)
 
 #columns(4, gutter: 5pt)[
   #include "01-vectors.typ"
