@@ -49,7 +49,7 @@ In words: $A^+ bold(b)$ is the solution to the least squares problem with the sm
 5. $(A^T)^+ = (A^+)^T$.
 
 #cblock(fill: luma(240))[
-  == Properties of Pseudoinverses
+  == Proof of Pseudoinverse Properties
 
   1. Prove that if $"rank"(A) = "rank"(B) = n$, we have $(A B)^+ = B^+ A^+$. #line(length: 100%, stroke: 0.75pt) $C(A B) = C(A)$ (as $"rank"(B) = n$ implies that $C(B) = n$). Then using Prop. 6.4.9 we get $(A B)^+ = B^+ A^+$.
   2. Prove that $A^+A A^+ = A^+$. #line(length: 100%, stroke: 0.75pt) $A^+ A A^+ = (C R)^+ C R (C R)^+ = R^+ (C^+ C) (R R^+) C^+ = R^+ C^+ = A^+.$
