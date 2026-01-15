@@ -1,6 +1,6 @@
 #set enum(numbering: "1.")
 = Surjectivity, Injectivity, Bijectivity
-#image("/assets/injectivityAndSurjectivity.png")
+#image("img/injectivityAndSurjectivity.png")
 
 // = Multiple Choice Solutions
 
