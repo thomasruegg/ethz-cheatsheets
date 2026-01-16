@@ -15,7 +15,7 @@
   2. $sigma_1 >= ... >= sigma_"min"{m, n} >= 0$.
   3. The columns of $U$ are called the _left singular vectors_ and are orthonormal.
   4. The columns of $V$ are called the _right singular vectors_ and are orthonormal.
-  5. The diagonal entries of $Sigma$ are called the _singular values_.
+  5. The diagonal entries of $Sigma$ are called the _singular values_. The singular values of a matrix A are the square roots of the eigenvalues of the symmetric matrix $A^T A$ or $A A^T$.
 ]
 
 #cblock[
@@ -36,9 +36,9 @@ In other words, the SVD of $A$ can be calculated by
 1. Taking the eigendecomposition of $A A^T$ or $A^T A$.
 2. $U=$ eigenvector matrix of $A A^T$,
 3. $V=$ eigenvector matrix of $A^T A$,
-4. $Sigma=$ descending ordered square roots of eigenvalues of $A A^T, A^T A$.
+4. $Sigma=$ descending ordered square roots of eigenvalues of $A A^T$ or $A^T A$.
 5. If $A$ is invertible, then $A^(-1) = (U Sigma V^T)^(-1) = V^T^(-1) Sigma^(-1) U^(-1) = V Sigma^(-1) U^T$ (as $V^T V = I, U^T U = I$)
-6. If $U,V$ are PSD $=>$ singular values are $>= 0$ 
+6. If $U,V$ are PSD $=>$ singular values are $>= 0$
 
 == Rank $r$ Matrices (Prop. 9.3.4)
 

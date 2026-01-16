@@ -75,8 +75,9 @@ To find zeros of $a x^2 + b x + c = 0$ are given by $ x = (-b plus.minus sqrt(b^
 6. Let $P in RR^(n times n)$ be a projection matrix, then $P$ has two distinct eigenvalues, $0$ and $1$ (every single one of the $n$ eigenvalues is either 0 or 1) and a _complete set_ of eigenvectors (Prop. 9.1.6).
 7. Let $D in RR^(n times n)$ be a diagonal matrix, then its eigenvalues are its diagonal entries and the canonical basis is a complete set of eigenvectors of $D$ (Example 9.1.4).
 8. Let $T in RR^(n times n)$ be a triangular matrix, then its eigenvalues are its diagonal entries, however, $T$ might not have a complete set of eigenvectors (Example 9.1.5).
-8. $A + (k dot I) <==>$ adding $k$ to all eigenvalues of $A$. Eigenvectors stay the same. Proof: $A bold(v) = lambda bold(v) => (A + 3 I) bold(v) = lambda bold(v) + 3bold(v) = (lambda + 3) bold(v)$
-9. For $A in RR^(2 times 2)$, $lambda_1, lambda_2 = m plus.minus sqrt(m^2 - p), m = (a + d)/2, p = det(A)$
+9. $A + (k dot I) <==>$ adding $k$ to all eigenvalues of $A$. Eigenvectors stay the same. Proof: $A bold(v) = lambda bold(v) => (A + 3 I) bold(v) = lambda bold(v) + 3bold(v) = (lambda + 3) bold(v)$
+10. For $A in RR^(2 times 2)$, $lambda_1, lambda_2 = m plus.minus sqrt(m^2 - p), m = (a + d)/2, p = det(A)$
+11. If matrix $A$ has an eigenvalue $lambda$, then the matrix $c A$ (where $c$ is a scalar number) has the eigenvalue $c lambda$. \ Proof: $(c A) bold(v) = c (A bold(v)) = c (lambda bold(v)) = (c lambda) bold(v)$.
 
 == Important Words Of Caution
 
@@ -211,9 +212,9 @@ A symmetric matrix $A in RR^(n times n)$ is said to be _positive semidefinite_ (
 1. PSD $<==>$ $bold(x)^T A bold(x) >= 0$ for all $bold(x) in RR^n$,
 2. PD $<==>$ $bold(x)^T A bold(x) > 0$ for all $bold(x) in RR^n without {bold(0)}$.
 
-Given two matrices $A$ and $B$ that are PSD (PD), their sum is also PSD (PD), i.e. they are closed under taking addition.
-
+- Given two matrices $A$ and $B$ that are PSD (PD), their sum is also PSD (PD), i.e. they are closed under taking addition.
 - A diagonal dominant matrix (diagonal entries are greater than the *absolute* sum of rest of the row's elements) is always PSD!
+- Matrix is PSD/PD $==>$ all diagonal entries are $>= 0$/$> 0$ (but the other way "$<==$" doesn't hold)! Proof: Choose $bold(x) = bold(e)_i$ in equations (i), (ii) to get the diagonal entry $A_(i i)$ only.
 
 == Gram Matrix (Def. 9.2.13)
 

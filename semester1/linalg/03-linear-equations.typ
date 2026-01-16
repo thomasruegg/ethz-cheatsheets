@@ -97,7 +97,7 @@ Let $M in RR^(m times m)$, $M$ is invertible, if there exists an $M^-1 in RR^(m 
 For invertible matrices, the following hold
 
 1. inverses are unique, i.e. if $A M = M A = I$ and $B M = M B = I$, $A = B$ (Obs. 2.56), // Updated from Lemma 3.8
-2. if $A$ and $B$ are invertible, then $(A B)^(-1) = B^(-1) A^(-1)$ (Lemma 2.59), // Updated from 3.9
+2. if $A$ and $B$ are invertible, then $(A B)^(-1) = B^(-1) A^(-1)$ (the product of two invertible matrices is invertible too) (Lemma 2.59), // Updated from 3.9
 3. if $A$ is invertible, then $(A^T)^(-1) = (A^(-1))^T$ (Lemma 2.60). // Updated from 3.10
 
 #cblock[
