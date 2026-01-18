@@ -160,7 +160,7 @@ A matrix $A in RR^(n times n)$ is said to be _diagonalizable_, if there are $n$ 
 == Complete Set of Eigenvectors (Lemma 9.1.11)
 A matrix has a complete set of eigenvectors if all its eigenvalues are real and the geometric multiplicities are the same as the algebraic multiplicities of all its eigenvalus.
 
-If given a matrix $A in RR^(n times n)$, we can build a basis of $RR^n$ with eigenvectors of $A$, we say that $A$ has a _complete set_ of eigenvectors (Def. 9.1.3).
+If given a matrix $A in RR^(n times n)$, we can build a basis of $RR^n$ with eigenvectors of $A$ (the eigenvectors are linearly independent), we say that $A$ has a _complete set_ of eigenvectors (Def. 9.1.3).
 
 == Similar Matrices (Def. 9.1.7)
 

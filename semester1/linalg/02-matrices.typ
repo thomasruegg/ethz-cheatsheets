@@ -158,7 +158,7 @@ Let $R(theta_1), R(theta_2) in RR^(2 times 2)$ be two rotation matrices, then $ 
 
 Moreover, for every $R(theta) in RR^(2 times 2)$, there is some $R(-theta) in RR^(2 times 2)$ such that $R(theta) R(-theta) = R(0) = I$.
 
-If we need to find an $A in RR^(2 times 2)$ that satisfies $A^k = I <==> $ k is a multiple of $t$, then $A$ can be a rotation matrix with $theta = (2 pi)/ t$. For higher dimensions $A in RR^(n times n)$, the same principle applies if we embed the 2D rotation e.g. into the top left corner (like in $R_z (theta)$ above) and fill the rest of the diagonal with $1$s.
+If we need to find an $A in RR^(2 times 2)$ that satisfies $A^k = I <==> $ k is a multiple of $t$, then $A$ can be a rotation matrix with $theta = (2 pi)/ t$. For higher dimensions $A in RR^(n times n)$, the same principle applies if we embed the 2D rotation e.g. into the top left corner (like in $R_z (theta)$ above) and fill the rest of the diagonal with $1$s. $quad$ Below: left $= cos(theta)$, right $= sin(theta)$.
 
 #show math.equation: block.with(fill: luma(240), inset: 1pt)
 #show math.equation: set text(size: 6pt)
