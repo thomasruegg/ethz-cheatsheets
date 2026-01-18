@@ -148,9 +148,9 @@ $]
 #cblock[
   == Diagonalization (Theo. 9.1.1)
 
-  Let $A in RR^(n times n)$ be a matrix with a complete set of eigenvectors. Let $V = mat(bar.v, , bar.v; bold(v)_1, ..., bold(v)_n; bar.v, , bar.v;) in RR^(n times n)$ be the matrix whose columns are the eigenvectors, and $Lambda in RR^(n times n)$ the matrix whose diagonal entries are the eigenvalues ($Lambda_(i i) = lambda_i$ for all $i in [n]$), then $ A = V Lambda V^(-1) \
-  A V = V Lambda \
-  [A bold(v)_1, A bold(v)_2, ..., A bold(v)_n] = [lambda_1 bold(v)_1, lambda_2 bold(v)_2, ..., lambda_n bold(v)_n] $
+  Let $A in RR^(n times n)$ be a matrix with a complete set of eigenvectors. Let $V = mat(bar.v, , bar.v; bold(v)_1, ..., bold(v)_n; bar.v, , bar.v;) in RR^(n times n)$ be the matrix whose columns are the eigenvectors, and $Lambda in RR^(n times n)$ the matrix whose diagonal entries are the eigenvalues ($Lambda_(i i) = lambda_i$ for all $i in [n]$), then $ A &= V Lambda V^(-1) \
+  A V &= V Lambda \
+  [A bold(v)_1, A bold(v)_2, ..., A bold(v)_n] &= [lambda_1 bold(v)_1, lambda_2 bold(v)_2, ..., lambda_n bold(v)_n] $
 ]
 
 == Diagonalizable Matrix (Def. 9.1.2)
@@ -196,7 +196,7 @@ For any symmetric matrix $A in RR^(n times n)$, there exists an orthogonal matri
   == Eigenvalues of Sym. Matrices (Cor. 9.2.4)
   The rank of a real symmetric matrix $A$ is the number of non-zero eigenvalues (counting repetitions). 
 
-  For general $n times n$ (non-symmetric) matrices, the rank is $n$ minus the dimension of the nullspace, so it is $n$ minus the geometric multiplicity of $lambda = 0$. Since symmetric matrices always havea complete set of eigenvalues and eigenvectors, the geometric multiplicities are always the same as thealgebraic multiplicities (Remark 9.2.5).
+  For general $n times n$ (non-symmetric) matrices, the rank is $n$ minus the dimension of the nullspace, so it is $n$ minus the geometric multiplicity of $lambda = 0$. Since symmetric matrices always have a complete set of eigenvalues and eigenvectors, the geometric multiplicities are always the same as the algebraic multiplicities (Remark 9.2.5).
 
   Every symmetric matrix has a real eigenvalue (Cor. 9.2.9).
 ]
