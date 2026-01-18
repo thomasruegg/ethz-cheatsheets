@@ -103,11 +103,11 @@ Let $A$, $B$, $C$ and $D$ be four matrices, then
 
 Keep in mind, that *MATRIX MULTIPLICATION IS NOT COMMUTATIVE*.
 
-== $A = C R'$ (Theo. 2.46)
+== CR' Decomposition $A = C R'$ (Theo. 2.46)
 
-Let $A in RR^(m times n)$ with rank $r$. Let $C in RR^(m times r)$ be the submatrix of $A$ containing all its independent columns. Then there exists a unique $R' in RR^(r times n)$ such that $ A = C R'. $
+Let $A in RR^(m times n)$ with rank $r$. Let $C in RR^(m times r)$ be the submatrix of $A$ containing all its independent columns. Then there exists a unique $R' in RR^(r times n)$ such that $A = C R'$.
 
-In other words, $C$ describes the linearly independent columns, while $R'$ shows how to combine them to create $A$. For instance,
+In other words, $C$ describes the linearly independent columns, while $R'$ ($R$ from Gauss-Jordan Elimination, but without the zero rows) shows how to combine them to create $A$. For instance,
 
 $
   mat(1, 2, 0, 3; 2, 4, 1, 4; 3, 6, 2, 5;) = mat(1, 0; 2, 1; 3, 2;) mat(1, 2, 0, 3; 0, 0, 1, -2;).
@@ -157,6 +157,8 @@ In $RR^(2 times 2)$, to rotate the $x y$ plane counterclockwise around an angle 
 Let $R(theta_1), R(theta_2) in RR^(2 times 2)$ be two rotation matrices, then $ R(theta_1) R(theta_2) = R(theta_1 + theta_2). $
 
 Moreover, for every $R(theta) in RR^(2 times 2)$, there is some $R(-theta) in RR^(2 times 2)$ such that $R(theta) R(-theta) = R(0) = I$.
+
+If we need to find an $A in RR^(2 times 2)$ that satisfies $A^k = I <==> $ k is a multiple of $t$, then $A$ can be a rotation matrix with $theta = (2 pi)/ t$. For higher dimensions $A in RR^(n times n)$, the same principle applies if we embed the 2D rotation e.g. into the top left corner (like in $R_z (theta)$ above) and fill the rest of the diagonal with $1$s.
 
 #show math.equation: block.with(fill: luma(240), inset: 1pt)
 #show math.equation: set text(size: 6pt)
