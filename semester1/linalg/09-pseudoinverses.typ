@@ -42,11 +42,11 @@ In words: $A^+ bold(b)$ is the solution to the least squares problem with the sm
 
 == Properties of $A^+$ (Theo. 6.4.10)
 
-1. $A A^+ A = A$. Proof: see below.
+1. $A A^+ A = A$
 2. $A^+ A A^+ = A^+$. Proof: see below.
 3. $A A^+_"left"$ is symmetric & the projection matrix on $C(A)$.
 4. $A^+_"right" A$ is symmetric & the projection matrix on $C(A^T)$.
-5. $(A^T)^+ = (A^+)^T$.
+5. $(A^T)^+ = (A^+)^T$. Proof: see below.
 
 #cblock(fill: luma(240))[
   == Proof of Pseudoinverse Properties
