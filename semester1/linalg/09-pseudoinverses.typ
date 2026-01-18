@@ -42,8 +42,8 @@ In words: $A^+ bold(b)$ is the solution to the least squares problem with the sm
 
 == Properties of $A^+$ (Theo. 6.4.10)
 
-1. $A A^+ A = A$
-2. $A^+ A A^+ = A^+$
+1. $A A^+ A = A$. Proof: see below.
+2. $A^+ A A^+ = A^+$. Proof: see below.
 3. $A A^+_"left"$ is symmetric & the projection matrix on $C(A)$.
 4. $A^+_"right" A$ is symmetric & the projection matrix on $C(A^T)$.
 5. $(A^T)^+ = (A^+)^T$.
@@ -52,7 +52,7 @@ In words: $A^+ bold(b)$ is the solution to the least squares problem with the sm
   == Proof of Pseudoinverse Properties
 
   1. Prove that if $"rank"(A) = "rank"(B) = n$, we have $(A B)^+ = B^+ A^+$. #line(length: 100%, stroke: 0.75pt) $C(A B) = C(A)$ (as $"rank"(B) = n$ implies that $C(B) = n$). Then using Prop. 6.4.9 we get $(A B)^+ = B^+ A^+$.
-  2. Prove that $A^+A A^+ = A^+$. #line(length: 100%, stroke: 0.75pt) $A^+ A A^+ = (C R)^+ C R (C R)^+ = R^+ (C^+ C) (R R^+) C^+ = R^+ C^+ = A^+.$
+  2. Prove that $A^+A A^+ = A^+$. #line(length: 100%, stroke: 0.75pt) $A^+ A A^+ = (C R)^+ C R (C R)^+ = R^+ (C^+ C) (R R^+) C^+ = R^+ C^+ = A^+$.
   3. Prove that $(A^T)^+ = (A^+)^T$. #line(length: 100%, stroke: 0.75pt) _prove for full row & column rank seperately_, then use Prop. 6.4.9 to get $(A^T)^+ = (C^T)^+ (R^T)^+ = (C^+)^T (R^+)^T = (R^+ C^+)^T = (A^+)^T$.
-  4. Prove that $A^+A$ is symmetric and that it is the projection matrix for the subspace $C(A^T)$. #line(length: 100%, stroke: 0.75pt) projection matrix: $A^+ A = (C R)^+ C R = R^+ C^+ C R = R^T (R R^T)^(-1) R. " " (C(A^T) = C(R^T))$ \ symmetric: $(A^+ A)^T = (R^T (R R^T)^(-1) R)^T = R^T ((R R^T)T)^(-1) R = R^T (R R^T)^(-1) R = A^+ A$.
+  4. Prove that $A^+A$ is symmetric and that it is the projection matrix for the subspace $C(A^T)$. #line(length: 100%, stroke: 0.75pt) projection matrix: $A^+ A = (C R)^+ C R = R^+ C^+ C R = R^T (R R^T)^(-1) R. " " (C(A^T) = C(R^T))$ \ symmetric: $(A^+ A)^T = (R^T (R R^T)^(-1) R)^T = R^T ((R R^T)^T)^(-1) R = R^T (R R^T)^(-1) R = A^+ A$.
 ]
