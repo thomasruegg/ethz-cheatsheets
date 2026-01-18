@@ -24,7 +24,7 @@ $
 
   == Double Complement (Lemma 5.1.8)
   Let $V$ be a subspace of $RR^n$. Then:
-  $ V = (V^bot)^bot $
+  $V = (V^bot)^bot$
 
 
 #cblock[
