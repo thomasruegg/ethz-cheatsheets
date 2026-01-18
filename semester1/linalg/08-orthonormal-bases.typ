@@ -30,8 +30,9 @@ Vectors $bold(q)_1, ..., bold(q)_n in RR^m$ are orthonormal if they are orthogon
   Given $n$ linearly independent vectors $a_1, ..., a_n$ that span $S$, $q_1, ..., q_n$ can be constructed as follows:
 
   1. $q_1 = a_1 / norm(a_1)$
-  2. For $k = 2, ..., n$, $ q_k' & = a_k - sum_(i=1)^(k-1) (a_k^T q_i) q_i \
-    q_k & = q_k'/norm(q_k'). $
+  2. For $k = 2, ..., n$, $ q_k' & = a_k - sum_(i=1)^(k-1) underbrace((a_k^T q_i), R_(i k)) q_i
+  quad --> quad 
+  q_k & = q_k'/underbrace(norm(q_k'), norm(q_k')=R_(i i)). $
 
   The vectors $q_1, ..., q_n$ form an orthonormal basis of $S$ (Theorem 6.3.9).
 ]
