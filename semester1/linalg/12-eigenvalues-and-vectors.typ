@@ -20,7 +20,7 @@
 ]
 
 #cblock(fill: luma(240))[
-  == Example
+  == Eigenvector Recurrence Example
   Consider the sequence of numbers given by $a_0 = 1$, $a_1 = 1$ and $a_n = -a_(n-1)+6a_(n-2) "for" n >= 2$. Find $alpha, beta in RR$ such that $a_n = 4/5alpha^n + 1/5beta^n$ for all $n in NN_0$. Prove your answer. #line(length: 100%, stroke: 0.75pt)
 
   1. Define sequence algebraically: Let $bold(v)_n = vec(a_(n+1), a_n)$. We translate the recurrence $a_n = -a_(n-1) + 6a_(n-2)$ into matrix form.
@@ -51,10 +51,10 @@
     Then, $c_1 = 1 - 1/5 = 4/5$.
     Thus:
     $ vec(a_1, a_0) = vec(1, 1) = 4/5 bold(v)_1 + 1/5 bold(v)_2 $
-  5. Rewrite $bold(v_n) = vec(a_(n+1), a_n)= A^n bold(v_0)$ as $ bold(v_n) & = A^n (4/5bold(v)_1 + 1/5bold(v)_2) \
-              & = 4/5 A^n bold(v)_1 + 1/5 A^n bold(v)_2 \
-              & = 4/5 lambda_1^n bold(v)_1 + 1/5 lambda_2^n bold(v)_2 \
-              & = 4/5 2^n vec(2, 1) + 1/5 (-3)^n vec(-3, 1). $
+  5. Rewrite $bold(v_n) = vec(a_(n+1), a_n)= A^n bold(v_0)$ as $ bold(v_n) = A^n (4/5bold(v)_1 + 1/5bold(v)_2)
+              = 4/5 A^n bold(v)_1 + 1/5 A^n bold(v)_2 \
+              = 4/5 lambda_1^n bold(v)_1 + 1/5 lambda_2^n bold(v)_2 
+              = 4/5 2^n vec(2, 1) + 1/5 (-3)^n vec(-3, 1). $
   6. Consider second component: $a_n = 4/5 dot 2^n dot 1 + 1/5 dot (-3)^n dot 1$.
 ]
 
@@ -164,8 +164,8 @@ If given a matrix $A in RR^(n times n)$, we can build a basis of $RR^n$ with eig
 
 == Similar Matrices (Def. 9.1.7)
 
-Two matrices $A$ and $B$ $in RR^(n times n)$ are _similar_, if exists an invertible matrix $S$, such that $ B = S^(-1) A S. $
-\
+Two matrices $A$ and $B$ $in RR^(n times n)$ are _similar_, if exists an invertible matrix $S$, such that $B = S^(-1) A S.$
+
 Similar matrices have the same eigenvalues. Proof: $A v = lambda v <==> lambda S^(-1) v = S^(-1) A v = S^(-1) A underbrace(S S^(-1), I) v = B(S^(-1) v)$ (Prop. 9.1.8).
 
 Similar matrices are clones of each other. They represent the exact same linear transformation, just viewed from a different coordinate system ($S$ is a change of basis matrix).
