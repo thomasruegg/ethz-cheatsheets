@@ -115,7 +115,7 @@ $ "R"(A) := {A^T bold(x) : bold(x) in RR^m} = "C"(A^T) subset.eq RR^n. $
 It tells about the fundamental, independent equations in a system. If a new equation is a combination of existing rows, it's in the row space. I.e. if a vector satisfies this new equation, it's in the row space.
 
 
-For example, let $A = mat(delim: "[", 1, 0, 2; 0, 1, 0)$, with row vectors $bold(r)_1 = [1, 0, 2]$ and $bold(r)_2 = [0, 1, 0]$.
+For example, let $A => R = mat(delim: "[", 1, 0, 2; 0, 1, 0)$, with row vectors $bold(r)_1 = [1, 0, 2]$ and $bold(r)_2 = [0, 1, 0]$.
 A linear combination of these is:
 $ c_1 [1, 0, 2] + c_2 [0, 1, 0] = [c_1, c_2, 2c_1] $
 
@@ -124,7 +124,7 @@ The row space is the set of vectors $(x, y, z) in RR^3$ satisfying $z = 2x$ (one
 
 === Basis of $"R"(A)$ (Theo. 4.32)
 
-The basis of $"R"(A)$ is the set of its _linearly independent rows_, and hence $"dim"("R"(A)) = "dim"("C"(A)) = "rank"(A)$. These correspond to the first $r$ rows of $A$ in REF, where $r$ is the rank of $A$.
+The basis of $"R"(A)$ is the set of its _linearly independent rows_, and hence $"dim"("R"(A)) = "dim"("C"(A)) = "rank"(A)$. These correspond to the first $r$ rows of $A$ in REF, where $r$ is the rank of $A$. \ So $R(A) = R(R) = C(R^T)$ with $R$ from CR decomposition.
 
 == Bases in $A = C R'$ (Theo. 3.18)
 
@@ -173,6 +173,7 @@ Following, $"dim"("N"(A)) = n - "rank"(A)$ (Theo. 4.36).
 // Following, $"dim"("LN")(A) = m - "rank"(A)$.
 
 #cblock(fill: luma(240))[
+  For $A in RR^(m times n)$:
   #align(
     center,
     table(
