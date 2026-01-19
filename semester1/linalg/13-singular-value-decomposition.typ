@@ -37,7 +37,7 @@ In other words, the SVD of $A$ can be calculated by
 2. $U=$ eigenvector matrix of $A A^T$,
 3. $V=$ eigenvector matrix of $A^T A$,
 4. singular values = $sqrt("eigenvalues of" A A^T "or" A^T A)$. Only if $A$ is real & *symmetric*, singular values of $A$ = |eigenvalues| of $A$.
-5. $Sigma=$ descending ordered square roots of eigenvalues of $A A^T$ or $A^T A$, they are equal.
+5. $Sigma=$ descending ordered square roots of eigenvalues of $A A^T$ or $A^T A$, they are equal. $sigma_1$ is the largest, $sigma_n$ the smallest.
 6. $A A^T, A^T A$ are PSD, thus eigenvalues  $>= 0 ==> $ sing. values $>= 0$.
 7. If $A$ is invertible, then $A^(-1) = (U Sigma V^T)^(-1) = V^T^(-1) Sigma^(-1) U^(-1) = V Sigma^(-1) U^T$ (as $V^T V = I, U^T U = I$)
 

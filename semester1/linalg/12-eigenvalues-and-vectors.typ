@@ -166,7 +166,7 @@ If given a matrix $A in RR^(n times n)$, we can build a basis of $RR^n$ with eig
 
 Two matrices $A$ and $B$ $in RR^(n times n)$ are _similar_, if exists an invertible matrix $S$, such that $B = S^(-1) A S.$
 
-Similar matrices have the same eigenvalues. Proof: $A v = lambda v <==> lambda S^(-1) v = S^(-1) A v = S^(-1) A underbrace(S S^(-1), I) v = B(S^(-1) v)$ (Prop. 9.1.8).
+Similar matrices have the same eigenvalues, Trace and Determinant. Proof: $A v = lambda v <==> lambda S^(-1) v = S^(-1) A v = S^(-1) A underbrace(S S^(-1), I) v = B(S^(-1) v)$.
 
 Similar matrices are clones of each other. They represent the exact same linear transformation, just viewed from a different coordinate system ($S$ is a change of basis matrix).
 
