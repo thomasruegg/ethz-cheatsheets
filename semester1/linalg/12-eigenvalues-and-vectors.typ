@@ -182,9 +182,9 @@ Similar matrices are clones of each other. They represent the exact same linear 
   Any symmetric matrix $A in RR^(n times n)$ has $n$ real eigenvalues and an orthonormal basis consisting of its eigenvectors.
 ]
 
-=== Diag. for Symmetric Matrices (Cor. 9.2.2)
+=== Diagonalization for Symmetric Matrices (Cor. 9.2.2)
 
-For any symmetric matrix $A in RR^(n times n)$, there exists an orthogonal matrix $V in RR^(n times n)$ (whose columns are the eigenvectors of $A$) and a diagonal matrix $Lambda$ whose entries are the eigenvalues of $A$, such that $ A = V Lambda V^T "and" V^T V = I. $ (This is also called the _eigendecomposition_).
+For any symmetric matrix $A in RR^(n times n)$, there exists an *orthogonal* matrix $V in RR^(n times n)$ (whose columns are the eigenvectors of $A$) and a diagonal matrix $Lambda$ whose entries are the eigenvalues of $A$, such that $ A = V Lambda V^T "and" V^T V = I. $ (This is also called the _eigendecomposition_). *Normalize $V$!*
 
 #cblock(fill: luma(240))[
   == Spectral Construction Example
