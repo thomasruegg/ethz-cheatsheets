@@ -24,7 +24,7 @@
   Every matrix $A in RR^(m times n)$ has a SVD. \ As in, *every linear transformation is diagonal when viewed in the bases of the singular vectors*.
 ]
 
-== Compact Form (Remark 9.3.2)
+== Compact Form if $A$ has Rank $r$ (Remark 9.3.2)
 
 If $A$ has rank $r$, the SVD can be written in a compact form: $ A = U_r Sigma_r V_r^T, $ where $U_r$ and $V_r$ contain the first $r$ left/right singular vectors respectively and $Sigma_r$ contains the first $r$ singular values (which are strictly positive).
 
