@@ -28,7 +28,12 @@
 
   Let $A in RR^(m times n)$, the transpose of $A$, $A^T$, is equal to $A$ with interchanged rows and columns.
 
-  Moreover, $(A B)^T = B^T A^T$ for any $A in RR^(n times k)$ and $B in RR^(k times m)$ (Lemma 2.40).
+  1. *Reverse Order:* $(A B)^T = B^T A^T$ (Lemma 2.40).
+  2. *Scalars:* $(r A)^T = r A^T$ for any $r in RR$.
+     - This implies $(-A)^T = -A^T$.
+  3. *Powers:* $(A^n)^T = (A^T)^n$ for any $n in NN$.
+     - Combined with scalars: $((-A)^n)^T = ((-A)^T)^n$.
+  4. *Inverse:* $(A^(-1))^T = (A^T)^(-1)$ (if $A$ is invertible).
 ]
 
 #cblock[
@@ -39,14 +44,9 @@
   1. _upper triangular_ if all entries below the diag. are $0$,
   2. _lower triangular_ if all entries above the diag. are $0$,
   3. _diagonal_ if it is both _upper_ and _lower_ triangular, i.e., the matrix only has non-zero values on its diagonal,
-  4. _symmetric_ if the values above and below the diagonal are equal.
+  4. _symmetric_ if the values above and below the diagonal are equal. Let $A in RR^(m times m)$, $A$ is symmetric $<==>$ $A = A^T$.
 ]
 
-#cblock[
-  == Symmetric Matrices (Obs. 2.13)
-
-  Let $A in RR^(m times m)$, $A$ is symmetric $<==>$ $A = A^T$.
-]
 
 == Matrix-Vector Multiplication (Def 2.4)
 
