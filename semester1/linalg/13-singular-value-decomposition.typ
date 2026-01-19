@@ -13,8 +13,8 @@
 
   1. $U^T U = V^T V = I$.
   2. $sigma_1 >= ... >= sigma_"min"{m, n} >= 0$.
-  3. The columns of $U$ are called the _left singular vectors_ and are orthonormal.
-  4. The columns of $V$ are called the _right singular vectors_ and are orthonormal.
+  3. The columns of $U$ are called the _left singular vectors_ and are orthonormal $==> U$ has full column rank.
+  4. The columns of $V$ are called the _right singular vectors_ and are orthonormal $==> V$ has full column rank.
   5. The diagonal entries of $Sigma$ are called the _singular values_. The singular values of a matrix A are the square roots of the eigenvalues of the symmetric matrix $A^T A$ or $A A^T$.
 ]
 
@@ -26,7 +26,7 @@
 
 == Compact Form if $A$ has Rank $r$ (Remark 9.3.2)
 
-If $A$ has rank $r$, the SVD can be written in a compact form: $ A = U_r Sigma_r V_r^T, $ where $U_r$ and $V_r$ contain the first $r$ left/right singular vectors respectively and $Sigma_r$ contains the first $r$ singular values (which are strictly positive).
+If $A$ has rank $r$, the SVD can be written in a compact form: $ A = U_r Sigma_r V_r^T, $ where $U_r$ and $V_r$ contain the first $r$ left/right singular vectors respectively and $Sigma_r$ contains the first $r$ singular values (which are strictly positive). $V_r$ full col-rank, $V_r^T$ full row-rank, $U_r$ full col-rank.
 
 == Calculating the SVD (Section 9.3)
 
@@ -36,9 +36,10 @@ In other words, the SVD of $A$ can be calculated by
 1. Taking the eigendecomposition of $A A^T$ or $A^T A$.
 2. $U=$ eigenvector matrix of $A A^T$,
 3. $V=$ eigenvector matrix of $A^T A$,
-4. $Sigma=$ descending ordered square roots of eigenvalues of $A A^T$ or $A^T A$.
-5. If $A$ is invertible, then $A^(-1) = (U Sigma V^T)^(-1) = V^T^(-1) Sigma^(-1) U^(-1) = V Sigma^(-1) U^T$ (as $V^T V = I, U^T U = I$)
-6. If $U,V$ are PSD $=>$ singular values are $>= 0$
+4. singular values = $sqrt("eigenvalues of" A A^T "or" A^T A)$
+5. $Sigma=$ descending ordered square roots of eigenvalues of $A A^T$ or $A^T A$, they are equal.
+6. $A A^T, A^T A$ are PSD, thus eigenvalues  $>= 0 ==> $ sing. values $>= 0$.
+7. If $A$ is invertible, then $A^(-1) = (U Sigma V^T)^(-1) = V^T^(-1) Sigma^(-1) U^(-1) = V Sigma^(-1) U^T$ (as $V^T V = I, U^T U = I$)
 
 == Rank $r$ Matrices (Prop. 9.3.4)
 
