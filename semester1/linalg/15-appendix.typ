@@ -1,3 +1,11 @@
+#let cblock(content, fill: rgb("#FF8ECC")) = block(
+  width: 100%,
+  inset: 0.75em,
+  radius: 1pt,
+  fill: fill,
+  content,
+)
+
 #set enum(numbering: "1.")
 = Surjectivity, Injectivity, Bijectivity
 #image("img/injectivityAndSurjectivity.png")
