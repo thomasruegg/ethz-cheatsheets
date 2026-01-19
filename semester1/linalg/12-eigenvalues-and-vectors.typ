@@ -224,7 +224,7 @@ Sometimes $V V^T$ is also called a Gram matrix of $V$ (the inner product of the 
 
 == Gram and Eigenvalues (Prop. 9.2.15)
 
-Let $A in RR^(m times n)$, the non-zero eigenvalues of $A^T A$ are the same as the ones of $A A^T$. Both matrices are symmetric and PSD.
+Let $A in RR^(m times n)$, the non-zero eigenvalues of $A^T A$ are the same as the ones of $A A^T$. Both matrices are symmetric and PSD. \ Proof: $x^T A^T A x = (A x)^T (A x) = ||A x||^2 >= 0$.
 
 == Cholesky Decomposition (Prop. 9.2.16)
 
