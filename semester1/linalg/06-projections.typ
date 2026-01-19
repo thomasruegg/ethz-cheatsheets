@@ -1,8 +1,8 @@
-#let cblock(content) = block(
+#let cblock(content, fill: rgb("#B1E6F3")) = block(
   width: 100%,
   inset: 0.75em,
   radius: 1pt,
-  fill: rgb("#B1E6F3"),
+  fill: fill,
   content,
 )
 
@@ -34,3 +34,13 @@ For any projection matrix $P$ and corresponding subspace $S$,
 
 1. $P^2 = (A (A^T A)^(-1) A^T)^2 = A (A^T A)^(-1) overbrace(A^T A (A^T A)^(-1), I) A^T = A (A^T A)^(-1) A^T = P$
 2. $"proj"_(S^bot) (bold(b)) = bold(b)-P bold(b) = (I - P) bold(b)$.
+
+== Matrix for Reflection Through a Plane
+
+To find the matrix $B$ representing a reflection through a plane $P$ passing through the origin:
+
+1. *Find the normal vector* $bold(v)$ from the plane equation ($a x+b y+c z=0 ==> bold(v) = vec(a, b, c)$). $bold(v)$ is orthogonal to the plane.
+2. *Normalize it* to get the unit normal vector $bold(n) = bold(v) / norm(bold(v))$.
+3. *Apply the reflection formula:*
+  $B = I - 2 bold(n) bold(n)^T$ \
+  _Note:_ This formula works because $bold(n) bold(n)^T$ is the projection onto the normal, i.e. $I-bold(n) bold(n)^T$ would be the projection onto the plane. Subtracting it twice reflects the vector across the plane.
