@@ -92,8 +92,6 @@ $
   A mat(bar.v, bar.v, , bar.v; bold(v)_1, bold(v)_2, ..., bold(v)_n; bar.v, bar.v, , bar.v) = mat(bar.v, bar.v, , bar.v; A bold(v)_1, A bold(v)_2, ..., A bold(v)_n; bar.v, bar.v, , bar.v).
 $
 
-#linebreak()
-
 === Distributivity and Associativity (Lemma 2.42)
 
 Let $A$, $B$, $C$ and $D$ be four matrices, then
