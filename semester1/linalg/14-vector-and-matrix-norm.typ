@@ -8,7 +8,7 @@ In particular let $norm(bold(x))_p$ for $p = 1$ denote the _Manhattan distance_.
 
 === Relations (Prop. 10.0.1)
 For all $bold(x) in RR^n$,
-$ norm(bold(x))_2 <= norm(bold(x))_1 <= sqrt(n) norm(bold(x))_2 $
+$norm(bold(x))_2 <= norm(bold(x))_1 <= sqrt(n) norm(bold(x))_2$
 
 == Matrix Norms (Def. 10.0.2)
 
