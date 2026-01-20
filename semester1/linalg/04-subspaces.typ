@@ -117,11 +117,11 @@ The row space is the set of vectors $(x, y, z) in RR^3$ satisfying $z = 2x$ (one
 
 === Basis of $"R"(A)$ (Theo. 4.32)
 
-The basis of $"R"(A)$ is the set of its _linearly independent rows_, and hence $"dim"("R"(A)) = "dim"("C"(A)) = "rank"(A)$. These correspond to the first $r$ rows of $A$ in REF, where $r$ is the rank of $A$. \ So $R(A) = R(R) = C(R^T)$ with $R$ from CR decomposition.
+The basis of $"R"(A)$ is the set of its _linearly independent rows_, and hence $"dim"("R"(A)) = "dim"("C"(A)) = "rank"(A)$. These correspond to the first $r$ rows of $A$ in REF, where $r$ is the rank of $A$. \ So $R(A) = R(R') = C(R'^T)$ with $R$ from CR decomposition.
 
 == Bases in $A = C R'$ (Theo. 3.18)
 
-Let $A = C R'$, then the columns of $C$ form a basis of $"C"(A)$ and the rows of $R'$ form a basis of $"R"(A)$.
+Let $A = C R'$, then the columns of $C$ form a basis of $"C"(A)$ and the rows of $R'$ form a basis of $"R"(A)$. \ So $C(A) = C(C)$ and $R(A) = R(R') = C(R'^T)$.
 
 #cblock[
   == The Nullspace of $A$ (Def. 2.17)
@@ -133,25 +133,25 @@ Let $A = C R'$, then the columns of $C$ form a basis of $"C"(A)$ and the rows of
 
 === Basis of $"N"(A)$ (Theo. 4.36)
 
-We can calcuate a basis of $"N"(A)$, by converting $A$ to $R$ in RREF through Gauss-Jordan and then solving $R bold(x) = bold(0)$ with the _special cases_ where $bold(x)_i = 1$ for every $i = 1, ..., n$ for every linerly *dependent* columns in $R$.
+We can calculate a basis of $"N"(A)$, by converting $A$ to $R'$ in RREF through Gauss-Jordan and then solving $R' bold(x) = bold(0)$ with the _special cases_ where $bold(x)_i = 1$ for every $i = 1, ..., n$ for every linearly *dependent* column in $R'$.
 
 For example, $A in RR^(2 times 4)$,
 
-1. convert $A -> R$ through Gauss-Jordan,
-2. solve $R bold(x) = bold(0)$ with special cases (per special case: set one free variable (one variable of the *dependent* columns) e.g. $x_2 = 1$, the other free variables to 0), solve for $bold(x)$
+1. convert $A -> R'$ through Gauss-Jordan,
+2. solve $R' bold(x) = bold(0)$ with special cases (per special case: set one free variable (one variable of the *dependent* columns) e.g. $x_2 = 1$, the other free variables to 0), solve for $bold(x)$
 
 $
-  underbrace(mat(1, 2, 0, 3; 0, 0, 1, -2), A "in RREF" = R) vec(x_1, x_2, x_3, x_4) = bold(0) "with" bold(x) = underbrace(vec(x_1, 1, x_3, x_4) "and" vec(x_1, x_2, x_3, 1), "special cases").
+  underbrace(mat(1, 2, 0, 3; 0, 0, 1, -2), A "in RREF" = R') vec(x_1, x_2, x_3, x_4) = bold(0) "with" bold(x) = underbrace(vec(x_1, 1, x_3, 0) "and" vec(x_1, 0, x_3, 1), "special cases").
 $
 
-3. The solutions $x_1, ..., x_n$ form a Basis of $"N"(R)$,
+3. The solutions $x_1, ..., x_n$ form a Basis of $"N"(R')$,
 
 $
   bold(x)_1 = vec(-2, 1, 0, 0), bold(x)_2 = vec(-3, 0, 2, 1) => {bold(x)_1, bold(x)_2} "is a basis of N"(R).
 $
 
 
-4. Any basis of $"N"(R)$ is also a basis of $"N"(A)$ (Lemma 3.3).
+4. Any basis of $"N"(R')$ is also a basis of $"N"(A)$ (Lemma 3.3).
 
 Following, $"dim"("N"(A)) = n - "rank"(A)$ (Theo. 4.36).
 
