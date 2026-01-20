@@ -118,15 +118,8 @@ $
   Let $T: RR^n -> RR^m$ be a function. $T$ is called a linear transformation if $forall bold(v), bold(w) in RR^n "and" forall lambda, mu in RR$,
 
   $ T(lambda bold(v) + mu bold(w)) = lambda T(bold(v)) + mu T(bold(w)). $
-]
-
-#cblock(fill: luma(240))[
-  == Example
 
   Let $T : RR^n -> RR^m$, is $T$ a linear transformation?
-
-  #line(length: 100%, stroke: 0.75pt)
-
   1. Show $T(bold(v) + bold(w)) = T(bold(v)) + T(bold(w))$ for all $bold(v), bold(w) in RR^n$.
   2. Show $T(lambda bold(v)) = lambda T(bold(v))$ for all $bold(v) in RR^n$ and $lambda in RR$.
 ]
@@ -135,15 +128,6 @@ $
   === $T = T_A$ (Theo. 2.26)
 
   Let $T: RR^n -> RR^m$ be a linear transformation, there exists a unique $A in RR^(m times n)$ such that $T = T_A$.
-]
-
-#cblock[
-  === Kernel and Image (Def. 2.27)
-
-  Let $T: RR^n -> RR^m$ be a linear transformation,
-
-  1. the _kernel_ of $T$ is $"Ker"(T) = "N"(T_A)$,
-  2. the _image_ of $T$ is $"Im"(T) = "C"(T_A)$.
 ]
 
 == Rotation Matrix

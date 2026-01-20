@@ -171,7 +171,7 @@ Similar matrices have the same eigenvalues, Trace and Determinant. _Proof:_ $A v
 Similar matrices are clones of each other. They represent the exact same linear transformation, just viewed from a different coordinate system ($S$ is a change of basis matrix).
 
 #cblock(fill: luma(240))[
-  == Example
+  == Characteristic Polynomial Example
 
   Assume that $A, B in RR^(n times n)$ are similar, prove that their characteristic polynomials are equal. #line(length: 100%, stroke: 0.75pt) As $A$ and $B$ are similar, there exists a matrix $S$ such that $B = S^(-1)A S$. Recall that $"det"(S)"det"(S^(-1)) = 1$. Thus, $"det"(A-z I) = "det"(S^(-1))"det"(A-z I)"det"(S) = "det"(S^(-1)(A-z I)S) = "det"(S^(-1) A S -z S^(-1) I S) = "det"(B-z I)$.
 ]

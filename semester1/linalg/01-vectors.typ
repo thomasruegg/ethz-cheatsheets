@@ -18,9 +18,11 @@
 
 A linear combination $lambda_1 bold(v)_1 + lambda_2 bold(v)_2 + ... + lambda_n bold(v)_n$ is
 
-1. _affine_ if $lambda_1 + lambda_2 + ... + lambda_n = 1$,
-2. _conic_ if $lambda_i >= 0$ for $i = 1, 2, ..., n$,
-3. _convex_ if it is both affine and conic.
+2. _affine_ if $lambda_1 + lambda_2 + ... + lambda_n = 1$,
+3. _conic_ if $lambda_i >= 0$ for $i = 1, 2, ..., n$,
+4. _convex_ if it is both affine and conic.
+
+#align(center)[#image("img/affineConicConvex.png", width: 100%)]
 
 #cblock[
   == Euclidean Norm (Def. 1.11)
@@ -36,10 +38,7 @@ A linear combination $lambda_1 bold(v)_1 + lambda_2 bold(v)_2 + ... + lambda_n b
   == Dot Product and Angles (Def. 1.14)
 
   The angle $alpha$ between two non-zero vectors $bold(v)$ and $bold(w)$ is
-
-  $ cos(alpha) = (bold(v) dot bold(w)) / (norm(bold(v)) norm(bold(w))), $
-
-  where $-1 <= alpha <= 1$.
+  $ cos(alpha) = (bold(v) dot bold(w)) / (norm(bold(v)) norm(bold(w))), $ where $-1 <= alpha <= 1 $.
 ]
 
 #cblock(fill: luma(240))[
@@ -84,9 +83,8 @@ Let $bold(v), bold(w) in RR^m$. $bold(v)$ and $bold(w)$ are orthogonal if and on
 
 $ bold(v) dot bold(w) = 0, $
 
-i.e., the angle between them is $alpha = 90°$.
-
-Note: If $bold(v) "and" bold(w)$ are orthogonal, then $||bold(v)+bold(w)||^2 = (bold(v)+bold(w))^T (bold(v)+bold(w)) = bold(v)^T bold(v) + bold(v)^T bold(w) + bold(w)^T bold(v) + bold(w)^T bold(w) = ||bold(v)||^2 + ||bold(w)||^2$
+i.e., the angle between them is $alpha = 90°$. \ 
+_Note_: If $bold(v) "and" bold(w)$ are orthogonal, then $||bold(v)+bold(w)||^2 = (bold(v)+bold(w))^T (bold(v)+bold(w)) = bold(v)^T bold(v) + bold(v)^T bold(w) + bold(w)^T bold(v) + bold(w)^T bold(w) = ||bold(v)||^2 + ||bold(w)||^2$
 
 #cblock[
   == Linear Independence (Cor. 1.23)

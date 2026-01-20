@@ -35,12 +35,8 @@ Vectors $bold(q)_1, ..., bold(q)_n in RR^m$ are orthonormal if they are orthogon
   q_k & = q_k'/underbrace(norm(q_k'), norm(q_k')=R_(i i)). $
 
   The vectors $q_1, ..., q_n$ form an orthonormal basis of $S$ (Theorem 6.3.9).
-]
 
-#cblock(fill: luma(240))[
-  == Example
-
-  An upper triangular $n times n$ matrix with non-zero diagonals that does *not* yield the canonical basis after the Gram-Schmidt process is $-I$.
+  _Note_: An upper triangular $n times n$ matrix with non-zero diagonals that does *not* yield the canonical basis after the Gram-Schmidt process is $-I$.
 ]
 
 == QR-Decomposition (Def. 6.3.10)
