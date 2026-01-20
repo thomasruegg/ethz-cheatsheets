@@ -67,7 +67,7 @@ A linear combination $lambda_1 bold(v)_1 + lambda_2 bold(v)_2 + ... + lambda_n b
 
 For any two vectors $bold(v), bold(w) in RR^m$
 
-$ abs(bold(v) dot bold(w)) <= norm(bold(v)) dot norm(bold(w)). $
+$ abs(bold(v)^T bold(w)) <= norm(bold(v)) dot norm(bold(w)). $
 
 Equality holds when one is a scalar multiple of the other.
 
