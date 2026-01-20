@@ -108,7 +108,7 @@ _Note_: If $bold(v) "and" bold(w)$ are orthogonal, then $||bold(v)+bold(w)||^2 =
 
 == The Span (Def. 1.25)
 
-Let $bold(v)_1, bold(v)_2, ..., bold(v)_n in RR^m$, their Span is defined as the set of all linear combination, i.e.,
+Let $bold(v)_1, bold(v)_2, ..., bold(v)_n in RR^m$, their Span is defined as the set of all linear combinations, i.e.,
 
 $
   "Span"(bold(v)_1, bold(v)_2, ..., bold(v)_n) := { sum_(j=1)^n lambda_j bold(v)_j : lambda_j in RR forall j in [n] }.

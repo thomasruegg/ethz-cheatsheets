@@ -92,9 +92,9 @@ Elmination and row exchanges requires matrices as _linear combinations of the ro
 
 == Inverse Matrices (Def. 2.57) // Updated from 3.7
 
-Let $M in RR^(m times m)$, $M$ is invertible, if there exists an $M^-1 in RR^(m times m)$ such that $ M M^(-1) = M^(-1) M = I. $
+Let $M in RR^(m times m)$, $M$ is invertible, if there exists an $M^(-1) in RR^(m times m)$ such that $ M M^(-1) = M^(-1) M = I. $
 
-For invertible matrices, the following hold
+For invertible matrices, the following holds
 
 1. inverses are unique, i.e. if $A M = M A = I$ and $B M = M B = I$, $A = B$ (Obs. 2.56), // Updated from Lemma 3.8
 2. if $A$ and $B$ are invertible, then $(A B)^(-1) = B^(-1) A^(-1)$ (the product of two invertible matrices is invertible too) (Lemma 2.59), // Updated from 3.9
@@ -118,7 +118,7 @@ For invertible matrices, the following hold
   #line(length: 100%, stroke: 0.75pt)
 
   1. Show $B$ has linearly independent columns: Let $bold(x) in RR^m$ such that $B bold(x) = 0$, then $ bold(x) = I bold(x) = A B bold(x) = A bold(0) = bold(0). $ Hence by Obs. 2.5(ii), they are linearly independent. // Updated reference
-  2. Show $A$ also has linearly independent colums: Let $bold(y) in RR^m$ such that $A bold(y) = 0$, then by Theorem 3.8 there is some $bold(x) in RR^m$ such that $B bold(x) = bold(y)$, then $ bold(y) = B bold(x) = B(I bold(x)) = B(A B bold(x)) = B(A bold(y)) = B bold(0) = bold(0). $
+  2. Show $A$ also has linearly independent colums: Let $bold(y) in RR^m$ such that $A bold(y) = 0$, then by Theorem 3.8 there is some $bold(x) in RR^m$ such that $B bold(x) = bold(y)$ (because B is invertible), then $ bold(y) = B bold(x) = B(I bold(x)) = B(A B bold(x)) = B(A bold(y)) = B bold(0) = bold(0). $
   3. Show $B A - I = bold(0)$: $ A(B A - I) = A B A - A = I A - A = bold(0). $ Thus, $B A = I$.
 ]
 
@@ -128,7 +128,7 @@ Let $A = mat(a, b; b, c;)$, then $ A^(-1) = 1/(a d - b c) mat(d, -b; -c, a;) ("i
 
 === Inverse of a $n times n$ matrix (easy way)
 
-We compute $A^(-1)$ by running Gauss-Jordan elimination on the augmented matrix $(A | I)$. If $A$ reduces to $I$, the right side becomes $A^(-1)$ (Theorem 3.19).
+We compute $A^(-1)$ by running Gauss-Jordan elimination on the augmented matrix $mat(A | I)$. If $A$ reduces to $I$, the right side becomes $A^(-1)$ (Theorem 3.19).
 
 ==== Inverse Formula (Prop. 7.3.3)
 
@@ -181,5 +181,5 @@ Let $M in RR^(m times n)$ with rank $r$, $M$ is in RREF, if
   2. eliminate any value above the pivot
   3. (at the end remove any zero-rows, $R_0 -> R$)
 
-  Then $A bold(x) = bold(b)$ has solution if $b_i = 0$ $forall i > r$. Then $bold(x)$ is equal to the _direct solution_ where $ x_i = cases(b_i "if" j = j_i, 0 "otherwise"). $
+  A solution to $A bold(x) = bold(b)$ exists if and only if $b_i = 0$ for all zero-rows $i > r$; then, a specific solution $bold(x)$ is found by setting all free variables to 0 and each pivot variable $x_(j_i) = b_i$.
 ]
