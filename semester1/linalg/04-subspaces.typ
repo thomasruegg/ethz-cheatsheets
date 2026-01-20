@@ -27,25 +27,17 @@ Such that they satisfy
 7. $lambda(bold(v) + bold(w)) = lambda bold(v) + lambda bold(w)$ #h(1fr) (distributivity over $+$)
 8. $(lambda + mu)bold(v) = lambda bold(v) + mu bold(v)$ #h(1fr) (distributivity over $+$ in $RR$)
 
-== Subspaces (Def. 4.8)
 
-Let $V$ be a vector space, a non-empty subset $U subset.eq V$ is called a subspace of $V$ if $forall bold(v), bold(w) in U$ and $lambda in RR$.
 
-1. $bold(v) + bold(w) in U$,
-2. $lambda bold(v) in U$.
 
-#cblock(fill: luma(240))[
-  == Show $V$ is Subspace Example
+== Subspaces (Def. 4.8) & Proof Strategy
 
-  Let $V subset.eq RR^m$, show that $V$ is a subspace of $RR^m$.
+A subset $U subset.eq V$ is a _subspace_ of vector space $V$ if it satisfies these three conditions (standard checklist to prove $U$ is a subspace):
 
-  #line(length: 100%, stroke: 0.75pt)
+1. *Contains Zero:* $bold(0) in U$ (ensures $U$ is non-empty).
+2. *Closed under Addition:* $bold(u) + bold(v) in U$ for all $bold(u), bold(v) in U$.
+3. *Closed under Scaling:* $lambda bold(u) in U$ for all $bold(u) in U "and" lambda in RR$.
 
-  1. Show that ${bold(0)} in V$ (non-empty).
-  2. Show that $bold(v) + bold(w) in V$ for all $bold(v), bold(w) in V$.
-  3. Show that $lambda bold(v) in V$ for all $bold(v) in V$ and $lambda in RR$.
-
-]
 
 #cblock(fill: luma(240))[
   == Example
