@@ -25,9 +25,9 @@
 #cblock[
   == All Matrices (Def. 6.4.7)
 
-  For any $R in RR^(m times n)$ with rank $r$ and CR-decomposition $A = C R$, $ A^+ &= (C R)^+ = R^+ C^+ \
-  &= R^T (R R^T)^(-1) (C^T C)^(-1) C^T \
-  &=R^T (C^T A R^T)^(-1) C^T. $
+  For any $R in RR^(m times n)$ with rank $r$ and CR-decomposition $A = C R$, $ A^+ & = (C R)^+ = R^+ C^+ \
+      & = R^T (R R^T)^(-1) (C^T C)^(-1) C^T \
+      & =R^T (C^T A R^T)^(-1) C^T. $
 ]
 
 == Pseudoinverses with rank $r$ (Prop. 6.4.9)
@@ -43,10 +43,10 @@ In words: $A^+ bold(b)$ is the solution to the least squares problem with the sm
 == Properties of $A^+$ (Theo. 6.4.10)
 
 1. $A A^+ A = A$
-2. $A^+ A A^+ = A^+$. Proof: see below.
+2. $A^+ A A^+ = A^+$. _Proof:_ see below.
 3. $A A^+_"left"$ is symmetric & the projection matrix on $C(A)$.
 4. $A^+_"right" A$ is symmetric & the projection matrix on $C(A^T)$.
-5. $(A^T)^+ = (A^+)^T$. Proof: see below.
+5. $(A^T)^+ = (A^+)^T$. _Proof:_ see below.
 
 #cblock(fill: luma(240))[
   == Proof of Pseudoinverse Properties
