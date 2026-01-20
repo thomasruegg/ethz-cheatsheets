@@ -21,7 +21,7 @@ $A^T A bold(hat(x)) = A^T bold(b)$
 
   Let $S$ be a subspace of $RR^m$ and $A$ be a matrix with columns that are a basis of $S$. The projection of $bold(b) in RR^m$ on $S$ is given by
 
-  $ "proj"_S (bold(b)) = P bold(b) "with" P = A(A^T A)^(-1) A^T. $
+  $ "proj"_S (bold(b)) = P bold(b) "with" P = A(A^T A)^(-1) A^T = Q Q^T. $
 
   Moreover,
   1. $A^T A$ is invertible $<==>$ $A$ has linearly independent columns (Lemma 5.2.4),

@@ -35,14 +35,15 @@ Let $V$ be a vector space, a non-empty subset $U subset.eq V$ is called a subspa
 2. $lambda bold(v) in U$.
 
 #cblock(fill: luma(240))[
-  == Example
+  == Show $V$ is Subspace Example
 
   Let $V subset.eq RR^m$, show that $V$ is a subspace of $RR^m$.
 
   #line(length: 100%, stroke: 0.75pt)
 
-  1. Show that $bold(v) + bold(w) in V$ for all $bold(v), bold(w) in V$.
-  2. Show that $lambda bold(v) in V$ for all $bold(v) in V$ and $lambda in RR$.
+  1. Show that ${bold(0)} in V$ (non-empty).
+  2. Show that $bold(v) + bold(w) in V$ for all $bold(v), bold(w) in V$.
+  3. Show that $lambda bold(v) in V$ for all $bold(v) in V$ and $lambda in RR$.
 
 ]
 

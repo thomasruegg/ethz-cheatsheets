@@ -36,6 +36,7 @@
   - If a single row of $A$ is multiplied by some scalar $t$, then \ $det(A') = t dot det(A)$. 
     - If the whole matrix is multiplied by $t$ (i.e. all $n$ rows are multiplied by $t$), then $det(t dot A) = t^n dot det(A)$.
   - If a row of $A$ is replaced by the sum of itself and a multiple of another row, the determinant stays unchanged.
+- $det(Q) in {1, -1}$, because $Q^T Q = I$ and $det(Q^T Q) = det(Q^T) det(Q) = det(I) = det(Q)^2 = 1$, so $det(Q) in {1, -1}$.
 
 == Determinant of a $2 times 2$ Matrix
 
