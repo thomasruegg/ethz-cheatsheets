@@ -65,17 +65,14 @@ A linear combination $lambda_1 bold(v)_1 + lambda_2 bold(v)_2 + ... + lambda_n b
 
 === Cauchy-Schwarz (Lemma 1.12)
 
-For any two vectors $bold(v), bold(w) in RR^m$
-
-$ abs(bold(v)^T bold(w)) <= norm(bold(v)) dot norm(bold(w)). $
-
-Equality holds when one is a scalar multiple of the other.
+For any $bold(v), bold(w) in RR^m$:
+$ |bold(v)^T bold(w)| <= norm(bold(v)) dot norm(bold(w)) quad ==> quad - (norm(bold(v)) dot norm(bold(w))) <= bold(v)^T bold(w) <= norm(bold(v)) dot norm(bold(w)). $
+Equality holds if one is a scalar multiple of the other.
 
 === Triangle Inequality (Lemma 1.17)
 
-Let $bold(v), bold(w) in RR^m$. Then
-
-$ norm(bold(v) + bold(w)) <= norm(bold(v)) + norm(bold(w)). $
+Let $bold(v), bold(w) in RR^m$. Then:
+$ |norm(bold(v)) - norm(bold(w))| <= norm(bold(v) plus.minus bold(w)) <= norm(bold(v)) + norm(bold(w)). $
 
 === Orthogonal Vectors (Def. 1.15)
 
