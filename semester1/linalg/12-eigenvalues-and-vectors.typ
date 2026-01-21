@@ -149,7 +149,7 @@ $]
   == Diagonalization (Theo. 9.1.1)
 
   Let $A in RR^(n times n)$ be a matrix with a complete set of eigenvectors. Let $V = mat(bar.v, , bar.v; bold(v)_1, ..., bold(v)_n; bar.v, , bar.v;) in RR^(n times n)$ be the matrix whose columns are the eigenvectors, and $Lambda in RR^(n times n)$ the matrix whose diagonal entries are the eigenvalues ($Lambda_(i i) = lambda_i$ for all $i in [n]$), then 
-  $ A & = V Lambda V^(-1) \
+  $ A & = V Lambda V^(-1) quad ==> A^k = V Lambda^k V^(-1) \
   A V & = V Lambda \
   [A bold(v)_1, A bold(v)_2, ..., A bold(v)_n] & = [lambda_1 bold(v)_1, lambda_2 bold(v)_2, ..., lambda_n bold(v)_n] $
 ]
