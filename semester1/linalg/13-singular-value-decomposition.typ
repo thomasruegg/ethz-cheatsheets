@@ -15,7 +15,7 @@
   2. $sigma_1 >= ... >= sigma_"min"{m, n} >= 0$.
   3. The columns of $U$ are called the _left singular vectors_ and are orthonormal $==> U$ has full column rank.
   4. The columns of $V$ are called the _right singular vectors_ and are orthonormal $==> V$ has full column rank.
-  5. The diagonal entries of $Sigma$ are called the _singular values_. The singular values of a matrix A are the square roots of the eigenvalues of the symmetric matrix $A^T A$ or $A A^T$.
+  5. The diagonal entries of $Sigma$ are called the _singular values_. The singular values of a matrix $A$ are the square roots of the eigenvalues of the symmetric matrix $A^T A$ or $A A^T$.
 ]
 
 #cblock[

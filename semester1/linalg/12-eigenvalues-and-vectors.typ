@@ -20,7 +20,7 @@
 ]
 
 #cblock(fill: luma(240))[
-  == Eigenvector Recurrence Example
+  == Eigenvector Recurrence in "Closed Form"
   Consider the sequence of numbers given by $a_0 = 1$, $a_1 = 1$ and $a_n = -a_(n-1)+6a_(n-2) "for" n >= 2$. Find $alpha, beta in RR$ such that $a_n = 4/5alpha^n + 1/5beta^n$ for all $n in NN_0$. Prove your answer. #line(length: 100%, stroke: 0.75pt)
 
   1. Define sequence algebraically: Let $bold(v)_n = vec(a_(n+1), a_n)$. We translate the recurrence $a_n = -a_(n-1) + 6a_(n-2)$ into matrix form.
@@ -71,13 +71,13 @@ To find zeros of $a x^2 + b x + c = 0$ are given by $ x = (-b plus.minus sqrt(b^
 2. Let $A$ be invertible, if $lambda$ and $bold(v)$ are an eigenvalue-eigenvector pair of $A$, then $1/lambda$ and $bold(v)$ are an eigenvalue-eigenvector pair of $A^(-1)$. _Proof:_ $A bold(v)=lambda bold(v) <==> bold(v)=A^(-1)(lambda bold(v)) <==> lambda A^(-1) bold(v) = bold(v) <==> A^(-1) bold(v) = 1/lambda bold(v)$ (works since $lambda != 0$) (Prop. 8.3.1).
 3. Let $A in RR^(n times n)$, the eigenvalues of $A$ are the same ones as of $A^T$. _Proof:_ $det(A-z I)=det((A-z I)^T)=det(A^T-z I)$ (Lemma 8.3.5).
 4. Let $Q in RR^(n times n)$ be an orthogonal matrix, if $lambda$ is an eigenvalue of $Q$, then $abs(lambda) = 1$. _Proof:_ $||bold(v)||^2=||Q bold(v)||^2=||lambda bold(v)||^2=|lambda| dot ||bold(v)||^2$ (Prop. 8.2.7).
-5. Let $A in RR^(n times n)$, if $(lambda, bold(v))$ is an eigenvalue-eigenvector pair of $A$, then $(overline(lambda), overline(bold(v)))$ is an eigenvalue-eigenvector pair of $A$ too. Thus, if $lambda in CC$ is an eigenvalue of $A$, then $overline(lambda)$ is also an eigenvalue of $A$ (Lemma 8.2.8).
+5. Let $A in RR^(n times n)$, if $(lambda, bold(v))$ is an eigenvalue-eigenvector pair of $A$, then $(overline(lambda), overline(bold(v)))$ is an eigenvalue-eigenvector pair of $A$ too. Thus, if $lambda in CC$ is an eigenvalue of $A$, then $overline(lambda)$ is also an eigenvalue of $A$ (Lemma 8.2.8). _Proof_: See "Eigenvalues of Sym. Matrices (Cor. 9.2.2)" in the middle of the next page.
 6. Let $P in RR^(n times n)$ be a projection matrix, then $P$ has two distinct eigenvalues, $0$ and $1$ (every single one of the $n$ eigenvalues is either 0 or 1) and a _complete set_ of eigenvectors (Prop. 9.1.6).
-7. Let $D in RR^(n times n)$ be a diagonal matrix, then its eigenvalues are its diagonal entries and the canonical basis is a complete set of eigenvectors of $D$ (Example 9.1.4).
+7. Let $D in RR^(n times n)$ be a diagonal matrix, then its eigenvalues are its diagonal entries and the standard basis ($e_1, e_2, ..., e_n$) is a complete set of eigenvectors of $D$ (Example 9.1.4).
 8. Let $T in RR^(n times n)$ be a triangular matrix, then its eigenvalues are its diagonal entries, however, $T$ might not have a complete set of eigenvectors (Example 9.1.5).
-9. $A + (k dot I) <==>$ adding $k$ to all eigenvalues of $A$. Eigenvectors stay the same. _Proof:_ $A bold(v) = lambda bold(v) quad ==> quad (A + 3 I) bold(v) = (A bold(v))+3 I v = lambda bold(v) + 3bold(v) = (lambda + 3) bold(v)$
-10. For $A in RR^(2 times 2)$, $lambda_1, lambda_2 = m plus.minus sqrt(m^2 - p), m = (a + d)/2, p = det(A)$
-11. If matrix $A$ has an eigenvalue $lambda$, then the matrix $c A$ (where $c$ is a scalar number) has the eigenvalue $c lambda$. \ _Proof:_ $(c A) bold(v) = c (A bold(v)) = c (lambda bold(v)) = (c lambda) bold(v)$.
+9. $A + (k dot I) <==>$ adding $k$ to all eigenvalues of $A$. Eigenvectors stay the same. _Proof:_ $A bold(v) = lambda bold(v) quad ==> quad (A + k I) bold(v) = (A bold(v))+k I v = lambda bold(v) + k bold(v) = (lambda + k) bold(v)$
+10. If matrix $A$ has an eigenvalue $lambda$, then the matrix $c A$ (where $c$ is a scalar number) has the eigenvalue $c lambda$. \ _Proof:_ $(c A) bold(v) = c (A bold(v)) = c (lambda bold(v)) = (c lambda) bold(v)$.
+11. For $A in RR^(2 times 2)$, $lambda_1, lambda_2 = m plus.minus sqrt(m^2 - p), m = (a + d)/2, p = det(A)$
 
 == Important Words Of Caution
 
@@ -119,12 +119,12 @@ The dot-product in $CC^n$ is given by $chevron.l bold(v), bold(w) chevron.r = bo
 #cblock[
   == Fund. Theorem of Algebra (Cor. 8.1.3)
 
-  Any degree $n >= 1$ polynomial $P(z) = alpha_n z^n + ... + a_1 z + a_0$ with $a_n != 0$ has $n$ zeros: $lambda_1, ..., lambda_n in CC$ such that $ P(z) = alpha_n (z-lambda_1) ... (z-lambda_n). $ The number of times $lambda in CC$ appears in this expression is called the _algebraic multiplicity_ of the zero (i.e. of the $P(lambda)=0$). This guarantees that an $n times n$ matrix always has exactly $n$ eigenvalues (if you count repeats and complex eigenvalues).
+  Any degree $n >= 1$ polynomial $P(z) = alpha_n z^n + ... + a_1 z + a_0$ with $a_n != 0$ has $n$ zeros: $lambda_1, ..., lambda_n in CC$ such that $ P(z) = alpha_n (z-lambda_1)(z-lambda_2) ... (z-lambda_n). $ The number of times $lambda in CC$ appears in this expression is called the _algebraic multiplicity_ of the zero (i.e. of the $P(lambda)=0$). This guarantees that an $n times n$ matrix always has exactly $n$ eigenvalues (if you count repeats and complex eigenvalues).
 ]
 
 == Geometric Multiplicity
 
-Let $A in RR^(n times n)$ with eigenvalue $lambda$, we call the dimension of $"N"(A - lambda I)$ the _geometric multiplicity_ of $lambda$.
+Let $A in RR^(n times n)$ with eigenval $lambda_i$, we call the dim of $"N"(A - lambda_i I)$ the _geometric multiplicity_ of $lambda_i$. Number of lin. indep. eigenvecs for $lambda_i$.
 
 == Characteristic Polynomial
 
@@ -141,15 +141,16 @@ $]
 
   Following (Lemma 8.3.7), for matrices $A$, $B$ and $C$ $in RR^(n times n)$,
 
-  1. $"Tr"(A B) = "Tr"(B A)$,
-  2. $"Tr"(A B C) = "Tr"(B C A) = "Tr"(C A B)$.
+  1. $"Tr"(A B)"="sum_(i=1)^n sum_(j=1)^n A_(i j) B_(j i)"="sum_(j=1)^n sum_(i=1)^n B_(j i) A_(i j)"=""Tr"(B A). $
+  2. $"Tr"(A (B C)) = "Tr"((B C) A) = "Tr"((C A) B)$.
 ]
 
 #cblock[
   == Diagonalization (Theo. 9.1.1)
 
-  Let $A in RR^(n times n)$ be a matrix with a complete set of eigenvectors. Let $V = mat(bar.v, , bar.v; bold(v)_1, ..., bold(v)_n; bar.v, , bar.v;) in RR^(n times n)$ be the matrix whose columns are the eigenvectors, and $Lambda in RR^(n times n)$ the matrix whose diagonal entries are the eigenvalues ($Lambda_(i i) = lambda_i$ for all $i in [n]$), then $                                            A & = V Lambda V^(-1) \
-                                           A V & = V Lambda \
+  Let $A in RR^(n times n)$ be a matrix with a complete set of eigenvectors. Let $V = mat(bar.v, , bar.v; bold(v)_1, ..., bold(v)_n; bar.v, , bar.v;) in RR^(n times n)$ be the matrix whose columns are the eigenvectors, and $Lambda in RR^(n times n)$ the matrix whose diagonal entries are the eigenvalues ($Lambda_(i i) = lambda_i$ for all $i in [n]$), then 
+  $ A & = V Lambda V^(-1) \
+  A V & = V Lambda \
   [A bold(v)_1, A bold(v)_2, ..., A bold(v)_n] & = [lambda_1 bold(v)_1, lambda_2 bold(v)_2, ..., lambda_n bold(v)_n] $
 ]
 
@@ -158,7 +159,7 @@ $]
 A matrix $A in RR^(n times n)$ is said to be _diagonalizable_, if there are $n$ independent eigenvectors (complete set of eigenvectors), and thus there exists an invertible matrix $V$, such that $V^(-1) A V = Lambda$, where $Lambda$ is a diagonal matrix. _"Can we flatten A into a diagonal matrix?"_
 
 == Complete Set of Eigenvectors (Lemma 9.1.11)
-A matrix has a complete set of eigenvectors if all its eigenvalues are real and the geometric multiplicities are the same as the algebraic multiplicities of all its eigenvalus.
+A matrix has a complete set of eigenvectors if all its eigenvalues are real and the geometric multiplicities are the same as the algebraic multiplicities, for all of its eigenvalues.
 
 If given a matrix $A in RR^(n times n)$, we can build a basis of $RR^n$ with eigenvectors of $A$ (the eigenvectors are linearly independent), we say that $A$ has a _complete set_ of eigenvectors (Def. 9.1.3).
 
@@ -203,7 +204,7 @@ For any symmetric matrix $A in RR^(n times n)$, there exists an *orthogonal* mat
 
 == Rayleigh Quotient (Prop. 9.2.10)
 
-Let $A in RR^(n times n)$ be a symmetric matrix, the _Rayleight Quotient_, defined for $bold(x) in RR^n without {bold(0)}$, as $ R(bold(x)) = (bold(x)^T A bold(x)) / (bold(x)^T bold(x)), $ attains its maximum at $R(bold(v)_"max") = lambda_"max"$ and its minimum at $R(bold(v)_"min") = lambda_"min"$, where $lambda_"max"$ and $lambda_"min"$ are the maximum and minimum eigenvalues of $A$ and $bold(v)_"max"$ and $bold(v)_"min"$ their associated eigenvectors.
+Let $A in RR^(n times n)$ be a symmetric matrix, the _Rayleight Quotient_, defined for $bold(x) in RR^n without {bold(0)}$, as $ R(bold(x)) = (bold(x)^T A bold(x)) / (bold(x)^T bold(x)), $ attains its max at $R(bold(v)_"max") = lambda_"max"$ and its min at $R(bold(v)_"min") = lambda_"min"$, where $lambda_"max"$ and $lambda_"min"$ are the max and min eigenvalues of $A$ and $bold(v)_"max"$ and $bold(v)_"min"$ their eigenvectors.  Useful because it allows to plug in any vector $bold(x)$ and get back a number that's like a _weighted average_ of the eigenvalue contained in that vector. Measures "how much" the matrix stretches that specific direction $bold(x)$.
 
 == Positive (Semi)-Definite (Def. 9.2.11)
 
@@ -214,11 +215,11 @@ A symmetric matrix $A in RR^(n times n)$ is said to be _positive semidefinite_ (
 
 - Given two matrices $A$ and $B$ that are PSD (PD), their sum is also PSD (PD), i.e. they are closed under taking addition.
 - A diagonal dominant matrix (diagonal entries are greater than the *absolute* sum of rest of the row's elements) is always PSD!
-- Matrix is PSD/PD $==>$ all diagonal entries are $>= 0$/$> 0$ (but the other way "$<==$" doesn't hold)! _Proof:_ Choose $bold(x) = bold(e)_i$ in equations (i), (ii) to get the diagonal entry $A_(i i)$ only.
+- Matrix is PSD/PD $==>$ all diagonal entries are $>= 0$/$> 0$ _Proof:_ Choose $bold(x) = bold(e)_i$ in equations (i), (ii) to get the diagonal entry $A_(i i)$ only. (But the other way "$<==$" doesn't hold)! 
 
 == Gram Matrix (Def. 9.2.13)
 
-Let $V in RR^(m times n)$, the Gram matrix of $V$ is the inner product of the columns of $V$, i.e., $ G = V^T V. $
+Let $V in RR^(m times n)$, the Gram matrix of $V$ is the inner product of the columns of $V$, i.e., $G = V^T V.$
 
 Sometimes $V V^T$ is also called a Gram matrix of $V$ (the inner product of the rows) (Remark 9.2.14).
 
@@ -228,12 +229,12 @@ Let $A in RR^(m times n)$, the non-zero eigenvalues of $A^T A$ are the same as t
 
 == Cholesky Decomposition (Prop. 9.2.16)
 
-Every symmetric, PSD matrix $M$ is a gram matrix of an _upper triangular matrix_ $C$, i.e., $ M = C^T C. $
+Every symmetric, PSD matrix $M$ is a gram matrix of an _upper triangular matrix_ $C$, i.e., $M = C^T C.$
 
 #cblock(fill: luma(240))[
   === Calculating the Cholesky Decomposition
 
-  1. Let $M$ be symmetric and PSD, the eigendecomposition (Cor. 9.2.2) gives us $M = V Lambda V^T$
-  2. We build $Lambda^(1/2)$ by taking the square root of each entry of $Lambda$, following, $M = (V Lambda^(1/2)) (V Lambda^(1/2))^T$.
-  3. We then take the QR decomposition $(V Lambda^(1/2))^T = Q R$, following, $M = (Q R)^T (Q R) = R^T Q^T Q R = R^T R = C^T C$.
+  1. Let $M$ be symmetric and PSD (PSD because we later do $sqrt(lambda)$), the eigendecomposition (Cor. 9.2.2) gives us $M = V Lambda V^T$
+  2. We build $Lambda^(1/2)$ by taking the square root of each entry of $Lambda$, following, $M = (V Lambda^(1/2)) (V Lambda^(1/2))^T$ ($sqrt("neg")$ wouldn't work).
+  3. We then take the QR decomposition $(V Lambda^(1/2))^T = Q R$, following, $M = (Q R)^T (Q R) = R^T Q^T Q R = R^T R = C^T C$. _We set $(V Lambda^(1/2))^T = Q R$, s.t. $C = R$ is upper triangular_.
 ]

@@ -194,16 +194,8 @@ For any $A bold(x) = bold(b)$ we have three options, 1. no solutions, 2. one sol
 1. If $A$ is not invertible and $bold(b) in.not "C"(A)$ then no solution exists.
 2. If $A$ is invertible $=> N(A)={bold(0)}$ then exactly one solution exists.
 3. If $A$ is not invertible, but $bold(b) in "C"(A)$, then $exists bold(s)$ and we can shift the non-trivial nullspace using  $bold(s)$ to get inifite solutions: $A underbrace((bold(s)+bold(n)), "x") = A bold(s) + 0 = bold(b)$ with $bold(n) in "N"(A)$.
-#cblock(fill: luma(240))[
-  #table(
-    columns: 3,
-    align: center,
-    [], [$r=n$ \ (full rank)], [$r<n$ \ (dependent cols)],
-    [$r=m$ \ (full rank)], [invertible $==>$ one solution], [underdetermined $==>$ $infinity$ solutions],
 
-    [$r <m$ \ (zero rows)], [overdetermined $==>$ $0$ or $1$ solution], [$0$ or $infinity$ solutions],
-  )
-]
+#align(center)[#image("img/solutions.png", width: 92%)]
 
 #cblock[
   === Sol. Space is shifted Nullspace (Theo. 4.38)

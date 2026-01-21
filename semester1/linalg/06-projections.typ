@@ -14,7 +14,7 @@ $ "proj"_S (bold(b)) = "argmin"_(bold(p) in S) ||bold(b) - bold(p)|| $
 
 == Normal Equations (Lemma 5.2.3)
 The projection of $bold(b)$ on $S = C(A)$ is well defined and given by $bold(p) = A bold(hat(x))$, where $bold(hat(x))$ satisfies the *normal equations*:
-$A^T A bold(hat(x)) = A^T bold(b)$
+$ A^T A bold(hat(x)) = A^T bold(b) $
 
 #cblock[
   == Projection Matrix (Theo. 5.2.5)

@@ -36,9 +36,9 @@ For $A in RR^(m times n)$ with rank $r$, let $S in RR^(m times r)$ and $T in RR^
 
 == Optimization Properties (Lemma 6.4.8)
 
-Given $A in RR^(m times n)$ and $bold(b) in RR^m$, the vector $bold(hat(x)) = A^+ bold(b)$ is the unique solution to the problem:
-$ min_(bold(x) in RR^n) ||bold(x)||_2 "subject to" A^T A bold(x) = A^T bold(b) $
-In words: $A^+ bold(b)$ is the solution to the least squares problem with the smallest norm.
+Given $A in RR^(m times n)$ and $bold(b) in RR^m$, the vector $bold(hat(x)) = A^+_"left" bold(b)$ is the unique solution to the problem:
+$ min_(bold(x) in RR^n) ||bold(x)||_2 "subject to" A^T A bold(x) &= A^T bold(b) \ bold(x) &= (A^T A)^(-1) A^T bold(b) $
+In words: $A^+_"left" bold(b)$ is the solution to the least squares problem with the smallest norm.
 
 == Properties of $A^+$ (Theo. 6.4.10)
 
@@ -51,7 +51,7 @@ In words: $A^+ bold(b)$ is the solution to the least squares problem with the sm
 #cblock(fill: luma(240))[
   == Proof of Pseudoinverse Properties
 
-  1. Prove that if $"rank"(A) = "rank"(B) = n$, we have $(A B)^+ = B^+ A^+$. #line(length: 100%, stroke: 0.75pt) $C(A B) = C(A)$ (as $"rank"(B) = n$ implies that $C(B) = n$). Then using Prop. 6.4.9 we get $(A B)^+ = B^+ A^+$.
+  1. Prove that if $"rank"(A) = "rank"(B) = n$, we have $(A B)^+ = B^+ A^+$. #line(length: 100%, stroke: 0.75pt) $C(A B) = C(A)$ (as $"rank"(B) = n$ implies that $C(B) = RR^n$). Then using Prop. 6.4.9 we get $(A B)^+ = B^+ A^+$.
   2. Prove that $A^+A A^+ = A^+$. #line(length: 100%, stroke: 0.75pt) $A^+ A A^+ = (C R)^+ C R (C R)^+ = R^+ (C^+ C) (R R^+) C^+ = R^+ C^+ = A^+$.
   3. Prove that $(A^T)^+ = (A^+)^T$. #line(length: 100%, stroke: 0.75pt) _prove for full row & column rank seperately_, then use Prop. 6.4.9 to get $(A^T)^+ = (C^T)^+ (R^T)^+ = (C^+)^T (R^+)^T = (R^+ C^+)^T = (A^+)^T$.
   4. Prove that $A^+A$ is symmetric and that it is the projection matrix for the subspace $C(A^T)$. #line(length: 100%, stroke: 0.75pt) projection matrix: $A^+ A = (C R)^+ C R = R^+ C^+ C R = R^T (R R^T)^(-1) R. " " (C(A^T) = C(R^T))$ \ symmetric: $(A^+ A)^T = (R^T (R R^T)^(-1) R)^T = R^T ((R R^T)^T)^(-1) R = R^T (R R^T)^(-1) R = A^+ A$.

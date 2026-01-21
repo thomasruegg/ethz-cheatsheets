@@ -34,7 +34,7 @@
 - If we swap the rows of $A -> B$ once, then $det(B) = -det(A)$ (Prop. 7.3.6).
 - The determinant is a linear function of each row separately. 
   - If a single row of $A$ is multiplied by some scalar $t$, then \ $det(A') = t dot det(A)$. 
-    - If the whole matrix is multiplied by $t$ (i.e. all $n$ rows are multiplied by $t$), then $det(t dot A) = t^n dot det(A)$.
+    - If the whole matrix is multiplied by $t$ (i.e. all $n$ rows are multiplied by $t$), then $det(t dot A) = t^n dot det(A)$. _Proof_: $det(t A) = sum_(sigma in Pi_n) "sgn"(sigma) product_(i=1)^n (t dot a_(i, sigma(i))) = ... = t^n sum_(sigma in Pi_n) "sgn"(sigma) product_(i=1)^n a_(i, sigma(i)) = t^n det(A).$
   - If a row of $A$ is replaced by the sum of itself and a multiple of another row, the determinant stays unchanged.
 - $det(Q) in {1, -1}$, because $Q^T Q = I$ and $det(Q^T Q) = det(Q^T) det(Q) = det(I) = det(Q)^2 = 1$, so $det(Q) in {1, -1}$.
 
@@ -46,12 +46,13 @@ Let $A = mat(a, b; c, d;)$, then $"det"(A) = a d - b c$.
 
 === Co-Factors (Def. 7.3.1)
 
-Let $A in RR^(n times n)$, for each $1 <= i, j <= n$, let $cal(A)_(i j)$ denote the matrix obtained by removing the $i$-th row and $j$-th column from $A$. The co-factors or $A$ are $ C_(i j) = (-1)^(i+j) "det"(cal(A)_(i j)). $
+Let $A in RR^(n times n)$, for each $1 <= i, j <= n$, let $cal(A)_(i j)$ denote the matrix obtained by removing the $i$-th row and $j$-th column from $A$. The co-factors or $A$ are $C_(i j) = (-1)^(i+j) "det"(cal(A)_(i j)). $
 
 #cblock[
   === Determinant (Prop. 7.3.2)
 
-  We can then rewrite the determinant of $A$ as $ "det"(A) = sum_(j=1)^n A_(i j) C_(i j), $ for some $1 <= i <= n$. As in make a $+-+...$ grid, pick a row or column and calculate $plus.minus A_(i,j) det(...)$ for that whole row or column recursively.
+  We can then rewrite the determinant of $A$ as $ "det"(A) = sum_(j=1)^n A_(i j) C_(i j), quad "for some" 1 <= i <= n $ 
+  As in, make a $+-+...$ grid, pick a row or column and calculate $plus.minus A_(i j) det(...)$ for that whole row or column recursively.
 ]
 
 == Cramer's Rule (Prop. 7.3.5)

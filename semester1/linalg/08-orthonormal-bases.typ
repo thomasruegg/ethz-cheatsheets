@@ -10,7 +10,7 @@
 
 == Orthonormal Vectors (Def. 6.3.1)
 
-Vectors $bold(q)_1, ..., bold(q)_n in RR^m$ are orthonormal if they are orthogonal and have norm $1$, i.e., if for all $i, j in [n]$ $ bold(q)_i dot bold(q)_j = cases(1 "if" i = j, 0 "otherwise"). $
+Vectors $bold(q)_1, ..., bold(q)_n in RR^m$ are orthonormal if they are orthogonal and have norm $1$, i.e., if for all $i, j in [n]$ $ bold(q)_i^T bold(q)_j = cases(1 "if" i = j, 0 "otherwise"). $
 
 #cblock[
   == Orthogonal Matrix (Def. 6.3.3)
@@ -45,7 +45,8 @@ Let $A in RR^(m times n)$ with linearly independent columns. $ A = Q R $ where $
 
 == Projections with QR (Fact 6.3.12)
 
-1. Any projection on $C(A)$ can also be done by $Q$, following $"proj"_(C(A)) (bold(b)) = Q(Q^T Q)^(-1) Q^T bold(b) = Q Q^T bold(b)$.
+1. Any projection on $C(A)$ can also be done by $Q$, as $C(A) = C(Q)$, following $"proj"_(C(A)) (bold(b)) = Q(Q^T Q)^(-1) Q^T bold(b) = Q Q^T bold(b)$.
 2. The normal equation can be re-written as $ A^T A accent(x, hat) & = A^T b \
   R^T R accent(x, hat) & = R^T Q^T bold(b) " ("R^T "is invertible)" \
-      R accent(x, hat) & = Q^T bold(b). "(useful for least squares)" $
+      R accent(x, hat) & = Q^T bold(b). "(useful for least squares)" \
+      A accent(x, hat) & = Q Q^T bold(b) $

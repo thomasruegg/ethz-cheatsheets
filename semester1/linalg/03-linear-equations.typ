@@ -66,7 +66,7 @@ We can directly solve $A bold(x) = bold(b)$, when $A$ is an _upper triangular_ m
   ),
 )
 
-#cblock[Crucially, $A bold(x) = bold(b)$ and $U bold(x) = bold(c)$ have the same solutions (Lemma 3.2).] // Updated from 3.3
+#cblock[Crucially, $A bold(x) = bold(b)$ and $U bold(x) = bold(c)$ have the same solutions (Lemma 3.2).]
 
 === Elimination and Permutation Matrices
 
@@ -90,18 +90,18 @@ Elmination and row exchanges requires matrices as _linear combinations of the ro
   ),
 )
 
-== Inverse Matrices (Def. 2.57) // Updated from 3.7
+== Inverse Matrices (Def. 2.57)
 
 Let $M in RR^(m times m)$, $M$ is invertible, if there exists an $M^(-1) in RR^(m times m)$ such that $ M M^(-1) = M^(-1) M = I. $
 
 For invertible matrices, the following holds
 
-1. inverses are unique, i.e. if $A M = M A = I$ and $B M = M B = I$, $A = B$ (Obs. 2.56), // Updated from Lemma 3.8
-2. if $A$ and $B$ are invertible, then $(A B)^(-1) = B^(-1) A^(-1)$ (the product of two invertible matrices is invertible too) (Lemma 2.59), // Updated from 3.9
-3. if $A$ is invertible, then $(A^T)^(-1) = (A^(-1))^T$ (Lemma 2.60). // Updated from 3.10
+1. inverses are unique, i.e. if $A M = M A = I$ and $B M = M B = I$, $A = B$ (Obs. 2.56),
+2. if $A$ and $B$ are invertible, then $(A B)^(-1) = B^(-1) A^(-1)$ (the product of two invertible matrices is invertible too) (Lemma 2.59),
+3. if $A$ is invertible, then $(A^T)^(-1) = (A^(-1))^T$ (Lemma 2.60).
 
 #cblock[
-  === Inverse Theo. (Lemma 2.53 / Theo. 3.8) // Updated from 3.11
+  === Inverse Theo. (Lemma 2.53 / Theo. 3.8)
 
   Let $A in RR^(m times m)$, the following is equivalent
 
@@ -117,7 +117,7 @@ For invertible matrices, the following holds
 
   #line(length: 100%, stroke: 0.75pt)
 
-  1. Show $B$ has linearly independent columns: Let $bold(x) in RR^m$ such that $B bold(x) = 0$, then $ bold(x) = I bold(x) = A B bold(x) = A bold(0) = bold(0). $ Hence by Obs. 2.5(ii), they are linearly independent. // Updated reference
+  1. Show $B$ has linearly independent columns: Let $bold(x) in RR^m$ such that $B bold(x) = 0$, then $ bold(x) = I bold(x) = A B bold(x) = A bold(0) = bold(0). $ Hence by Obs. 2.5(ii), they are linearly independent.
   2. Show $A$ also has linearly independent colums: Let $bold(y) in RR^m$ such that $A bold(y) = 0$, then by Theorem 3.8 there is some $bold(x) in RR^m$ such that $B bold(x) = bold(y)$ (because B is invertible), then $ bold(y) = B bold(x) = B(I bold(x)) = B(A B bold(x)) = B(A bold(y)) = B bold(0) = bold(0). $
   3. Show $B A - I = bold(0)$: $ A(B A - I) = A B A - A = I A - A = bold(0). $ Thus, $B A = I$.
 ]
