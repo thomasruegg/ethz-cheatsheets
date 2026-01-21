@@ -190,7 +190,7 @@ For any symmetric matrix $A in RR^(n times n)$, there exists an *orthogonal* mat
 #cblock(fill: luma(240))[
   == Spectral Construction Example
 
-  Find a matrix $A$ with orthonormal eigenvectors $ bold(v)_1 = 1/9vec(1, 8, -4), bold(v)_2 = 1/9vec(-4, 4, 7), bold(v)_3 = 1/9vec(8, 1, 4) $ and corresponding eigenvalues $lambda_1 = 1, lambda_2 = -1, lambda_3 = 0$. #line(length: 100%, stroke: 0.75pt) Let $V$ be the $3 times 3$ matrix with $bold(v)_1, bold(v)_2, bold(v)_3$ as its columns and $D$ the diagonal matrix with $lambda_1, lambda_2, lambda_3$ on its diagonals, then $A = V D V^T$.
+  Find a matrix $A$ with orthonormal eigenvectors $ bold(v)_1 = 1/9vec(1, 8, -4), bold(v)_2 = 1/9vec(-4, 4, 7), bold(v)_3 = 1/9vec(8, 1, 4) $ and corresponding eigenvalues $lambda_1 = 1, lambda_2 = -1, lambda_3 = 0$. #line(length: 100%, stroke: 0.75pt) Let $V$ be the $3 times 3$ matrix with $bold(v)_1, bold(v)_2, bold(v)_3$ as its columns and $D$ the diagonal matrix with $lambda_1, lambda_2, lambda_3$ on its diagonal, then $A = V D V^T$.
 ]
 
 #cblock[
