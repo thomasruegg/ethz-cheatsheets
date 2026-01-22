@@ -34,8 +34,8 @@ Let $A in RR^(m times n)$ and $A = U Sigma V^T$ be its SVD, then $ A A^T = U (Si
 
 In other words, the SVD of $A$ can be calculated by
 1. Taking the eigendecomposition of $A A^T$ or $A^T A$.
-2. $U=$ eigenvector matrix of $A A^T$,
-3. $V=$ eigenvector matrix of $A^T A$,
+2. $U=$ orthogonal eigenvector matrix of $A A^T$,
+3. $V=$ orthogonal eigenvector matrix of $A^T A$,
 4. singular values = $sqrt("eigenvalues of" A A^T "or" A^T A)$. Only if $A$ is real & *symmetric*, singular values of $A$ = |eigenvalues| of $A$.
 5. $Sigma=$ descending ordered square roots of eigenvalues of $A A^T$ or $A^T A$, they are equal. $sigma_1$ is the largest, $sigma_n$ the smallest.
 6. $A A^T, A^T A$ are PSD, thus eigenvalues  $>= 0 ==> $ sing. values $>= 0$.
