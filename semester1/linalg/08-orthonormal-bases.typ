@@ -15,7 +15,7 @@ Vectors $bold(q)_1, ..., bold(q)_n in RR^m$ are orthonormal if they are orthogon
 #cblock[
   == Orthogonal Matrix (Def. 6.3.3)
 
-  A square matrix $Q in RR^(n times n)$ is orthogonal when $Q^T Q = I$. Then $Q Q^T = I$ and the columns of $Q$ form an orthonormal basis of $RR^n$.
+  A *square* matrix $Q in RR^(n times n)$ is orthogonal when $Q^T Q = I$. Then $Q Q^T = I$ and the columns of $Q$ form an orthonormal basis of $RR^n$.
 
   Additionally, orthogonal matrices _preserve norm and dot product_, i.e., $ norm(Q bold(x)) = norm(bold(x)) "and" (Q bold(x))^T (Q bold(y)) = bold(x)^T bold(y), $
 
