@@ -1,0 +1,82 @@
+#import "config.typ": *
+
+= Tests
+
+#subbox()[
+  Die *Nullhypothese* $H_0$ und die *Alternativhypothese* $H_A$ sind zwei Teilmengen $Theta_0 subset.eq Theta, Theta_A subset.eq Theta$ wobei $Theta_0 inter Theta_A = empty$.
+
+  Falls keine explizite Alternativhypothese spezifiziert ist, so hat man $Theta_A = Theta without Theta_0$.
+
+  Eine Hypothese heisst _einfach_, falls die Teilmenge aus einem einzelnen Wert besteht; sonst _zusammengesetzt_.
+]
+
+#mainbox(title: "Definition Test")[
+  Ein Test ist ein Paar $(T, K)$, wobei:
+  - $T = t(X_1, ..., X_n)$ die Teststatistik ist, mit einer messbaren Funktion $t: RR^n -> RR$.
+  - $K subset.eq RR$ der kritische Bereich oder Verwerfungsbereich ist.
+]
+
+Wir wollen nun anhand der Daten $(X_1(omega), ..., X_n(omega))$ entscheiden, ob die Nullhypothese akzeptiert oder verworfen wird. Zuerst berechnen wir die Teststatistik $T(omega) = t(X_1(omega), ..., X_n(omega))$ und gehen dann wie folgt vor:
+- Die Hypothese $H_0$ wird *verworfen*, falls $T(omega) in K$.
+- Die Hypothese $H_0$ wird *akzeptiert*, falls $T(omega) in.not K$.
+
+#subbox()[
+  Ein *Fehler 1. Art* ist, wenn $H_0$ fälschlicherweise verworfen wird, obwohl sie richtig ist.
+  $ P_theta (T in K), quad theta in Theta_0 $
+  Ein *Fehler 2. Art* ist, wenn $H_0$ fälschlicherweise akzeptiert wird, obwohl sie falsch ist.
+  $ P_theta (T in.not K) = 1 - P_theta (T in K), quad theta in Theta_A $
+]
+
+*Bemerkung:* Da $T$ eine ZV und somit bezüglich dem Mass $P_theta : F -> [0,1]$ messbar ist, gilt ${T in K} in F$ und somit ist $P_theta (T in K)$ wohldefiniert.
+
+== Signifikanzniveau und Macht
+Ein Test hat Signifikanzniveau $alpha in [0,1]$ falls:
+$ forall theta in Theta_0 quad P_theta (T in K) <= alpha $
+Es ist meist unser primäres Ziel, die Fehler 1. Art zu minimieren.
+
+Das sekundäre Ziel ist, Fehler 2. Art zu vermeiden. Hierfür definieren wir die Macht eines Tests als Funktion:
+$ beta : Theta_A -> [0,1], quad theta |-> P_theta (T in K) $
+Zu beachten ist, dass eine kleine Wahrscheinlichkeit für einen Fehler 2. Art einem *grossen* $beta$ entspricht.
+
+== Konstruktion von Tests
+Wir nehmen an, dass $X_1, ..., X_n$ diskret oder gemeinsam stetig unter $P_(theta_0)$ und $P_(theta_A)$ sind, wobei $Theta_0 inter Theta_A = empty$ einfach sind ($theta_0 in Theta_0 and theta_A in Theta_A$).
+
+Der Likelihood-Quotient ist somit wohldefiniert:
+$ R(x_1, ..., x_n) = L(x_1, ..., x_n; theta_A) / L(x_1, ..., x_n; theta_0) $
+(Falls $L(x_1, ..., x_n; theta_0) = 0$ setzen wir $R(x_1, ..., x_n) = +oo$.)
+
+Für zusammengesetzte $Theta_0$ und $Theta_A$ können wir den verallgemeinerten Likelihood-Quotient definieren:
+$ R(x_1, ..., x_n) := (sup_(theta in Theta_A) L(x_1, ..., x_n; theta)) / (sup_(theta in Theta_0) L(x_1, ..., x_n; theta)) $
+
+Wenn $R >> 1$, so gilt $H_A > H_0$ und analog $R << 1 => H_A < H_0$.
+
+#subbox()[
+  Der *Likelihood-Quotient-Test (LQ-Test)* mit Parameter $c >= 0$ ist definiert durch:
+  $ T = R(X_1, ..., X_n) quad "und" quad K = (c, oo] $
+]
+
+*Neyman-Pearson-Lemma*
+
+Sei $Theta_0 = {vartheta_0}$ und $Theta_A = {vartheta_A}$. Sei $(T, K)$ ein Likelihood-Quotienten-Test mit Parameter $c$ und Signifikanzniveau $alpha^* := P_(vartheta_0)[T in K]$. Ist $(T', K')$ ein anderer Test mit Signifikanzniveau $alpha := P_(vartheta_0)[T' in K'] <= alpha^*$, so gilt:
+$ P_(vartheta_A)[T' in K'] <= P_(vartheta_A)[T in K] . $
+Das bedeutet, jeder andere Test mit kleinerem Signifikanzniveau hat auch geringere Macht bzw. eine größere Wahrscheinlichkeit für einen Fehler 2. Art.
+
+== T-Test / Gauss-Test
+Zuerst berechnen wir $T$:
+$ T = (overline(X)_n - theta_0) / sqrt(sigma^2 / n) ~ cal(N)(0, 1) $
+mit dem erwartungstreuen Schätzer:
+$ overline(X)_n = 1/n sum_(i=1)^n X_i $
+
+Dann unterscheiden wir zwischen den folgenden Fällen:
++ *Einseitiger Test* $H_A$: $theta > theta_0$
+  - Obere Grenze: $c = Phi^(-1)(1 - alpha)$
+  - Verwerfungsbereich: Verwerfe $H_0$ falls $T > c$
++ *Einseitiger Test* $H_A$: $theta < theta_0$
+  - Untere Grenze: $c = Phi^(-1)(alpha)$
+  - Verwerfungsbereich: Verwerfe $H_0$ falls $T < c$
++ *Beidseitiger Test* $H_A$: $theta != theta_0$
+  - Untere Grenze: $c_1 = Phi^(-1)(alpha / 2)$\
+    Obere Grenze: $c_2 = Phi^(-1)(1 - alpha / 2)$
+  - Verwerfungsbereich: Verwerfe $H_0$ falls $T < c_1$ oder $T > c_2$
+
+_Notiz: Restliche Tests nicht in Vorlesung behandelt (siehe Nicolas Wehrli's Cheat Sheet)._
