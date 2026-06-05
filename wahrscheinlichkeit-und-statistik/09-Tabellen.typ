@@ -7,7 +7,7 @@
 #align(center)[
   #table(
     columns: (1fr, 1fr),
-    align: horizon + center,
+    align: horizon + left,
     stroke: none,
     fill: none,
     [$limxi e^x/x^m = oo$], [$limxn x e^x = 0$],
