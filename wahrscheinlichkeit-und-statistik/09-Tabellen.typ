@@ -208,7 +208,7 @@ Seien $X_1, ..., X_n$ i.i.d. $~ cal(N)(mu, sigma^2)$. Wir erinnern uns an die No
     [$arccosh(x)$], [$1/sqrt(x^2 - 1)$],
     [$arctanh(x)$], [$1/(1 - x^2)$],
     [$x^x (x > 0)$], [$x^x · (1 + ln x)$],
-    [$log_a |x|$], [$1/(x ln a) = log_a(e) 1/x$],
+    [$log_a |x|$], [$1/(x ln a) = log_a (e) 1/x$],
     [$(a x + b)^(n+2) / (a^2 (n+1)(n+2))$], [$(a x + b)^(n+1) / (a (n+1))$],
     [$sqrt(1 - x^2) + x arcsin(x)$], [$arcsin(x)$],
     [$x arccos(x) - sqrt(1 - x^2)$], [$arccos(x)$],

@@ -4,7 +4,7 @@
 
 #mainbox(title: "Konvergenz in Verteilung")[
   Seien $(X_n)_(n in NN)$ und $X$ Zufallsvariablen mit Verteilungsfunktionen $(F_n)_(n in NN)$ und $F$. $(X_n)_(n in NN)$ konvergiert *in Verteilung* gegen $X$, geschrieben $X_n arrow.r^d X$ für $n -> oo$, falls für jeden Stetigkeitspunkt $x in RR$ von $F$ gilt:
-  $ lim_(n -> oo) F_n(x) = P(X_n <= x) = F(x) $
+  $ lim_(n -> oo) F_n (x) = P(X_n <= x) = F(x) $
   Notation: $X_n arrow.r^w X$ oder $X_n arrow.r^L X$, wobei $d, w, L$ für _convergence in distribution_, _weak convergence_ bzw. _convergence in law_ stehen. (Nicht in Vorlesung)
 ]
 
@@ -91,13 +91,13 @@ $
 
 #subbox(title: "Momenterzeugende Funktion")[
   Die momenterzeugende Funktion einer Zufallsvariablen $X$ ist für $t in RR$ definiert durch:
-  $ M_X(t) = E[e^(t X)] = integral_(-oo)^oo e^(t x) f_X(x) dif x . $
+  $ M_X (t) = E[e^(t X)] = integral_(-oo)^oo e^(t x) f_X (x) dif x . $
   Immer wohldefiniert in $[0, oo]$, kann aber $+oo$ werden.
 ]
 
 *Chernoff-Ungleichung*\
-Seien $X_1, ..., X_n$ i.i.d. Zufallsvariablen, für welche $M_X(t)$ für alle $t in RR$ endlich ist. Für jedes $b in RR$ gilt:
-$ P(S_n >= b) <= exp(inf_(t in RR) (n log M_X(t) - t b)) . $
+Seien $X_1, ..., X_n$ i.i.d. Zufallsvariablen, für welche $M_X (t)$ für alle $t in RR$ endlich ist. Für jedes $b in RR$ gilt:
+$ P(S_n >= b) <= exp(inf_(t in RR) (n log M_X (t) - t b)) . $
 
 *Chernoff-Schranke*\
 Seien $X_1, ..., X_n$ unabhängig mit $X_k ~ "Ber"(p_k)$ und sei $S_n = sum_(k=1)^n X_k$, $mu_n = E[S_n] = sum_(k=1)^n p_k$ und $delta > 0$, dann gilt:

@@ -37,11 +37,11 @@ Seien $X_1, ..., X_n$ diskrete ZV mit gemeinsamer Verteilung ${p(x_1, ..., x_n)}
 ]
 
 *Randverteilung.* Haben $X, Y$ die gemeinsame Verteilungsfunktion $F_(X,Y)$, so ist $F_X: RR -> [0,1]$:
-$ F_X(x) := P(X <= x) = P(X <= x, Y <= oo) = lim_(y -> oo) F_(X,Y)(x,y) $
+$ F_X (x) := P(X <= x) = P(X <= x, Y <= oo) = lim_(y -> oo) F_(X,Y)(x,y) $
 die Vertsfkt. der Randverteilung von $X$. _Analog für $F_Y$._
 
 *Randdichte.* Seien $X, Y$ ZV mit gemeinsamer Dichte $f(x,y)$:
-$ f_X(x) = integral_(-oo)^oo f(x,y) dif y quad "bzw." quad f_Y(y) = integral_(-oo)^oo f(x,y) dif x $
+$ f_X (x) = integral_(-oo)^oo f(x,y) dif y quad "bzw." quad f_Y (y) = integral_(-oo)^oo f(x,y) dif x $
 
 Seien $X_1, ..., X_n$ ZV mit Dichten $f_(X_1), ..., f_(X_n)$.\
 Dann sind folgende Aussagen *äquivalent*:

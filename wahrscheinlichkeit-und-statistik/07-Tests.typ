@@ -16,7 +16,7 @@
   - $K subset.eq RR$ der kritische Bereich oder Verwerfungsbereich ist.
 ]
 
-Wir wollen nun anhand der Daten $(X_1(omega), ..., X_n(omega))$ entscheiden, ob die Nullhypothese akzeptiert oder verworfen wird. Zuerst berechnen wir die Teststatistik $T(omega) = t(X_1(omega), ..., X_n(omega))$ und gehen dann wie folgt vor:
+Wir wollen nun anhand der Daten $(X_1 (omega), ..., X_n (omega))$ entscheiden, ob die Nullhypothese akzeptiert oder verworfen wird. Zuerst berechnen wir die Teststatistik $T(omega) = t(X_1 (omega), ..., X_n (omega))$ und gehen dann wie folgt vor:
 - Die Hypothese $H_0$ wird *verworfen*, falls $T(omega) in K$.
 - Die Hypothese $H_0$ wird *akzeptiert*, falls $T(omega) in.not K$.
 

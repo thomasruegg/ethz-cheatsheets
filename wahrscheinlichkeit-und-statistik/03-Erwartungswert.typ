@@ -4,14 +4,14 @@
 
 #mainbox(title: "Erwartungswert (Stetige ZV)")[
   Sei $X: Omega -> R$ eine stetige Zufallsvariable mit Dichte $f_X$. Sei $phi: R -> R$ eine Abbildung, sodass $phi(X)$ eine Zufallsvariable ist. Dann gilt:
-  $ E[phi(X)] = integral_(-oo)^oo phi(x) f_X(x) dif x, $
+  $ E[phi(X)] = integral_(-oo)^oo phi(x) f_X (x) dif x, $
   falls das Integral wohldefiniert ist (bei $phi = "id"$ absolut konvergent).\
   Sei $X$ eine stetige ZV mit $X >= 0$ f.s., dann gilt:
-  $ E[X] = integral_0^oo (1 - F_X(x)) dif x $
+  $ E[X] = integral_0^oo (1 - F_X (x)) dif x $
 
   Der *Allgemeine Erwartungswert* für eine reellwertige ZV $X$ mit $E[|X|] < oo$ ist definiert als:
   $ E[X] &= E[X_+] - E[X_-] quad "mit" X_(plus.minus) = max(plus.minus X, 0) \
-         &= integral_0^oo (1 - F_X(x)) dif x - integral_(-oo)^0 F_X(x) dif x $
+         &= integral_0^oo (1 - F_X (x)) dif x - integral_(-oo)^0 F_X (x) dif x $
 ]
 
 #mainbox(title: "Erwartungswert (Diskrete ZV)")[

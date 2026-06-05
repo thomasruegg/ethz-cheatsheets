@@ -13,14 +13,14 @@ wobei $cal(B)(RR)$ die *Borelsche $sigma$-Algebra* auf $RR$ bezeichnet. Beispiel
 
 == Verteilungsfunktion
 Die *Verteilungsfunktion* ist die Abbildung $F_X : RR -> [0,1]$ definiert durch:
-$ F_X(t) := P(X <= t), quad forall t in RR $
+$ F_X (t) := P(X <= t), quad forall t in RR $
 
 Die Funktion erfüllt folgende Eigenschaften:
 + $F_X$ ist monoton wachsend
-+ $F_X$ ist rechtsstetig, d.h. $lim_(h -> 0^+) F_X(x+h) = F_X(x)$
-+ $lim_(x -> -oo) F_X(x) = 0$ und $lim_(x -> oo) F_X(x) = 1$
++ $F_X$ ist rechtsstetig, d.h. $lim_(h -> 0^+) F_X (x+h) = F_X (x)$
++ $lim_(x -> -oo) F_X (x) = 0$ und $lim_(x -> oo) F_X (x) = 1$
 
-_Auch gilt:_ $forall a,b in RR, a > b: P(a < X <= b) = F_X(b) - F_X(a)$
+_Auch gilt:_ $forall a,b in RR, a > b: P(a < X <= b) = F_X (b) - F_X (a)$
 
 *Linksstetigkeit*
 
@@ -49,7 +49,7 @@ Seien $X, Y: Omega -> RR$ Zufallsvariablen: $X <= Y "f.s." <=> P(X <= Y) = 1$
   Falls $Omega$ endlich oder abzählbar ist, dann ist $X$ immer diskret.
 ]
 Die *Verteilungsfunktion* einer diskreten ZV $X$:
-$ F_X(x) = P(X <= x) = sum_(y in W) p(y) · bb(1)_(y <= x) $
+$ F_X (x) = P(X <= x) = sum_(y in W) p(y) · bb(1)_(y <= x) $
 Die *Gewichtsfunktion* einer diskreten ZV $X$:
 $ forall x in X(Omega): p(x) = P(X=x) "wobei" sum_(x in X(Omega)) p(x) = 1 $
 
@@ -75,11 +75,11 @@ $ p(k) := P(X = k) = lambda^k / (k!) · e^(-lambda) quad forall k in NN_0, lambd
 == Stetige Zufallsvariablen
 #mainbox()[
   Eine Zufallsvariable $X: Omega -> RR$ heisst *stetig*, wenn ihre Verteilungsfunktion $F_X$ wie folgt geschrieben werden kann:
-  $ F_X(x) = integral_(-oo)^x f_X(t) dif t quad "für alle" x in RR, $
+  $ F_X (x) = integral_(-oo)^x f_X (t) dif t quad "für alle" x in RR, $
   wobei $f_X: RR -> RR^+$ eine nicht-negative Funktion ist. $f_X$ wird dann als *Dichte* von $X$ bezeichnet.\
   Wenn $f_X: (RR, cal(B)) -> (RR, cal(B))$ messbar ist, ist die Zufallsvariable $X$ *absolut stetig*.
 ]
-*Intuition:* $f_X(t) dif t$ ist die Wahrscheinlichkeit, dass $X in [t, t + dif t]$.
+*Intuition:* $f_X (t) dif t$ ist die Wahrscheinlichkeit, dass $X in [t, t + dif t]$.
 
 == Stetige Verteilungen
 *Gleichverteilung:* $X ~ cal(U)([a,b])$\
@@ -88,7 +88,7 @@ $ f_(a,b)(x) = cases(0 & x in.not [a,b], 1/(b-a) & x in [a,b]) $
 
 *Exponentialverteilung:* $T ~ "Exp"(lambda)$\
 Lebensdauer oder Wartezeit eines allgemeinen Ereignisses (stetiges Äquivalent zur Geometrischen Verteilung).
-$ f_lambda(x) = cases(lambda e^(-lambda x) & x >= 0, 0 & x < 0) $
+$ f_lambda (x) = cases(lambda e^(-lambda x) & x >= 0, 0 & x < 0) $
 
 *Normalverteilung:* $X ~ cal(N)(mu, sigma^2)$\
 Häufig verwendete Verteilung. Undefiniert für $sigma = 0$.
@@ -99,7 +99,7 @@ $ f_(mu, sigma)(x) = 1 / sqrt(2 pi sigma^2) e^(- (x-mu)^2 / (2 sigma^2)) $
 + Sei $Z ~ cal(N)(0,1)$ eine *standardnormalverteilte* Zufallsvariable. Dann gilt für $X ~ cal(N)(mu, sigma^2)$:
   $ X = mu + sigma · Z $
 + Für $X ~ cal(N)(mu, sigma^2)$ gilt $(X-mu)/sigma ~ cal(N)(0,1)$, also:
-  $ F_X(x) = P((X-mu)/sigma <= (x-mu)/sigma) = Phi((x-mu)/sigma) . $
+  $ F_X (x) = P((X-mu)/sigma <= (x-mu)/sigma) = Phi((x-mu)/sigma) . $
 + $Phi(-x) = 1 - Phi(x)$
 + Seien $X_1,...,X_n$ i.i.d. normalverteilte ZV mit Parametern $(mu_1, sigma_1^2),...,(mu_n, sigma^2_n))$. Dann gilt $Y:= mu_0 + sum_(k=1)^n a_k X_k ~ cal(N)(mu_0 + sum_(k=1)^n a_k mu_k, sum_(k=1)^n a_k^2 sigma_k^2)$
 
