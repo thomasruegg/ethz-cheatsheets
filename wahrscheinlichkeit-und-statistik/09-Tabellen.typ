@@ -28,7 +28,7 @@
 - Teils: mit $1$ multiplizieren, um partielle Integration anwenden zu können (z.B. im Fall von $integral log(x) dif x$).
 
 #mainbox(title: "Substitution")[
-  Um $integral_a^b f(g(x)) dif x$ zu berechnen: Ersetze $g(x)$ durch $u$ und integriere $integral_(g(a))^(g(b)) f(u) dif u / g'(x)$.
+  Um $integral_a^b f(g(x)) dif x$ zu berechnen: Ersetze $g(x)$ durch $u$ und integriere $integral_(g(a))^(g(b)) f(u) (dif u) / g'(x)$.
 ]
 - $g'(x)$ muss sich herauskürzen, sonst nutzlos.
 - Grenzen substituieren nicht vergessen.
@@ -80,7 +80,7 @@ Seien $X_1, ..., X_n$ i.i.d. $~ cal(N)(mu, sigma^2)$. Wir erinnern uns an die No
 - $X_1, ..., X_n ~ Bin(N, theta)$ i.i.d.: $T = 1/N (sum_(i=1)^n X_i) / n$
 - $X_1, ..., X_n ~ Ber(p)$ i.i.d.: $T = (sum_(i=1)^n X_i) / n$
 - $X_1, ..., X_n ~ Poisson(theta)$ i.i.d.: $T = (sum_(i=1)^n X_i) / n = overline(X)_n$
-- $X_1, ..., X_n ~ cal(U)([theta_1, theta_2])$ i.i.d.: $T_(theta_1) = max(X_i)$, $T_(theta_2) = min(X_i)$
+- $X_1, ..., X_n ~ cal(U)([theta_1, theta_2])$ i.i.d.: $T_(theta_1) = min(X_i)$, $T_(theta_2) = max(X_i)$
 - $X_1, ..., X_n ~ cal(N)(theta_1, theta_2)$ i.i.d.: $T_(theta_1) = overline(X)_n$, $T_(theta_2) = S^2$
 
 #mainbox(title: "Wichtige Werte")[

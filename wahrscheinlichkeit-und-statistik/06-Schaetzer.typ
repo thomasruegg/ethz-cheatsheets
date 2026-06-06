@@ -41,7 +41,7 @@ Wenn $X_k$ unter $P_vartheta$ i.i.d. sind (analog mit $f_bold(arrow(x))$ und $f_
 $ p_bold(arrow(x)) (x_1, ..., x_n; vartheta) = product_(k=1)^n p_X (x_k; vartheta) $
 
 Für jedes $x_1, ..., x_n in W$ sei $t_("ML")(x_1, ..., x_n)$ der Wert, welcher die Funktion $vartheta |-> L(x_1, ..., x_n; vartheta)$ maximiert. Ein Maximum-Likelihood-Schätzer ist dann definiert als:
-$ T_("ML") = t_("ML")(X_1, ..., X_n) in limits(op("arg max"))_(vartheta in vartheta) L(X_1, ..., X_n; vartheta) $
+$ T_("ML") = t_("ML")(X_1, ..., X_n) in limits(op("arg max"))_(vartheta in Theta) L(X_1, ..., X_n; vartheta) $
 *Notiz:* Nicht vergessen zu zeigen, dass es ein *Maximum* ist.
 
 === Anwendung der Methode
