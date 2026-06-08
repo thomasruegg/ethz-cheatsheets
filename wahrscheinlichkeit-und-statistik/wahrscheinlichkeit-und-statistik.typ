@@ -18,6 +18,7 @@
   #include "05-Grenzwertsaetze.typ"
   #include "06-Schaetzer.typ"
   #include "07-Tests.typ"
+  #include "07a-Konfidenzintervalle.typ"
   #include "08-Aufgaben.typ"
   #include "09-Tabellen.typ"
 ]
