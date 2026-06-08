@@ -48,3 +48,8 @@ Dann sind folgende Aussagen *äquivalent*:
 - (i) $X_1, ..., X_n$ sind unabhängig,
 - (ii) $X_1, ..., X_n$ sind gemeinsam stetig mit gemeinsamer Dichte $f: RR^n -> RR_+$, d.h. die gemeinsame Dichtefunktion $f$ ist das Produkt der einzelnen Randdichten $f_(X_k)$, also:
   $ f(x_1, ..., x_n) = f_(X_1)(x_1) · ... · f_(X_n)(x_n) $
+
+
+== Stetiger Fall - Bedingte Dichte
+Seien $X,Y$ ZV auf $(Omega, cal(A), PP)$ mit gemeinsamer Dichte $f_(X,Y)(x,y)$ und Randdichte $f_Y(y) != 0$. Dann ist die bedingte Dichte von $X$ bedingt durch $Y$: 
+$ f_(X|Y)(x|y) = (f_(X,Y)(x,y))/(f_Y(y)) $
