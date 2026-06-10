@@ -64,7 +64,7 @@
 
 Sei $(X_i)_(i >= 1) ~ cal(N)(0,1)$ i.i.d. eine Folge von Zufallsvariablen.
 + $sum_(i=1)^n X_i^2 ~ chi_n^2$
-+ $1/n sum_(i=1)^n X_i ~ chi_1^2$ (as in original LaTeX)
++ $1/n sum_(i=1)^n X_i ~ chi_1^2$
 + $X_1^2 + X_2^2 ~ Exp(1/2)$
 + Sei $Y ~ chi_m^2$ unabhängig von $cal(N)(0,1)$. Dann gilt: $X / sqrt(1/m Y) ~ t_m$
 + Es gilt $lim_(m -> oo) t_m ~ cal(N)(0,1)$ verteilt, für endliche $m$ ist $t_m$ langschwänziger als $cal(N)(0,1)$.
