@@ -12,7 +12,7 @@
 
 #mainbox(title: "Definition Test")[
   Ein Test ist ein Paar $(T, K)$, wobei:
-  - $T = t(X_1, ..., X_n)$ die Teststatistik ist, mit einer messbaren Funktion $t: RR^n -> RR$.
+  - $T = t(X_1, ..., X_n)$ die Teststatistik ist, mit einer messoverlineen Funktion $t: RR^n -> RR$.
   - $K subset.eq RR$ der kritische Bereich oder Verwerfungsbereich ist.
 ]
 
@@ -27,7 +27,7 @@ Wir wollen nun anhand der Daten $(X_1 (omega), ..., X_n (omega))$ entscheiden, o
   $ P_theta (T in.not K) = 1 - P_theta (T in K), quad theta in Theta_A $
 ]
 
-*Bemerkung:* Da $T$ eine ZV und somit bezüglich dem Mass $P_theta : F -> [0,1]$ messbar ist, gilt ${T in K} in F$ und somit ist $P_theta (T in K)$ wohldefiniert.
+*Bemerkung:* Da $T$ eine ZV und somit bezüglich dem Mass $P_theta : F -> [0,1]$ messoverline ist, gilt ${T in K} in F$ und somit ist $P_theta (T in K)$ wohldefiniert.
 
 == Signifikanzniveau und Macht
 Ein Test hat Signifikanzniveau $alpha in [0,1]$ falls:
@@ -61,7 +61,40 @@ Sei $Theta_0 = {vartheta_0}$ und $Theta_A = {vartheta_A}$. Sei $(T, K)$ ein Like
 $ P_(vartheta_A)[T' in K'] <= P_(vartheta_A)[T in K] . $
 Das bedeutet, jeder andere Test mit kleinerem Signifikanzniveau hat auch geringere Macht bzw. eine größere Wahrscheinlichkeit für einen Fehler 2. Art.
 
-== T-Test / Gauss-Test
+== Konkrete Tests
+=== z-Test / Gauss-Test
+*Sample i.i.d. normalverteilt, Test für $mu$, $sigma^2$ bekannt* \
+$mu$-Schätzer: $mu = overline(X)_n = 1/n sum_(i=1)^n X_i$ \
++ Modell: $X_1, ..., X_n ~ cal(N)(theta, sigma^2)$ i.i.d. unter $PP_theta$
++ Teststatistik $T := (overline(X)_n - mu)/(sqrt(sigma^2 / n)) ~ cal(N)(0,1)$ unter $PP_(theta_0)$
+
+=== T-Test
+*Sample i.i.d. normalverteilt, Test für $mu$, $sigma^2$ UNbekannt* \
+Parameter $arrow(theta) = (mu, sigma^2)$ ist zweidimensional! \
+$mu$-Schätzer: $overline(X)_n = 1/n sum_(i=1)^n X_i$ \
+$sigma^2$-Schätzer: $S^2 = 1/(n-1) sum_(i=1)^n (X_i - overline(X)_n)^2 $ \
++ Modell: $X_1, ..., X_n ~ cal(N)(theta, sigma^2)$ i.i.d. unter $PP_arrow(theta)$
++ Hypothesen: $Theta_0 = ({mu_0} or {mu_0 < x} or {mu_0 > x}) times (0, infinity)$
++ Teststatistik $T := (overline(X)_n - mu_0)/(sqrt(S^2 / n)) ~ t_(n-1)$ unter $PP_(theta_0)$
+
+=== Gepaarter Zweistichprobentest
+Sei $X_1,...,X_n ~ cal(N)(mu_X, sigma^2)$ i.i.d. und $Y_1,...,Y_n ~ cal(N)(mu_Y, sigma^2)$, wobei $X_i, Y_i$ unabhängig. \ 
+Dann ist für $Z_i := X_i - Y_i$ die ZV $Z_1,...,Z_n ~ cal(N)(mu_X - mu_Y, 2 sigma^2)$. \ 
+Falls $sigma$ bekannt $=>$ z-Test auf $Z_i$ \ 
+Falls $sigma$ unbekannt $=>$ t-Test auf $Z_i$ 
+
+=== Ungepaarter Zweistichprobentest
+Sei $X_1,...,X_n ~ cal(N)(mu_X, sigma^2)$ und $Y_1,...,Y_m ~ cal(N)(mu_Y, sigma^2)$, wobei $m != n, X_i$ und $Y_j$ paarweise unabhängig für $i in [n], j in [m]$
+- *$sigma^2$ bekannt*, z-Test mit: \
+ $ T := ((overline(X)_n - overline(Y)_m) - (mu_X - mu_Y))/(sigma sqrt(1/n + 1/m)) ~ cal(N)(0,1) $ 
+- *$sigma^2$ unbekannt*, t-Test mit: \
+ Empirische Varianz der einzelnen beiden Datensätzen \ 
+ $S_X^2 = 1/(n-1) sum_(i=1)^n (X_i - overline(X)_n)^2$ und \ $S_Y^2 = 1/(m-1) sum_(i=1)^m (Y_i - overline(Y)_m)^2 $
+ werden zu einer empirischen Varianz kombiniert: \ 
+ $ S^2 := (1)/(m + n - 2) ((n-1)S^2_X + (m-1)S^2_Y) $
+ $ T := ((overline(X)_n - overline(Y)_n) - (mu_X - mu_Y))/(S sqrt(1/n + 1/m)) ~ t_(m+n-2) $
+
+/*=== T-Test / Gauss-Test
 Zuerst berechnen wir $T$:
 $ T = (overline(X)_n - theta_0) / sqrt(sigma^2 / n) ~ cal(N)(0, 1) $
 mit dem erwartungstreuen Schätzer:
@@ -80,6 +113,7 @@ Dann unterscheiden wir zwischen den folgenden Fällen:
   - Verwerfungsbereich: Verwerfe $H_0$ falls $T < c_1$ oder $T > c_2$
 
 _Notiz: Restliche Tests nicht in Vorlesung behandelt (siehe Nicolas Wehrli's Cheat Sheet)._
+*/
 
 == p-Wert
 #mainbox(title: "Definition p-Wert")[
