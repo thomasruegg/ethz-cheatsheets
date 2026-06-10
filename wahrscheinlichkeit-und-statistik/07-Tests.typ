@@ -80,3 +80,9 @@ Dann unterscheiden wir zwischen den folgenden Fällen:
   - Verwerfungsbereich: Verwerfe $H_0$ falls $T < c_1$ oder $T > c_2$
 
 _Notiz: Restliche Tests nicht in Vorlesung behandelt (siehe Nicolas Wehrli's Cheat Sheet)._
+
+== p-Wert
+#mainbox(title: "Definition p-Wert")[
+  Sei $H_0 : theta = theta_0$ eine einfache Nullhypothese. Sei $(T, K_t)_(t >= 0)$ eine geordnete Familie von Tests. Der p-Wert ist definiert als ZV $G(omega)$, wobei $ G : Omega |-> [0,1], space space space space G(omega) = PP_(theta_0)[T in K_(t(X_1(omega),...,X_n(omega)))] $
+]
+*Intuitiv*: Kleinstes Signifikanzniveau $p$, bei welchem die Nullhypothese verworfen wird (anhand der Teststatistik mit effektiver Realisation $omega$). *Ansatz*: Berechne kleinsten Verwerfungsbereich $K$, sodass $T in K$ und löse $PP_(theta_0)[T in K] >= 1 - alpha$ auf.
