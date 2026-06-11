@@ -2,11 +2,11 @@
 
 = Zufallsvariablen
 
-Sei $(Omega, F, P)$ ein Wahrscheinlichkeitsraum. Eine (reellwertige) *Zufallsvariable* ist eine Abbildung $X: Omega -> RR$, sodass für alle $x in RR$ gilt:
-$ {omega in Omega | X(omega) <= x} in F . $
+Sei $(Omega, cal(F), P)$ ein Wahrscheinlichkeitsraum. Eine (reellwertige) *Zufallsvariable* ist eine Abbildung $X: Omega -> RR$, sodass für alle $x in RR$ gilt:
+$ {omega in Omega | X(omega) <= x} in cal(F) . $
 
 Eine Funktion $X$ ist *messbar* (Zufallsvariablen sind messbar), wenn:
-$ X^(-1)(B) := {omega in Omega | X(omega) in B} in F "für alle" B in cal(B)(RR), $
+$ X^(-1)(B) := {omega in Omega | X(omega) in B} in cal(F) "für alle" B in cal(B)(RR), $
 wobei $cal(B)(RR)$ die *Borelsche $sigma$-Algebra* auf $RR$ bezeichnet. Beispiele:
 - Alle offenen, abgeschlossenen und kompakten Mengen in $RR$.
 - Alle Intervalle der Form $(a, b)$, $[a, b]$, $(a, b]$, $[a, b)$, $(-oo, b)$, $(-oo, b]$, $(a, oo)$ und $[a, oo)$ für $a, b in RR$.
