@@ -20,7 +20,7 @@ Die Funktion erfüllt folgende Eigenschaften:
 + $F_X$ ist rechtsstetig, d.h. $lim_(h -> 0^+) F_X (x+h) = F_X (x)$
 + $lim_(x -> -oo) F_X (x) = 0$ und $lim_(x -> oo) F_X (x) = 1$
 
-_Auch gilt:_ $forall a,b in RR, a > b: P(a < X <= b) = F_X (b) - F_X (a)$
+_Auch gilt:_ $forall a,b in RR, a < b: P(a < X <= b) = F_X (b) - F_X (a)$
 
 *Linksstetigkeit*
 
@@ -34,12 +34,12 @@ Intuitiv folgt daraus:
 - Wenn $F_X$ stetig im Punkt $a in RR$ ist, dann gilt $P(X = a) = 0$.
 
 #mainbox()[
-  Seien $X_1, ..., X_n$ Zufallsvariablen auf einem Wahrscheinlichkeitsraum $(Omega, A, P)$. Dann heissen $X_1, ..., X_n$ *unabhängig*, falls $forall x_1, ..., x_n in RR$:
+  Seien $X_1, ..., X_n$ Zufallsvariablen auf einem Wahrscheinlichkeitsraum $(Omega, cal(F), P)$. Dann heissen $X_1, ..., X_n$ *unabhängig*, falls $forall x_1, ..., x_n in RR$:
   $ P(X_1 <= x_1, ..., X_n <= x_n) = P(X_1 <= x_1) · ... · P(X_n <= x_n) . $
 ]
 
 == Diskrete Zufallsvariablen
-Sei $A in F$ ein Ereignis.\
+Sei $A in cal(F)$ ein Ereignis.\
 Wir sagen $A$ tritt *fast sicher (f.s.)* ein, falls $P(A) = 1$.\
 Seien $X, Y: Omega -> RR$ Zufallsvariablen: $X <= Y "f.s." <=> P(X <= Y) = 1$
 
@@ -95,13 +95,12 @@ Häufig verwendete Verteilung. Undefiniert für $sigma = 0$.
 $ f_(mu, sigma)(x) = 1 / sqrt(2 pi sigma^2) e^(- (x-mu)^2 / (2 sigma^2)) $
 + Seien $X_1, ..., X_n$ *unabhängige* normalverteilte ZV mit Parametern $(mu_1, sigma_1^2), ..., (mu_n, sigma_n^2)$, dann ist
   $ Z = mu_0 + lambda_1 X_1 + ... + lambda_n X_n $
-  eine normalverteilte ZV mit Parametern $mu = mu_0 + lambda_1 mu_1 + ... + lambda_n mu_n$ und $sigma^2 = lambda_1^2 sigma_1^2 + ... + lambda_n^2 sigma_n^2$.
+  eine normalverteilte ZV mit Parametern \ $mu = mu_0 + lambda_1 mu_1 + ... + lambda_n mu_n$ und $sigma^2 = lambda_1^2 sigma_1^2 + ... + lambda_n^2 sigma_n^2$.
 + Sei $Z ~ cal(N)(0,1)$ eine *standardnormalverteilte* Zufallsvariable. Dann gilt für $X ~ cal(N)(mu, sigma^2)$:
   $ X = mu + sigma · Z $
 + Für $X ~ cal(N)(mu, sigma^2)$ gilt $(X-mu)/sigma ~ cal(N)(0,1)$, also:
   $ F_X (x) = P((X-mu)/sigma <= (x-mu)/sigma) = Phi((x-mu)/sigma) . $
 + $Phi(-x) = 1 - Phi(x)$
-+ Seien $X_1,...,X_n$ i.i.d. normalverteilte ZV mit Parametern $(mu_1, sigma_1^2),...,(mu_n, sigma^2_n))$. Dann gilt $Y:= mu_0 + sum_(k=1)^n a_k X_k ~ cal(N)(mu_0 + sum_(k=1)^n a_k mu_k, sum_(k=1)^n a_k^2 sigma_k^2)$
 
 #mainbox(title: "Gedächtnislosigkeit")[
   Sei $T ~ "Geom"(p)$ mit $p in (0,1)$. Dann gilt für alle $n >= 0$ und alle $k >= 1$:
