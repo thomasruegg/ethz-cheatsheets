@@ -1,5 +1,8 @@
 // TODO: Alle Fotos kurz prüfen.
 
+#import "@preview/mannot:0.3.0": markhl
+
+
 #set page(
   paper: "a4",
   flipped: true,
@@ -8,14 +11,17 @@
   number-align: center,
 )
 
-#set text(size: 9pt, lang: "de", region: "ch")
+#set text(size: 9pt, lang: "de")
 #set heading(numbering: "1.1")
-#set par(justify: true)
+#set par(justify: true) // TODO: Does that make sense?
 #set list(marker: ([•], [◦]))
 
 #let myblue = rgb(87, 178, 255)
+#let mybluecontrary = myblue.rotate(180deg).darken(20%)
 #let mygreen = rgb(51, 255, 102)
+#let mygreencontrary = mygreen.rotate(180deg).darken(20%)
 #let mypurple = rgb(255, 76, 255)
+#let mypurplecontrary = mypurple.rotate(180deg).darken(20%)
 #let mysub = rgb(204, 204, 204)
 #let mytitlebg = rgb(230, 230, 230)
 
@@ -44,6 +50,8 @@
   ],
 )
 
+#let minitext(body, color: luma(40%)) = { text(size: 7pt, body, fill: color) }
+
 #let mainbox(title: "", body) = basebox(title: title, body, myblue)
 #let howtobox(title: "", body) = basebox(title: title, body, mygreen)
 #let bspbox(title: "", body) = basebox(title: title, body, mypurple)
@@ -62,9 +70,9 @@
 #let Z = $ZZ$
 #let Q = $QQ$
 #let C = $CC$
-#let implies = $=>$
-#let notimplies = $cancel(=>)$
-#let notimpliedby = $cancel(<=)$
+#let implies = $==>$
+#let notimplies = $cancel(==>)$
+#let notimpliedby = $cancel(<==)$
 
 // Section formatting
 // #show heading.where(level: 1): it => block(
@@ -88,12 +96,17 @@
 #show: rest => columns(3, gutter: 0.75cm, rest)
 
 = General
-Imagine how Function looks. Try inserting some pos. & neg. values.
+Funktion vorstellen. Dann einige pos. & neg. Werte ausprobieren.
 + Bestandteile der Aufgabe erkennen.
 + Zugehörige Teile des Spicks lesen: \ $exists$ Fact I can use? $exists$ Beispielbeweis?
 + Referenzfolgen und Tabellen prüfen.
 
-_Calm and structured approach yields best results._
+#grid(
+  columns: (auto, 1fr, 1fr, 1fr, 1fr),
+  gutter: 3pt,
+  align: horizon,
+  [Legende:], mainbox("Fakten"), howtobox("Rezept"), bspbox("Beispiele"), subbox("Subtopics"),
+)
 
 == Random
 - *gerade Funktion* hat Eigenschaft $f(-x)=f(x)$. Graph der Funktion ist symmetrisch zur y-Achse.
@@ -103,11 +116,11 @@ _Calm and structured approach yields best results._
 + Für jedes $epsilon > 0$ existiert $n in NN$ mit $1/n < epsilon$.
 
 == Intervalle
-$]a,b[ = (a,b) = {x in RR | a < x < b}$ #text(size: 7pt, fill: luma(120))[offenes Intervall] \
-$[a,b[ = [a,b) = {x in RR | a <= x < b}$ #text(size: 7pt, fill: luma(120))[halb-offenes Intervall] \
-$]a,b] = (a,b] = {x in RR | a < x <= b}$ #text(size: 7pt, fill: luma(120))[halb-offenes Intervall] \
-$[a,b] = [a,b] = {x in RR | a <= x <= b}$ #text(size: 7pt, fill: luma(120))[abgeschlossenes Intervall] \
-Abgeschlossenes Intervall: $I in RR$ ist abgeschlossen, wenn $forall$ konvergente Folge $(a_n)_(n >= 1)$ auch Grenzwert $limn (a_n) in I$.
+$]a,b[ = (a,b) = {x in RR | a < x < b}$ #minitext[offenes Intervall] \
+$[a,b[ = [a,b) = {x in RR | a <= x < b}$ #minitext[halb-offenes Intervall] \
+$]a,b] = (a,b] = {x in RR | a < x <= b}$ #minitext[halb-offenes Intervall] \
+$[a,b] = [a,b] = {x in RR | a <= x <= b}$ #minitext[abgeschlossenes Intervall] \
+Abgeschlossenes Intervall: $I in RR$ ist abgeschlossen, wenn $forall$ konvergenten Folgen $(a_n)_(n >= 1)$ auch Grenzwert $limn (a_n) in I$.
 
 == Beschränktheit, Schranken
 $x$ ist die obere/untere Schranke. $A in RR$ heisst
@@ -120,27 +133,22 @@ Minimum: $x in A$ ist und $x$ untere Schranke \
 Maximum: $x in A$ ist und $x$ obere Schranke
 
 == Infimum & Supremum
-#mainbox(title: "Infimum & Supremum")[
+#mainbox[
   #grid(
-    columns: (1fr, auto),
+    columns: (1.5fr, 1fr),
+
     [
-      Sei $A in RR$, $A != diameter$
+      Sei $A subset RR$, $A != diameter$
       - Infimum: grösste untere Schranke \ $R := inf A$ (falls $A$ v.u.b). \
-        #text(
-          size: 8pt,
-          fill: luma(120),
-        )[$forall a in A : r <= a quad forall epsilon > 0 limits(exists) a in A : a < r + epsilon$]
+        #minitext[$forall a in A : R <= a quad forall epsilon > 0, limits(exists) a in A : a < R + epsilon$]
       - Supremum: kleinste obere Schranke \ $R := sup A$ (falls $A$ v.o.b). \
-        #text(
-          size: 8pt,
-          fill: luma(120),
-        )[$forall a in A : a <= R quad forall epsilon > 0 limits(exists) a in A : a > R - epsilon$]
+        #minitext[$forall a in A : a <= R quad forall epsilon > 0, limits(exists) a in A : a > R - epsilon$]
     ],
-    image("img/infimumsupremum.jpeg", width: 45%),
+    image("img/infimumsupremum.jpeg", width: 100%),
   )
 ]
 
-- Wenn $x = sup A$, so gilt $x >= a forall a in A$ und all $y < x$ sind keine oberen Schranken.Falls $A$ ein Maximum hat, gilt $max A = sup A$.
+- Wenn $x = sup A$, so gilt $x >= a forall a in A$ und all $y < x$ sind keine oberen Schranken. Falls $A$ ein Maximum hat, gilt $max A = sup A$.
 - Wenn $A subset B subset R$ und $B$ beschränkt ist, so ist $A$ beschränkt und $sup A <= sup B$, $inf A >= inf B$.
 - Für $A != diameter$ und nicht v.o.b. definieren wir \
   $sup A = oo$, falls nicht v.u.b. $inf A = -oo$.
@@ -148,25 +156,25 @@ Maximum: $x in A$ ist und $x$ obere Schranke
 = Folgen
 == Grundlagen
 *Folge* (reeler Zahlen) ist eine Abbildung $a: NN^* -> RR$. \
-$(a_n)_(n>=1)$ = Folge $quad a_n$ = Element einer Folge \
-#text(size: 7pt, fill: luma(120))[
-  Bsp. $(a_n)_(n>=1) = 1/n$: $a_1 = 1/1, a_2 = 1/2, ...$
+$(a_n)_(n>=1)$ = Folge, $quad a_n$ = Element einer Folge \
+#minitext[
+  Bsp. $(a_n)_(n>=1) = 1/n: quad a_1 = 1/1, quad a_2 = 1/2, quad a_3 = 1/3, ...$
 ]
 
 == Vorgehen
-#howtobox(title: "Grenzwerte berechnen Folgen")[
+#howtobox(title: "Grenzwerte berechnen bei Folgen")[
   #set enum(numbering: "1.")
-  + Grenzwert durch simple Operationen und Umformen berechnen?
-  + Trick anwenden? (Limes binom, - substitution, - Log)
-  + Grenzwert von Brüchen mit $n -> oo$?: \
+  + Grenzwert durch simple Operationen und Umformen berechnen.
+  + Trick anwenden (Limes binom, - substitution, - log).
+  + Grenzwert von Brüchen mit $n -> oo$: \
     Grösste Potenz von $n$ ausklammern und kürzen. Alle übrigen Brüche der Form $a/n^s$ oder $i/n^s$ streichen, da sie gegen 0 gehen für $n -> oo$.
-  + Grenzwert von Wurzel $plus.minus$ smth. im Nenner berechnen? \
+  + Grenzwert von Wurzel $plus.minus$ smth. im Nenner berechnen. \
     Multipliziere mit inversen des Nenners (oben & unten).
   + Berechne Grenzwert mit Sandwhich-Theorem.
   + Rekursive Folge? Siehe Absatz Rekursive Folgen.
 ]
 
-#howtobox(title: "Konvergenzanalyse Folgen (Konv.? Div.?)")[
+#howtobox(title: "Konvergenzanalyse bei Folgen (Konv.? Div.?)")[
   #set enum(numbering: "1.")
   + Abschätzen: Nur grösste Terme prüfen.
   + Grenzwert zeigen per Definition der Konvergenz. (Vor allem für formale Beweise)
@@ -177,43 +185,42 @@ $(a_n)_(n>=1)$ = Folge $quad a_n$ = Element einer Folge \
 == Konvergente Folge & Limes
 Folge konvergiert wenn die Differenz zwischen Folgegliedern und Grenzwert immer kleiner wird.
 #mainbox(title: "Konvergente Folge & Limes")[
-  - Folge $(a_n)_(n >= 1)$ ist konvergent $<=> exists l in RR$ s.t. $forall epsilon > 0$ die Menge ${n in NN^*: a_n in.not quad ]l - epsilon, l + epsilon[}$ endlich ist.
-    $l = lim a_n$. \
-    #text(size: 7pt, fill: luma(120))[
+  - Folge $(a_n)_(n >= 1)$ ist konvergent $<==> exists l in RR$ s.t. $forall epsilon > 0$ die Menge ${n in NN^*: a_n in.not quad (l - epsilon, l + epsilon)}$ endlich ist. $l = lim a_n$. \
+    #minitext[
       Eine Folge ist konvergent wenn egal welchen Abstand $epsilon$ man wählt, nach endlichen Ausnahmeindizes $N$ alle weiteren Folgengliedern weniger als Abstand $epsilon$ vom Grenzwert $l$ entfernt sind.
-      Also im Intervall $]l - epsilon, l + epsilon[$.
+      Also im Intervall $(l - epsilon, l + epsilon)$.
     ]
-  - $(a_n)_(n >= 1)$ konvergiert gegen $l = limn (a_n) \ <=> forall epsilon > 0 limits(exists) N >= 1$ so dass $|a_n - l| < epsilon quad forall n >= N$ \
-    #text(size: 7pt, fill: luma(120))[
-      Folge konvergiert weil man differenz zwischen Folgegliedern & Grenzwert beliebig klein machen kann in dem man n gross genug wählt.
-      $->$ Es gibt immer einen Index N, ab welchem keine Ausnahmeindizes mehr auftreten.
+  - $(a_n)_(n >= 1) "konvergiert gegen" l = limn (a_n) <==> forall epsilon > 0, exists N >= 1, "so dass" |a_n - l| < epsilon quad forall n >= N$ \
+    #minitext[
+      Folge konvergiert weil man Differenz zwischen Folgegliedern & Grenzwert beliebig klein machen kann in dem man $n$ gross genug wählt.
+      $->$ Es gibt immer einen Index $N$, ab welchem keine Ausnahmeindizes mehr auftreten.
     ]
 ]
-- konvergent $=>$ beschränkt, aber $notimpliedby$
+- konvergent $==>$ beschränkt, aber $notimpliedby$
 - Reihenfolge hat keinen Einfluss auf Konvergenz. Tatsache, dass sich Glieder einem bestimmten Wert annähern, bleibt unverändert.
 
-#bspbox(title: $epsilon$ + "-Konvergenz (Konvergenzbeweis)")[
-  #text(size: 7pt, fill: luma(120))[
-    Ab index N sind alle Glieder $(a_n)$ näher als $epsilon$ am Grenzwert.
+#bspbox(title: $epsilon$ + "-Konvergenzbeweis")[
+  #minitext[
+    Ab Index N sind alle Glieder $(a_n)$ näher als $epsilon$ am Grenzwert.
   ] \
-  Wähle beliebig kleines $epsilon$ und zeige $N = N(epsilon) in NN$ existiert, so dass $forall n >= N$ gilt: \
+  Wähle beliebig kleines $epsilon$ und zeige $N = N(epsilon) in NN$ existiert, so dass $forall n >= N$ gilt:
   $|a_n - limn (a_n)| = dots < epsilon$ \
-  Löse nach $n$ auf und wähle $N := ceil(n)$. Somit gilt $forall n >= N$, dass $|a_n - limn (a_n)| <= epsilon$ (def $limn$).
+  Löse nach $n$ auf und wähle $N := ceil(n)$. Somit gilt $forall n >= N$, \ dass $|a_n - limn (a_n)| <= epsilon$ (def $limn$).
 ]
 
 #bspbox(title: "Divergenz von Folgen")[
   Divergente Folge = nicht konvergent = kein Grenzwert.
   #set enum(numbering: "1.")
   + Suchen eines divergenten Minorant.
-  + *Alternierende Folgen* Zeige, dass \
-    $limn (a_("p1"(n))) != limn (a_("p2"(n)))$, z.B. bei einer Folge der Form $(-1)^n dot f(x)$.
+  + *Alternierende Folgen:* Zeige, dass \
+    $limn (a_("p1"(n))) != limn (a_("p2"(n)))$, \ z.B. bei einer Folge der Form $(-1)^n dot f(x)$.
 ]
 
-== Rechenregeln zu Konvergenz & G.W.
+== Rechenregeln zu Konvergenz & Grenzwert
 Sei $(a_n)_(n >= 1)$ und $(b_n)_(n >= 1)$ konvergente Folgen mit $limn (a_n) = a$ und $limn (b_n) = b$.
 - dann $(a_n + b_n)_(n >= 1)$ konvergent & $limn (a_n + b_n) = a + b$
 - dann $(a_n dot b_n)_(n >= 1)$ konvergent & $limn (a_n dot b_n) = a dot b$
-- wenn $b_n != 0 forall n >= 1 "und" b != 0$ dann ist $(a_n/b_n)_(n >= 1)$ konvergent und $limn (a_n/b_n) = a/b$
+- wenn $b_n != 0, forall n >= 1 "und" b != 0$ dann ist $(a_n/b_n)_(n >= 1)$ konvergent und $limn (a_n/b_n) = a/b$
 
 == Monotone Folgen
 - monoton wachsend: $forall n in NN$ gilt, dass $a_n <= a_(n + 1)$
@@ -222,79 +229,66 @@ Sei $(a_n)_(n >= 1)$ und $(b_n)_(n >= 1)$ konvergente Folgen mit $limn (a_n) = a
 - streng monoton fallend: $forall n in NN$ gilt, dass $a_n > a_(n + 1)$
 
 #bspbox(title: "Monotonie prüfen durch Ableitung")[
-  Ersetze $n$ durch $x$ und berechne die Ableitung nach $x$. Gilt $a'(x) >= 0$, ist sie monoton wachsend und wenn $a'(x) <= 0$ gilt, ist sie monoton fallend.
+  Ersetze $n$ durch $x$ und berechne die Ableitung nach $x$.\ $a'(x) >= 0 ==>$ monoton wachsend, $a'(x) <= 0 ==>$ monoton fallend.
 ]
-Kann auch durch Induktionsbeweis gezeigt werden. Siehe "Grenzwert rekursiver Folgen berechnen"
+Kann auch durch Induktionsbeweis gezeigt werden. Siehe "Grenzwert rekursiver Folgen berechnen".
 
 == Sandwhich Theorem
 Grenzwert von Folge bestimmen, wenn sie zwischen zwei anderen Folgen mit gleichem, bereits bekannten Grenzwert liegt.
-#mainbox(title: "Sandwhich Theorem")[
-  Sei $limn (a_n) = alpha$, $limn (b_n) = alpha$ und \ $a_n <= c_n <= b_n$, $forall n >= k$, dann gilt $limn (c_n) = alpha$.
+#mainbox(title: "Sandwich-Theorem")[
+  Sei $limn (a_n) = alpha$, $limn (b_n) = alpha$ und \
+  $a_n <= c_n <= b_n$, $forall n >= k$, dann gilt $limn (c_n) = alpha$.
 ]
 
 == Weierstrass
-Grenzwert von monotonen, beschränkten Folgen berechnen.
+Grenzwert von monotonen, beschränkten Folgen berechnen. Weierstrass darf auch angewendet werden, wenn Folge erst nach einem Index $N$ monton wachsend/fallend ist.
 
-#grid(
-  columns: (1fr, auto),
-  [
-    #mainbox(title: "Weierstrass (Monotone Konv.satz)")[
-      - Folge $(a_n)$ monoton wachsend & nach oben beschränkt \
-        $=> limn (a_n) = sup{a_n: n >= 1}$ \
-        #text(size: 7pt, fill: luma(120))[
-          Grenzwert ist supremum des Intervalls der Folge $a_n$
-        ]
-      - Folge $(a_n)$ monoton fallend & nach unten beschränkt \
-        $=> limn (a_n) = inf{a_n: n >= 1}$ \
-        #text(size: 7pt, fill: luma(120))[
-          Grenzwert ist infimum des Intervalls der Folge $a_n$
-        ]
+#mainbox(title: "Weierstrass (Monotoner Konvergenzsatz)")[
+  - Folge $(a_n)$ monoton wachsend & nach oben beschränkt \
+    $==> limn (a_n) = sup{a_n: n >= 1}$ \
+    #minitext[
+      Grenzwert ist Supremum des Intervalls der Folge $a_n$
     ]
-  ],
-  image("img/weierstrass.jpg", width: 45%),
-)
-
-Example monoton wachsend: \
-#text(size: 7pt, fill: luma(120))[
-  Weierstrass darf auch angewendet werden, wenn Folge erst nach einem index N monton wachsend/fallend ist.
+  - Folge $(a_n)$ monoton wachsend & nach oben #emph[un]beschränkt \
+    $==> limn (a_n) = oo$
+  - Folge $(a_n)$ monoton fallend & nach unten beschränkt \
+    $==> limn (a_n) = inf{a_n: n >= 1}$ \
+    #minitext[
+      Grenzwert ist Infimum des Intervalls der Folge $a_n$
+    ]
+  - Folge $(a_n)$ monoton fallend & nach unten #emph[un]beschränkt \
+    $==> limn (a_n) = -oo$
 ]
-- Folge $a_n$ monoton wachsend & nach oben #emph[un]beschränkt \
-  $=> limn (a_n) = oo$
-- Folge $a_n$ monoton fallend & nach unten #emph[un]beschränkt \
-  $=> limn (a_n) = -oo$
+
 
 == Limes Inferior/Superior
-#text(size: 7pt, fill: luma(120))[
-  Anwendung: Verhalten von nicht konvergenten Folgen analysieren durch definieren zweier monotonen Folgen welche zum kleinsten bzw. grössten Häufungspunkt konvergieren.
-]
-#mainbox(title: "Limes Inferior/Superior")[
-  $(a_n)_(n >= 1)$ beschränkt $=> exists M in RR, forall n in NN : |a_n| < M$. \
-  Für $k in NN$ existieren dann gemäss dem Satz von Sup und Inf $b_k = inf_(n >= k) (a_n) < sup_(n >= k) (a_n) = c_k$. Dann gilt: \
-  $-M <= b_1 <= dots <= b_(k + 1) <= c_(k + 1) <= dots <= c_1 <= M$ \
-  Mit Satz für monotone Konvergenz folgt Existenz von lim sup & lim inf:
-  - Lim Inferior (kleinster Häufungspunkt): $limn inf(a_n) := limn (b_k) = b$ \
-    #text(size: 7pt, fill: luma(120))[
-      \= unterer Häufungspunkt der sich Folge annähert.
-    ]
-  - Lim Superior (grösster Häufungspunkt): $limn sup(a_n) := limn (c_k) = c$ \
-    #text(size: 7pt, fill: luma(120))[
-      \= oberer Häufungspunkt der sich Folge annähert.
-    ]
-]
-Example: #image("img/limesinferiorsuperior.jpeg", width: 60%)
+Um Verhalten von nicht konvergenten Folgen zu analysieren durch definieren zweier monotonen Folgen welche zum kleinsten bzw. grössten Häufungspunkt konvergieren.
 
-- $limn inf(a_n) > -oo <=> (a_n)_(n >= 1)$ nach unten beschränkt
-- $limn sup(a_n) < oo <=> (a_n)_(n >= 1)$ nach oben beschränkt
-- $limn inf(a_n) = oo <=> (a_n)_(n >= 1)$ konvergiert gegen $oo$
-- $limn sup(a_n) = -oo <=> (a_n)_(n >= 1)$ konvergiert gegen $- oo$
+#mainbox(title: "Limes Inferior/Superior")[
+  - Lim Inferior (unterer Häufungspunkt an den sich Folge annähert): \
+    #text(size: 8pt)[$limn inf(a_n) := limn inf{ a_k | k >= n} = sup_(n in NN)(inf{ a_k | k >= n})$]
+
+  - Lim Superior (oberer Häufungspunkt an den sich Folge annähert): \
+    #text(size: 7.8pt)[$limn sup(a_n) := limn sup{ a_k | k >= n} = inf_(n in NN)(sup{ a_k | k >= n})$]
+
+  Beispiel: $a_n = (-1)^n + 1/n, quad n >= 1$
+
+  #import "img/limes-inferior-superior-diagram.typ": limes-inf-sup-diagram
+  #limes-inf-sup-diagram(mybluecontrary, mypurple, limn)
+]
+
+- $limn inf(a_n) > -oo <==> (a_n)_(n >= 1)$ nach unten beschränkt
+- $limn sup(a_n) < oo <==> (a_n)_(n >= 1)$ nach oben beschränkt
+- $limn inf(a_n) = oo <==> (a_n)_(n >= 1)$ konvergiert gegen $oo$
+- $limn sup(a_n) = -oo <==> (a_n)_(n >= 1)$ konvergiert gegen $- oo$
 - Sei $(a_n)_(n >= 1)$ beschränkt. Dann $forall epsilon > 0: N in NN$ s.t. $forall n <= N: a_n in (limn inf a_n - epsilon , limn sup a_n + epsilon)$
 
 == Cauchy-Kriterium/Cauchy-Folge
-Konvergenz einer Folge prüfen ohne Grenzwert zu kennen.
+Konvergenz einer Folge prüfen, ohne Grenzwert zu kennen.
 
 #mainbox(title: "Cauchy-Kriterium")[
-  Folge $(a_n)$ konvergiert $<=> (a_n)_(n >= 1)$ beschränkt und $limn inf(a_n) = limn sup(a_n)$ \
-  #text(size: 7pt, fill: luma(120))[
+  Folge $(a_n)$ konvergiert $<==> (a_n)_(n >= 1)$ beschränkt und $limn inf(a_n) = limn sup(a_n)$ \
+  #minitext[
     Folge konvergiert weil die Differenz zwischen Folgegliedern mit wachsendem Index immer kleiner wird.
   ]
 ]
@@ -302,69 +296,69 @@ Konvergenz einer Folge prüfen ohne Grenzwert zu kennen.
 #mainbox(title: "Cauchy-Folge")[
   $(a_n)$ heisst Cauchy-Folge falls \
   $forall epsilon > 0, limits(exists) N in NN: |a_n - a_m| < epsilon quad forall m,n >= N$ \
-  #text(size: 7pt, fill: luma(120))[
-    Bei einer _Cauchy-Folge_ ist egal welchen Abstand $epsilon$ man wählt, nach endlichen Ausnahmeindizes $N$ der Abstand zwischen _beliebigen_ Folgengliedern unter $epsilon$. Daher ist sie konvergent.
+  #minitext[
+    Bei einer _Cauchy-Folge_ ist egal welchen Abstand $epsilon$ man wählt, nach endlichen Ausnahmeindizes $N$ ist der Abstand zwischen *_beliebigen_* Folgengliedern trotzdem kleiner als $epsilon$. Daher ist sie konvergent.
   ]
 ]
-- $(a_n)$ Cauchy-Folge $=> (a_n)$ beschränkt
-- $(a_n)$ konvergent $<=> (a_n)$ Cauchy-Folge
-- $(a_n)$ nicht Cauchy-Folge $=> (a_n)$ divergent
+- $(a_n)$ Cauchy-Folge $==> (a_n)$ beschränkt
+- $(a_n)$ konvergent $<==> (a_n)$ Cauchy-Folge
+- $(a_n)$ nicht Cauchy-Folge $==> (a_n)$ divergent
 
 == Teilfolge
 #mainbox(title: "Teilfolge")[
   Teilfolge $(b_n)_(n >= 1)$ von $(a_n)_(n >= 1)$ ist $b_n = a_(l(n))$. \
   $l(n)$ ist Indexfunktion mit Eigenschaft: $l(n) < l(n + 1)$ \
-  #text(size: 7pt, fill: luma(120))[
+  #minitext[
     Bsp: $a_n = (-1)^n + 1/n$. Sei $l(n) = 2n$. Teilfolge: $b_n = a_(2n) = (-1)^(2n) + 1/(2n) = 1 + 1/(2n)$
   ]
 ]
 - Entsteht durch weglassen von Folgengliedern.
-- $(a_n)_(n in NN)$ konvergent $=> (a_l(n))_(n in NN)$ konvergent $forall$ Teilfolgen.
+- $(a_n)_(n in NN)$ konvergent $==> (a_l(n))_(n in NN)$ konvergent $forall$ Teilfolgen.
 
 == Bolzano Weierstrass
 #subbox(title: "Bolzano Weierstrass")[
   Jede beschränkte Folge besitzt eine konvergente Teilfolge.
 ]
-- $(a_n)_(n in NN)$ beschränkt $=>$ für jede beschränkte Teilfolge $(b_n)_(n in NN)$ gilt $lim_(n -> oo) inf a_n <= lim_(n -> oo) b_n <= lim_(n -> oo) sup a_n$
-- Es gibt je eine Teilfolgen von $(a_n)_(n in NN)$ die $lim_(n -> oo) inf a_n$ resp. $lim_(n -> oo) sup a_n$ als Limes annehmen.
+- $(a_n)_(n in NN)$ beschränkt $==>$ für jede beschränkte Teilfolge $(b_n)_(n in NN)$ gilt:\ $lim_(n -> oo) inf a_n <= lim_(n -> oo) b_n <= lim_(n -> oo) sup a_n$
+- Es gibt je eine Teilfolge von $(a_n)_(n in NN)$ die $lim_(n -> oo) inf a_n$ resp. $lim_(n -> oo) sup a_n$ als Limes annehmen.
 
 == Rekursive Folgen (Induktiv definierte)
-Folgen können Rekrusiv definiert werden. Sei Folge $(a_k)_(k >= 1): a_1 = c, a_(k+1) = f(a_k), k >= 1$
+Folgen können rekursiv definiert werden. Sei Folge \ $(a_k)_(k >= 1): a_1 = c, quad a_(k+1) = f(a_k), quad k >= 1$
 #bspbox(title: "Grenzwert Rekursiver Folgen berechnen")[
   Sei Folge $(a_k)_(k >= 1): a_1 = c, a_(k+1) = sin(a_k), k >= 1$
   #set enum(numbering: "1.")
   + Monotonie beweisen per Induktion \
-    $a_1 = c "und" c in [0, pi] => a_1 in [0, pi]$ \
-    $sin(x) <= x quad forall x >= 0 => a_(k+1) <= a_k =>$ monoton fallend
+    $a_1 = c "und" c in [0, pi] ==> a_1 in [0, pi]$ \
+    $sin(x) <= x quad forall x >= 0 ==> a_(k+1) <= a_k ==>$ monoton fallend
   + Beschränktheit zeigen \
-    $sin(x) >= 0 quad forall x in [0, pi] => a_k >= 0 forall k >= 1 =>$ v.u.b
+    $sin(x) >= 0 quad forall x in [0, pi] ==> a_k >= 0, forall k >= 1 ==>$ v.u.b
   + Weierstrass Monoton Konvergenzsatz \
-    $1. "und" 2. => a_k$ monoton fallend & v.u.b \
-    $=> limn (a_n) = inf(a_k : k >= 1) = 0$
+    $1. "und" 2. ==> a_k$ monoton fallend & v.u.b \
+    $==> limn (a_n) = inf(a_k : k >= 1) = 0$
 ]
 
 == Tricks
-- Limes Binom: Berechne G.W. gegeben Summe von Wurzeln. \
+- *Limes Binom:* Berechne G.W. gegeben Summe von Wurzeln: \
   $lim_(x -> +oo) (sqrt(e^x + x) - sqrt(e^x - x)) = lim_(x -> +oo) (sqrt(e^x + x) - sqrt(e^x - x))/1 dot (sqrt(e^x+x) + sqrt(e^x - x))/(sqrt(e^x + x) + sqrt(e^x - x)) = lim_(x -> +oo) ((e^x + x) - (e^x - x))/(sqrt(e^x + x) + sqrt(e^x - x)) = lim_(x -> +oo) (2x)/(sqrt(e^x + x) + sqrt(e^x - x))$
-  Dividiere durch $sqrt(x^2) => lim_(x -> +oo) 2/(sqrt(e^x/x^2 - 1/x) + sqrt(e^x/x^2 - 1/x)) = 0$. Weil: $e^x/x^2 -> oo$ und $1/x -> 0 =>$ Nenner geht gegen $oo$
-- Limes Substitution: $lim_(x -> oo) (x^2(1 - cos(1/x)))$, $u = 1/x$ \
-  $lim_(u -> 0) (1 - cos(u))/u^2 = lim_(u -> 0) sin(u)/(2u) = lim_(u -> 0) cos(u)/2 = 1/2$
-- Limes Log: Limes der form $oo^0$ oder $1^oo$ kann man mit $f(x)^g(x) = e^(g(x) dot ln(f(x)))$ lösen. dann Bernoulli ($e$ ist stetig, daher betrachten wir nur den Exponenten) anwenden oder vereinfachen.
+  Dividiere durch $sqrt(x^2) ==> lim_(x -> +oo) 2/(sqrt(e^x/x^2 - 1/x) + sqrt(e^x/x^2 - 1/x)) = 0$. \ Weil: $e^x/x^2 -> oo$ und $1/x -> 0 ==>$ Nenner geht gegen $oo$
+- *Limes Substitution:* $lim_(markhl(x -> oo)) (x^2(1 - cos(1/x)))$, $u = 1/x$ \
+  $lim_(markhl(u -> 0)) (1 - cos(u))/u^2 =^"l'Hospital" lim_(markhl(u -> 0)) sin(u)/(2u) = lim_(markhl(u -> 0)) cos(u)/2 = 1/2$
+- *Limes Log:* Limes der form $oo^0$ oder $1^oo$ kann man mit $f(x)^g(x) = e^(g(x) dot ln(f(x)))$ lösen. Dann Bernoulli ($e$ ist stetig, daher betrachten wir nur den Exponenten) anwenden oder vereinfachen.
 
 #bspbox(title: "Grenzwert berechnen mit Fixpunktgleichung")[
   Sei $(x_n)_(n >= 1)$ rekursiv gegeben durch $x_1 = 1 "und" x_(n+1) := 1+ 1/x_n quad forall n >= 1$. Berechne den Grenzwert g. \
-  Für genug grosse n gilt irgendwann $x_n = x_(n+1)$. Grenzwerte einsetzen und auflösen ergibt Grenzwert.
+  Für genug grosse $n$ gilt irgendwann $x_n = x_(n+1)$. Grenzwerte einsetzen und auflösen ergibt Grenzwert. \
   $x_n = x_(n+1) -> g = 1 + 1/g -> g^2 - g - 1 = 0 -> g = (1 plus.minus sqrt(5))/2$
 ]
 
 = Reihen
 == Grundlagen
-- $S_n$ ist *Partialsumme*. Die _endliche_ Summe der ersten n Glieder der Folge: $S_n = sum_(k=1)^n a_k = a_1 + a_2 + ... + a_n$ \
+- $S_n$ ist *Partialsumme*. Die _endliche_ Summe der ersten $n$ Glieder der Folge: $S_n = sum_(k=1)^n a_k = a_1 + a_2 + ... + a_n$ \
   *Folge aller Partialsummen*: $(S_n)_(n >= 1) = S_1, ..., S_n$ \
-  #text(size: 7pt, fill: luma(120))[
-    Bsp: $S_1 = a_1, S_2 = a_1 + a_2, S_3 = a_1 + a_2 + a_3, ..., S_n = a_1 + a_2 + ... + a_n = sum_(k=1)^n a_k$ \
-    Bsp Divergent: Sei $a_n = 1/n$, dann $S_1 = 1/1 = 1, S_2 = 1/1 + 1/2 = 1.5, S_3 = 1/1 + 1/2 + 1/3 = 1.833, ...$ \
-    Bsp Konvergent: Sei $a_n = (1/2)^n$, dann $S_1 = (1/2)^1 = 0.5, S_2 = (1/2)^1 + (1/2)^2 = 0.75, S_3 = (1/2)^1 + (1/2)^2 + (1/2)^3 = 0.875, ...$
+  #minitext[
+    $S_1 = a_1, S_2 = a_1 + a_2, S_3 = a_1 + a_2 + a_3, ..., S_n = a_1 + a_2 + ... + a_n = sum_(k=1)^n a_k$ \
+    Bsp. divergent: Sei $a_n = 1/n$, dann $S_1 = 1/1 = 1, S_2 = 1/1 + 1/2 = 1.5, S_3 = 1/1 + 1/2 + 1/3 = 1.833, ...$ \
+    Bsp. konvergent: Sei $a_n = (1/2)^n$, dann $S_1 = (1/2)^1 = 0.5, S_2 = (1/2)^1 + (1/2)^2 = 0.75, S_3 = (1/2)^1 + (1/2)^2 + (1/2)^3 = 0.875, ...$
   ]
 - $sumk a_k$ ist *Reihe*. Die _unendliche_ Summe der Folge $(a_n)_(n >= 1)$. \
   Symbol unendliche Summe repräsentiert für:
@@ -377,13 +371,13 @@ Folgen können Rekrusiv definiert werden. Sei Folge $(a_k)_(k >= 1): a_1 = c, a_
 Abschätzen durch nur schnellstwachsende Terme prüfen.
 #howtobox(title: "Konvergenzanalyse Reihen " + $sum a_n$)[
   #set enum(numbering: "1.")
-  + Spezieller Typ (Teleskop, Geometrisch, etc.) $=>$ siehe wichtige Reihen _(verschoben, skaliert, etc. beachten!)_
-  + Ist $lim_(n -> oo) a_n != 0$? $=>$ divergent (_Nullfolgenkrit._).
-  + Quotientenkriterium anwendbar? $=>$ fertig
-  + Wurzelkriterium anwendbar? $=>$ fertig
+  + Spezieller Typ (Teleskop, Geometrisch, etc.) $==>$ siehe wichtige Reihen _(verschoben, skaliert, etc. beachten!)_
+  + Ist $lim_(n -> oo) a_n != 0$? $==>$ divergent (_Nullfolgenkriterium_).
+  + Quotientenkriterium anwendbar? $==>$ fertig
+  + Wurzelkriterium anwendbar? $==>$ fertig
   + Vergleichssatz anwendbar? \
-    $exists$ konvergenter Majorant? $=>$ konvergent \
-    $exists$ divergenter Minorant? $=>$ divergent
+    $exists$ konvergenter Majorant? $==>$ konvergent \
+    $exists$ divergenter Minorant? $==>$ divergent
   + Leibnizkriterium anwenden?
   + Good luck! Umformen, ausprobieren,...
 ]
@@ -391,46 +385,42 @@ Abschätzen durch nur schnellstwachsende Terme prüfen.
 == Konvergente Reihe
 #mainbox(title: "Konvergente Reihe")[
   Folge aller Partialsummen $(S_n)_(n >= 1)$ konvergiert \
-  $<=>$ Reihe $sum_(k=1)^oo a_k$ konvergent.
+  $<==>$ Reihe $sum_(k=1)^oo a_k$ konvergiert.
 ]
-*Achtung!* Grenzwert ändert sich wenn wir Glieder weglassen. Konvergenz bleibt unverändert. \
-#text(size: 7pt, fill: luma(120))[
+*Achtung!* Grenzwert ändert sich wenn wir bei *Reihen* Glieder weglassen. *Konvergenz* bleibt aber unverändert.
+#minitext[
   Bsp: $sum_(k=0)^oo (1/2)^k = 2$ aber $sum_(k=3)^oo (1/2)^k = sum_(k=0)^oo (1/2)^k - (1 + 1/2 + (1/2)^2) = 2 - (1 + 1/2 + 1/4) = 0.25$
 ]
 
-- Reihe $sumk a_k$ konvergent $<=>$ Folge $(S_n)_(n >= 1)$ n.o.b.
-- Konvergenz bei Verschiebungen um k Analog bei Folge: falls $(a_n)$ konvergent gegen l, so ist es auch $b_n := a_(n+k)$.
+- Für $a_k >= 0$: Reihe $sumk a_k$ konvergent $<==>$ Folge $(S_n)_(n >= 1)$ v.o.b.
+- *Reihe* bleibt konvergent/divergent bei Verschiebungen um $k$, so wie die Folgen (aber bei Folgen würde der auch noch Grenzwert gleich bleiben). #minitext[Falls *Folge* $(a_n)$ gegen $l$ konvergiert, so konvergiert auch $b_n := a_(n+k)$ gegen $l$.] // TODO: Weglassen?
 
-== Cauchy-Kriterium
-Reihe konvergiert weil Summe beliebig vieler aufeinanderfolgender Glieder immer kleiner wird.
 #mainbox(title: "Cauchy-Kriterium")[
   Reihe $sumk a_k$ konvergent \
-  $<=> forall epsilon > 0, exists N >= 1$ mit $|S_n - S_m| < epsilon, forall m >= n >= N$. \
+  $<==> forall epsilon > 0, exists N >= 1$ mit $|S_n - S_m| < epsilon, forall m >= n >= N$. \
   _Hinweis:_ $|S_n - S_m| = |sum_(k=n)^m a_k|$ \
-  #text(size: 7pt, fill: luma(120))[
-    Bei _Cauchy-Reihe_ ist egal welche Summe $epsilon$ man wählt, nach endlichen Ausnahmeindizes N die Summe der Folgengliedern unter $epsilon$. Daher ist sie konvergent.
+  #minitext[
+    Bei _Cauchy-Reihe_ ist egal welches $epsilon$ man wählt, nach endlichen Ausnahmeindizes $N$ ist die Summe der Folgengliedern unter $epsilon$. Reihe konvergiert weil Summe beliebig vieler aufeinanderfolgender Glieder immer kleiner wird. Daher ist sie konvergent.
   ]
 ]
 
-== Nullfolgenkriterium
-Schnell prüfen, ob Reihe divergent ist.
-#mainbox(title: "Nullfolgenkriterium")[
-  - Reihe $sum_(k=1)^oo a_k$ konvergent $=>$ Ihre Folge $(a_n)_(n >= 1)$ hat $limn a_n = 0$ (_ist Nullfolge_). \
-    #text(size: 7pt, fill: luma(120))[
-      Wenn Reihe konvergiert $=>$ Folge aller Partialsummen konvergiert $=>$ Partialsummen werden immer kleiner $=>$ $(a_n)$ konv. gegen 0.
+#mainbox(title: "Nullfolgenkriterium (schnell prüfen, ob Reihe divergent ist)")[
+  - Reihe $sum_(k=1)^oo a_k$ konvergent $==>$ dazugehörige Folge $(a_n)_(n >= 1)$ hat $limn a_n = 0$ (_ist Nullfolge_). \
+    #minitext[
+      Wenn Reihe konvergiert $==>$ Folge aller Partialsummen konvergiert $==>$ Partialsummen werden immer kleiner $==>$ $(a_n)$ konv. gegen 0.
     ]
-  - Folge $(a_n)_(n >= 1)$ der Reihe hat $limn a_n != 0$ (_keine Nullfolge_) $=>$ Reihe $sumk a_k$ divergent \
-    #text(size: 7pt, fill: luma(120))[
-      Folge der Reihe konv. nicht gegen 0 $=>$ Partialsummen wachsen immer mindestens um Grenzwert $=>$ Folge aller Partialsummen divergiert $=>$ Reihe divergiert. (Ausnahme: harm. Reihe $sum_(n=1)^oo 1/n$)
+  - Folge $(a_n)_(n >= 1)$ der Reihe hat $limn a_n != 0$ (_keine Nullfolge_) $==>$ Reihe $sumk a_k$ divergent \
+    #minitext[
+      Folge der Reihe konv. nicht gegen 0 $==>$ Partialsummen wachsen immer mindestens um Grenzwert $==>$ Folge aller Partialsummen divergiert $==>$ Reihe divergiert. (Ausnahme: harm. Reihe $sum_(n=1)^oo 1/n$)
     ]
 ]
 Bsp. $sum_(n=1)^oo (-1)^n n^(1/n)$ divergiert, da $|a_n| = n^(1/n) ->_(n -> oo) 1 != 0$.
 
-== Rechenregeln zu Konvergenz & G.W.
+== Rechenregeln zu Konvergenz & Grenzwert
 $sumk a_k$ & $sumk b_k$ #underline[konvergent]
-- [$=>$] $sumk (a_k + b_k)$ konvergent
-- [$=>$] $sumk (a_k + b_k) = (sumk a_k) + (sumk b_k)$
-- [$=>$] $sumk alpha dot a_k$ konvergent und $sumk alpha dot a_k = alpha dot sumk a_k$
+- [$==>$] $sumk (a_k + b_k)$ konvergent
+- [$==>$] $sumk (a_k + b_k) = (sumk a_k) + (sumk b_k)$
+- [$==>$] $sumk alpha dot a_k$ konvergent und $sumk alpha dot a_k = alpha dot sumk a_k$
 _Hinweis:_ Funktioniert identisch für absolute Konvergenz!
 
 == Vergleichssatz
@@ -445,10 +435,10 @@ Konv./absolute Konv./Divergenz durch Vergleich mit bekannter Reihe beweisen.
 == Absolute Konvergenz
 #mainbox(title: "Absolute Konvergenz")[
   Reihe $sumk a_k$ ist _absolut konvergent_ \
-  $<=>$ Reihe der Absolutbeträge $sumk |a_k|$ konvergent.
+  $<==>$ Reihe der Absolutbeträge $sumk |a_k|$ konvergent.
 ]
-- $sumk |a_k|$ konvergent $=> sumk a_k$ konvergent. Aber! $notimpliedby$ \
-  #text(size: 7pt, fill: luma(120))[
+- $sumk |a_k|$ konvergent $==> sumk a_k$ konvergent. Aber! $notimpliedby$ \
+  #minitext[
     Ex $notimpliedby$: Reihe $sum_(k=1)^oo ((-1)^k+1)/k$ konvergiert, aber Reihe Absolutbeträge $sum_(k=1)^oo 1/k$ divergent.
   ]
 - Beim Summieren spielt die Reihenfolge _keine_ Rolle.
@@ -471,7 +461,7 @@ Und es existiert eine Umordnung, sodass die Reihe divergiert.
     columns: (1fr, auto),
     [
       Wenn $(a_n) >= 0, forall n >= 1$ monoton fallend und $limn a_n = 0$ ist, dann konvergiert $S = sumk (-1)^(k+1) a_k$ und $a_1 - a_2 <= S <= a_1$. \
-      #text(size: 7pt, fill: luma(120))[
+      #minitext[
         Monoton fallende Folge alternierend summiert, ist konvergent.
       ]
     ],
@@ -482,12 +472,12 @@ Und es existiert eine Umordnung, sodass die Reihe divergiert.
 #bspbox(title: "Beispiel Leibnizkriterium")[
   Gegeben: $sumn (-1)^(k+1)(sqrt(k+1) - sqrt(k))$ \
   $a_n = sqrt(n+1) - sqrt(n) = ((sqrt(k+1) - sqrt(k))(sqrt(k+1) + sqrt(k))) / (sqrt(k+1) + sqrt(k)) = 1 / (sqrt(n+1) + sqrt(n))$ \
-  $=> a_n$ ist monoton fallend und $limn a_n = 0$
+  $==> a_n$ ist monoton fallend und $limn a_n = 0$
 ]
 
 == Wurzel- & Quotientenkriterium
 Prüfe ob Reihe Divergenz oder absolut konvergent. \
-Wurzelkriterium versagt $=>$ Quotientenkriterium versagt. \
+Wurzelkriterium versagt $==>$ Quotientenkriterium versagt. \
 $notimpliedby$ Gibt Bsp. wo Wurzelk. funktioniert & Quotientenk. nicht.
 
 === Quotientenkriterium
@@ -501,9 +491,9 @@ Prüfen ob absolut Konvergent oder divergent.
       > 1 & "Divergenz"
     )
   $
-  #text(size: 7pt, fill: luma(120))[
+  #minitext[
     Falls Grenzwert unbekannt: \
-    $limn sup |a_(n+1)/a_n| < 1 => "konvergiert absolut" quad limn inf |a_(n+1)/a_n| > 1 => "divergiert"$
+    $limn sup |a_(n+1)/a_n| < 1 ==> "konvergiert absolut" quad limn inf |a_(n+1)/a_n| > 1 ==> "divergiert"$
   ]
 ]
 
@@ -523,17 +513,17 @@ Prüfen ob absolut Konvergent oder divergent.
       > 1 & "Divergenz"
     )
   $
-  #text(size: 7pt, fill: luma(120))[
+  #minitext[
     Falls Grenzwert unbekannt: \
-    $limn sup root(n, |a_n|) < 1 => "konvergiert absolut" quad limn sup root(n, |a_n|) > 1 => "divergiert"$
+    $limn sup root(n, |a_n|) < 1 ==> "konvergiert absolut" quad limn sup root(n, |a_n|) > 1 ==> "divergiert"$
   ]
 ]
 
 #bspbox(title: "Beispiel Wurzelkriterium")[
   $sum_(k=1)^oo ((5n + 2n^3)/(6n^3 + 5))^n$ \
-  $=> a_n = ((5n + 2n^3)/(6n^3 + 5))^n$ \
-  $=> |a_n|^(1/n) = |(5n + 2n^3)/(6n^3 + 5)|^(n dot 1/n) => limn 2/6$ \
-  $=> limn root(n, |a_n|) = 1/3 < 1 => "konvergiert absolut"$
+  $==> a_n = ((5n + 2n^3)/(6n^3 + 5))^n$ \
+  $==> |a_n|^(1/n) = |(5n + 2n^3)/(6n^3 + 5)|^(n dot 1/n) ==> limn 2/6$ \
+  $==> limn root(n, |a_n|) = 1/3 < 1 ==> "konvergiert absolut"$
 ]
 
 == Doppelreihen Satz
@@ -544,7 +534,7 @@ Prüfen ob absolut Konvergent oder divergent.
 ]
 
 == Cauchy-Produkt
-#text(size: 7pt, fill: luma(120))[
+#minitext[
   *Hinweis*: Cauchy Produkt von 2 divergenten Reihen kann konvergent sein. Dann kann keine Aussage über ihre Konvergenz basierend auf den Reihen $a_n$ und $b_n$ gemacht werden.
 ]
 #subbox(title: "Cauchy-Produkt (Reihen multiplizieren)")[
@@ -579,23 +569,23 @@ $f: D -> RR$ ist:
 == Kompaktes Intervall
 Ist ein Intervall $I subset RR$ falls $I = [a, b], a <= b$.
 - Für $(x_n)_(n in NN), lim_(n -> oo) x_n in RR, a <= b$. \
-  ${x_n | n >= 1} subset [a, b] => lim_(n -> oo) x_n in [a, b]$. \
-  #text(size: 7pt, fill: luma(120))[
+  ${x_n | n >= 1} subset [a, b] ==> lim_(n -> oo) x_n in [a, b]$. \
+  #minitext[
     Jede konvergente Folge die immer im Intervall $[a, b]$ liegt, hat ihren Grenzwert in $[a, b]$.
   ]
 
 == Monotonie von Funktionen
 #mainbox(title: "f ist monoton")[
   $f: D -> RR, D subset RR, forall x, y in D$ ist:
-  - *monoton wachsend* falls $x <= y => f(x) <= f(y)$.
-  - *streng mono. wachs.:* falls $x < y => f(x) < f(y)$.
-  - *monoton fallend:* falls $x >= y => f(x) >= f(y)$.
-  - *streng mon. fallend:* falls $x > y => f(x) > f(y)$.
+  - *monoton wachsend* falls $x <= y ==> f(x) <= f(y)$.
+  - *streng mono. wachs.:* falls $x < y ==> f(x) < f(y)$.
+  - *monoton fallend:* falls $x >= y ==> f(x) >= f(y)$.
+  - *streng mon. fallend:* falls $x > y ==> f(x) > f(y)$.
 ]
 - *monoton:* falls mono. wachsend oder mono. fallend.
 - *streng monoton:* falls streng monoton wachsend oder streng monoton fallend.
 - Symmetrische Funktionen sind nie monoton.
-- f streng mono. wachsend $=>$ f injektiv
+- f streng mono. wachsend $==>$ f injektiv
 
 == Definition Stetigkeit von f
 #grid(
@@ -603,7 +593,7 @@ Ist ein Intervall $I subset RR$ falls $I = [a, b], a <= b$.
   image("img/stetignichtstetig.png", width: 40%),
   [
     Keine sprunghafte Änderungen: \
-    Kleine Änderung Argument $=>$ kleine Änderung Funktionswert. \
+    Kleine Änderung Argument $==>$ kleine Änderung Funktionswert. \
     Sei $D subset.eq RR^d$ und $f: D -> RR^d, x -> f(x)$ eine Funktion.
   ],
 )
@@ -614,21 +604,21 @@ Ist ein Intervall $I subset RR$ falls $I = [a, b], a <= b$.
     [
       Funktion f stetig in $x_0 in D$ falls: \
       $forall x_0, forall epsilon > 0, exists delta > 0, forall x:$ \
-      $|x - x_0| < delta => |f(x) - f(x_0)| < epsilon$.
+      $|x - x_0| < delta ==> |f(x) - f(x_0)| < epsilon$.
     ],
     image("img/punktweise_stetigkeit.jpeg", width: 45%),
   )
 ]
 
 #mainbox(title: "f stetig in x_0 (Punktweise) (Folgenkriterium)")[
-  - f stetig in $x_0 <=> (forall (a_n)_(n in NN)$ in $D:$ \
-    $quad lim_(n -> oo) a_n = x_0 => lim_(n -> oo) f(a_n) = f(x_0))$. \
-    #text(size: 7pt, fill: luma(120))[
-      f stetig in $x_0 <=> forall$ Folge $(a_n)$ konv. gegen $x_0$, Bildfolge $f(a_n)$ konv. gegen $f(x_0)$.
+  - f stetig in $x_0 <==> (forall (a_n)_(n in NN)$ in $D:$ \
+    $quad lim_(n -> oo) a_n = x_0 ==> lim_(n -> oo) f(a_n) = f(x_0))$. \
+    #minitext[
+      f stetig in $x_0 <==> forall$ Folge $(a_n)$ konv. gegen $x_0$, Bildfolge $f(a_n)$ konv. gegen $f(x_0)$.
     ]
-  - f stetig in $x_0 <=> forall (a_n)_(n in NN)$ in $D:$ \
+  - f stetig in $x_0 <==> forall (a_n)_(n in NN)$ in $D:$ \
     $quad lim_(n -> oo) f(a_n) = f(lim_(n -> oo) a_n)$ \
-    #text(size: 7pt, fill: luma(120))[
+    #minitext[
       Anwendung Operation "Funktion" & "Grenzwert" können vertauscht werden.
     ]
 ]
@@ -636,23 +626,23 @@ Ist ein Intervall $I subset RR$ falls $I = [a, b], a <= b$.
 #mainbox(title: "f Stetig")[
   f ist für alle $x_0 in D$ Punktweise stetig.
 ]
-- Für nicht-kompaktes Intervall $D = ]a, b[$ : \
-  Punktweise stetig $=>$ stetig im Intervall.
+- Für nicht-kompaktes Intervall $D = (a, b)$ : \
+  Punktweise stetig $==>$ stetig im Intervall.
 - Für kompaktes Intervall $D = [a, b]$ : \
-  Punktweise stetig + Beweis stetig in Randpunkten $=>$ stetig im Intervall.
-  #text(size: 7pt, fill: luma(120))[
+  Punktweise stetig + Beweis stetig in Randpunkten $==>$ stetig im Intervall.
+  #minitext[
     Für die Randpunkte zeigen dass $lim_(x -> a^+) f(x) = f(a)$ und $lim_(x -> b^-) f(x) = f(b)$.
   ]
 - f stetig $notimplies$ f differenzierbar
-- f stetig auf _kompaktem Intervall_ $=>$ f beschränkt
+- f stetig auf _kompaktem Intervall_ $==>$ f beschränkt
 
 #mainbox(title: "f Gleichmässig Stetig")[
   Stärkere Form der Stetigkeit. $forall$ Punktepaare im Definitionsbereich der Funktion existiert gemeinsames $delta$. \
   $forall epsilon > 0, exists delta > 0, forall x, y in D:$ \
-  $|x - y| < delta => |f(x) - f(y)| < epsilon$
+  $|x - y| < delta ==> |f(x) - f(y)| < epsilon$
 ]
-- gleichmässig stetig $=>$ stetig $=>$ in $x_0$ stetig
-- $f: [a, b] -> RR$ stetig im Kompakten Intervall $=>$ f ist in $[a, b]$ gleichmässig stetig.
+- gleichmässig stetig $==>$ stetig $==>$ in $x_0$ stetig
+- $f: [a, b] -> RR$ stetig im Kompakten Intervall $==>$ f ist in $[a, b]$ gleichmässig stetig.
 
 === Polynomiale Funktionen
 Polynomiale Funktionen $P(x)$ sind auf ganz $RR$ stetig. \
@@ -660,59 +650,59 @@ $P(x) = a_n x^n + a_(n-1) x^(n-1) + ... + a_1 x + a_0$
 
 === Rechenregeln Stetige Funktionen
 Für $x_0 in D subset RR, lambda in RR, f: D -> RR, g: D -> RR$ und f und g stetig in $x_0$
-- [$=>$] $f + g, f + (-g), lambda dot f, f dot g$ stetig in $x_0$.
-- [$=>$] $f/g: D' -> RR, x -> f(x)/g(x), D' = {x in D | g(x) != 0}, g(x_0) != 0$, ist stetig in $x_0$.
+- [$==>$] $f + g, f + (-g), lambda dot f, f dot g$ stetig in $x_0$.
+- [$==>$] $f/g: D' -> RR, x -> f(x)/g(x), D' = {x in D | g(x) != 0}, g(x_0) != 0$, ist stetig in $x_0$.
 
 Für $D_1, D_2 subset RR, f: D_1 -> D_2, g: D_2 -> RR, x_0 in D_1$:
-- Falls f in $x_0$ und g in $f(x_0)$ stetig $=> g compose f: D_1 -> RR$ ist in $x_0$ stetig.
-- Falls f auf $D_1$ und g auf $D_2$ stetig $=> g compose f$ auf $D_1$ stetig.
+- Falls f in $x_0$ und g in $f(x_0)$ stetig $==> g compose f: D_1 -> RR$ ist in $x_0$ stetig.
+- Falls f auf $D_1$ und g auf $D_2$ stetig $==> g compose f$ auf $D_1$ stetig.
 
 Für $D subset RR, f, g: D -> RR, x_0 in D$.
-- Falls f, g stetige Funktionen $=> |f|, (max{f, g}), (min{f, g})$ stetig in $x_0$. \
-  #text(size: 7pt, fill: luma(120))[
+- Falls f, g stetige Funktionen $==> |f|, (max{f, g}), (min{f, g})$ stetig in $x_0$. \
+  #minitext[
     Bsp: $(max{f, g})(x) = max{f(x), g(x)} quad forall x in D$
   ]
 
 == Zwischenwertsatz
-#text(size: 7pt, fill: luma(120))[
+#minitext[
   Anwendung: Zeigen, das eine Funktion einen gewissen Wert annimmt. \
   Anwendung: Zeigt, dass eine Funktion f jeden Wert zwischen $f(a)$ und $f(b)$ annimmt.
 ]
 #mainbox(title: "Zwischenwertsatz")[
-  Intervall $I subset.eq RR$ & stetige Funktion $f: I -> RR$ & $a, b in I => forall y$ sodass $f(a) <= y <= f(b)$ existiert c \
+  Intervall $I subset.eq RR$ & stetige Funktion $f: I -> RR$ & $a, b in I ==> forall y$ sodass $f(a) <= y <= f(b)$ existiert c \
   sodass $a <= c <= b$ mit $y = f(c)$.
 ]
 - Daraus folgt, dass ein Polynom mit ungeradem Grad mindestens eine Nullstelle in $RR$ besitzt.
-- Nullstellenmove: stetige Funktion f an einem Punkt kleiner und einem Punkt grösser als 0 $=> f(x) = 0$ an mindestens einem Punkt.
+- Nullstellenmove: stetige Funktion f an einem Punkt kleiner und einem Punkt grösser als 0 $==> f(x) = 0$ an mindestens einem Punkt.
 - $x, y in RR, x <= y$, c liegt *zwischen* x und y falls $c in [x, y]$.
-- Für $f: [a, b] -> RR$ stetig und $f(a) dot f(b) < 0 => exists c in ]a, b[: f(c) = 0$.
+- Für $f: [a, b] -> RR$ stetig und $f(a) dot f(b) < 0 ==> exists c in (a, b): f(c) = 0$.
 
 #bspbox(title: "Beispiel Zwischenwertsatz (Nullstellenmove)")[
-  #text(size: 7pt, fill: luma(120))[
+  #minitext[
     Hilfsfunktion & Nullstellenmove zeigen dass stetige Funktion f Wert $e^x$ annimmt.
   ] \
   _Zu beweisen:_ Wenn $f(0) < 1$ & $f(1) > 1$, dann $exists x in [0, 1]$ s.t. $f(x) = e^x$. \
   _Proof:_ Define Hilfsfunktion $g(x) = f(x) - e^x$. \
   $g(x)$ ist stetig weil Differenz von stetigen Funktionen ist stetig. Erfüllt $g(0) < 0$ & $g(1) > 0$. \
-  $=> exists$ s.t. $g(x) = 0 => g(x) = f(x) - e^x = 0 => f(x) = e^x$.
+  $==> exists$ s.t. $g(x) = 0 ==> g(x) = f(x) - e^x = 0 ==> f(x) = e^x$.
 ]
 
 == Min-Max-Satz
-#text(size: 7pt, fill: luma(120))[
-  Anw.: kompaktes Intervall & f stetig $=>$ Bild $f(x)$ beschränkt. \
-  Anw.: kompaktes Intervall & f stetig $=>$ Bild hat min/max & $inf f(x) / sup f(x)$.
+#minitext[
+  Anw.: kompaktes Intervall & f stetig $==>$ Bild $f(x)$ beschränkt. \
+  Anw.: kompaktes Intervall & f stetig $==>$ Bild hat min/max & $inf f(x) / sup f(x)$.
 ]
 #mainbox(title: "Min-Max-Satz")[
   Sei $f: I = [a, b] -> RR$ stetig auf kompaktem Intervall I. \
-  $=> exists u, v in I$ mit $f(u) <= f(x) <= f(v), forall x in I$. \
-  $<=> f([a, b])$ ist beschränkt. $f([a, b]) subset [f(u), f(v)]$
-  - [$=>$] $exists "minimum" => f(u) = inf{f(x) | x in I}$
-  - [$=>$] $exists "maximum" => f(v) = sup{f(x) | x in I}$
+  $==> exists u, v in I$ mit $f(u) <= f(x) <= f(v), forall x in I$. \
+  $<==> f([a, b])$ ist beschränkt. $f([a, b]) subset [f(u), f(v)]$
+  - [$==>$] $exists "minimum" ==> f(u) = inf{f(x) | x in I}$
+  - [$==>$] $exists "maximum" ==> f(v) = sup{f(x) | x in I}$
 ]
 
 == Umkehrabbildung
 Sei $f: I -> RR$ stetig und streng monoton. Dann ist $f^(-1): J -> I$ stetig und streng monoton wobei $J = f(I) subset RR$. \
-#text(size: 7pt, fill: luma(120))[
+#minitext[
   Wenn f stetig, dann Umkehrfunktion $f^(-1)$ stetig. \
   Wenn f streng monoton, dann Umkehrfunktion $f^(-1)$ streng monoton.
 ]
@@ -722,11 +712,11 @@ Sei $f: I -> RR$ stetig und streng monoton. Dann ist $f^(-1): J -> I$ stetig und
   columns: (1fr, auto),
   [
     Exponentialfunktion $exp: RR -> ]0, +oo[$. \
-    $f(x) = exp(x) <=> f(x) = e^x <=> sumk x^k / k!$ \
+    $f(x) = exp(x) <==> f(x) = e^x <==> sumk x^k / k!$ \
     exp ist:
     - streng mon. wachsend
     - stetig
-    - surjektiv ($=>$ bijektiv)
+    - surjektiv ($==>$ bijektiv)
   ],
   image("img/exponentialfunktion.png", width: 25%),
 )
@@ -759,7 +749,7 @@ Sei $f: I -> RR$ stetig und streng monoton. Dann ist $f^(-1): J -> I$ stetig und
   columns: (1fr, auto),
   [
     Potenzfunktion: $f(x) = x^n$
-    #text(size: 7pt, fill: luma(120))[
+    #minitext[
       Bsp: $f(x) = x^2, f(x) = x^3$, etc.
     ] \
     Für $x > 0, a in RR quad x^a := exp(a ln(x))$
@@ -782,7 +772,7 @@ Sei $f: I -> RR$ stetig und streng monoton. Dann ist $f^(-1): J -> I$ stetig und
 Sei *Funktionenfolge* $(f_n)_(n >= 1)$ Abbildung $NN -> {f: D -> RR}$ \
 $quad (f_n)_(n >= 1) = {f_1, f_2, ..., f_n}$ \
 Sei $f_n$ eine der Funktionen für ein $n$, also die Abbildung: $n -> f_n: D -> RR$ \
-#text(size: 7pt, fill: luma(120))[
+#minitext[
   Beispiel: $f_n(x) = n x: f_1(x) = x, f_2(x) = 2x$, etc.
 ] \
 Sei $f(x) = limn f_n(x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jedes $x$ den Grenzwert der Funktionenfolge an. \
@@ -790,20 +780,20 @@ Sei $f(x) = limn f_n(x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jede
 
 
 #mainbox(title: "$(f_n)_(n >= 1)$ konvergiert punktweise (" + $epsilon$ + "-Kriterium)")[
-  Funktionenfolge $(f_n)_(n >= 1)$ konvergiert punktweise gegen Funktion $f: D -> RR <=>$ \
+  Funktionenfolge $(f_n)_(n >= 1)$ konvergiert punktweise gegen Funktion $f: D -> RR <==>$ \
   $forall x in D, forall epsilon > 0, exists N in NN "s.t." forall n >= N: |f_n(x) - f(x)| < epsilon$.
-  #text(size: 7pt, fill: luma(120))[
-    Konv. punktweise $<=>$ Für jedes x gibt es ein Ausnahmeindizes N nach welchem die Funktionswerte aller folgenden Funktionen $f_n(x)$ in einer $epsilon$-Umgebung der Grenzfunktion $f(x)$ liegen.
+  #minitext[
+    Konv. punktweise $<==>$ Für jedes x gibt es ein Ausnahmeindizes N nach welchem die Funktionswerte aller folgenden Funktionen $f_n(x)$ in einer $epsilon$-Umgebung der Grenzfunktion $f(x)$ liegen.
   ]
 ]
 
 #mainbox(title: "$(f_n)_(n >= 1)$ konvergiert punktweise (Folgenkriterium)")[
-  Funktionenfolge $(f_n)_(n >= 1)$ konvergiert punktweise gegen Funktion $f: D -> RR <=> forall x in D: f(x) = limn f_n(x)$. \
-  #text(size: 7pt, fill: luma(120))[
-    Konv. punktweise $<=>$ Für jedes x konvergiert die Funktionenfolge $f_n(x)$ gegen die Grenzfunktion $f(x)$.
+  Funktionenfolge $(f_n)_(n >= 1)$ konvergiert punktweise gegen Funktion $f: D -> RR <==> forall x in D: f(x) = limn f_n(x)$. \
+  #minitext[
+    Konv. punktweise $<==>$ Für jedes x konvergiert die Funktionenfolge $f_n(x)$ gegen die Grenzfunktion $f(x)$.
   ]
 ]
-#text(size: 7pt, fill: luma(120))[
+#minitext[
   Beispiel: Sei $f_n(x) = x/n$ und Grenzfunktion $f(x) = 0$ \
   $x = 3: f_1(3) = 3/1, f_2(3) = 3/2, f_3(3) = 3/3, f_4(3) = 3/4, ... quad f(3) = 0$ \
   $x = 4: f_1(4) = 4/1, f_2(4) = 4/2, f_3(4) = 4/3, f_4(4) = 4/4, ... quad f(4) = 0$ \
@@ -811,24 +801,24 @@ Sei $f(x) = limn f_n(x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jede
 ]
 
 #mainbox(title: "$(f_n)_(n >= 1)$ konvergiert gleichmässig")[
-  Funktionenfolge $(f_n)_(n >= 1)$ konvergiert gleichmässig gegen Funktion $f: D -> RR <=> forall epsilon > 0 exists N >= 1$, \
+  Funktionenfolge $(f_n)_(n >= 1)$ konvergiert gleichmässig gegen Funktion $f: D -> RR <==> forall epsilon > 0 exists N >= 1$, \
   s.t. $forall n >= N, forall x in D: |f_n(x) - f(x)| <= epsilon$. \
-  #text(size: 7pt, fill: luma(120))[
-    Konv. gleichmässig $<=>$ Es gibt ein Ausnahmeindizes N nach welchem die Funktionswerte aller folgenden Funktionen $f_n(x)$ für jedes x in derselben $epsilon$-Umgebung der Grenzfunktion $f(x)$ liegen.
-    $<=>$ Für jedes x konvergiert die Funktionenfolge $f_n(x)$ _gleich schnell_ gegen die Grenzfunktion $f(x)$.
+  #minitext[
+    Konv. gleichmässig $<==>$ Es gibt ein Ausnahmeindizes N nach welchem die Funktionswerte aller folgenden Funktionen $f_n(x)$ für jedes x in derselben $epsilon$-Umgebung der Grenzfunktion $f(x)$ liegen.
+    $<==>$ Für jedes x konvergiert die Funktionenfolge $f_n(x)$ _gleich schnell_ gegen die Grenzfunktion $f(x)$.
   ]
 ]
-#text(size: 7pt, fill: luma(120))[
+#minitext[
   Beispiel: Sei $f_n(x) = x + 1/n$ und Grenzfunktion $f(x) = x$ \
   $x = 3: f_1(3) = 3 + 1/1, f_2(3) = 3 + 1/2, f_3(3) = 3 + 1/3, f_4(3) = 3 + 1/4, ... quad f(3) = 3$ \
   $x = 4: f_1(4) = 4 + 1/1, f_2(4) = 4 + 1/2, f_3(4) = 4 + 1/3, f_4(4) = 4 + 1/4, ... quad f(4) = 4$ \
   $x = 5: f_1(5) = 5 + 1/1, f_2(5) = 5 + 1/2, f_3(5) = 5 + 1/3, f_4(5) = 5 + 1/4, ... quad f(5) = 5$
 ]
 
-- Für $D subset RR$ und Funktionenfolge $f_n: D -> RR$ bestehend aus in D stetigen Funktionen die gleichmässig gegen Funktion $f: D -> RR$ konvergieren $=> f$ ist in D stetig.
+- Für $D subset RR$ und Funktionenfolge $f_n: D -> RR$ bestehend aus in D stetigen Funktionen die gleichmässig gegen Funktion $f: D -> RR$ konvergieren $==> f$ ist in D stetig.
 - Falls $f_n$ gleichmässig zu f konvergiert \
-  $quad => lim_(n -> oo) sup |f_n(x) - f(x)| = 0, x in D$.
-- $(f_n)$ konv. gleichmässig gegen $f(x) => f(x)$ ist stetig
+  $quad ==> lim_(n -> oo) sup |f_n(x) - f(x)| = 0, x in D$.
+- $(f_n)$ konv. gleichmässig gegen $f(x) ==> f(x)$ ist stetig
 - $(f_n)$ konv. gleichmässig gegen $f(x) notimplies f(x)$ ist differenzierbar
 
 #mainbox(title: "$(f_n)_(n >= 1)$ gleichmässig konvergent")[
@@ -838,22 +828,22 @@ Sei $f(x) = limn f_n(x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jede
 ]
 
 #subbox(title: "Cauchy Kriterium für Gleichmässige Konvergenz")[
-  $f_n: D -> RR$ ist gleichmässig konvergent $<=> forall epsilon > 0 exists N >= 1: forall n, m >= N forall x in D: |f_n(x) - f_m(x)| < epsilon$.
+  $f_n: D -> RR$ ist gleichmässig konvergent $<==> forall epsilon > 0 exists N >= 1: forall n, m >= N forall x in D: |f_n(x) - f_m(x)| < epsilon$.
 ]
 
-- Falls $f_n: D -> RR$ gleichmässig konvergente Folge stetiger Funktionen $=> f(x) := lim_(n -> oo) f_n(x)$ stetig.
-- Alle $f_n$ stetig und $f_n -> f => f$ ist stetig.
-- $(f_n)_(n >= 1)$ und $(f'_n)_(n >= 1)$ gleichmässig in $]a, b[$ konvergent mit $limn f_n = f$ und $limn f'_n = p => f$ stetig differenzierbar und $f' = p$.
+- Falls $f_n: D -> RR$ gleichmässig konvergente Folge stetiger Funktionen $==> f(x) := lim_(n -> oo) f_n(x)$ stetig.
+- Alle $f_n$ stetig und $f_n -> f ==> f$ ist stetig.
+- $(f_n)_(n >= 1)$ und $(f'_n)_(n >= 1)$ gleichmässig in $(a, b)$ konvergent mit $limn f_n = f$ und $limn f'_n = p ==> f$ stetig differenzierbar und $f' = p$.
 
 #bspbox(title: "Punktweise vs. gleichmässige Konvergenz")[
   Sei $f_n(x) = x/n$ eine Funktionenfolge.
 
   *Punktweise konvergenz* \
-  Sei $x in [0, oo) =>$ konv. punktweise gegen $f(x) = 0$. \
+  Sei $x in [0, oo) ==>$ konv. punktweise gegen $f(x) = 0$. \
   _Nicht gleichmässig konv._ weil wenn x grösser wird, konv. Funktion langsamer gegen 0.
 
   *Gleichmässig konvergent* \
-  Sei $x in [0, 1] =>$ konv. gleichmässig gegen $f(x) = 0$. \
+  Sei $x in [0, 1] ==>$ konv. gleichmässig gegen $f(x) = 0$. \
   Bei gleichmässiger Konvergenz hängt die Konvergenzgeschwindigkeit nicht von x ab.
   Da x maximal 1 ist, hat es keinen Einfluss auf die Konvergenzgeschwindigkeit. \
   Sei $N > 1/epsilon$, dann gilt $forall n >= N, forall x in [0, 1]:$ \
@@ -865,12 +855,12 @@ Sei $f(x) = limn f_n(x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jede
   Punktw. Limes von $f_n$ auf Definitionsbereich $Omega$ finden. Für fixes, beliebiges x (n ist Variable): $lim_(n -> oo) f_n(x) = f(x)$. \
   *2. f konvergiert gleichmässig prüfen* \
   *A)* Indirekte Methode:
-  - f unstetig $=>$ keine gleichmässige Konvergenz
-  - f stetig, monoton wachsend \ ($f_n(x) <= f_(n+1), forall x in Omega$) und \ $Omega$ kompakt $=>$ gleichmässige Konvergenz
+  - f unstetig $==>$ keine gleichmässige Konvergenz
+  - f stetig, monoton wachsend \ ($f_n(x) <= f_(n+1), forall x in Omega$) und \ $Omega$ kompakt $==>$ gleichmässige Konvergenz
   *B)* Direkte Methode:
   #set enum(numbering: "1.")
   + Berechne $sup_(x in Omega) |f_n(x) - f(x)|$ (entweder man sieht Maximum direkt oder man rechnet die Ableitung von $|f_n(x) - f(x)|$ und setzt sie gleich 0).
-  + Limes für $n -> oo$ von $sup_(x in Omega) |f_n(x) - f(x)|$ berechnen. Wenn Limes $= 0 => f_n$ auf $Omega$ gleichmässig konvergent.
+  + Limes für $n -> oo$ von $sup_(x in Omega) |f_n(x) - f(x)|$ berechnen. Wenn Limes $= 0 ==> f_n$ auf $Omega$ gleichmässig konvergent.
 ]
 
 #bspbox(title: "Beweis Gleichmässig Konvergent")[
@@ -886,11 +876,11 @@ Sei $f(x) = limn f_n(x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jede
 *Reihe der Funktionenfolge* $sum_(k=0)^oo f_k(x)$ ist unendliche Summe der Funktionenfolge $(f_n)_(n >= 1)$.
 #mainbox(title: $sum_(k=0)^oo f_k(x)$ + " konvergiert gleichmässig")[
   Funktionenfolge Ihrer Partialsummen $S_n(x) := sum_(k=0)^n f_k(x)$ konvergiert gleichmässig \
-  $=>$ Reihe $sum_(k=0)^oo f_k(x)$ konvergiert gleichmässig
+  $==>$ Reihe $sum_(k=0)^oo f_k(x)$ konvergiert gleichmässig
 ]
 - Für $D subset RR$, Folge stetiger Funktionen $f_n: D -> RR$. \
   Falls $|f_n(x)| <= c_n quad forall x in D$ und $sum_(n=0)^oo c_n$ konvergent \
-  $=> sum_(n=0)^oo f_n(x)$ gleichmässig konvergent in D und Grenzwert $f(x) := sum_(n=0)^oo f_n(x)$ ist in D stetig.
+  $==> sum_(n=0)^oo f_n(x)$ gleichmässig konvergent in D und Grenzwert $f(x) := sum_(n=0)^oo f_n(x)$ ist in D stetig.
 
 == Potenzreihen
 #subbox(title: "Potenzreihe")[
@@ -898,7 +888,7 @@ Sei $f(x) = limn f_n(x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jede
 ]
 - Folge der Partialsummen $S_n(x)$ ist Funktionenfolge.
 - Folge der Partialsummen $S_n(x)$ einer Potenzreihe ist definiert als: $S_n(x) = sum_(k=0)^n c_k x^k$.
-- Potenzreihe $sum_(n=0)^oo a_n x^n$ konv. gleichmässig $=>$ Folge der Partialsummen $S_n(x)$ konv. gleichmässig
+- Potenzreihe $sum_(n=0)^oo a_n x^n$ konv. gleichmässig $==>$ Folge der Partialsummen $S_n(x)$ konv. gleichmässig
 
 #mainbox(title: $sum_(n=0)^oo a_n x^n$ + " Konvergenzradius um x_0")[
   #grid(
@@ -912,10 +902,10 @@ Sei $f(x) = limn f_n(x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jede
     image("img/konvergenzradius.jpeg", width: 45%),
   )
 ]
-#text(size: 7pt, fill: luma(120))[
+#minitext[
   Sei Potenzreihe: $sumn x^k/k^2$. Dann $r = 1/(lim sup root(n, a_n)) = 1/(lim sup root(k, 1/k^2)) = 1/(lim sup 1/root(k, k^2)) = 1/(1/1) = 1$
 ]
-- Für Potenzreihe mit positiven Konvergenzradius $rho > 0$ und $f(x) := sum_(k=1)^oo c_k x^k, |x| < rho => forall 0 <= r < rho$ konvergiert $sum_(k=0)^oo c_k x^k$ gleichmässig auf $[-r, r]$ und $f: ]-rho, rho[ -> RR$ ist stetig.
+- Für Potenzreihe mit positiven Konvergenzradius $rho > 0$ und $f(x) := sum_(k=1)^oo c_k x^k, |x| < rho ==> forall 0 <= r < rho$ konvergiert $sum_(k=0)^oo c_k x^k$ gleichmässig auf $[-r, r]$ und $f: ]-rho, rho[ -> RR$ ist stetig.
 - Sind stetig im Innern ihres Konvergenzbereichs
 
 == Grenzwert von Funktionenfolgen
@@ -923,17 +913,17 @@ Sei $f(x) = limn f_n(x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jede
 #mainbox(title: "x_0 ist Häufungspunkt")[
   $x_0 in RR$ ist ein Häufungspunkt der Menge D falls \
   $forall delta > 0: (]x_0 - delta, x_0 + delta[ backslash {x_0}) inter D != diameter$.
-  #text(size: 7pt, fill: luma(120))[
+  #minitext[
     $x_0$ ist Häufungspunkt, wenn sich in jeder Umgebung von $x_0$ mindestens ein Punkt aus D befindet.
   ]
 ]
 #grid(
   columns: (1fr, auto),
   [
-    #text(size: 7pt, fill: luma(120))[
+    #minitext[
       Bsp: $D = ]1, 2[ union ]4, 5[ union {6}$, Häufungspunkte: $D' = [1, 2] union [4, 5]$ \
       Nicht Häufungspunkt: 6 weil $x_0 = 6, delta = 1/2$ \
-      $=> ([5.5, 6.5] backslash {6}) inter D = diameter$
+      $==> ([5.5, 6.5] backslash {6}) inter D = diameter$
     ]
   ],
   image("img/haeufungspunkt.jpeg", width: 25%),
@@ -944,7 +934,7 @@ Sei $f(x) = limn f_n(x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jede
     columns: (1fr, auto),
     [
       Sei $x_0$ Häufungspunkt von D und $f: D -> RR$: \
-      $A = lim_(x -> x_0) f(x) <=> forall epsilon > 0, exists delta > 0$ s.t. \
+      $A = lim_(x -> x_0) f(x) <==> forall epsilon > 0, exists delta > 0$ s.t. \
       $forall x in D inter (]x_0 - delta, x_0 + delta[ backslash {x_0}): |f(x) - A| < epsilon$.
     ],
     image("img/grenzwerthäufungspunkt.jpeg", width: 30%),
@@ -954,7 +944,7 @@ Sei $f(x) = limn f_n(x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jede
 #grid(
   columns: (1fr, auto),
   [
-    #text(size: 7pt, fill: luma(120))[
+    #minitext[
       Bsp: \
       Grenzwert existiert, aber f nicht stetig in $x_0 = 1$. \
       Sei $f: RR backslash {]0.8, 1.2[}$. \
@@ -966,21 +956,21 @@ Sei $f(x) = limn f_n(x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jede
 
 #mainbox(title: "Grenzwert in Häufungspunkt x_0 (Folgenkriterium)")[
   Sei $x_0$ Häufungspunkt von D und $f: D -> RR$: \
-  $A = lim_(x -> x_0) f(x) <=> forall (a_n)_(n >= 1) in D backslash {x_0}$ mit $lim_(n -> oo) a_n = x_0$ folgt $lim_(n -> oo) f(a_n) = A$.
-  #text(size: 7pt, fill: luma(120))[
+  $A = lim_(x -> x_0) f(x) <==> forall (a_n)_(n >= 1) in D backslash {x_0}$ mit $lim_(n -> oo) a_n = x_0$ folgt $lim_(n -> oo) f(a_n) = A$.
+  #minitext[
     Für jede Folge mit Grenzwert $x_0$ ist Grenzwert der Bildfolge $A = lim_(x -> x_0) f(x)$.
   ]
 ]
 - f muss am Grenzwert $x_0$ nicht zwingend definiert sein.
-- f ist stetig in $x_0 in D <=> lim_(x -> x_0) f(x) = f(x_0)$.
+- f ist stetig in $x_0 in D <==> lim_(x -> x_0) f(x) = f(x_0)$.
 
 == Rechenregeln Funktionenfolgen
 - Für $f, g: D -> RR$ und falls $exists lim_(x -> x_0) f(x)$ und $lim_(x -> x_0) g(x)$
-  - [$=>$] $lim_(x -> x_0) (f + g)(x) = lim_(x -> x_0) f(x) + lim_(x -> x_0) g(x)$
-  - [$=>$] $lim_(x -> x_0) (f dot g)(x) = lim_(x -> x_0) f(x) dot lim_(x -> x_0) g(x)$
-- Für $f, g: D -> RR, f <= g$ und beide Grenzwerte existieren $=> lim_(x -> x_0) f(x) <= lim_(x -> x_0) g(x)$.
-- Für $f, g_1, g_2: D -> RR$, falls $g_1 <= f <= g_2$ und $lim_(x -> x_0) g_1(x) = lim_(x -> x_0) g_2(x) => exists lim_(x -> x_0) f(x)$ und $lim_(x -> x_0) f(x) = lim_(x -> x_0) g_1(x)$.
-- Grenzwert von Kompositionen: \ $lim_(x -> a) f(x) = b$ und $lim_(x -> b) g(x) = c => lim_(x -> a) f(g(x)) = c$.
+  - [$==>$] $lim_(x -> x_0) (f + g)(x) = lim_(x -> x_0) f(x) + lim_(x -> x_0) g(x)$
+  - [$==>$] $lim_(x -> x_0) (f dot g)(x) = lim_(x -> x_0) f(x) dot lim_(x -> x_0) g(x)$
+- Für $f, g: D -> RR, f <= g$ und beide Grenzwerte existieren $==> lim_(x -> x_0) f(x) <= lim_(x -> x_0) g(x)$.
+- Für $f, g_1, g_2: D -> RR$, falls $g_1 <= f <= g_2$ und $lim_(x -> x_0) g_1(x) = lim_(x -> x_0) g_2(x) ==> exists lim_(x -> x_0) f(x)$ und $lim_(x -> x_0) f(x) = lim_(x -> x_0) g_1(x)$.
+- Grenzwert von Kompositionen: \ $lim_(x -> a) f(x) = b$ und $lim_(x -> b) g(x) = c ==> lim_(x -> a) f(g(x)) = c$.
 
 === Links- und rechtsseitige Grenzwerte
 #image("img/linksrechtsseitigergrenzwert.jpeg", width: 50%)
@@ -994,14 +984,14 @@ Sei $f(x) = limn f_n(x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jede
 #image("img/linksrechtsseitigergrenzwerterweitert.jpeg", width: 50%)
 - *Rechtsseitiger GW Erweitert:* $lim_(x -> x_0^+) f(x) = +oo$ \
   falls $forall N > 0, exists delta > 0 forall x in D inter ]x_0, x_0 + delta[: f(x) > N$.
-  $<=> forall epsilon > 0, exists delta > 0, forall x in ]x_0, x_0 + delta[ inter D: f(x) > 1/epsilon$.
+  $<==> forall epsilon > 0, exists delta > 0, forall x in ]x_0, x_0 + delta[ inter D: f(x) > 1/epsilon$.
 - *Linksseitiger GW Erweitert:* $lim_(x -> x_0^-) f(x) = -oo$ \
   falls $forall N > 0, exists delta > 0 forall x in D inter ]x_0 - delta, x_0[: f(x) < -N$.
-  $<=> forall epsilon > 0, exists delta > 0, forall x in ]x_0 - delta, x_0[ inter D: f(x) < -1/epsilon$.
+  $<==> forall epsilon > 0, exists delta > 0, forall x in ]x_0 - delta, x_0[ inter D: f(x) < -1/epsilon$.
 
 === Unendlicher Grenzwert
-- *Oben:* Für $f: D -> RR^n, D$ nach oben beschränkt, so ist $lim_(x -> +oo) f(x) = L in RR$ falls $forall epsilon > 0, exists c > 0: forall x in D, x > c => |f(x) - L| < epsilon$
-- *Unten:* Für $f: D -> RR^n, D$ nach unten beschränkt, so ist $lim_(x -> -oo) f(x) = L in RR$ falls $forall epsilon > 0, exists c > 0: forall x in D, x < -c => |f(x) - L| < epsilon$
+- *Oben:* Für $f: D -> RR^n, D$ nach oben beschränkt, so ist $lim_(x -> +oo) f(x) = L in RR$ falls $forall epsilon > 0, exists c > 0: forall x in D, x > c ==> |f(x) - L| < epsilon$
+- *Unten:* Für $f: D -> RR^n, D$ nach unten beschränkt, so ist $lim_(x -> -oo) f(x) = L in RR$ falls $forall epsilon > 0, exists c > 0: forall x in D, x < -c ==> |f(x) - L| < epsilon$
 #image("img/unendlichergrenzwert.jpeg", width: 50%)
 
 === Weitere Eigenschaften von Grenzwerten
@@ -1010,11 +1000,11 @@ Sei $f(x) = limn f_n(x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jede
 ]
 
 #mainbox(title: "Exponentenregel")[
-  Seien $f, g: D subset.eq RR -> RR$ stetig in $x_0 in D$ mit $lim_(x -> x_0) f(x) = f(x_0) > 0$ und $<=> lim_(x -> x_0) g(x) = g(x_0)$ (beide Grenzwerte existieren). Dann gilt: $lim_(x -> x_0) f(x)^(g(x)) = f(x_0)^(g(x_0))$.
+  Seien $f, g: D subset.eq RR -> RR$ stetig in $x_0 in D$ mit $lim_(x -> x_0) f(x) = f(x_0) > 0$ und $<==> lim_(x -> x_0) g(x) = g(x_0)$ (beide Grenzwerte existieren). Dann gilt: $lim_(x -> x_0) f(x)^(g(x)) = f(x_0)^(g(x_0))$.
 ]
 
 #howtobox(title: "Grenzwert nicht existiert")[
-  Es gilt: $lim_(x -> a) f(x) = A <=>$ für jede Folge $(a_n)$ in $D backslash {a}$ mit $lim_(n -> +oo) a_n = a$, folgt $lim_(n -> oo) f(a_n) = A$. Dadurch können wir die Existenz eines Grenzwertes widerlegen, wenn wir zwei verschiedene Folgen finden für die gilt: $lim_(n -> oo) a_n = a$ und $lim_(n -> oo) b_n = a$, aber $lim_(n -> oo) f(a_n) != lim_(n -> oo) f(b_n)$.
+  Es gilt: $lim_(x -> a) f(x) = A <==>$ für jede Folge $(a_n)$ in $D backslash {a}$ mit $lim_(n -> +oo) a_n = a$, folgt $lim_(n -> oo) f(a_n) = A$. Dadurch können wir die Existenz eines Grenzwertes widerlegen, wenn wir zwei verschiedene Folgen finden für die gilt: $lim_(n -> oo) a_n = a$ und $lim_(n -> oo) b_n = a$, aber $lim_(n -> oo) f(a_n) != lim_(n -> oo) f(b_n)$.
 ]
 
 == Trigonometrische Funktionen
@@ -1036,7 +1026,7 @@ Common Values: \
 
 == Kreiszahl
 - $sin$ hat auf $]0, +oo[$ min. eine Nullstelle.
-- für $pi := inf{t > 0 | sin(t) = 0} =>$
+- für $pi := inf{t > 0 | sin(t) = 0} ==>$
   + $sin(pi) = 0 quad pi in ]2, 4[$
   + $forall x in ]0, pi[: sin(x) > 0$
   + $e^((i pi)/2) = i$
@@ -1048,7 +1038,7 @@ Weiter gilt $forall x in RR$:
 - $sin(x + pi) = -sin(x) quad cos(x + pi) = -cos(x)$
 - $sin(x + 2 pi) = sin(x) quad cos(x + 2 pi) = cos(x) quad sin(pi - x) = sin(x)$
 - Nullstellen von $sin(x) = {k dot pi | k in ZZ}$ \
-  #text(size: 7pt, fill: luma(120))[
+  #minitext[
     $k dot pi$ bedeutet, dass die Nullstellen an allen ganzzahligen Vielfachen von $pi$ liegen.
   ]
   - $sin(x) > 0, quad forall x in ]2k pi, (2k+1) pi[$
@@ -1063,7 +1053,7 @@ Weiter gilt $forall x in RR$:
 == Abbildungseigenschaften
 - *f Injektiv*, $f: X -> Y$ \
   Keine 2 verschiedenen Elemente in X haben den gleichen Funktionswert in Y. \
-  $forall x_1, x_2 in X: x_1 != x_2 => f(x_1) != f(x_2)$
+  $forall x_1, x_2 in X: x_1 != x_2 ==> f(x_1) != f(x_2)$
 - *f Surjektiv*, $f: X -> Y$ \
   Jedes Element in Y wird mind. einmal angenommen. \
   $forall y in Y exists x in X: f(x) = y$ (mindestens ein x)
@@ -1072,14 +1062,14 @@ Weiter gilt $forall x in RR$:
   $forall y in Y exists x in X: f(x) = y$ (genau ein x)
 
 #bspbox(title: "Zeige Funktion ist Injektiv")[
-  f ist Injektiv $<=> f$ streng monoton $<=> f' > 0$ oder $f' < 0$.
+  f ist Injektiv $<==> f$ streng monoton $<==> f' > 0$ oder $f' < 0$.
 ]
 
 #bspbox(title: "Zeige Funktion ist Surjektiv")[
-  Mit Zwischenwertsatz: Sei der Bildbereich = $]a, b[$
+  Mit Zwischenwertsatz: Sei der Bildbereich = $(a, b)$
   #set enum(numbering: "1.")
   + $lim_(x -> oo) f(x) = b$ und $lim_(x -> -oo) f(x) = a$ zeigen
-  + Sei nun $y in ]a, b[$ beliebig. Wegen der Grenzwerte von f gilt: $exists x_1 < x_2: f(x_1) < y < f(x_2)$. Mit dem Zwischenwertsatz gilt dann: \
+  + Sei nun $y in (a, b)$ beliebig. Wegen der Grenzwerte von f gilt: $exists x_1 < x_2: f(x_1) < y < f(x_2)$. Mit dem Zwischenwertsatz gilt dann: \
     $exists c in [x_1, x_2]: f(c) = y$ und somit ist f surjektiv.
 ]
 
@@ -1092,21 +1082,21 @@ Weiter gilt $forall x in RR$:
 ]
 
 == Definition Differenzierbarkeit von f
-Funktion ist differenzierbar $<=> forall x_i$ eine Tangente gelegt werden kann a.k.a. die Ableitung existiert.
+Funktion ist differenzierbar $<==> forall x_i$ eine Tangente gelegt werden kann a.k.a. die Ableitung existiert.
 #mainbox(title: "f in x_0 differenzierbar")[
   f ist in $x_0$ differenzierbar wenn Grenzwert $lim_(x -> x_0) (f(x) - f(x_0))/(x - x_0) = lim_(h -> 0) (f(x_0 + h) - f(x_0))/h = f'(x_0)$ existiert.
   Dieser Grenzwert mit $f'(x_0)$ bezeichnet. Er heisst die Ableitung von f an der Stelle $x_0$
 ]
 - f in $x_0$ differenzierbar, dann lässt sich linear durch die Tangente annähern.
-- f differenzierbar in $x_0 => f$ stetig in $x_0$. Achtung! $notimpliedby$
+- f differenzierbar in $x_0 ==> f$ stetig in $x_0$. Achtung! $notimpliedby$
 
 #mainbox(title: "f ist differenzierbar")[
-  f differenzierbar $<=> f$ für jedes $x_0 in D$ differenzierbar.
+  f differenzierbar $<==> f$ für jedes $x_0 in D$ differenzierbar.
 ]
 
 === Differenzierbarkeit nach Weierstrass
 #subbox(title: "Differenzierbarkeit nach Weierstrass")[
-  Sei $f: D -> RR, x_0 in D$ ein Häufungspunkt von D. Dann gilt: f ist in $x_0$ differenzierbar $<=>$ Es gibt $c in RR$ und $r: D -> RR$ mit:
+  Sei $f: D -> RR, x_0 in D$ ein Häufungspunkt von D. Dann gilt: f ist in $x_0$ differenzierbar $<==>$ Es gibt $c in RR$ und $r: D -> RR$ mit:
   #set enum(numbering: "1.")
   + $f(x) = f(x_0) + c(x - x_0) + r(x)(x - x_0)$
   + $r(x_0) = 0$ und r stetig in $x_0$
@@ -1115,12 +1105,12 @@ Funktion ist differenzierbar $<=> forall x_i$ eine Tangente gelegt werden kann a
 
 === Alternative Differenzierbarkeit ohne Limes
 Sei $Phi(x) = f'(x_0) + r(x)$:
-- $f: D -> RR$ ist in $x_0$ differenzierbar $<=> exists Phi: D -> RR$ welche
+- $f: D -> RR$ ist in $x_0$ differenzierbar $<==> exists Phi: D -> RR$ welche
   #set enum(numbering: "1.")
   + In $x_0$ stetig ist
   + $f(x) = f(x_0) + Phi(x)(x - x_0) quad forall c in D$.
   + In diesem Fall $Phi(x_0) = f'(x_0)$
-- Für $f: D -> RR$ und $x_0 in D$ Häufigkeitspunkt von D. f in $x_0$ differenzierbar $=> f$ ist in $x_0$ stetig.
+- Für $f: D -> RR$ und $x_0 in D$ Häufigkeitspunkt von D. f in $x_0$ differenzierbar $==> f$ ist in $x_0$ stetig.
 
 == Rechenregeln Ableitung
 Für $D subset RR$, Häufigkeitspunkt $x_0 in D$ von D und $f, g: D -> RR$ in $x_0$ differenzierbar:
@@ -1129,27 +1119,27 @@ Für $D subset RR$, Häufigkeitspunkt $x_0 in D$ von D und $f, g: D -> RR$ in $x
 - $(f/g)'(x_0) = (f'(x_0)g(x_0) - f(x_0)g'(x_0)) / g(x_0)^2, quad g(x_0) != 0$.
 - *(g $compose$ f)'(x_0)* $= (g(f(x)))' = g'(f(x_0)) dot f'(x_0)$ \
   Für $f: D -> E, g: E -> RR, D, E subset RR$, Häufigkeitspunkt $x_0 in D$ und f differenzierbar in $x_0$ und g differenzierbar in $f(x_0)$.
-- *(f^(-1))'(y_0)* $= 1/(f'(x_0)) => (f^(-1))'(y_0) = 1/(f'(f^(-1)(y_0)))$. \
-  Für $f: D -> E$ bijektiv, $x_0$ Häufigkeitspunkt, f in $x_0$ differenzierbar, $f'(x_0) != 0, f^(-1)$ in $y_0 = f(x_0)$ stetig $=> y_0$ ist ein Häufungspunkt von E und $f^(-1)$ ist in $y_0$ differenzierbar.
+- *(f^(-1))'(y_0)* $= 1/(f'(x_0)) ==> (f^(-1))'(y_0) = 1/(f'(f^(-1)(y_0)))$. \
+  Für $f: D -> E$ bijektiv, $x_0$ Häufigkeitspunkt, f in $x_0$ differenzierbar, $f'(x_0) != 0, f^(-1)$ in $y_0 = f(x_0)$ stetig $==> y_0$ ist ein Häufungspunkt von E und $f^(-1)$ ist in $y_0$ differenzierbar.
 - *(c $dot$ f)'(x_0)* $= c dot f'(x_0)$. \
-  #text(size: 7pt, fill: luma(120))[
+  #minitext[
     Konstanter Multiplikator bleibt beim Ableiten erhalten.
   ]
 
-== L'Hopital Bernoulli
+== L'Hospital Bernoulli
 Grenzwerte von Funktionen berechnen die auf einen unbestimmten Ausdruck führen: $0/0, oo/oo, 0 dot oo, oo - oo, 0^0, oo^0, 1^oo$.
 
-#mainbox(title: "L'Hopital Bernoulli")[
+#mainbox(title: "L'Hospital Bernoulli")[
   $ lim_(x -> x_0) f(x)/g(x) = lim_(x -> x_0) f'(x)/g'(x) $
 ]
 
 #bspbox(title: "Grenzwert der Funktion " + $lim_(x -> 2) (x^3 + 2x^2 - 8x)/(x - 2)$)[
   Wir bemerken, wenn $x = 2$, dann $(2^3 + 2(2^2) - 8 dot 2)/(2 - 2) = 0/0$. \
-  Wir verwenden l'hopital: $lim_(x -> 2) (3x^2 + 4x - 8)/(2 - 2) = lim_(x -> 2) 3x^2 + 4x - 8 = 3(2^2) + 4 dot 2 - 9 = 3 dot 4 = 12$
+  Wir verwenden l'Hospital: $lim_(x -> 2) (3x^2 + 4x - 8)/(2 - 2) = lim_(x -> 2) 3x^2 + 4x - 8 = 3(2^2) + 4 dot 2 - 9 = 3 dot 4 = 12$
 ]
 
 #bspbox(title: "Grenzwert der Funktion " + $lim_(x -> 0) (cos(x) - 1)/x^2$)[
-  Führt auf $0/0$, darum lhopital. 2x anwenden. \
+  Führt auf $0/0$, darum l'Hospital. 2x anwenden. \
   $lim_(x -> 0) (cos(x) - 1)/x^2 = lim_(x -> 0) ((cos(x) - 1)')/((x^2)') = lim_(x -> 0) (-sin(x))/(2x) = lim_(x -> 0) (-cos(x))/2 = (-cos(0))/2 = -1/2$
 ]
 
@@ -1177,16 +1167,16 @@ Für Intervall $I subset RR$ und $f: I -> RR$. f ist:
     [ $lambda f(x_1) + (1 - lambda) f(x_0)$ ],
   )
 
-- $f: I -> RR$ ist konvex $<=> forall x_0 < x < x_1 in I, (f(x) - f(x_0))/(x - x_0) <= (f(x_1) - f(x))/(x_1 - x_0)$ \
-  #text(size: 7pt, fill: luma(120))[
-    konvex $<=>$ Sekante zwischen $(x_0, f(x_0))$ & $(x, f(x))$ hat kleinere Steigung als zwischen $(x, f(x))$ & $(x_1, f(x_1))$
+- $f: I -> RR$ ist konvex $<==> forall x_0 < x < x_1 in I, (f(x) - f(x_0))/(x - x_0) <= (f(x_1) - f(x))/(x_1 - x_0)$ \
+  #minitext[
+    konvex $<==>$ Sekante zwischen $(x_0, f(x_0))$ & $(x, f(x))$ hat kleinere Steigung als zwischen $(x, f(x))$ & $(x_1, f(x_1))$
   ]
 - Summe von zwei konvexen(/konkaven) Funktionen ist konvex(/konkav).
-- Für $f: ]a, b[ -> RR$ in $]a, b[$ differenzierbar. \
-  f ist (streng) konvex $<=> f'$ (streng) mon. wachsend \
-  f ist (streng) konkav $<=> f'$ (streng) mon. fallend
-- Für $f: ]a, b[ -> RR$ zwei mal differenzierbar. \
-  $f''(x) >= 0 <=> f$ ist (streng) konvex
+- Für $f: (a, b) -> RR$ in $(a, b)$ differenzierbar. \
+  f ist (streng) konvex $<==> f'$ (streng) mon. wachsend \
+  f ist (streng) konkav $<==> f'$ (streng) mon. fallend
+- Für $f: (a, b) -> RR$ zwei mal differenzierbar. \
+  $f''(x) >= 0 <==> f$ ist (streng) konvex
 
 == Höhere Ableitungen, Definition f Glatt
 #mainbox(title: "Höhere Ableitungen")[
@@ -1194,7 +1184,7 @@ Für Intervall $I subset RR$ und $f: I -> RR$. f ist:
   + Für $n >= 2$ ist f n-mal differenzierbar in D falls $f^((n-1))$ in D differenzierbar ist. n-te Ableitung ist: $f^((n)) = (f^((n-1)))'$.
   + f ist n-mal stetig differenzierbar in D, falls sie n-mal differenzierbar ist und $f^((n))$ stetig in D ist.
   + f ist *glatt* in D, falls $forall n >= 1$, f n-mal in D differenzierbar ist.
-    #text(size: 7pt, fill: luma(120))[
+    #minitext[
       = Unendlich Differenzierbar.
     ]
   Eine n-mal differenzierbare Funktion ist (n-1)-mal stetig differenzierbar.
@@ -1211,21 +1201,21 @@ Für $f, g: D -> RR quad n$-mal differenzierbar:
 - *g $compose$ f:* ist n-mal diff. und $(g compose f)^((n))(x) = sum_(k=1)^n A_(n,k)(x) (g^((k)) compose f)(x), A_(n,k)$ ist ein Polynom.
 
 == Potenzreihen Ableitungsregeln
-- Für Folge $(f_n) in C^1, f_n ->_"glm." f, f'_n ->_"glm." g, f, g: ]a, b[ -> RR$. Dann $f in C^1$ und $f' = g$. Weiter ist
+- Für Folge $(f_n) in C^1, f_n ->_"glm." f, f'_n ->_"glm." g, f, g: (a, b) -> RR$. Dann $f in C^1$ und $f' = g$. Weiter ist
   - f auf $]x_0 - rho, x_0 + rho[$ glatt
   - $f^((j))(x) = sum_(k=1)^oo c_k (k!)/((k-j)!) (x - x_0)^(k-j)$
   - $c_j = (f^((j))(x_0))/(j!)$
 - Für Potenzreihe $sum_(k=0)^oo c_k x^k$ mit $rho > 0$, dann ist
   - $f(x) = sum_(k=0)^oo c_k (x - x_0)^k$ auf $]x_0 - rho, x_0 + rho[$ differenzierbar \
-    #text(size: 7pt, fill: luma(120))[
+    #minitext[
       Durch Potenzreihe gegebene Funktionen ist im Konvergenzbereich differenzierbar.
     ]
   - $f'(x) = sum_(k=1)^oo k c_k (x - x_0)^(k-1) quad forall x in ]x_0 - rho, x_0 + rho[$ \
-    #text(size: 7pt, fill: luma(120))[
+    #minitext[
       Für durch Potenzreihe gegebene Funktion: Ableitungen im Konvergenzbereich gliedweise berechenbar.
     ]
-- Falls glatte Funktion f in einem Intervall $]-rho, rho[$ die Summe einer Potenzreihe $sum_(k=0)^oo c_k x^k$ mit Konvergenzbereich $rho$ ist $=> c_k = (f^((k))(0))/(k!)$.
-- Potenzreihen $=>$ glatte Funktion auf ihrem Konvergenzbereich.
+- Falls glatte Funktion f in einem Intervall $]-rho, rho[$ die Summe einer Potenzreihe $sum_(k=0)^oo c_k x^k$ mit Konvergenzbereich $rho$ ist $==> c_k = (f^((k))(0))/(k!)$.
+- Potenzreihen $==>$ glatte Funktion auf ihrem Konvergenzbereich.
 
 == Sattelpunkt und Wendepunkt
 #grid(
@@ -1243,104 +1233,106 @@ Für $f, g: D -> RR quad n$-mal differenzierbar:
 )
 
 == Extremalstellen
-Für $n >= 0, a < x_0 < b, f: [a, b] -> RR$ in $]a, b[$ (n+1)-mal stetig differenzierbar und $f'(x_0) = f^((2))(x_0) = ... = f^((n))(x_0) = 0$. Falls
-- n gerade und $x_0$ lokales Extremum $=> f^((n+1))(x_0) = 0$
-- n ungerade und $f^((n+1))(x_0) > 0 => x_0$ ist eine strikte lokale Minimalstelle.
-- n ungerade und $f^((n+1))(x_0) < 0 => x_0$ ist eine strikte lokale Maximalstelle.
+Für $n >= 0, a < x_0 < b, f: [a, b] -> RR$ in $(a, b)$ (n+1)-mal stetig differenzierbar und $f'(x_0) = f^((2))(x_0) = ... = f^((n))(x_0) = 0$. Falls
+- n gerade und $x_0$ lokales Extremum $==> f^((n+1))(x_0) = 0$
+- n ungerade und $f^((n+1))(x_0) > 0 ==> x_0$ ist eine strikte lokale Minimalstelle.
+- n ungerade und $f^((n+1))(x_0) < 0 ==> x_0$ ist eine strikte lokale Maximalstelle.
 
-Für $f: [a, b] -> RR$ stetig und in $]a, b[$ zweimal stetig differenzierbar. Für $a < x_0 < b$ und $f'(x_0) = 0$. Falls
-- $f^((2))(x_0) > 0 => x_0$ ist eine strikte lokale Minimalstelle.
-- $f^((2))(x_0) < 0 => x_0$ ist eine strikte lokale Maximalstelle.
+Für $f: [a, b] -> RR$ stetig und in $(a, b)$ zweimal stetig differenzierbar. Für $a < x_0 < b$ und $f'(x_0) = 0$. Falls
+- $f^((2))(x_0) > 0 ==> x_0$ ist eine strikte lokale Minimalstelle.
+- $f^((2))(x_0) < 0 ==> x_0$ ist eine strikte lokale Maximalstelle.
 
 == Implikationen der Ableitungen
 #table(
   columns: (auto, auto, auto, auto, 1fr),
-  align: center,
+  align: (center, center, center, center, left),
   stroke: 0.5pt,
-  [*f(x)*], [*f'(x)*], [*f''(x)*], [*f'''(x)*], [*Eigenschaft*],
-  [= 0], [], [], [], [Nullstelle],
-  [= 0], [= 0], [$!= 0$], [], [2-fache Nullstelle],
-  [], [> 0], [], [], [Strikt Monoton Steigend],
-  [], [< 0], [], [], [Strikt Monoton Fallend],
-  [], [= 0], [< 0], [], [Lokales Maximum],
-  [], [= 0], [> 0], [], [Lokales Minimum],
-  [], [$!= 0$], [= 0], [> 0], [Wendepunkt r $->$ l],
-  [], [$!= 0$], [= 0], [< 0], [Wendepunkt l $->$ r],
-  [], [= 0], [= 0], [> 0], [Sattelpunkt r $->$ l],
-  [], [= 0], [= 0], [< 0], [Sattelpunkt l $->$ r],
-  [], [], [> 0], [], [Streng Konvex],
-  [], [], [< 0], [], [Streng Konkav],
+  [*$f(x)$*], [*$f'(x)$*], [*$f''(x)$*], [*$f'''(x)$*], [*Eigenschaft*],
+  [$= 0$], [], [], [], [Nullstelle],
+  [$= 0$], [$= 0$], [$!= 0$], [], [2-fache Nullstelle],
+  [], [$> 0$], [], [], [Strikt Monoton Steigend],
+  [], [$< 0$], [], [], [Strikt Monoton Fallend],
+  [], [$= 0$], [$< 0$], [], [Lokales Maximum],
+  [], [$= 0$], [$> 0$], [], [Lokales Minimum],
+  [], [$!= 0$], [$= 0$], [$> 0$], [Wendepunkt r $->$ l],
+  [], [$!= 0$], [$= 0$], [$< 0$], [Wendepunkt l $->$ r],
+  [], [$= 0$], [$= 0$], [$> 0$], [Sattelpunkt r $->$ l],
+  [], [$= 0$], [$= 0$], [$< 0$], [Sattelpunkt l $->$ r],
+  [], [], [$> 0$], [], [Streng Konvex],
+  [], [], [$< 0$], [], [Streng Konkav],
 )
 
 === Korrolar Implikationen der Ableitung
-Seien $f, g: [a, b] -> RR$ stetig und in $]a, b[$ differenzierbar und *für alle* $xi in [a, b]$ gilt. (gilt für alle $x, x_1, x_2 in [a, b]$)
-- $f'(xi) = 0$, dann ist f konstant.
+Seien $f, g: [a, b] -> RR$ stetig und in $(a, b)$ differenzierbar und *für alle* $xi in [a, b]$ gilt. (gilt für alle $x, x_1, x_2 in [a, b]$)
+- $f'(xi) = 0$, dann ist $f$ konstant.
 - $f'(xi) = g'(xi)$, dann gibt es $c in RR$ mit $f(x) = g(x) + c$
-- $f'(xi) > 0$, dann ist f auf $[a, b]$ streng mon. wachsend.
-- $f'(xi) >= 0$, dann ist f auf $[a, b]$ monoton wachsend.
-- $f'(xi) < 0$, dann ist f auf $[a, b]$ streng mon. fallend.
-- $f'(xi) <= 0$, dann ist f auf $[a, b]$ monoton fallend.
+- $f'(xi) > 0$, dann ist $f$ auf $[a, b]$ streng mon. wachsend.
+- $f'(xi) >= 0$, dann ist $f$ auf $[a, b]$ monoton wachsend.
+- $f'(xi) < 0$, dann ist $f$ auf $[a, b]$ streng mon. fallend.
+- $f'(xi) <= 0$, dann ist $f$ auf $[a, b]$ monoton fallend.
 - $exists M >= f'(xi)$, dann gilt $|f(x_1) - f(x_2)| <= M |x_1 - x_2|$. \
-  #text(size: 7pt, fill: luma(120))[
+  #minitext[
     Wenn Ableitung obere Schranke M hat, dann ist der Abstand der Funktionswerte immer kleiner als $M dot "Abstand der Argumente"$.
   ]
 
 == Satz von Rolle
 #subbox(title: "Satz von Rolle")[
   #grid(
-    columns: (1fr, auto),
+    columns: (4fr, 1fr),
+    gutter: 0.5em,
     [
-      Sei $f: [a, b] -> RR$ stetig und in $]a, b[$ differenzierbar. Wenn $f(a) = f(b)$ \
-      $<=> exists xi in ]a, b[$ mit $f'(xi) = 0$. \
-      #text(size: 7pt, fill: luma(120))[
-        Wenn differenzierbare Funktion an Punkten a und b den selben Wert annimmt, dann muss es Punkte geben wo $f'(xi) = 0$.
-      ]
+      Sei $f: [a, b] -> RR$ stetig und in $(a, b)$ differenzierbar. Wenn $f(a) = f(b)<==> exists thin xi in (a, b)$ mit $f'(xi) = 0$. \
+      I.e. wenn differenzierbare Funktion an Punkten $a$ und $b$ denselben Wert annimmt, dann muss es Punkt dazwischen geben wo $f'(xi) = 0$.
     ],
-    image("img/satzvonrolle.jpeg", width: 45%),
+    image("img/satzvonrolle.jpeg"),
   )
 ]
 
 == Mittelwertsatz (Lagrange)
-Es gibt im Intervall $[a, b]$ mindestens einen Punkt, wo Tangente parallel zur Sekante durch a und b.
+
 #mainbox(title: "Mittelwertsatz (Lagrange)")[
   #grid(
-    columns: (1fr, auto),
+    columns: (2.2fr, 1fr),
+    gutter: 0.5em,
     [
-      Sei $f: [a, b] -> RR$ stetig und in $]a, b[$ differenzierbar. Dann gibt es $xi in ]a, b[$ mit $f(b) - f(a) = f'(xi)(b - a)$. \
-      $f'(xi) = (f(b) - f(a))/(b - a)$
+      Sei $f: [a, b] -> RR$ stetig und in $(a, b)$ differenzierbar. Dann gibt es $xi in (a, b)$ mit $f(b) - f(a) &= f'(xi)(b - a) \
+      (f(b) - f(a))/(b - a) &= f'(xi)$
     ],
-    image("img/mittelwertsatz.jpeg", width: 50%),
+    image("img/mittelwertsatz.jpeg"),
   )
+  #minitext[ In $(a, b)$ ex. mind. ein Punkt, wo Tangente parallel zur Sekante durch $a$ und $b$ ist. ]
 ]
 
 == Taylor Approximation
-Taylorreihen sind ein Weg, glatte Funktionen als Potenzreihen an einem Entwicklungspunkt a anzunähern.
-#mainbox(title: "T_n Taylor-Polynom vom Grad n")[
+Annäherung glatter Funktionen als Potenzreihen am Entwicklungspunkt $a$.
+#mainbox(title: "T_n Taylor-Polynom vom Grad n")[ #subbox(title: "T_n Taylor-Polynom vom Grad n")[ ]
   Sei $f: I -> RR in CC^oo quad (n+1)$-mal differenzierbar.
   Das n-te Taylor-Polynom $T_n f(x; a)$ an einer Entwicklungspunkt a ist:
   $T_n f(x; a) := sum_(k=0)^n (f^((k))(a))/(k!) dot (x - a)^k$ \
   $= f(a) + f'(a) dot (x - a) + (f''(a))/(2!) dot (x - a)^2 + ...$ \
-  #text(size: 7pt, fill: luma(120))[
+  #minitext[
     Hinweis: $f^((k))(a)$ = k-te Ableitung von f an der Stelle a.
   ]
 ]
 - Entwicklungspunkt a ist Punkt wo die Annäherung startet.
 - x ist der Punkt welchen man annähern möchte.
-- Für $c < a < d, forall x in [c, d] exists xi$ zwischen x & a oder a & x: $f(x) = T_n(f, x, a) + R_n(f, x, a)$ \
-  $quad = sum_(k=0)^n (f^((k))(a))/(k!)(x - a)^k + (f^((n+1))(xi))/((n+1)!)(x - a)^(n+1)$.
-- $R_N(f, x, a) = (f^((n+1))(xi))/((n+1)!)(x - a)^(n+1)$ \
-  #text(size: 7pt, fill: luma(120))[
+- Für $c < a < d, forall x in [c, d] quad exists xi$ zwischen x & a oder a & x: \
+  $
+    f(x) &= underbrace(sum_(k=0)^n (f^((k))(a))/(k!)(x - a)^k, T_n (f, x, a)) + underbrace((f^((n+1))(xi))/((n+1)!)(x - a)^(n+1), R_n (f, x, a))
+  $
+
+  #minitext[
     Restglied $R_n$ ist der Fehler der Approximation.
   ]
 
 #bspbox(title: "Beispiel Taylor Approximation " + $f(x) = sin(x)$)[
   #grid(
-    columns: (1fr, auto),
+    columns: (5fr, 1fr),
     [
-      $T_1(x) = sum_(k=0)^1 (f^((k))(a))/(k!) = (f^((0))(0))/(0!) dot (x - 0)^0 + (f^((1))(0))/(1!) dot (x - 0)^1 = 0 dot 1 + cos(0) dot x^1 = x$ \
+      $T_1(x) \= sum_(k=0)^1 (f^((k))(a))/(k!) = (f^((0))(0))/(0!) dot (x - 0)^0 + (f^((1))(0))/(1!) dot (x - 0)^1 = 0 dot 1 + cos(0) dot x^1 = x$ \
       $T_3(x) = sum_(k=0)^3 (f^((k))(a))/(k!) = (f^((0))(0))/(0!) dot x^0 + (f^((1))(0))/(1!) dot x^1 + (f^((2))(0))/(2!) dot x^2 + (f^((3))(0))/(3!) dot x^3 = (-cos(0))/(3!) dot x^3 + (-sin(0))/(2!) dot x^2 + (cos(0))/1 dot x^1 + 0 = -1/3 dot x^3 + 0 + 1 dot x^1 = -x^3/(3!) + x$
     ],
-    image("img/tayplorpolynome.jpg", width: 60%),
+    image("img/tayplorpolynome.jpg", width: 100%),
   )
 ]
 
@@ -1358,7 +1350,7 @@ Taylorreihen sind ein Weg, glatte Funktionen als Potenzreihen an einem Entwicklu
 - $cos(x) = sum_(n=0)^oo (-1)^n dot x^(2n)/((2n)!), quad forall x$
 
 #bspbox(title: "Taylor Approximation " + $f(x) = x^x$)[
-  Sei $f(x) = x^x, N = 3$, und $x_0 = 1$. Suche die Approximation für $(7/5)^(7/5) (=> x/x => x = 7/5)$.
+  Sei $f(x) = x^x, N = 3$, und $x_0 = 1$. Suche die Approximation für $(7/5)^(7/5) (==> x/x ==> x = 7/5)$.
   - 1. $f'(x), f''(x)$ und $f'''(x)$ berechnen.
   - 2. $f(x) = f(x_0) + f'(x_0)(x - 1) + (f''(x_0))/2 (x - 1)^2 + (f'''(x_0))/6 (x - 1)^3$
   - 3. $f(7/5) = 1 + (7/5 - 1) + 2/2(7/5 - 1)^2 + 3/6(7/5 - 1)^3 = 199/125 = 1.592$
@@ -1401,11 +1393,11 @@ Taylorreihen sind ein Weg, glatte Funktionen als Potenzreihen an einem Entwicklu
     - *Partition* P ist eine endliche Teilmenge $P subset.neq [a, b], {a, b} subset.eq P$. \
       $P = {a = x_0 < x_1 < ... < x_n = b}$
     - *Feinheit:* $delta(P) := max_(1 <= i <= n) delta_i = max_(1 <= i <= n) (x_i - x_(i-1))$ \
-      #text(size: 7pt, fill: luma(120))[
+      #minitext[
         = länge des grössten Teilintervalls
       ]
-    - *$P'$ ist Verfeinerung* von $P <=> P subset P'$. \
-      #text(size: 7pt, fill: luma(120))[
+    - *$P'$ ist Verfeinerung* von $P <==> P subset P'$. \
+      #minitext[
         = $P'$ enthält mehr Punkte, unterteilt daher in mehr Abschnitte, ist deshalb genauere.
       ]
     - *Zwischen Punkte:* $xi_i in I_i$.
@@ -1424,7 +1416,7 @@ Taylorreihen sind ein Weg, glatte Funktionen als Potenzreihen an einem Entwicklu
 ]
 - $underline(S)(f) <= overline(S)(f)$.
 - $underline(S)(f, P_1) <= overline(S)(f, P_2) quad forall P_1, P_2 subset I$. \
-  #text(size: 7pt, fill: luma(120))[ obersumme ist grösser als untersumme für jede beliebigen Partitionen ]
+  #minitext[ obersumme ist grösser als untersumme für jede beliebigen Partitionen ]
 - $underline(S)(f, P) <= underline(S)(f, P') <= overline(S)(f, P') <= overline(S)(f, P) quad forall P' subset P subset I$. \
   #text(
     size: 7pt,
@@ -1439,22 +1431,22 @@ Taylorreihen sind ein Weg, glatte Funktionen als Potenzreihen an einem Entwicklu
 == Riemann Integrierbar Kriterien
 #mainbox(title: "f Riemann-integrierbar")[
   Beschränkte Funktion $f: [a, b] -> RR$ ist integrierbar
-  - $<=> s(f) = S(f) =: integral_a^b f(x) d x$. \
-    #text(size: 7pt, fill: luma(120))[ ($delta_i = d x$) \
+  - $<==> s(f) = S(f) =: integral_a^b f(x) d x$. \
+    #minitext[ ($delta_i = d x$) \
       Integrierbar, wenn unter- und obersumme gleich sind. ]
-  - $<=> forall epsilon > 0 exists P in PP(I), S(f, P) - s(f, P) < epsilon$.
-  - $<=> forall epsilon > 0 exists delta > 0: forall P in PP_delta(I), S(f, P) - s(f, P) < epsilon$.
-  - mit $A := integral_a^b f(x) d x <=> forall epsilon > 0 exists delta > 0: forall P in PP_delta(I), xi_i in [x_(i-1), x_i], |A - sum_(i=1)^n f(xi_i) delta_i| < epsilon$.
-  - $<=> exists lim_(delta P -> 0) S(f, P, xi) =: integral_a^b f(x) d x$.
+  - $<==> forall epsilon > 0 exists P in PP(I), S(f, P) - s(f, P) < epsilon$.
+  - $<==> forall epsilon > 0 exists delta > 0: forall P in PP_delta(I), S(f, P) - s(f, P) < epsilon$.
+  - mit $A := integral_a^b f(x) d x <==> forall epsilon > 0 exists delta > 0: forall P in PP_delta(I), xi_i in [x_(i-1), x_i], |A - sum_(i=1)^n f(xi_i) delta_i| < epsilon$.
+  - $<==> exists lim_(delta P -> 0) S(f, P, xi) =: integral_a^b f(x) d x$.
 ]
-- $f: [a, b] -> RR$ stetig $=> f$ auf $[a, b]$ integrierbar. \
-  #text(size: 7pt, fill: luma(120))[ Jede stetige funktion auf kompaktem Intervall ist integrierbar. ]
-- $f: [a, b] -> RR$ monoton $=> f$ auf $[a, b]$ integrierbar.
-- $a < b < c, f: [a, c] -> RR$ beschränkt mit $f|_[a,b]$ und $f|_[b,c]$ integrierbar $=> f$ integrierbar und $integral_a^c f(x) d x = integral_a^b f(x) d x + integral_b^c f(x) d x$. \
-  #text(size: 7pt, fill: luma(120))[ Monotonie von Integralen ]
+- $f: [a, b] -> RR$ stetig $==> f$ auf $[a, b]$ integrierbar. \
+  #minitext[ Jede stetige funktion auf kompaktem Intervall ist integrierbar. ]
+- $f: [a, b] -> RR$ monoton $==> f$ auf $[a, b]$ integrierbar.
+- $a < b < c, f: [a, c] -> RR$ beschränkt mit $f|_[a,b]$ und $f|_[b,c]$ integrierbar $==> f$ integrierbar und $integral_a^c f(x) d x = integral_a^b f(x) d x + integral_b^c f(x) d x$. \
+  #minitext[ Monotonie von Integralen ]
 - $integral_a^a f(x) d x = 0 quad integral_a^b f(x) d x = -integral_b^a f(x) d x$
-- kompaktes Intervall $I subset RR$ mit Endpkt. a,b, Funktionen $f, g: I -> RR$ beschränkt, integrierbar & $alpha, beta in RR => integral_a^b (alpha f(x) + beta g(x)) d x = alpha integral_a^b f(x) d x + beta integral_a^b g(x) d x$ & $alpha f_1 + beta f_2$ integrierbar. \
-  #text(size: 7pt, fill: luma(120))[ Gebietsadditivität ]
+- kompaktes Intervall $I subset RR$ mit Endpkt. a,b, Funktionen $f, g: I -> RR$ beschränkt, integrierbar & $alpha, beta in RR ==> integral_a^b (alpha f(x) + beta g(x)) d x = alpha integral_a^b f(x) d x + beta integral_a^b g(x) d x$ & $alpha f_1 + beta f_2$ integrierbar. \
+  #minitext[ Gebietsadditivität ]
 
 === Rechenregeln Integrierbare Funktionen
 #subbox(title: "Weitere integrierbare Funktionen")[
@@ -1463,17 +1455,17 @@ Taylorreihen sind ein Weg, glatte Funktionen als Potenzreihen an einem Entwicklu
 ]
 
 Für $f, g: [a, b] -> RR$ beschränkt integrierbar:
-- falls $f(x) <= g(x) quad forall x in [a, b] => integral_a^b f(x) d x <= integral_a^b g(x) d x$.
+- falls $f(x) <= g(x) quad forall x in [a, b] ==> integral_a^b f(x) d x <= integral_a^b g(x) d x$.
 - $|integral_a^b f(x) d x| <= integral_a^b |f(x)| d x$.
 - $|integral_a^b f(x)g(x) d x| <= sqrt(integral_a^b f^2(x) d x) sqrt(integral_a^b g^2(x) d x)$.
 - Für Intervall $I subset RR$ und $f: I -> RR$ stetig:
-  - Für $a, b, c in RR$, Intervall $[a+c, b+c] in I => integral_(a+c)^(b+c) f(x) d x = integral_a^b f(t+c) d t$.
-  - Für $a, b, c in RR, c != 0$, Intervall $[a dot c, b dot c] in I => integral_a^b f(c dot t) d t = 1/c integral_(a c)^(b c) f(x) d x$.
+  - Für $a, b, c in RR$, Intervall $[a+c, b+c] in I ==> integral_(a+c)^(b+c) f(x) d x = integral_a^b f(t+c) d t$.
+  - Für $a, b, c in RR, c != 0$, Intervall $[a dot c, b dot c] in I ==> integral_a^b f(c dot t) d t = 1/c integral_(a c)^(b c) f(x) d x$.
 
 == Unbestimmtes Integral
 #mainbox(title: "Unbestimmtes Integral")[
   $integral f(x) d x = F(x) + C$ \
-  #text(size: 7pt, fill: luma(120))[
+  #minitext[
     Menge aller Aufleitungen von f(x) a.k.a. aller Stammfunkt. C = Integrationskonstante.
   ]
 ]
@@ -1482,14 +1474,14 @@ Für $f, g: [a, b] -> RR$ beschränkt integrierbar:
 Flächeninhalt unter der Kurve zwischen den Punkten a und b
 #mainbox(title: "Bestimmtes Integral")[
   $integral_a^b f(x) d x = limn sum_(i=1)^n f(xi_i) dot (x_i - x_(i-1)) = F(b) - F(a)$ \
-  #text(size: 7pt, fill: luma(120))[
+  #minitext[
     Grenzwert der Riemann-Summe wenn Anzahl Teilintervalle n gegen unendlich geht.
   ]
 ]
 
 #bspbox(title: $integral_0^1 (x^2 - 6x + 8)/(x + 1)$ + " Bestimmtes Integral berechnen")[
   $integral_0^1 (x^2 - 6x + 8)/(x + 1) = integral_0^1 (((x + 1)(x - 7))/(x + 1) + 15/(x + 1)) = integral_0^1 (x - 7) + 15 dot integral_0^1 1/(x + 1)$ \
-  Stammfunktion finden $=> (1/2 (x - 7)^2) |_0^1 + 15 dot (ln|x + 1|) |_0^1$ \
+  Stammfunktion finden $==> (1/2 (x - 7)^2) |_0^1 + 15 dot (ln|x + 1|) |_0^1$ \
   $= 1/2(1^2 - 14 + 49) - 1/2 dot 49 + 15(ln(2) - ln(0)) = 18 - 24.5 + 15 dot ln(2)$
 ]
 
@@ -1499,17 +1491,17 @@ Flächeninhalt unter der Kurve zwischen den Punkten a und b
     columns: (1fr, auto),
     [
       $f: [a, b] -> RR$ stetig \
-      $=> exists xi in [a, b]$ mit $integral_a^b f(x) d x = f(xi) (b - a)$.
+      $==> exists xi in [a, b]$ mit $integral_a^b f(x) d x = f(xi) (b - a)$.
     ],
     image("img/riemannmittelwertsatz.jpeg", width: 50%),
   )
 ]
-- für $f, g: [a, b] -> RR, f$ stetig, g beschränkt integrierbar und $g(x) >= 0 quad forall x in [a, b] => exists xi in [a, b], integral_a^b f(x)g(x) d x = f(xi) integral_a^b g(x) d x$.
+- für $f, g: [a, b] -> RR, f$ stetig, g beschränkt integrierbar und $g(x) >= 0 quad forall x in [a, b] ==> exists xi in [a, b], integral_a^b f(x)g(x) d x = f(xi) integral_a^b g(x) d x$.
 
 == Stammfunktion
 #subbox(title: "Stammfunktion F")[
   $F: [a, b] -> RR$ ist Stammfunktion von f \
-  $<=> F$ (stetig) differenzierbar in $[a, b]$ & $F' = f$ in $[a, b]$.
+  $<==> F$ (stetig) differenzierbar in $[a, b]$ & $F' = f$ in $[a, b]$.
 ]
 "f integrierbar" impliziert _nicht_, dass eine Stammfunktion existiert. Beispiel:
 $
@@ -1523,8 +1515,8 @@ $
 Für stetige Funktion existiert immer eine Stammfunktion.
 #mainbox(title: "Hauptsatz Differential-/Integralrechnung")[
   $F(x) = integral_a^x f(t) d t$ ist Stammfunktion von f in $[a, b]$. \
-  $<=> F'(x) = f(x) quad forall x in [a, b]$. \
-  #text(size: 7pt, fill: luma(120))[
+  $<==> F'(x) = f(x) quad forall x in [a, b]$. \
+  #minitext[
     Hinweis: f ist stetig und Stammfunktion F ist in [a, b] stetig differenzierbar
   ]
 ]
@@ -1532,7 +1524,7 @@ Für stetige Funktion existiert immer eine Stammfunktion.
 == Fundamentalsatz der Analysis
 Bestimmtes Integral von f im Intervall $[a, b]$ berechnen.
 #mainbox(title: "Fundamentalsatz der Analysis")[
-  #text(size: 7pt, fill: luma(120))[
+  #minitext[
     $sum_a^b F'(x) triangle x =$
   ]
   $integral_a^b f(x) d x = F(b) - F(a)$
@@ -1568,7 +1560,7 @@ Integral von produkt von Funktionen vereinfachen.
 #mainbox(title: "Partielle Integrationsregel")[
   Sei $a < b$ und $f, g: [a, b] -> RR$ stetig differenzierbar. \
   $integral_a^b f(x)g'(x) d x = f(x)g(x)|_a^b - integral_a^b f'(x)g(x) d x$ \
-  #text(size: 7pt, fill: luma(120))[
+  #minitext[
     $= f(b)g(b) - f(a)g(a) - integral_a^b f'(x)g(x) d x$
   ]
 ]
@@ -1578,17 +1570,17 @@ Integral von produkt von Funktionen vereinfachen.
 
 #bspbox(title: $I = integral_0^1 x e^x d x$ + " (bestimmt, partielle Integration)")[
   $I = integral_0^1 x e^x d x = f g |_0^1 - integral_0^1 f' g d x$ \
-  Wahl 1: $f(x) = x, g'(x) = e^x => x e^x |_0^1 - integral_0^1 1 e^x d x$ (easier) \
+  Wahl 1: $f(x) = x, g'(x) = e^x ==> x e^x |_0^1 - integral_0^1 1 e^x d x$ (easier) \
   $= x e^x |_0^1 - integral_0^1 e^x d x = x e^x |_0^1 - e^x |_0^1 = e - (e - 1) = 1$
 
-  #text(size: 7pt, fill: luma(120))[
-    Wahl 2: $f(x) = e^x, g'(x) = x => x^2/2 e^x|_0^1 - integral_0^1 x^2/2 e^x d x$ (useless)
+  #minitext[
+    Wahl 2: $f(x) = e^x, g'(x) = x ==> x^2/2 e^x|_0^1 - integral_0^1 x^2/2 e^x d x$ (useless)
   ]
 ]
 
 #bspbox(title: $I = integral log(x) d x$ + " (unbestimmt, partielle Integration)")[
   $I = integral ln(x) d x = integral ln(x) 1 d x$. Wahl: $f(x) = ln(x), g'(x) = 1$. \
-  $=> integral ln(x) 1 d x = ln(x) x - integral 1/x x d x = x ln(x) - x + C$
+  $==> integral ln(x) 1 d x = ln(x) x - integral 1/x x d x = x ln(x) - x + C$
 ]
 
 #bspbox(title: $I = integral_(-oo)^0 x exp(3x) d x$ + " (uneigentlich, partielle Integration)")[
@@ -1604,31 +1596,31 @@ Integral von produkt von Funktionen vereinfachen.
 Integral mit verketteten Funktionen vereinfachen.
 #mainbox(title: "Substitutionsregel")[
   Für $a < b, phi: [a, b] -> RR$ stetig differenzierbar, Intervall $I subset RR$ mit $phi([a, b]) subset I$ und $f: I -> RR$ stetig
-  $=> integral_a^b f(phi(t)) phi'(t) d t = integral_(phi(a))^(phi(b)) f(x) d x$.
+  $==> integral_a^b f(phi(t)) phi'(t) d t = integral_(phi(a))^(phi(b)) f(x) d x$.
 ]
 
 - 2 Richtungen:
-  - $integral_a^b f(phi(t)) phi'(t) d t$ (Produkt von Funktion & Ihrer Ableitung) $=>$ Anwendung von links nach rechts.
-  - Integral in der Form $integral_alpha^beta f(x) d x =>$ Anwendung von rechts nach links $=>$ versuch einer Substitution mittels $x = phi(t)$, wobei $phi(t_0) = alpha$ und $phi(t_1) = beta$. \
-    #text(size: 7pt, fill: luma(120))[ Das Muster wie bei Links nach Rechts ist nicht zu erkennen. ]
+  - $integral_a^b f(phi(t)) phi'(t) d t$ (Produkt von Funktion & Ihrer Ableitung) $==>$ Anwendung von links nach rechts.
+  - Integral in der Form $integral_alpha^beta f(x) d x ==>$ Anwendung von rechts nach links $==>$ versuch einer Substitution mittels $x = phi(t)$, wobei $phi(t_0) = alpha$ und $phi(t_1) = beta$. \
+    #minitext[ Das Muster wie bei Links nach Rechts ist nicht zu erkennen. ]
 - *Achtung!* Bei beiden Richtungen beachten, dass die ursprünglichen Grenzen im Integral von t, nun für x angepasst werden müssen.
 - Unbestimmtes Integral $integral f(x) d x |_{x=phi(t)} = integral f(phi(t))phi'(t) d t + c$.
 
 #bspbox(title: $integral_0^1(1+t^2)^2022 dot t dot d t$ + " mit Substitution (Links nach Rechts)")[
   #set enum(numbering: "1.")
   + Innere Funktion substitutieren und d x berechnen: \
-    $phi(t) = 1+t^2 = x, phi'(t) = 2t = (d x)/(d t) => d x = 2t d t, f(x) = x^2022$
+    $phi(t) = 1+t^2 = x, phi'(t) = 2t = (d x)/(d t) ==> d x = 2t d t, f(x) = x^2022$
   + Erkenne Muster der linken Seite. $phi'(t)$ ist in t versteckt: \
     $integral_0^1(1+t^2)^2022 dot t dot d t = integral_0^1(1+t^2)^2022 dot 1/2 dot 2t dot d t$
   + Substitutionsregel mit Grenzen für $x = phi(x)$ angepasst: $phi(0) = 1$ & $phi(1) = 2$ \
-    $=> 1/2 dot integral_(phi(0))^(phi(1)) x^2022 d x = integral_1^2 x^2022 d x$
+    $==> 1/2 dot integral_(phi(0))^(phi(1)) x^2022 d x = integral_1^2 x^2022 d x$
   + Wert des Integrals berechnen: $= x^2023/(2 dot 2023) |_1^2 = 2^2022/2023 - 1/(2 dot 2023)$
 ]
 
 #bspbox(title: $integral e^(1/x)/x^2 d t$ + " mit Substitution (Links nach Rechts)")[
   #set enum(numbering: "1.")
   + Innere Funktion substitutieren und d x berechnen: \
-    $phi(t) = 1/t = x, phi'(t) = -1/t^2 = (d x)/(d t) => d x = -t^2 d t$
+    $phi(t) = 1/t = x, phi'(t) = -1/t^2 = (d x)/(d t) ==> d x = -t^2 d t$
   + Erkenne Muster der linken Seite. $phi'(t)$ ist in $1/t^2$ versteckt. \
     $integral e^(1/t) dot 1/t^2 dot d t = integral e^(1/t) dot -1 dot -1/t^2 dot d t$
   + Substitutionsregel. $= -1 dot integral e^x d x = -e^x + C = -e^(1/t) + C$
@@ -1636,7 +1628,7 @@ Integral mit verketteten Funktionen vereinfachen.
 
 #bspbox(title: $integral_0^1 sqrt(1-x^2) d x$ + " mit Substitution (Rechts nach Links)")[
   Wir nutzen die trigonometrische Eigenschaft $sin^2 + cos^2 = 1$ \
-  $=> 1-sin^2 = cos^2$ um die Wurzel zu eliminieren: \
+  $==> 1-sin^2 = cos^2$ um die Wurzel zu eliminieren: \
   $sin(t) = x, quad cos(t) d t = d x$ \
   $integral_0^1 sqrt(1-x^2) d x = integral_0^(pi/2) sqrt(1-sin^2(t)) cos(t) d t$ \
   $= integral_0^(pi/2) cos(t) dot cos(t) d t = integral_0^(pi/2) cos^2(t) d t$ \
@@ -1656,7 +1648,7 @@ Integral mit verketteten Funktionen vereinfachen.
 #subbox(title: "Integral durch Potenzreihen berechnen")[
   Sei $f(x) = sum_(n=0)^oo c_k x^k$ eine Potenzreihe mit positivem Konvergenzradius $p > 0$. Dann ist für jedes $0 <= r < p$, f auf $[-r,r]$ integrierbar und es gilt \
   $forall x in ]-p,p[: integral_0^x f(t) d t = sum_(k=0)^oo c_k dot (x^(k+1))/(k+1)$ \
-  #text(size: 7pt, fill: luma(120))[
+  #minitext[
     Sei $f(x) = x^m, q = 0, b = 1$. Dann gilt: $integral_0^1 f(x) d x = integral_x^1 x^m d x = x^(m+1)/(m+1)|_0^1 = 1/(m+1)$
   ]
 ]
@@ -1676,14 +1668,14 @@ Integral berechnen für
 #bspbox(title: $integral_0^1 1/sqrt(x) d x$ + ": unbeschränkte Funktion")[
   Sinnloses Integral: $integral_0^1 1/sqrt(x) d x$. Weil $1/sqrt(x)$ undefiniert für $x=0$. \
   Aber $forall epsilon$ ist $1/sqrt(x)$ auf $[epsilon, 1]$ definiert. \
-  $=> integral_0^1 1/sqrt(x) d x = integral_epsilon^1 x^(-1/2) d x = 2 sqrt(x)|_epsilon^1 = 2 dot 1 - 2 dot sqrt(epsilon)$. \
-  $=> lim_(epsilon -> 0) integral_epsilon^1 1/sqrt(x) d x = lim_(epsilon -> 0) 2 - 2 sqrt(epsilon) = 2$.
+  $==> integral_0^1 1/sqrt(x) d x = integral_epsilon^1 x^(-1/2) d x = 2 sqrt(x)|_epsilon^1 = 2 dot 1 - 2 dot sqrt(epsilon)$. \
+  $==> lim_(epsilon -> 0) integral_epsilon^1 1/sqrt(x) d x = lim_(epsilon -> 0) 2 - 2 sqrt(epsilon) = 2$.
 ]
 
 #bspbox(title: $integral_0^oo x^(-2) d x = integral_0^oo 1/x^2 d x$ + ": nicht kompaktes Intervall")[
   Sinnloses Integral: $integral_0^oo 1/x^2 d x$. Weil Grenzwert $oo$ \
   Aber $forall b$ ist $integral_1^b x^(-2) d x = -1/x|_1^b = -1/b + 1 = 1 - 1/b$ \
-  $=> lim_(b -> oo) integral_1^b x^(-2) d x = lim_(b -> oo) 1 - 1/b = 1$.
+  $==> lim_(b -> oo) integral_1^b x^(-2) d x = lim_(b -> oo) 1 - 1/b = 1$.
 ]
 
 === Konverg./Diverg. von uneigentlichen Integralen
@@ -1692,37 +1684,37 @@ Integral berechnen für
 
 #mainbox(title: "Vergleichssatz (Majoranten-/Minorantenkriterium)")[
   $f,g: ]a,b[ -> RR$ stetig mit $f(x) <= g(x) forall x in ]a,b[$
-  - $integral_a^b g(x) d x$ konvergent $=> integral_a^b f(x) d x$ konvergent
-  - $integral_a^b f(x) d x$ divergent $=> integral_a^b g(x) d x$ divergent
+  - $integral_a^b g(x) d x$ konvergent $==> integral_a^b f(x) d x$ konvergent
+  - $integral_a^b f(x) d x$ divergent $==> integral_a^b g(x) d x$ divergent
 ]
 
 #mainbox(title: "Leibnitz-Kriterium")[
   #set enum(numbering: "1.")
   + Sei $f(x)$ auf $[a, oo [$ stetig, monoton fallend und sei $lim_(x -> oo) f(x) = 0$, dann konvergieren die Integrale $integral_a^oo f(x)sin(x) d x$ und $integral_a^oo f(x)cos(x) d x$.
   + Sei $f(x)$ auf $]a,b]$ stetig. Ist $f(x)(x-a)^2$ monoton wachsend und gilt $lim_(x -> a^+) f(x)(x-a)^2 = 0$
-    - $=> integral_a^b f(x)sin(1/(x-a)) d x$ konvergiert
-    - $=> integral_a^b f(x)cos(1/(x-a)) d x$ konvergiert
+    - $==> integral_a^b f(x)sin(1/(x-a)) d x$ konvergiert
+    - $==> integral_a^b f(x)cos(1/(x-a)) d x$ konvergiert
 ]
 
 #mainbox(title: "")[
-  $f: ]a,b] -> RR forall$ Intervall $[alpha + epsilon, b], epsilon > 0$ beschränkt & integrierbar $=> f$ integrierbar, falls $exists lim_(epsilon -> 0^+) integral_(a + epsilon)^b f(x) d x$. Grenzwert ist $integral_a^b f(x) d x$. \
-  #text(size: 7pt, fill: luma(120))[
+  $f: ]a,b] -> RR forall$ Intervall $[alpha + epsilon, b], epsilon > 0$ beschränkt & integrierbar $==> f$ integrierbar, falls $exists lim_(epsilon -> 0^+) integral_(a + epsilon)^b f(x) d x$. Grenzwert ist $integral_a^b f(x) d x$. \
+  #minitext[
     ex: $f(x) = 1/x: ]0, 1]$. Nicht definiert in $x = 0$.
   ]
 ]
 
 - $integral_1^oo 1/x^s d x = lim_(b -> oo) integral_1^b 1/x^s d x$
-  - konvergiert $<=> s > 1$.
-  - konvergent gegen $1/(s-1) <=> s < 1$.
-  - divergent $<=> s <= 1$.
-- $integral_a^b |f(x)|$ konvergent $=> d x integral_a^b f(x) d x$ abs. konv.
+  - konvergiert $<==> s > 1$.
+  - konvergent gegen $1/(s-1) <==> s < 1$.
+  - divergent $<==> s <= 1$.
+- $integral_a^b |f(x)|$ konvergent $==> d x integral_a^b f(x) d x$ abs. konv.
 - Für $f: [a, oo[ -> [0, oo[$ monoton fallend. \
-  Reihe $sum_(n=a)^oo f(n)$ konvergiert $<=> integral_a^oo f(x) d x$ konvergiert & in diesem Fall ist $0 <= sum_(k=a)^oo f(k) - integral_a^oo f(x) d x <= f(a)$. \
-  #text(size: 7pt, fill: luma(120))[
+  Reihe $sum_(n=a)^oo f(n)$ konvergiert $<==> integral_a^oo f(x) d x$ konvergiert & in diesem Fall ist $0 <= sum_(k=a)^oo f(k) - integral_a^oo f(x) d x <= f(a)$. \
+  #minitext[
     ex: Sei $0 < s in RR$. Wann konvergiert Reihe $sum_(k=2)^oo 1/(k(log k)^s)$?
     Sei $f(x) = 1/(x(log x)^s)$. f mon. fallend. \
     $I = integral 1/(x(log x)^s) d x, u = log x, (d u)/(d x) = 1/x$
-    $=> lim_(b -> oo) integral_2^b 1/(x(log x)^s) d x = lim_(b -> oo) integral_(log 2)^(log b) (d u)/u^s = integral_(log 2)^oo (d u)/u^s$
+    $==> lim_(b -> oo) integral_2^b 1/(x(log x)^s) d x = lim_(b -> oo) integral_(log 2)^(log b) (d u)/u^s = integral_(log 2)^oo (d u)/u^s$
   ]
 - Für beidseitig offene Intervalle müssen mir den Grenzwert unabhängig nehmen: $integral_(-oo)^oo f(x) d x = lim_(a -> -oo) lim_(b -> +oo) integral_a^b f(x) d x$.
 - Gaus'sches Integral: $integral_(-oo)^oo e^(-x^2) d x = sqrt(pi)$.
@@ -1743,7 +1735,7 @@ Integral berechnen für
     $A+B = 0$ (no k on LHS) \
     $A-B = 1$ (if A+B = 0, then this must be 1) \
     Adding both equations we get: \
-    $2A = 1 => A = 1/2, quad 1/2 + B = 0 => B = -1/2$
+    $2A = 1 ==> A = 1/2, quad 1/2 + B = 0 ==> B = -1/2$
   + A und B einfügen um Partialbruchzerlegung zu erhalten: \
     $f(x) = (1\/2)/(2k-1) - (1\/2)/(2k+1) = 1/(2(2k-1)) - 1/(2(2k+1))$
 ]
@@ -1771,7 +1763,7 @@ Des weiteren polynomen dessen Eigenschaften sind:
 Für das k-te Bernoulli-Polynom gilt: $B_k(x) = k! P_k(x)$.
 Definiere $B_0=1$ & Bernoulli-Zahlen rekursiv: $B_(k-1) = sum_(i=0)^(k-1) binom(k, i) B_i = 0$.
 
-$=>$ Definition Bernoulli-Polynom: $B_k(x) = sum_(i=0)^k binom(k, i) B_i x^(k-i)$
+$==>$ Definition Bernoulli-Polynom: $B_k(x) = sum_(i=0)^k binom(k, i) B_i x^(k-i)$
 
 Hier ein paar Bernoulli-Polynome: $B_0(x) = 1$, $B_1(x) = x - 1/2$, $B_2(x) = x^2 - x + 1/6$. Nun definieren wir noch:
 $
@@ -1821,20 +1813,95 @@ Abschätzung der Fakultät. Mit der Euler-McLaurin-Formel kombiniert folgt
 $ n! = (sqrt(2 pi n) dot n^n)/e^n dot exp(1/(12n)+R_3(n)) $
 wobei $|R_3(n)| <= sqrt(3)/216 dot 1/n^2 quad forall n >= 1$
 
-= Differenzialgleichungen
+= Differentialgleichungen (DGL)
 
-== Homogene Lösung finden
+== Grundlagen & Klassifizierung
+#mainbox(title: "Definition und Typen")[
+  Ist eine Gleichung, in welcher die gesuchte Funktion sowie deren Ableitungen auftreten.
+  - *Ordnung:* Die maximale Ordnung der in der Gleichung vorkommenden Ableitungen.
+  - *Linearität:* Eine DGL heisst linear, wenn sie sich in der Form $a_n(x)y^((n))(x) + ... + a_1(x)y'(x) + a_0(x)y(x) = s(x)$ schreiben lässt.
+  - *Homogenität:* Störfunktion $s(x) = 0$ $->$ DGL homogen, andernfalls inhomogen.
+  - *Konstante Koeffizienten:* Spezialfall, bei dem alle Vorfaktoren $a_i(x)$ konstante Zahlen sind.
+]
 
-=== Eulerscher Ansatz
-E.g. $y'' + a y' + b y = 0$
-führt zu
-== Ansatz wählen
+#subbox(title: "Aufstellen von Differentialgleichungen")[
+  Typische Situation: Es sind verschiedene Informationen gegeben und gesucht ist die Entwicklung einer bestimmten Grösse in einem kleinen Zeitintervall $Delta t$.
+  - *Population:* $y'(t) = B(t) - T(t)$ (Geburtenrate minus Sterberate).
+  - *Beschränktes Wachstum:* $u'(t) = k dot u(t) (1 - u(t)/L)$ (wobei L die Schranke ist).
+  - *Mechanische Probleme:* Nutzen oft die Formel für Kräfte $F = m y'' = m a$ nach Newton.
+]
+
+== DGL 1. Ordnung lösen
+
+#mainbox(title: "Trennung der Variablen")[
+  Eignet sich besonders für DGLs der Form $y'(x) = f(x) dot g(y)$.
+  *Grundidee:* Alle Ausdrücke mit der unabhängigen Variablen ($x$) auf eine Seite und alle Ausdrücke mit der abhängigen Variablen ($y$) auf die andere Seite bringen.
+  $ (d y)/(d x) = f(x) dot g(y) ==> 1/g(y) d y = f(x) d x ==> integral 1/g(y) d y = integral f(x) d x $
+  Anschliessend werden beide Seiten unbestimmt integriert.
+]
+
+#mainbox(title: "Lineare Substitution")[
+  Falls eine DGL die Form $y' = f(a x + b y + c)$ hat.
+  Die lineare Substitution $u = a x + b y + c$ überführt die Gleichung in eine Differentialgleichung mit trennbaren Variablen.
+]
+
+#mainbox(title: "Variation der Konstanten")[
+  Für lineare, inhomogene DGL 1. Ordnung.
+  *Ansatz:* In der Lösung der homogenen DGL ($y_h$) wird die auftretende Konstante $C$ durch eine Funktion $K(x)$ ersetzt.
+  Beispiel: Ist die homogene Lösung $y_h(x) = C e^x$, lautet der Ansatz $y_p (x) = K(x)e^x$.
+  - Integriert man $K(x)$ *ohne* Integrationskonstante $+C$, erhält man nur $y_p$. Die Lösung ist dann $y = y_h + y_p$.
+  - Integriert man $K(x)$ *mit* Integrationskonstante $+C$, liefert das Einsetzen in den Ansatz *direkt* die allgemeine Lösung!
+]
+
+== Lineare DGL beliebiger Ordnung
+#subbox(title: "Superpositionsprinzip & Fundamentallösungen")[
+  Sind $y_1(x)$ und $y_2(x)$ Lösungen einer linearen, homogenen DGL, so ist auch jede Linearkombination $C_1 y_1(x) + C_2 y_2(x)$ eine Lösung (Superpositionsprinzip).
+  Eine homogene DGL der Ordnung $n$ besitzt $n$ sogenannte Fundamentallösungen ($y_1, ..., y_n$), aus denen sich die allgemeine Lösung zusammensetzt.
+]
+
+=== 1. Homogene Lösung ($y_h$)
+#mainbox(title: "Eulerscher Ansatz")[
+  Für lineare, homogene DGL mit konstanten Koeffizienten verwenden wir den Eulerschen Ansatz $y(x) = e^(lambda x)$.
+  Dies führt uns auf das *charakteristische Polynom*:
+  $p(lambda) = a_n lambda^n + a_(n-1) lambda^(n-1) + ... + a_1 lambda + a_0 = 0$.
+  Abhängig von den berechneten Nullstellen ($lambda$) ergeben sich folgende Fundamentallösungen:
+  - *Einfache reelle Nullstelle* $lambda$: Liefert Lösung $e^(lambda x)$.
+  - *Mehrfache reelle Nullstelle* ($k$-fache Vielfachheit): Liefert $k$ Lösungen: $e^(lambda x), x e^(lambda x), ..., x^(k-1) e^(lambda x)$.
+  - *Komplex konjugierte Nullstellen* $lambda_(1,2) = markhl(a) plus.minus i dot markhl(b, color: mygreen)$: Um trotzdem reelle Lösung zu bekommen, Eulersche Formel nutzen: $e^(markhl(a) x)(C_1 cos(markhl(b, color: mygreen) x) + C_2 sin(markhl(b, color: mygreen) x))$.
+]
+
+
+
+
+=== 2. Partikuläre Lösung ($y_p$)
+Für die Lösung einer inhomogenen DGL muss ein geeigneter Ansatz für die partikuläre Lösung gewählt werden. Der Ansatz richtet sich nach der Störfunktion $s(x)$ (der rechten Seite der DGL):
+
+
+#howtobox(title: "Resonanzfall")[
+  Liegt vor, wenn $s(x)$ (die rechte Seite) oder ein Teil davon in Form und Exponent bereits in der homogenen Lösung auftaucht.
+
+  *Schritt 1: Bestimme die Nullstellen $lambda$ der homogenen Lösung*
+
+  *Schritt 2: Finde das "versteckte $lambda$" der Störfunktion*
+  Jede Störfunktion bringt ihren charakteristischen $lambda$-Wert mit.
+  - *Polynom / Konstante* (z.B. $4, x, x^2$) $==> lambda=0$
+  - *e-Funktion* (z.B. $e^(markhl(3) x)$) $==> lambda=markhl(3)$
+  - *Trigonometrisch* (z.B. $sin(markhl(2, color: myblue) x), cos(markhl(2, color: myblue) x)$) $==> lambda= plus.minus markhl(2, color: myblue) i$
+  - *Kombination* (z.B. $e^(markhl(3) x) sin(markhl(2, color: myblue) x)$) $==> lambda=markhl(3) plus.minus markhl(2, color: myblue) i$
+
+  *Schritt 3:
+  Sind gefundene Nullstellen ein "verstecktes $lambda$"?:*
+  - *Nein:* Standardfall. Nimm Standardansatz aus Tabelle.
+  - *Ja: RESONANZFALL!* Standardansatz mit $x^m$ multiplizieren ($m$ sei Vielfachheit der Nullstelle im char. Polynom).
+]
+
+
 #table(
   columns: (1fr, 1.2fr),
   align: (right + horizon, left + horizon),
   stroke: 0.5pt + luma(200),
   inset: 3pt,
-  [*Rechte Seite* $q(x)$], [*Ansatz für* $y_p (x)$],
+  [*Rechte Seite* $s(x)$], [*Ansatz für* $y_p (x)$],
   [$C e^(a x)$], [$A e^(a x)$],
   [$C cos(b x)$], [$A sin(b x) + B cos(b x)$],
   [$C sin(b x)$], [$A sin(b x) + B cos(b x)$],
@@ -1869,18 +1936,17 @@ führt zu
   ],
 )
 
-
 = Komplexe Zahlen
 #mainbox(title: "Formen & Operationen")[
   $z = x + y i$
-  #text(size: 7pt, fill: luma(120))[ Kartesische Form ],
+  #minitext[ Kartesische Form ],
   $overline(z) = x - i y$
-  #text(size: 7pt, fill: luma(120))[ Konjugation ],
+  #minitext[ Konjugation ],
   $i = sqrt(-1)$ \
   $|z| = sqrt(x^2 + y^2) = z dot overline(z)$
-  #text(size: 7pt, fill: luma(120))[ Betrag ] \
+  #minitext[ Betrag ] \
   $z^(-1) = 1/z = overline(z)/|z|^2, quad forall z != 0$
-  #text(size: 7pt, fill: luma(120))[ Reziproke a.k.a. multiplikative Inverses ]
+  #minitext[ Reziproke a.k.a. multiplikative Inverses ]
 
   $+/-: (x_1 + x_2) + (y_1 + y_2) dot i$ \
   $z_1 dot z_2 = (x_1 + y_1 i) dot (x_2 + y_2 i) quad z_1/z_2 = (z_1 dot overline(z_2))/|z_2|^2$
@@ -1889,7 +1955,7 @@ führt zu
 #mainbox(title: "Konjugation")[
   $z = x + i y in CC -> overline(z) = x - i y in CC$ \
   Die Konjugation hat die folgenden Eigenschaften
-  - i) $z dot overline(z) = (x + i y) dot (x - i y) = x^2 - i^2 dot y^2 \ = x^2 + y^2 = |z|^2 => z^(-1) = overline(z)/|z|^2, quad z != 0$
+  - i) $z dot overline(z) = (x + i y) dot (x - i y) = x^2 - i^2 dot y^2 \ = x^2 + y^2 = |z|^2 ==> z^(-1) = overline(z)/|z|^2, quad z != 0$
   - ii) $overline((z_1 + z_2)) = overline(z_1) + overline(z_2)$
   - iii) $overline((z_1 dot z_2)) = overline(z_1) dot overline(z_2)$
 ]
@@ -1902,38 +1968,40 @@ führt zu
 
 #mainbox(title: "Polarform")[
   #grid(
-    columns: (1fr, auto),
+    columns: (1fr, 1.3fr),
     [
-      Die Polarform von $z = x + i y in CC quad (phi in (- pi, pi])$ sei \
-      $z = r dot e^(i dot phi)$ #text(size: 7pt, fill: luma(120))[ (Euler Form) ] \
-      $z = r dot (cos(phi) + i dot sin(phi))$ #text(size: 7pt, fill: luma(120))[ (Trigonometrische Form) ] \
-      mit $r = ||z|| = sqrt(x^2 + y^2), x = r dot cos(phi), y = r dot sin(phi)$
+      Die Polarform von \
+      $z = x + i y in CC quad \
+      "mit" (phi in (- pi, pi])$ sei \
+      $z = r dot e^(i dot phi)$ #minitext[ (Euler Form) ] \
+      $z = r dot (cos(phi) + i dot sin(phi))$ #minitext[ (Trigonometrische Form) ] \
+      mit $r = ||z|| \= sqrt(x^2 + y^2)$, \
+      $x = r cos(phi), quad y = r sin(phi)$
     ],
-    image("img/polarform.png", width: 40%),
+    [$
+      phi = cases(
+        arctan(y/x) & x > 0,
+        arctan(y/x) + pi & x < 0 "und" y >= 0,
+        arctan(y/x) - pi & x < 0 "und" y < 0,
+        pi/2 & x = 0 "und" y > 0,
+        -pi/2 & x = 0 "und" y < 0,
+        text("undefiniert") & x = 0 "und" y = 0
+      )
+    $],
   )
-  $
-    phi = cases(
-      arctan(y/x) & x > 0,
-      arctan(y/x) + pi & x < 0 "und" y >= 0,
-      arctan(y/x) - pi & x < 0 "und" y < 0,
-      pi/2 & x = 0 "und" y > 0,
-      -pi/2 & x = 0 "und" y < 0,
-      text("undefiniert") & x = 0 "und" y = 0
-    )
-  $
 ]
 
 = Tabellen
 == Grenzwerte von Referenzfolgen
-#text(size: 7pt, fill: luma(120))[
-  Bei Verwendung, schreiben "in der Vorlesung haben wir gesehen dass [FolgeX] gegen [Wert] konvergiert."
+#minitext[
+  Schreiben: "in der Vorlesung haben wir gesehen dass [Folge] gegen [Wert] konvergiert:"
 ]
 
 #table(
   columns: (1fr, 1fr),
   align: left,
   stroke: none,
-  [$limxi sqrt[n](n) = 1$], [],
+
   [$limxi 1/(1+epsilon)^n = 0$], [$limxi (x/y)^n = 0 quad forall x < y$],
   [$limxi 1/x = 0$], [$limxi 1 + 1/x = 1$],
   [$limxi e^x = oo$], [$limxn e^x = 0$],
@@ -1944,7 +2012,7 @@ führt zu
   [$limxi (1+1/x)^b = 1$], [$limxi n^(1/n) = 1$],
   [$lim_(x->+-oo) (1 + 1/x)^x = e$], [$limxi (1-1/x)^x = 1/e$],
   [$lim_(x->+-oo) (1 + k/x)^(m x) = e^(k m)$], [$limxi (x/(x+k))^x = e^(-k)$],
-  [$limxo (a^x -1)/x = ln(a), \ forall a > 0$], [$limxi x^a q^x = 0, \ forall 0 <= q < 1$],
+  [$limxo (a^x -1)/x = ln(a), forall a > 0$], [$limxi x^a q^x = 0, forall 0 <= q < 1$],
   [$limxo (sin x)/x = 1$], [$limxo (sin k x)/x = k$],
   [$limxo 1/cos x = 1$], [$limxo (cos x -1)/x = 0$],
   [$limxo (log 1 - x)/x = -1$], [$limxo x log x = 0$],
@@ -1952,7 +2020,7 @@ führt zu
   [$limxo x/arctan x = 1$], [$limxi arctan x = pi/2$],
   [$limxo (e^(a x)-1)/x = a$], [$limxo ln(x+1)/x = 1$],
   [$lim_(x->1) ln(x)/(x-1) = 1$], [$limxi log(x)/x^a = 0$],
-  [$limxi sqrt[x](x) = 1$], [$limxi (2x)/2^x = 0$],
+  [$limxi root(x, x) = 1$], [$limxi (2x)/2^x = 0$],
 )
 
 == Trivial stetige Funktionen
@@ -1991,21 +2059,21 @@ $f(x) = c$ (c ist Konstante), $f(x) = x$, $f(x) = x^n$, $f(x) = a_n x^n + ... + 
 - $sum_(k=0)^oo q^k$:
   - $|q| >= 1$: divergiert
   - $|q| < 1$: konvergiert zu $1/(1 - q)$ \
-    $quad => sum_(n = 0)^oo q^n = 1/(1-q)$ (Summe) \
-    #text(size: 7pt, fill: luma(120))[
+    $quad ==> sum_(n = 0)^oo q^n = 1/(1-q)$ (Summe) \
+    #minitext[
       Bsp: $sum_(k=0)^oo (1/2)^n = 1/(1-1/2) = 2$
     ]
-  - $|q| = 1$: konvergiert zu $oo => sum_(k=0)^oo 1 = oo$
+  - $|q| = 1$: konvergiert zu $oo ==> sum_(k=0)^oo 1 = oo$
 - $sum_(k=0)^oo (k+1)q^k$ ,Wert: $1/(1-q)^2$
 
 === Teleskopreihe
 - $sum_(n=1)^oo (b_n - b_(n-1)) = sum_(n=1)^oo 1/(n(n+1)) = 1$
-  - $(b_n)_(n >= 1)$ konvergent $=> sum_(k=1)^oo (b_n - b_(n-1))$ konvergent. \
-    #text(size: 7pt, fill: luma(120))[
+  - $(b_n)_(n >= 1)$ konvergent $==> sum_(k=1)^oo (b_n - b_(n-1))$ konvergent. \
+    #minitext[
       Teleskopreihe ist konvergent, wenn zugrundeliegende Folge konvergent.
     ]
   - $sum_(n = 1)^oo (b_n - b_(n-1)) = (limn b_n) - b_0$ \
-    #text(size: 7pt, fill: luma(120))[
+    #minitext[
       Bsp: $sum_(n = 1)^oo (b_n - b_(n-1)) = sum_(n = 1)^oo (n+1)/(n(n+1)) - n/(n(n+1)) = 1/n + 1/(n+1)$ \
       $= (limn b_n) - b_(n-1) = (limn b_n) - b_0 = (limn 1/n) - 1/(n-1) = 0 - 1/(0-1) = 1$ \
       Bsp: $sum_(n = 3)^oo (b_n - b_(n-1)) = (limn b_n) - b_2 = limn 1/n - 1/2 = -1/2$
@@ -2017,7 +2085,7 @@ $f(x) = c$ (c ist Konstante), $f(x) = x$, $f(x) = x^n$, $f(x) = a_n x^n + ... + 
 
 === Alternierende Reihe
 - $sum_(k = 1)^oo (-1)^k a_k$
-  - Wenn $a_k$ monoton fallend & $limn a_k = 0 =>$ konvergent (Leibniz).
+  - Wenn $a_k$ monoton fallend & $limn a_k = 0 ==>$ konvergent (Leibniz).
 
 == Ableitungen
 $F'(1) = 0$, weil Konstante verschwindet beim Ableiten.
@@ -2026,7 +2094,7 @@ $F'(1) = 0$, weil Konstante verschwindet beim Ableiten.
   columns: (auto, auto, auto),
   align: center,
   stroke: 0.5pt,
-  [$F(x)$], [$f(x)$], [$f'(x)$],
+  [*$F(x)$*], [*$f(x)$*], [*$f'(x)$*],
   [$1/6 3x^3$], [$1/2 3x^2$], [$3x$],
   [$1/6 x^3$], [$1/2 x^2$], [$x$],
   [$-1/99 x^(-99)$], [$x^(-100)$], [$-100x^(-101)$],
@@ -2057,7 +2125,7 @@ $F'(1) = 0$, weil Konstante verschwindet beim Ableiten.
   columns: (1fr, 1fr),
   align: center,
   stroke: 0.5pt,
-  [$f(x)$], [$F(x)$],
+  [*$f(x)$*], [*$F(x)$*],
   [$integral f'(x) f(x) d x$], [$1/2(f(x))^2$],
   [$integral f'(x)/f(x) d x$], [$ln|f(x)|$],
   [$integral_(-oo)^oo e^(-x^2) d x$], [$sqrt(pi)$],
