@@ -22,8 +22,14 @@
 ]
 
 #mainbox(title: "Partielle Integration")[
-  $ integral f'(x) g(x) dif x = f(x) g(x) - integral f(x) g'(x) dif x $
+  Seien $f, g$ stetig differenzierbar.
+  
+  $ integral f'(x) g(x) d x = f(x) g(x) - integral f(x) g'(x) d x $
+
+  Für ein Intervall $[a, b]$ gilt entsprechend:
+  $ integral_a^b f'(x)g(x) d x = [f(x)g(x)]_a^b - integral_a^b f(x)g'(x) d x $
 ]
+
 - Meist gilt: Polynome ableiten ($g(x)$), wo das Integral periodisch ist ($sin, cos, e^x, ...$) integrieren ($f'(x)$).
 - Teils: mit $1$ multiplizieren, um partielle Integration anwenden zu können (z.B. im Fall von $integral log(x) dif x$).
 
