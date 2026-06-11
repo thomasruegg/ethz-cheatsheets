@@ -4,8 +4,8 @@
 
 Wir treffen folgende Annahmen:
 - Parameterraum $Theta subset.eq RR^m$
-- Familie von Wahrscheinlichkeitsmassen $(P_vartheta)_(vartheta in Theta)$ auf $(Omega, F)$; für jedes Element im Parameterraum existiert ein Modell / Wahrscheinlichkeitsraum $(Omega, F, P_vartheta)$.
-- Zufallsvariablen $X_1, ..., X_n$ auf $(Omega, F)$
+- Familie von Wahrscheinlichkeitsmassen $(P_vartheta)_(vartheta in Theta)$ auf $(Omega, cal(F))$; für jedes Element im Parameterraum existiert ein Modell / Wahrscheinlichkeitsraum $(Omega, cal(F), P_vartheta)$.
+- Zufallsvariablen $X_1, ..., X_n$ auf $(Omega, cal(F))$
 
 Wir nennen die Gesamtheit der beobachteten Daten $x_1, ..., x_n$ (wobei $x_i = X_i (omega)$) und die ZV $X_1, ..., X_n$ *Stichprobe*.
 

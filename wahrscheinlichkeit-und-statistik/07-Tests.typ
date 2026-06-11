@@ -12,7 +12,7 @@
 
 #mainbox(title: "Definition Test")[
   Ein Test ist ein Paar $(T, K)$, wobei:
-  - $T = t(X_1, ..., X_n)$ die Teststatistik ist, mit einer messoverlineen Funktion $t: RR^n -> RR$.
+  - $T = t(X_1, ..., X_n)$ die Teststatistik ist, mit einer messbaren Funktion $t: RR^n -> RR$.
   - $K subset.eq RR$ der kritische Bereich oder Verwerfungsbereich ist.
 ]
 
@@ -27,7 +27,7 @@ Wir wollen nun anhand der Daten $(X_1 (omega), ..., X_n (omega))$ entscheiden, o
   $ P_theta (T in.not K) = 1 - P_theta (T in K), quad theta in Theta_A $
 ]
 
-*Bemerkung:* Da $T$ eine ZV und somit bezüglich dem Mass $P_theta : F -> [0,1]$ messoverline ist, gilt ${T in K} in F$ und somit ist $P_theta (T in K)$ wohldefiniert.
+*Bemerkung:* Da $T$ eine ZV und somit bezüglich dem Mass $P_theta : cal(F) -> [0,1]$ messbar ist, gilt ${T in K} in cal(F)$ und somit ist $P_theta (T in K)$ wohldefiniert.
 
 == Signifikanzniveau und Macht
 Ein Test hat Signifikanzniveau $alpha in [0,1]$ falls:

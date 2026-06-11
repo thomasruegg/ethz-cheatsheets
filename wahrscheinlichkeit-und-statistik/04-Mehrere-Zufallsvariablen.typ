@@ -51,5 +51,5 @@ Dann sind folgende Aussagen *äquivalent*:
 
 
 == Stetiger Fall - Bedingte Dichte
-Seien $X,Y$ ZV auf $(Omega, cal(A), PP)$ mit gemeinsamer Dichte $f_(X,Y)(x,y)$ und Randdichte $f_Y(y) != 0$. Dann ist die bedingte Dichte von $X$ bedingt durch $Y$: 
-$ f_(X|Y)(x|y) = (f_(X,Y)(x,y))/(f_Y(y)) $
+Seien $X,Y$ ZV auf $(Omega, cal(F), PP)$ mit gemeinsamer Dichte $f_(X,Y)(x,y)$ und Randdichte $f_Y (y) != 0$. Dann ist die bedingte Dichte von $X$ bedingt durch $Y$: 
+$ f_(X|Y)(x|y) = (f_(X,Y)(x,y))/(f_Y (y)) $
