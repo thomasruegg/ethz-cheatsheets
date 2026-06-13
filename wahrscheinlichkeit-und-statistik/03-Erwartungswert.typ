@@ -79,7 +79,8 @@ $ phi(E(X)) <= E(phi(X)) $
 - $cov(X, Y) = 0 =>$ unkorreliert
 - $cov(X, Y) < 0 =>$ negativ korreliert / antikorreliert
 
-Es gilt: $X_i, X_j$ unabhängig $=> X_i, X_j$ unkorreliert.
+Es gilt: $X_i, X_j$ unabhängig $=> X_i, X_j$ unkorreliert. \
+Sowie: $X_i, X_j$ korreliert $=> X_i, X_j$ abhängig.
 
 *Eigenschaften der Kovarianz*\
 Für $X, Y, Z$ mit $E[X_i^2] < oo$ und $a, b, c, d, e, f, g, h in RR$:

@@ -102,7 +102,10 @@
 
 #columns(3, gutter: 1cm)[
   #subbox(title: "Binomischer Lehrsatz")[
-    $ (x + y)^n = sum_(k=0)^n binom(n, k) x^(n-k) y^k quad "mit:" quad binom(n, k) = n! / (k! (n-k)!) $
+    $
+      (x + y)^n & = sum_(k=0)^n binom(n, k) x^(n-k) y^k quad "mit:" quad binom(n, k) = n! / (k! (n-k)!) \
+                & = sum_(k=0)^n binom(n, k) x^k y^(n-k)
+    $
   ]
   #colbreak()
   #subbox(title: "Geometrische Reihe")[
