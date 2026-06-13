@@ -23,7 +23,7 @@
 
 #mainbox(title: "Partielle Integration")[
   Seien $f, g$ stetig differenzierbar.
-  
+
   $ integral f'(x) g(x) d x = f(x) g(x) - integral f(x) g'(x) d x $
 
   Für ein Intervall $[a, b]$ gilt entsprechend:
@@ -164,7 +164,6 @@ Seien $X_1, ..., X_n$ i.i.d. $~ cal(N)(mu, sigma^2)$. Wir erinnern uns an die No
   })
 ]
 
-#colbreak()
 #colbreak()
 #colbreak()
 
