@@ -903,7 +903,7 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
   )
 
   $ r = limn |markhl(a_n)/a_(n+1)| = 1/(limn sup root(n, |a_n|)) $
-  _Hinweis:_ Konv.rad. hängt nur von $markhl(a_n)$ ab, nicht von $x^n$. \
+  _Hinweis:_ Konvergenzradius hängt nur von $markhl(a_n)$ ab, nicht von $x^n$. \
   _Hinweis:_ Konvergenzverhalten jedes Randpunkts $|x - x_0| = r$ muss einzeln untersucht werden.
 ]
 
@@ -911,7 +911,6 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
   Sei Potenzreihe: $sumn x^k/k^2$. Dann $r = 1/(lim sup root(n, a_n)) = 1/(lim sup root(k, 1/k^2)) = 1/(lim sup 1/root(k, k^2)) = 1/(1/1) = 1$
 ]
 
-// TODO: weiterlesen
 - *Gleichmässige Konvergenz im Innern:* Eine Potenzreihe $sum_(k=0)^oo c_k x^k$ mit Konv.radius $r > 0$ konvergiert für jedes feste $r$ mit $0 <= markhl(rho < r)$ auf dem kompakten Teilintervall $[markhl(-rho", " rho)]$ gleichmässig.
 - *Stetigkeit:* Jede Potenzreihe stellt im Innern ihres Konvergenzbereichs $(-r, r)$ eine stetige Funktion dar.
 
@@ -1058,122 +1057,176 @@ cos: RR -> RR "stetig", quad cos(z) &= 1 - z^2/2! + z^4/4! - ... = sum_(n=0)^oo 
   [*#text(fill: rgb("#0c6400"))[$tan(x)$]*], [$0$], [$sqrt(3)/3$], [$1$], [$sqrt(3)$], [$(plus.minus oo)$],
 )
 
-- $e^(i z) = cos(z) + i sin(z)$
-- $sin(-z) = markhl(-)sin(z), quad cos(z) = cos(-z)$
-- $sin(z + w) = sin(z) cos(w) + cos(z) sin(w)$
-- $cos(z + w) = cos(z) cos(w) - sin(z) sin(w)$
-- $sin(z) = (e^(i z) - e^(-i z))/(2i), quad cos(z) = (e^(i z) + e^(-i z))/2$
-- $cos(z)^2 + sin(z)^2 = 1$
-- $sin(2z) = 2 sin(z) cos(z), quad cos(2z) = cos(z)^2 - sin(z)^2$
-- $sin(z)^2 = (1 - cos(2z))/2, quad cos(z)^2 = (1 + cos(2z))/2$
+- *Eulersche Formeln:* \
+  $e^(i x) = cos(x) + i sin(x)$ \
+  $sin(x) = (e^(i x) - e^(-i x))/(2i), quad cos(x) = (e^(i x) + e^(-i x))/2$
+- *Pythagoreische Identitäten:* \
+  $sin^2(x) + cos^2(x) = 1, quad 1/(cos^2(x)) = 1 + tan^2(x)$
+- *Symmetrie (Negative Winkel):* \
+  $sin(-x) = markhl(-)sin(x), quad cos(-x) = cos(x), quad tan(-x) = -tan(x)$
+- *Additionstheoreme:* \
+  $sin(x plus.minus y) = sin(x) cos(y) plus.minus cos(x) sin(y)$ \
+  $cos(x plus.minus y) = cos(x) cos(y) minus.plus sin(x) sin(y)$ \
+  $tan(x plus.minus y) = (tan(x) plus.minus tan(y))/(1 minus.plus tan(x) tan(y))$
+#grid(
+  columns: (1fr, 1fr),
+  [
+    - *Doppelwinkel:* \
+      $sin(2x) = 2 sin(x) cos(x)$ \
+      $cos(2x) = cos^2(x) - sin^2(x) = 2 cos^2(x) - 1 = 1 - 2 sin^2(x)$ \
+      $tan(2x) = (2 tan(x))/(1 - tan^2(x))$
 
-#image("img/TrigonomIDs.png")
+  ],
+  [
+    - *Dreifachwinkel:* \
+      $sin(3x) = 3 sin(x) - 4 sin^3(x)$ \
+      $cos(3x) = 4 cos^3(x) - 3 cos(x)$ \
+      $tan(3x) = (3 tan(x) - tan^3(x))/(1 - 3 tan^2(x))$
+  ],
+)
+- *Halbwinkel / Quadrate:* \
+  $sin^2(x/2) = (1 - cos(x))/2, quad cos^2(x/2) = (1 + cos(x))/2, quad tan^2(x/2) = (1 - cos(x))/(1 + cos(x))$ \
+  *(Alternativ mit Doppelwinkel:* $sin^2(x) = (1 - cos(2x))/2, quad cos^2(x) = (1 + cos(2x))/2$ *)*
+- *Summe zu Produkt (Faktorzerlegung):* \
+  $sin(x) + sin(y) = 2 sin((x+y)/2) cos((x-y)/2)$ \
+  $sin(x) - sin(y) = 2 cos((x+y)/2) sin((x-y)/2)$ \
+  $cos(x) + cos(y) = 2 cos((x+y)/2) cos((x-y)/2)$ \
+  $cos(x) - cos(y) = -2 sin((x+y)/2) sin((x-y)/2)$
 
-== Kreiszahl
-- $sin$ hat auf $(0, +oo)$ min. eine Nullstelle.
-- für $pi := inf{t > 0 | sin(t) = 0} ==>$
-  + $sin(pi) = 0 quad pi in (2, 4)$
-  + $forall x in (0, pi): sin(x) > 0$
-  + $e^((i pi)/2) = i$
-- $x >= sin(x) >= x - x^3/3! quad forall 0 <= x <= sqrt(6)$
-
-Weiter gilt $forall x in RR$:
-- $e^(i pi) = -1 quad e^(2 pi i) = 1$
-- $sin(x + pi/2) = cos(x) quad cos(x + pi/2) = -sin(x) quad sin(pi/2 - x) = cos(x)$
-- $sin(x + pi) = -sin(x) quad cos(x + pi) = -cos(x)$
-- $sin(x + 2 pi) = sin(x) quad cos(x + 2 pi) = cos(x) quad sin(pi - x) = sin(x)$
-- Nullstellen von $sin(x) = {k dot pi | k in ZZ}$ \
-  #minitext[
-    $k dot pi$ bedeutet, dass die Nullstellen an allen ganzzahligen Vielfachen von $pi$ liegen.
-  ]
-  - $sin(x) > 0, quad forall x in ]2k pi, (2k+1) pi[$
-  - $sin(x) < 0, quad forall x in ](2k+1) pi, (2k+2) pi[$
-- Nullstellen von $cos(x) = {pi/2 + k dot pi | k in ZZ}$
-  - $cos(x) > 0, quad forall x in ]-pi/2 + 2k pi, -pi/2 + (2k+1) pi[$
-  - $cos(x) < 0, quad forall x in ]-pi/2 + ((2k+1)/2) pi, -pi/2 + (2k+2) pi[$
-
-/ Tangens: $tan(z) := sin(z)/cos(z), z in.not {pi/2 + pi k}$
-/ Cotangens: $cot(z) := cos(z)/sin(z), z in.not {pi k}$
-
-== Abbildungseigenschaften
-- *f Injektiv*, $f: X -> Y$ \
-  Keine 2 verschiedenen Elemente in X haben den gleichen Funktionswert in Y. \
-  $forall x_1, x_2 in X: x_1 != x_2 ==> f(x_1) != f(x_2)$
-- *f Surjektiv*, $f: X -> Y$ \
-  Jedes Element in Y wird mind. einmal angenommen. \
-  $forall y in Y exists x in X: f(x) = y$ (mindestens ein x)
-- *f Bijektiv (= Injektiv & Surjektiv)*, $f: X -> Y$ \
-  Perfekte Paarung. Jedes Element aus X ist genau einem Element aus Y zugeordnet. \
-  $forall y in Y exists x in X: f(x) = y$ (genau ein x)
-
-#bspbox(title: "Zeige Funktion ist Injektiv")[
-  f ist Injektiv $<==> f$ streng monoton $<==> f' > 0$ oder $f' < 0$.
+== Kreiszahl $pi$
+#text(size: 8.4pt)[
+  #grid(
+    columns: (1fr, 1fr, 1fr),
+    [
+      $e^(i pi) = -1$ \
+      $sin(x + pi/2) = cos(x)$ \
+      $sin(pi/2 - x) = cos(x)$ \
+      $sin(x + pi) = -sin(x)$ \
+      $sin(x + 2 pi) = sin(x)$ \
+      $sin(pi - x) = sin(x)$ \
+    ],
+    [
+      $e^(2 pi i) = 1$ \
+      $cos(x + pi/2) = -sin(x)$ \
+      $cos(pi/2 - x) = sin(x)$ \
+      $cos(x + pi) = -cos(x)$ \
+      $cos(x + 2 pi) = cos(x)$ \
+      $cos(pi - x) = -cos(x)$ \
+    ],
+    [
+      $tan(pi) = 0$ \
+      $tan(x + pi/2) = -1/tan(x)$ \
+      $tan(pi/2 - x) = 1/tan(x)$ \
+      $tan(x + pi) = tan(x)$ \
+      $tan(x + 2 pi) = tan(x)$ \
+      $tan(pi - x) = -tan(x)$ \
+    ],
+  )
 ]
 
-#bspbox(title: "Zeige Funktion ist Surjektiv")[
-  Mit Zwischenwertsatz: Sei der Bildbereich = $(a, b)$
+- Nullstellen von $sin(x) = {k dot pi | k in ZZ}$ \
+  - $sin(x) > 0, quad forall x in (2k pi, (2k+1) pi)$
+  - $sin(x) < 0, quad forall x in ((2k+1) pi, (2k+2) pi)$
+- Nullstellen von $cos(x) = {pi/2 + k dot pi | k in ZZ}$
+  - $cos(x) > 0, quad forall x in (-pi/2 + 2k pi, pi/2 + 2k pi)$
+  - $cos(x) < 0, quad forall x in (pi/2 + 2k pi, 3pi/2 + 2k pi)$
+
+/ Tangens: $tan(z) := sin(z)/cos(z), z in.not {pi/2 + k dot pi}$
+/ Cotangens: $cot(z) := cos(z)/sin(z), z in.not {k dot pi}$
+
+== Abbildungseigenschaften
+#image("img/injectivityAndSurjectivity.png")
+- *$f$ Injektiv*, $f: X -> Y$ \
+  Keine $2$ versch. Elemente in $X$ haben gleichen Funktionswert in $Y$. \
+  $forall x_1, x_2 in X: x_1 != x_2 ==> f(x_1) != f(x_2)$
+- *$f$ Surjektiv*, $f: X -> Y$ \
+  Jedes Element in $Y$ wird mind. einmal angenommen. \
+  $forall y in Y, exists x in X: f(x) = y$ (für mindestens ein $x$)
+- *$f$ Bijektiv (= Injektiv & Surjektiv)*, $f: X -> Y$ \
+  Jedes Element aus $X$ ist genau einem Element aus $Y$ zugeordnet. \
+  $forall y in Y, exists x in X: f(x) = y$ (für genau ein $x$, perfekte Paarung)
+
+#bspbox(title: "Zeige Funktion ist injektiv")[
+  $f$ ist injektiv $<==> f$ streng monoton $<==> f' > 0$ oder $f' < 0$.
+]
+
+#bspbox(title: "Zeige Funktion ist surjektiv")[
+  Mit Zwischenwertsatz: Sei die Zielmenge $(a, b)$ und $f$ eine *stetige* Funktion.
   #set enum(numbering: "1.")
-  + $lim_(x -> oo) f(x) = b$ und $lim_(x -> -oo) f(x) = a$ zeigen
-  + Sei nun $y in (a, b)$ beliebig. Wegen der Grenzwerte von f gilt: $exists x_1 < x_2: f(x_1) < y < f(x_2)$. Mit dem Zwischenwertsatz gilt dann: \
-    $exists c in [x_1, x_2]: f(c) = y$ und somit ist f surjektiv.
+  + Grenzwerte zeigen: $lim_(x -> -oo) f(x) = a$ und $lim_(x -> oo) f(x) = b$ \
+    *(oder genau umgekehrt)*.
+  + Sei nun $y in (a, b)$ beliebig. Wegen der Grenzwerte von $f$ existieren $x_1, x_2 in RR$ mit $f(x_1) < y < f(x_2)$.
+  + Da $f$ stetig ist, gilt nach dem Zwischenwertsatz: \
+    $exists c$ zwischen $x_1$ und $x_2$ mit $f(c) = y$. Da $y$ beliebig gewählt war, wird jeder Wert der Zielmenge angenommen. Somit ist $f$ surjektiv.
 ]
 
 = Differentialrechnung
 == Vorgehen
 #howtobox(title: "Extremalstellen berechnen")[
   #set enum(numbering: "1.")
-  + Erste und Zweite Ableitung berechnen (dazu Rechenregeln Ableitungen nutzen)
+  + Erste und zweite Ableitung berechnen (dazu Rechenregeln Ableitungen nutzen)
   + Implikationen der Ableitungen nutzen.
 ]
 
-== Definition Differenzierbarkeit von f
-Funktion ist differenzierbar $<==> forall x_i$ eine Tangente gelegt werden kann a.k.a. die Ableitung existiert.
-#mainbox(title: "f in x_0 differenzierbar")[
-  f ist in $x_0$ differenzierbar wenn Grenzwert $lim_(x -> x_0) (f(x) - f(x_0))/(x - x_0) = lim_(h -> 0) (f(x_0 + h) - f(x_0))/h = f'(x_0)$ existiert.
-  Dieser Grenzwert mit $f'(x_0)$ bezeichnet. Er heisst die Ableitung von f an der Stelle $x_0$
+== Definition Differenzierbarkeit von $f$
+Funktion ist differenzierbar $<==> forall x_i$ eine Tangente gelegt werden kann
+#mainbox(title: $f "in" x_0 "differenzierbar"$)[
+  $f$ ist in $x_0$ differenzierbar wenn Grenzwert $f'(x_0)$ existiert:$ lim_(x -> x_0) (f(x) - f(x_0))/(x - x_0) = lim_(h -> 0) (f(x_0 + h) - f(x_0))/h = f'(x_0) $
 ]
-- f in $x_0$ differenzierbar, dann lässt sich linear durch die Tangente annähern.
-- f differenzierbar in $x_0 ==> f$ stetig in $x_0$. Achtung! $notimpliedby$
+- $f$ in $x_0$ differenzierbar, dann $f$ linear durch Tangente annäherbar
+- $f$ differenzierbar in $x_0 ==> f$ stetig in $x_0$. Achtung! $notimpliedby$
 
-#mainbox(title: "f ist differenzierbar")[
-  f differenzierbar $<==> f$ für jedes $x_0 in D$ differenzierbar.
-]
-
-=== Differenzierbarkeit nach Weierstrass
-#subbox(title: "Differenzierbarkeit nach Weierstrass")[
-  Sei $f: D -> RR, x_0 in D$ ein Häufungspunkt von D. Dann gilt: f ist in $x_0$ differenzierbar $<==>$ Es gibt $c in RR$ und $r: D -> RR$ mit:
-  #set enum(numbering: "1.")
-  + $f(x) = f(x_0) + c(x - x_0) + r(x)(x - x_0)$
-  + $r(x_0) = 0$ und r stetig in $x_0$
-  Falls dies zutrifft ist $c = f'(x_0)$ eindeutig bestimmt.
+#mainbox(title: $f$ + " ist differenzierbar")[
+  $f$ differenzierbar $<==> f$ für jedes $x_0 in D$ differenzierbar.
 ]
 
-=== Alternative Differenzierbarkeit ohne Limes
-Sei $Phi(x) = f'(x_0) + r(x)$:
-- $f: D -> RR$ ist in $x_0$ differenzierbar $<==> exists Phi: D -> RR$ welche
-  #set enum(numbering: "1.")
-  + In $x_0$ stetig ist
-  + $f(x) = f(x_0) + Phi(x)(x - x_0) quad forall c in D$.
-  + In diesem Fall $Phi(x_0) = f'(x_0)$
-- Für $f: D -> RR$ und $x_0 in D$ Häufigkeitspunkt von D. f in $x_0$ differenzierbar $==> f$ ist in $x_0$ stetig.
+// TODO: darf man weglassen? Ist glaub ich eigentlich nur 1. Taylorpolynom?
+// === Differenzierbarkeit nach Weierstrass
+// #subbox(title: "Differenzierbarkeit nach Weierstrass")[
+//   Sei $f: D -> RR, x_0 in D$ ein Häufungspunkt von $D$. Dann gilt: $f$ ist in $x_0$ differenzierbar $<==>$ Es gibt $c in RR$ und $r: D -> RR$ mit:
+//   #set enum(numbering: "1.")
+//   + $f(x) = f(x_0) + c(x - x_0) + r(x)(x - x_0)$
+//   + $r(x_0) = 0$ und r stetig in $x_0$
+//   Falls dies zutrifft ist $c = f'(x_0)$ eindeutig bestimmt.
+// ]
 
+// Same here:
+// === Alternative Differenzierbarkeit ohne Limes
+// Sei $Phi(x) = f'(x_0) + r(x)$:
+// - $f: D -> RR$ ist in $x_0$ differenzierbar $<==> exists Phi: D -> RR$ welche
+//   #set enum(numbering: "1.")
+//   + In $x_0$ stetig ist
+//   + $f(x) = f(x_0) + Phi(x)(x - x_0) quad forall c in D$.
+//   + In diesem Fall $Phi(x_0) = f'(x_0)$
+// - Für $f: D -> RR$ und $x_0 in D$ Häufigkeitspunkt von D. f in $x_0$ differenzierbar $==> f$ ist in $x_0$ stetig.
+
+
+// TODO: Hier weiterlesen
 == Rechenregeln Ableitung
-Für $D subset RR$, Häufigkeitspunkt $x_0 in D$ von D und $f, g: D -> RR$ in $x_0$ differenzierbar:
-- *(f + g)'(x_0)* $= f'(x_0) + g'(x_0)$.
-- *(fg)'(x_0)* $= f'(x_0)g(x_0) + f(x_0)g'(x_0)$.
-- $(f/g)'(x_0) = (f'(x_0)g(x_0) - f(x_0)g'(x_0)) / g(x_0)^2, quad g(x_0) != 0$.
-- *(g $compose$ f)'(x_0)* $= (g(f(x)))' = g'(f(x_0)) dot f'(x_0)$ \
-  Für $f: D -> E, g: E -> RR, D, E subset RR$, Häufigkeitspunkt $x_0 in D$ und f differenzierbar in $x_0$ und g differenzierbar in $f(x_0)$.
-- *(f^(-1))'(y_0)* $= 1/(f'(x_0)) ==> (f^(-1))'(y_0) = 1/(f'(f^(-1)(y_0)))$. \
-  Für $f: D -> E$ bijektiv, $x_0$ Häufigkeitspunkt, f in $x_0$ differenzierbar, $f'(x_0) != 0, f^(-1)$ in $y_0 = f(x_0)$ stetig $==> y_0$ ist ein Häufungspunkt von E und $f^(-1)$ ist in $y_0$ differenzierbar.
-- *(c $dot$ f)'(x_0)* $= c dot f'(x_0)$. \
+Für $D subset RR$, Häufungspunkt $x_0 in D$ und $f, g: D -> RR$ in $x_0$ differenzierbar:
+- $bold((f + g)'(x_0)) = f'(x_0) + g'(x_0)$.
+- $bold((f g)'(x_0)) = f'(x_0)g(x_0) markhl(+) f(x_0)g'(x_0)$.
+- $bold((f/g)'(x_0)) = (f'(x_0)g(x_0) markhl(-) f(x_0)g'(x_0)) / g(x_0)^2, quad g(x_0) != 0$.
+- $bold((g compose f)'(x_0)) = (g(f(x)))' = g'(f(x_0)) dot f'(x_0)$ \
+  Für $f: D -> E, g: E -> RR, D, E subset RR$, Häufungspunkt $x_0 in D$ und $f$ differenzierbar in $x_0$ und $g$ differenzierbar in $f(x_0)$.
+- $bold((f^(-1))'(y_0)) = 1/(f'(x_0)) = 1/(f'(f^(-1)(y_0)))$ \
+  Für $f: D -> E$ bijektiv, $x_0$ Häufungspunkt, $f$ in $x_0$ differenzierbar, $f'(x_0) != 0, f^(-1)$ in $y_0 = f(x_0)$ stetig $==> y_0$ ist ein Häufungspunkt von E und $f^(-1)$ ist in $y_0$ differenzierbar.
+- $bold((c dot f)'(x_0)) = c dot f'(x_0)$. \
   #minitext[
     Konstanter Multiplikator bleibt beim Ableiten erhalten.
   ]
 
+#bspbox(title: "Beweis: Ableitung der Umkehrfunktion" + $f^(-1) (y)$)[
+  Ausgangspunkt ist die fundamentale Identität der Umkehrfunktion:
+  $f(f^(-1)(y)) = y ==>^("nach "y" ableiten") f'(f^(-1)(y)) dot (f^(-1))'(y) & = 1 \
+  (f^(-1))'(y) & = 1/(f'(f^(-1)(y))) \
+  ("weil" f^(-1)(y) = x) quad quad quad (f^(-1))'(y) & = 1/(f'(x))$
+]
+
 == L'Hospital Bernoulli
 Grenzwerte von Funktionen berechnen die auf einen unbestimmten Ausdruck führen: $0/0, oo/oo, 0 dot oo, oo - oo, 0^0, oo^0, 1^oo$.
 
+// TODO: Hier weiterlesen
 #mainbox(title: "L'Hospital Bernoulli")[
   $ lim_(x -> x_0) f(x)/g(x) = lim_(x -> x_0) f'(x)/g'(x) $
 ]
@@ -2097,14 +2150,11 @@ $f(x) = c$ (c ist Konstante), $f(x) = x$, $f(x) = x^n$, $f(x) = a_n x^n + ... + 
 
 === Geometrische Reihe
 - $sum_(k=0)^oo q^k$:
+  - $|q| < 1$: konvergiert gegen $1/(1 - q) quad$ (Bsp: $sum_(k=0)^oo (1/2)^k = 1/(1-1/2) = 2$)
   - $|q| >= 1$: divergiert
-  - $|q| < 1$: konvergiert zu $1/(1 - q)$ \
-    $quad ==> sum_(n = 0)^oo q^n = 1/(1-q)$ (Summe) \
-    #minitext[
-      Bsp: $sum_(k=0)^oo (1/2)^n = 1/(1-1/2) = 2$
-    ]
-  - $|q| = 1$: konvergiert zu $oo ==> sum_(k=0)^oo 1 = oo$
-- $sum_(k=0)^oo (k+1)q^k$ ,Wert: $1/(1-q)^2$
+    - für $q >= 1$: divergiert *bestimmt* gegen $+oo$ (Bsp: $sum_(k=0)^oo 1 = oo$)
+    - für $q <= -1$: divergiert *unbestimmt* (Reihe oszilliert, z.B. $1 - 1 + 1 - 1 ...$)
+- $sum_(k=0)^oo (k+1)q^k = 1/(1-q)^2 quad$ (für $|q| < 1$)
 
 === Teleskopreihe
 - $sum_(n=1)^oo (b_n - b_(n-1)) = sum_(n=1)^oo 1/(n(n+1)) = 1$
