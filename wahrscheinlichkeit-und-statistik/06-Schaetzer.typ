@@ -37,20 +37,22 @@ $
   L(x_1, ..., x_n; vartheta) = cases(p(x_1, ..., x_n; vartheta) & "falls diskret", f(x_1, ..., x_n; vartheta) & "falls stetig")
 $
 
-Wenn $X_k$ unter $P_vartheta$ i.i.d. sind (analog mit $f_bold(arrow(x))$ und $f_X$):
+Wenn $X_k$ unter $P_vartheta$ i.i.d. sind: $quad quad$ (analog mit $f_bold(arrow(x))$ und $f_X$)
 $ p_bold(arrow(x)) (x_1, ..., x_n; vartheta) = product_(k=1)^n p_X (x_k; vartheta) $
 
 Für jedes $x_1, ..., x_n in W$ sei $t_("ML")(x_1, ..., x_n)$ der Wert, welcher die Funktion $vartheta |-> L(x_1, ..., x_n; vartheta)$ maximiert. Ein Maximum-Likelihood-Schätzer ist dann definiert als:
 $ T_("ML") = t_("ML")(X_1, ..., X_n) in limits(op("arg max"))_(vartheta in Theta) L(X_1, ..., X_n; vartheta) $
 *Notiz:* Nicht vergessen zu zeigen, dass es ein *Maximum* ist.
 
-=== Anwendung der Methode
-Die Maximum-Likelihood-Methode ist ein Weg, um systematisch einen Schätzer zu bestimmen:
-+ Gemeinsame Dichte/Verteilung der ZV finden.
-+ Bestimme davon die Log-Likelihood-Funktion: $f(vartheta) := ln(L(x_1, ..., x_n; vartheta))$.
-+ $f(vartheta)$ nach $vartheta$ ableiten.
-+ Nullstelle von $f'(vartheta)$ finden.
-+ $f''(vartheta) < 0$ oder anderes Argument, dass wir das Maximum gefunden haben (evtl. Randstellen überprüfen!).
+#subbox()[
+  === Anwendung der Methode
+  Die Maximum-Likelihood-Methode ist ein Weg, um systematisch einen Schätzer zu bestimmen:
+  + Gemeinsame Dichte/Verteilung der ZV finden.
+  + Bestimme davon die Log-Likelihood-Funktion: \ $f(vartheta) := ln(L(x_1, ..., x_n; vartheta))$.
+  + $f(vartheta)$ nach $vartheta$ ableiten.
+  + Nullstelle von $f'(vartheta)$ finden.
+  + $f''(vartheta) < 0$ oder anderes Argument, dass wir das Maximum gefunden haben (evtl. Randstellen überprüfen!).
+]
 
 == Momentenmethode /-schätzer
 + Sei $X_1, ..., X_n$ i.i.d. eine Stichprobe.
@@ -59,14 +61,19 @@ Die Maximum-Likelihood-Methode ist ein Weg, um systematisch einen Schätzer zu b
   $ hat(m)_k (x_1, ..., x_n) = g_k (vartheta_1, ..., vartheta_m), quad k in {1, ..., m} $
 + Der Vektor $hat(vartheta)(X_1, ..., X_n)$ heisst *Momentenschätzer* des Parameters $vartheta$.
 
-*Momentenschätzer.*
+*Momentenschätzer.* \
 Der Schätzer $T = (T_1, T_2)$ ist allgemein in jedem Modell $P_vartheta$, in dem $X_1, ..., X_n$ i.i.d. sind, der sogenannte Momentenschätzer für:
 $ (E_vartheta [X], bb(V)_vartheta [X]) $
 Dieser Schätzer ist allerdings nicht erwartungstreu für $(E_vartheta [X], bb(V)_vartheta [X])$. Es gilt zwar:
 $ E_vartheta [T_1] = E_vartheta [overline(X)_n] = E_vartheta [X] $
-aber:
-$ E_vartheta [(overline(X)_n)^2] = 1/n E_vartheta [X^2] + (n-1)/n E_vartheta [X]^2 $
-Daraus folgt:
+aber gemäss ($bb(V)[Y] = E[Y^2] - E[Y]^2$) angewandt auf $overline(X)_n$ gilt:
+$
+  E_vartheta [(overline(X)_n)^2] &= bb(V)_vartheta [overline(X)_n] + E_vartheta [overline(X)_n]^2 \
+  &= 1/n bb(V)_vartheta [X] + E_vartheta [X]^2 quad quad quad  #text(fill: luma(50%), size: 8pt)[$(bb(V)[overline(X)_n] = 1/n bb(V)[X])$] \
+  &= 1/n (E_vartheta [X^2] - E_vartheta [X]^2) + E_vartheta [X]^2 \
+  &= 1/n E_vartheta [X^2] + (n-1)/n E_vartheta [X]^2
+$
+Daraus folgt direkt für die Verzerrung des zweiten Moments:
 $ E_vartheta [T_2] = (n-1)/n dot bb(V)_vartheta [X] != bb(V)_vartheta [X] $
 
 Um einen erwartungstreuen Schätzer $T'$ für $(E_vartheta [X], bb(V)_vartheta [X])$ zu erhalten, verwendet man:
