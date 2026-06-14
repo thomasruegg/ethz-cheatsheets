@@ -68,14 +68,29 @@ $mu$-Schätzer: $mu = overline(X)_n = 1/n sum_(i=1)^n X_i$ \
 + Modell: $X_1, ..., X_n ~ cal(N)(theta, sigma^2)$ i.i.d. unter $PP_theta$
 + Teststatistik $T := (overline(X)_n - mu)/(sqrt(sigma^2 / n)) ~ cal(N)(0,1)$ unter $PP_(theta_0)$
 
-=== T-Test
+=== t-Test
 *Sample i.i.d. normalverteilt, Test für $mu$, $sigma^2$ UNbekannt* \
 Parameter $arrow(theta) = (mu, sigma^2)$ ist zweidimensional! \
 $mu$-Schätzer: $overline(X)_n = 1/n sum_(i=1)^n X_i$ \
 $sigma^2$-Schätzer: $S^2 = 1/(n-1) sum_(i=1)^n (X_i - overline(X)_n)^2 $ \
 + Modell: $X_1, ..., X_n ~ cal(N)(theta, sigma^2)$ i.i.d. unter $PP_arrow(theta)$
-+ Hypothesen: $Theta_0 = ({mu_0} or {mu_0 < x} or {mu_0 > x}) times (0, infinity)$
++ Hypothesen: $Theta_0 = ({mu_0} text(" oder ") {mu <= mu_0} text(" oder ") {mu >= mu_0}) times (0, infinity)$ #text(fill: luma(50%))[$<- "weil" arrow(theta) = (mu, sigma^2)$]
 + Teststatistik $T := (overline(X)_n - mu_0)/(sqrt(S^2 / n)) ~ t_(n-1)$ unter $PP_(theta_0)$
++ Kritischer Bereich $K$: Ansatz für $c$ finden, sodass $PP_(mu_0)[T in K] = alpha$ gilt.
+  - *Linksseitig* ($H_A: mu < mu_0$): Ansatz $K = (-infinity, c_<)$ für ein $c_< in RR$ \
+    Finde $c_<$ s.t. $PP_(mu_0)[T < c_<] = alpha$ \
+    $=> c_< = t_(n-1, alpha) = -t_(n-1, 1-alpha)$ \
+    $=> K = (-infinity, -t_(n-1, 1-alpha))$
+  - *Rechtsseitig* ($H_A: mu > mu_0$): Ansatz $K = (c_>, infinity)$ für ein $c_> in RR$ \
+    Finde $c_>$ s.t. $PP_(mu_0)[T > c_>] = alpha$ \
+    $=> 1 - PP_(mu_0)[T <= c_>] = alpha \
+     => PP_(mu_0)[T <= c_>] = 1 - alpha => c_> = t_(n-1, 1-alpha)$ \
+    $=> K = (t_(n-1, 1-alpha), infinity)$
+  - *Zweiseitig* ($H_A: mu != mu_0$): Ansatz $K = (-infinity, -c_=) union (c_=, infinity)$ für ein $c_= in RR^+$ \
+    Finde $c_=$ s.t. $PP_(mu_0)[|T| > c_=] = 2 dot PP_(mu_0)[T > c_=] = alpha$ \
+    $=> PP_(mu_0)[T > c_=] = alpha/2 \
+     => PP_(mu_0)[T <= c_=] = 1 - alpha/2 => c_= = t_(n-1, 1-alpha/2)$ \
+    $=> K = (-infinity, -t_(n-1, 1-alpha/2)) union (t_(n-1, 1-alpha/2), infinity)$
 
 === Gepaarter Zweistichprobentest
 Sei $X_1,...,X_n ~ cal(N)(mu_X, sigma^2)$ i.i.d. und $Y_1,...,Y_n ~ cal(N)(mu_Y, sigma^2)$, wobei $X_i, Y_i$ unabhängig. \ 
