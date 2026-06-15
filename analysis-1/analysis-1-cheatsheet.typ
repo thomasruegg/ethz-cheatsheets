@@ -1211,9 +1211,9 @@ Für $D subset RR$, Häufungspunkt $x_0 in D$ und $f, g: D -> RR$ in $x_0$ diffe
   Für $f: D -> E, g: E -> RR, D, E subset RR$, Häufungspunkt $x_0 in D$ und $f$ differenzierbar in $x_0$ und $g$ differenzierbar in $f(x_0)$.
 - $bold((f^(-1))'(y_0)) = 1/(f'(x_0)) = 1/(f'(f^(-1)(y_0)))$ \
   Für $f: D -> E$ bijektiv, $x_0$ Häufungspunkt, $f$ in $x_0$ differenzierbar, $f'(x_0) != 0, f^(-1)$ in $y_0 = f(x_0)$ stetig $==> y_0$ ist ein Häufungspunkt von E und $f^(-1)$ ist in $y_0$ differenzierbar.
-- $bold((c dot f)'(x_0)) = c dot f'(x_0)$. \
+- $bold((c dot f)'(x_0)) = c dot f'(x_0)$.
   #minitext[
-    Konstanter Multiplikator bleibt beim Ableiten erhalten.
+    Konstante bleibt beim Ableiten erhalten.
   ]
 
 #bspbox(title: "Beweis: Ableitung der Umkehrfunktion" + $f^(-1) (y)$)[
@@ -1228,22 +1228,24 @@ Grenzwerte von Funktionen berechnen die auf einen unbestimmten Ausdruck führen:
 
 // TODO: Hier weiterlesen
 #mainbox(title: "L'Hospital Bernoulli")[
-  $ lim_(x -> x_0) f(x)/g(x) = lim_(x -> x_0) f'(x)/g'(x) $
+  $ lim_(x -> x_0) f(x)/g(x) = lim_(x -> x_0) (f'(x)) / (g'(x)) $
 ]
 
 #bspbox(title: "Grenzwert der Funktion " + $lim_(x -> 2) (x^3 + 2x^2 - 8x)/(x - 2)$)[
-  Wir bemerken, wenn $x = 2$, dann $(2^3 + 2(2^2) - 8 dot 2)/(2 - 2) = 0/0$. \
-  Wir verwenden l'Hospital: $lim_(x -> 2) (3x^2 + 4x - 8)/(2 - 2) = lim_(x -> 2) 3x^2 + 4x - 8 = 3(2^2) + 4 dot 2 - 9 = 3 dot 4 = 12$
+  Wenn wir $x = 2$ einsetzen, erhalten wir $(2^3 + 2(2^2) - 8 dot 2)/(2 - 2) = 0/0$. \
+  Wir verwenden l'Hospital (Zähler und Nenner ableiten): \
+  $
+    lim_(x -> 2) (3x^2 + 4x - 8)/1 & = lim_(x -> 2) 3x^2 + 4x - 8 = 3(2^2) + 4 dot 2 - 8 = 12
+  $
 ]
 
 #bspbox(title: "Grenzwert der Funktion " + $lim_(x -> 0) (cos(x) - 1)/x^2$)[
-  Führt auf $0/0$, darum l'Hospital. 2x anwenden. \
-  $lim_(x -> 0) (cos(x) - 1)/x^2 = lim_(x -> 0) ((cos(x) - 1)')/((x^2)') = lim_(x -> 0) (-sin(x))/(2x) = lim_(x -> 0) (-cos(x))/2 = (-cos(0))/2 = -1/2$
+  Führt auf $0/0$. $lim_(x -> 0) (cos(x) - 1)/x^2 = lim_(x -> 0) ((cos(x) - 1)')/((x^2)') =^(0/0) lim_(x -> 0) (-sin(x))/(2x) =^(0/0) lim_(x -> 0) (-cos(x))/2 = (-cos(0))/2 = -1/2$
 ]
 
 == Konvexität
-#image("img/konvexkonkav.jpeg", width: 40%)
-Für Intervall $I subset RR$ und $f: I -> RR$. f ist:
+#image("img/konvexkonkav.jpeg", width: 100%)
+Für Intervall $I subset RR$ und $f: I -> RR$. $f$ ist:
 / Konvex: auf I falls $forall x_0, x_1 in I, x_0 <= x_1, lambda in [0, 1]$ \
   #h(1em) #text(fill: blue, [ $f(lambda x_1 + (1- lambda)x_0)$ ]) $<=$ #text(
     fill: red,
@@ -1265,23 +1267,23 @@ Für Intervall $I subset RR$ und $f: I -> RR$. f ist:
     [ $lambda f(x_1) + (1 - lambda) f(x_0)$ ],
   )
 
-- $f: I -> RR$ ist konvex $<==> forall x_0 < x < x_1 in I, (f(x) - f(x_0))/(x - x_0) <= (f(x_1) - f(x))/(x_1 - x_0)$ \
+- $f: I -> RR$ ist konvex $<==> forall x_0 < x < x_1 in I, (f(x) - f(x_0))/(x - x_0) <= (f(x_1) - f(x))/(x_1 - x_0)$
   #minitext[
-    konvex $<==>$ Sekante zwischen $(x_0, f(x_0))$ & $(x, f(x))$ hat kleinere Steigung als zwischen $(x, f(x))$ & $(x_1, f(x_1))$
+    konvex $<==>$ Sekante zwischen $(x_0, f(x_0))$ & $(x, f(x))$ hat kleinere Steigung als zwischen $(x, f(x))$ & $(x_1, f(x_1))$.
   ]
 - Summe von zwei konvexen(/konkaven) Funktionen ist konvex(/konkav).
 - Für $f: (a, b) -> RR$ in $(a, b)$ differenzierbar. \
-  f ist (streng) konvex $<==> f'$ (streng) mon. wachsend \
-  f ist (streng) konkav $<==> f'$ (streng) mon. fallend
+  $f$ ist (streng) konvex $<==> f'$ (streng) mon. wachsend \
+  $f$ ist (streng) konkav $<==> f'$ (streng) mon. fallend
 - Für $f: (a, b) -> RR$ zwei mal differenzierbar. \
   $f''(x) >= 0 <==> f$ ist (streng) konvex
 
-== Höhere Ableitungen, Definition f Glatt
+== Höhere Ableitungen, Definition $f$ Glatt
 #mainbox(title: "Höhere Ableitungen")[
   #set enum(numbering: "1.")
-  + Für $n >= 2$ ist f n-mal differenzierbar in D falls $f^((n-1))$ in D differenzierbar ist. n-te Ableitung ist: $f^((n)) = (f^((n-1)))'$.
-  + f ist n-mal stetig differenzierbar in D, falls sie n-mal differenzierbar ist und $f^((n))$ stetig in D ist.
-  + f ist *glatt* in D, falls $forall n >= 1$, f n-mal in D differenzierbar ist.
+  + Für $n >= 2$ ist $f$ $n$-mal differenzierbar in $D$ falls $f^((n-1))$ in $D$ differenzierbar ist. n-te Ableitung ist: $f^((n)) = (f^((n-1)))'$.
+  + $f$ ist $n$-mal stetig differenzierbar in $D$, falls sie n-mal differenzierbar ist und $f^((n))$ stetig in D ist.
+  + $f$ ist *glatt* in D, falls $forall n >= 1$, $f$ $n$-mal in D differenzierbar ist.
     #minitext[
       = Unendlich Differenzierbar.
     ]
