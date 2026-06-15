@@ -109,7 +109,7 @@ Funktion vorstellen. Dann einige pos. & neg. Werte ausprobieren.
 )
 
 == Random
-- *gerade Funktion* hat Eigenschaft $f(-x)=f(x)$. Graph der Funktion ist symmetrisch zur y-Achse.
+- *gerade Funktion* hat Eigenschaft $f(-x)=f(x)$. Graph der Funktion ist symmetrisch zur $y$-Achse.
 
 == Archimedisches Prinzip
 + Für $x in RR$ und $y > 0$ existiert $n in NN$ mit $n dot y > x$.
@@ -346,7 +346,7 @@ Folgen können rekursiv definiert werden. Sei Folge \ $(a_k)_(k >= 1): a_1 = c, 
 - *Limes Log:* Limes der form $oo^0$ oder $1^oo$ kann man mit $f(x)^g(x) = e^(g(x) dot ln(f(x)))$ lösen. Dann Bernoulli ($e$ ist stetig, daher betrachten wir nur den Exponenten) anwenden oder vereinfachen.
 
 #bspbox(title: "Grenzwert berechnen mit Fixpunktgleichung")[
-  Sei $(x_n)_(n >= 1)$ rekursiv gegeben durch $x_1 = 1 "und" x_(n+1) := 1+ 1/x_n quad forall n >= 1$. Berechne den Grenzwert g. \
+  Sei $(x_n)_(n >= 1)$ rekursiv gegeben durch $x_1 = 1 "und" x_(n+1) := 1+ 1/x_n quad forall n >= 1$. Berechne den Grenzwert $g$. \
   Für genug grosse $n$ gilt irgendwann $x_n = x_(n+1)$. Grenzwerte einsetzen und auflösen ergibt Grenzwert. \
   $x_n = x_(n+1) -> g = 1 + 1/g -> g^2 - g - 1 = 0 -> g = (1 plus.minus sqrt(5))/2$
 ]
@@ -532,26 +532,26 @@ $notimpliedby$ Gibt Bsp. wo Wurzelk. funktioniert & Quotientenk. nicht.
 
 = Stetige Funktionen
 == Reelwertige Funktionen
-Sei $D subset.eq RR$ eine beliebige Menge. Eine reellwertige Funktion ist eine Abbildung $f: D -> RR$.
-Die Menge aller auf $D$ definierten Funktionen: $RR = {f: D -> RR | f " eine Funktion"}$. \
-$forall x in D$: $(RR^D, +, dot)$ ist ein Vektorraum.
+Sei $DD subset.eq RR$ eine beliebige Menge. Eine reellwertige Funktion ist eine Abbildung $f: DD -> RR$.
+Die Menge aller auf $DD$ definierten Funktionen: $RR = {f: DD -> RR | f " eine Funktion"}$. \
+$forall x in DD$: $(RR^DD, +, dot)$ ist ein Vektorraum.
 
 - *Addition*: $(f+g)(x) = f(x) + g(x)$
 - *Skalare Multiplikation*: $(lambda f)(x) = lambda dot f(x)$
-- *Nullfunktion*: $0(x) = 0 quad forall x in D$ \
-  Entspricht Nullvektor in $RR^D$.
+- *Nullfunktion*: $0(x) = 0 quad forall x in DD$ \
+  Entspricht Nullvektor in $RR^DD$.
 - *Produkt von Funktionen*: $(f dot g)(x) = f(x) dot g(x)$
 - *Konstante Funktion*: $(f dot 1)(x) = f(x)$ \
-  Entspricht dem Einheitsvektor in $RR^D$.
-- *Quotient von Funktionen*: Sei $f, g: D -> RR$ und $tilde(D) = {x in D | g(x) != 0}$. $(f/g)(x) = f(x)/g(x)$
-- *Komposition: Verkettung von Funktionen*: Zuerst f, dann g. Sei $f: D -> RR$ & $g: E -> RR$ \
-  $g compose f: D -> RR$ mit $(g compose f)(x) = g(f(x))$.
+  Entspricht dem Einheitsvektor in $RR^DD$.
+- *Quotient von Funktionen*: Sei $f, g: DD -> RR$ und $tilde(DD) = {x in DD | g(x) != 0}$. $(f/g)(x) = f(x)/g(x)$
+- *Komposition: Verkettung von Funktionen*: Zuerst $f$, dann $g$. Sei $f: DD -> RR$ & $g: E -> RR$ \
+  $g compose f: DD -> RR$ mit $(g compose f)(x) = g(f(x))$.
 
 == Beschränktheit // TODO: weglassen?
-$f: D -> RR$ ist:
-- *nach oben beschränkt*: falls $f(D) subset RR$ n.o.b.
-- *nach unten beschänkt*: falls $f(D) subset RR$ n.u.b.
-- *beschränkt*: falls $f(D) subset RR$ n.o.b & n.u.b.
+$f: DD -> RR$ ist:
+- *nach oben beschränkt*: falls $f(DD) subset RR$ n.o.b.
+- *nach unten beschänkt*: falls $f(DD) subset RR$ n.u.b.
+- *beschränkt*: falls $f(DD) subset RR$ n.o.b & n.u.b.
 
 == Kompaktes Intervall
 Ist ein Intervall $I subset RR$ falls $I = [a, b], a <= b$.
@@ -563,7 +563,7 @@ Ist ein Intervall $I subset RR$ falls $I = [a, b], a <= b$.
 
 == Monotonie von Funktionen // TODO: weglassen?
 #mainbox(title: $f$ + " ist monoton")[
-  $f: D -> RR, D subset RR, forall x, y in D$ ist:
+  $f: DD -> RR, DD subset RR, forall x, y in DD$ ist:
   - *monoton wachsend* falls $x <= y ==> f(x) <= f(y)$.
   - *streng mono. wachs.:* falls $x < y ==> f(x) < f(y)$.
   - *monoton fallend:* falls $x >= y ==> f(x) >= f(y)$.
@@ -572,7 +572,7 @@ Ist ein Intervall $I subset RR$ falls $I = [a, b], a <= b$.
 - *monoton:* falls mono. wachsend oder mono. fallend.
 - *streng monoton:* falls streng monoton wachsend oder streng monoton fallend.
 - Symmetrische Funktionen sind nie monoton.
-- f streng mono. wachsend $==>$ f injektiv
+- $f$ streng mono. wachsend $==>$ $f$ injektiv
 
 == Definition Stetigkeit von $f$
 #grid(
@@ -581,7 +581,7 @@ Ist ein Intervall $I subset RR$ falls $I = [a, b], a <= b$.
   [
     Kleine Änderung im Argument \ $==>$ kleine Änderung im Funktionswert. \
     Keine sprunghafte Änderungen. \
-    Sei $D subset.eq RR^d$ und $f: D -> RR^d, x -> f(x)$ eine Funktion:
+    Sei $DD subset.eq RR^d$ und $f: DD -> RR^d, x -> f(x)$ eine Funktion:
   ],
   image("img/stetignichtstetig.png", width: 100%),
 )
@@ -591,7 +591,7 @@ Ist ein Intervall $I subset RR$ falls $I = [a, b], a <= b$.
     columns: (4fr, 1fr),
     gutter: 0.5em,
     [
-      Funktion $f$ stetig in $x_0 in D$, falls: \
+      Funktion $f$ stetig in $x_0 in DD$, falls: \
       $
         forall x_0, forall epsilon > 0, exists delta > 0, forall x: \
         |x - x_0| < delta ==> |f(x) - f(x_0)| < epsilon
@@ -602,12 +602,12 @@ Ist ein Intervall $I subset RR$ falls $I = [a, b], a <= b$.
 ]
 
 #mainbox(title: $f$ + " stetig in " + $x_0$ + " (punktweise) (Folgenkriterium)")[
-  - $f$ stetig in $x_0 <==> (forall (a_n)_(n in NN)$ in $D:$ \
+  - $f$ stetig in $x_0 <==> (forall (a_n)_(n in NN)$ in $DD:$ \
     $quad quad quad quad quad quad quad lim_(n -> oo) a_n = x_0 ==> lim_(n -> oo) f(a_n) = f(x_0))$. \
     #minitext[
       $f$ stetig in $x_0 <==> forall$ Folge $(a_n)$ konv. gegen $x_0$, $quad$Bildfolge $f(a_n)$ konv. gegen $f(x_0)$.
     ]
-  - $f$ stetig in $x_0 <==> (forall (a_n)_(n in NN)$ in $D:$ \
+  - $f$ stetig in $x_0 <==> (forall (a_n)_(n in NN)$ in $DD:$ \
     $quad quad quad quad quad quad quad quad quad quad quad quad lim_(n -> oo) f(a_n) = f(lim_(n -> oo) a_n))$. \
     #minitext[
       Anwendung Operation "Funktion" & "Grenzwert" können vertauscht werden.
@@ -615,11 +615,11 @@ Ist ein Intervall $I subset RR$ falls $I = [a, b], a <= b$.
 ]
 
 #mainbox(title: $f$ + " stetig")[
-  $f$ ist für alle $x_0 in D$ punktweise stetig.
+  $f$ ist für alle $x_0 in DD$ punktweise stetig.
 ]
-- Für nicht-kompaktes Intervall $D = (a, b)$ : \
+- Für nicht-kompaktes Intervall $DD = (a, b)$ : \
   Punktweise stetig $==>$ stetig im Intervall.
-- Für kompaktes Intervall $D = [a, b]$ :
+- Für kompaktes Intervall $DD = [a, b]$ :
   Punktweise stetig + Beweis stetig in Randpunkten $==>$ stetig im Intervall. \
   #minitext[
     Für die Randpunkte zeigen dass $lim_(x -> a^+) f(x) = f(a)$ und $lim_(x -> b^-) f(x) = f(b)$.
@@ -630,12 +630,12 @@ Ist ein Intervall $I subset RR$ falls $I = [a, b], a <= b$.
 #mainbox(title: $f$ + " gleichmässig stetig")[
   Stärkere Form der Stetigkeit. $forall$ Punktepaare im Definitionsbereich der Funktion *existiert gemeinsames $delta$*. \
   $
-    forall epsilon > 0, exists delta > 0, forall x, y in D: \
+    forall epsilon > 0, exists delta > 0, forall x, y in DD: \
     |x - y| < delta ==> |f(x) - f(y)| < epsilon
   $
 ]
 - gleichmässig stetig $==>$ stetig $==>$ in $x_0$ stetig
-- $f: [a, b] -> RR$ stetig im Kompakten Intervall $==>$ f ist in $[a, b]$ gleichmässig stetig.
+- $f: [a, b] -> RR$ stetig im Kompakten Intervall $==>$ $f$ ist in $[a, b]$ gleichmässig stetig.
 
 // TODO: Howtobox machen wie man gleichmäßige Stetigkeit zeigen kann anhand Übungsserie
 
@@ -644,24 +644,24 @@ Polynomiale Funktionen $P(x)$ sind auf ganz $RR$ stetig. \
 $P(x) = a_n x^n + a_(n-1) x^(n-1) + ... + a_1 x + a_0$
 
 === Rechenregeln stetige Funktionen
-Für $x_0 in D subset RR, lambda in RR, f: D -> RR, g: D -> RR$ und $f$ und $g$ stetig in $x_0$
+Für $x_0 in DD subset RR, lambda in RR, f: DD -> RR, g: DD -> RR$ und $f$ und $g$ stetig in $x_0$
 - $==> f + g, f + (-g), lambda dot f, f dot g$ stetig in $x_0$.
-- $==> f/g: D' -> RR, x -> f(x)/g(x), D' = {x in D | g(x) != 0}, g(x_0) != 0$, ist stetig in $x_0$.
+- $==> f/g: DD' -> RR, x -> f(x)/g(x), DD' = {x in DD | g(x) != 0}, g(x_0) != 0$, ist stetig in $x_0$.
 
-Für $D_1, D_2 subset RR, f: D_1 -> D_2, g: D_2 -> RR, x_0 in D_1$:
-- Falls $f$ in $x_0$ und $g$ in $f(x_0)$ stetig $==> g compose f: D_1 -> RR$ ist in $x_0$ stetig.
-- Falls $f$ auf ganz $D_1$ und $g$ auf ganz $D_2$ stetig $==> g compose f$ auf $D_1$ stetig.
+Für $DD_1, DD_2 subset RR, f: DD_1 -> DD_2, g: DD_2 -> RR, x_0 in DD_1$:
+- Falls $f$ in $x_0$ und $g$ in $f(x_0)$ stetig $==> g compose f: DD_1 -> RR$ ist in $x_0$ stetig.
+- Falls $f$ auf ganz $DD_1$ und $g$ auf ganz $DD_2$ stetig $==> g compose f$ auf $DD_1$ stetig.
 
-Für $D subset RR, f, g: D -> RR, x_0 in D$.
+Für $DD subset RR, f, g: DD -> RR, x_0 in DD$.
 - Falls $f, g$ stetige Funktionen $==> |f|, (max{f, g}), (min{f, g})$ stetig in $x_0$.
   #minitext[
-    Bsp: $(max{f, g})(x) = max{f(x), g(x)} quad forall x in D$
+    Bsp: $(max{f, g})(x) = max{f(x), g(x)} quad forall x in DD$
   ]
 
 == Zwischenwertsatz
 #minitext[
   Anwendung: Zeigen, das eine Funktion einen gewissen Wert annimmt. \
-  Anwendung: Zeigt, dass eine Funktion f jeden Wert zwischen $f(a)$ und $f(b)$ annimmt.
+  Anwendung: Zeigt, dass eine Funktion $f$ jeden Wert zwischen $f(a)$ und $f(b)$ annimmt.
 ]
 #mainbox(title: "Zwischenwertsatz")[
   #grid(
@@ -674,8 +674,8 @@ Für $D subset RR, f, g: D -> RR, x_0 in D$.
   )
 ]
 - Daraus folgt, dass ein Polynom mit ungeradem Grad mindestens eine Nullstelle in $RR$ besitzt.
-- Nullstellenmove: stetige Funktion f an einem Punkt kleiner und einem Punkt grösser als 0 $==> f(x) = 0$ an mindestens einem Punkt.
-- $x, y in RR, x <= y$, c liegt *zwischen* $x$ und $y$ falls $c in [x, y]$.
+- Nullstellenmove: stetige Funktion $f$ an einem Punkt kleiner und einem Punkt grösser als 0 $==> f(x) = 0$ an mindestens einem Punkt.
+- $x, y in RR, x <= y$, $c$ liegt *zwischen* $x$ und $y$ falls $c in [x, y]$.
 - Für $f: [a, b] -> RR$ stetig und $f(a) dot f(b) < 0 ==> exists c in (a, b): f(c) = 0$.
 
 #mainbox(title: "Beweis Zwischenwertsatz (via Supremum)")[
@@ -732,8 +732,8 @@ Für $D subset RR, f, g: D -> RR, x_0 in D$.
 == Umkehrabbildung
 Sei $f: I -> RR$ stetig und streng monoton. Dann ist $f^(-1): J -> I$ stetig und streng monoton wobei $J = f(I) subset RR$. \
 #minitext[
-  Wenn f stetig, dann Umkehrfunktion $f^(-1)$ stetig. \
-  Wenn f streng monoton, dann Umkehrfunktion $f^(-1)$ streng monoton.
+  Wenn $f$ stetig, dann Umkehrfunktion $f^(-1)$ stetig. \
+  Wenn $f$ streng monoton, dann Umkehrfunktion $f^(-1)$ streng monoton.
 ]
 
 #import "@preview/cetz:0.4.0": canvas
@@ -777,9 +777,9 @@ Sei $f: I -> RR$ stetig und streng monoton. Dann ist $f^(-1): J -> I$ stetig und
 )
 
 == Konvergenz der Funktionenfolge
-Sei *Funktionenfolge* $(f_n)_(n >= 1)$ Abbildung $NN -> {f: D -> RR}$ \
+Sei *Funktionenfolge* $(f_n)_(n >= 1)$ Abbildung $NN -> {f: DD -> RR}$ \
 $quad (f_n)_(n >= 1) = {f_1, f_2, ..., f_n}$ \
-Sei $f_n$ eine der Funktionen für ein $n$, also die Abbildung: $n -> f_n: D -> RR$ \
+Sei $f_n$ eine der Funktionen für ein $n$, also die Abbildung: $n -> f_n: DD -> RR$ \
 #minitext[
   Beispiel: $f_n(x) = n x: f_1(x) = x, f_2(x) = 2x$, etc.
 ] \
@@ -788,8 +788,8 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
 
 
 #mainbox(title: $(f_n)_(n >= 1)$ + " konvergiert punktweise (" + $epsilon$ + "-Kriterium)")[
-  Funktionenfolge $(f_n)_(n >= 1)$ konvergiert punktweise gegen Funktion $f: D -> RR <==>$ \
-  $markhl(forall x in D", " forall epsilon > 0", " exists N in NN " s.t. " forall n >= N): |f_n(x) - f(x)| < epsilon$. \
+  Funktionenfolge $(f_n)_(n >= 1)$ konvergiert punktweise gegen Funktion $f: DD -> RR <==>$ \
+  $markhl(forall x in DD", " forall epsilon > 0", " exists N in NN " s.t. " forall n >= N): |f_n(x) - f(x)| < epsilon$. \
   #minitext[
     Die Schranke $N$ darf sowohl von $epsilon$ als auch von $x$ abhängen.
     Konv. punktweise $<==>$ Für jedes $x$ gibt es ein Ausnahmeindizes $N$ nach welchem die Funktionswerte aller folgenden Funktionen $f_n (x)$ in einer $epsilon$-Umgebung der Grenzfunktion $f(x)$ liegen.
@@ -797,7 +797,7 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
 ]
 
 #mainbox(title: $(f_n)_(n >= 1)$ + " konvergiert punktweise (Folgenkriterium)")[
-  Funktionenfolge $(f_n)_(n >= 1)$ konvergiert punktweise gegen Funktion $f: D -> RR <==> forall x in D: f(x) = limn f_n(x)$. \
+  Funktionenfolge $(f_n)_(n >= 1)$ konvergiert punktweise gegen Funktion $f: DD -> RR <==> forall x in DD: f(x) = limn f_n(x)$. \
   #minitext[
     Konv. punktweise $<==>$ Für jedes $x$ konv. die Funktionenfolge $f_n (x)$ gegen  Grenzfkt $f(x)$.
   ]
@@ -810,7 +810,7 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
 ]
 
 #mainbox(title: $(f_n)_(n >= 1)$ + " konvergiert gleichmässig")[
-  Funktionenfolge $(f_n)_(n >= 1)$ konvergiert gleichmässig gegen Funktion $f: D -> RR <==> markhl(forall epsilon > 0 ", " exists N in NN ", " "s.t." forall n >= N ", " forall x in D) : |f_n (x) - f(x)| < epsilon$.
+  Funktionenfolge $(f_n)_(n >= 1)$ konvergiert gleichmässig gegen Funktion $f: DD -> RR <==> markhl(forall epsilon > 0 ", " exists N in NN ", " "s.t." forall n >= N ", " forall x in DD) : |f_n (x) - f(x)| < epsilon$.
   #minitext[
     Das $N$ darf nicht mehr vom Punkt $x$ abhängen, sondern nur noch von $epsilon$! Konv. gleichmässig $<==>$ Es gibt ein Ausnahmeindizes $N$ nach welchem die Funktionswerte aller folgenden Funktionen $f_n (x)$ für jedes $x$ in derselben $epsilon$-Umgebung der Grenzfunktion $f(x)$ liegen.
     $<==>$ Für jedes $x$ konvergiert die Funktionenfolge $f_n (x)$ _gleich schnell_ gegen die Grenzfunktion $f(x)$.
@@ -823,13 +823,13 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
   $x = 5: f_1(5) = 5 + 1/1, f_2(5) = 5 + 1/2, f_3(5) = 5 + 1/3, f_4(5) = 5 + 1/4, ... quad f(5) = 5$
 ]
 
-- Für $D subset RR$ und Funktionenfolge $(f_n): D -> RR$ bestehend aus in D stetigen Funktionen die gleichmässig gegen Funktion $f(x): D -> RR$ konvergieren $==> f(x)$ ist in D stetig $notimplies f(x)$ ist differenzierbar.
+- Für $DD subset RR$ und Funktionenfolge $(f_n): DD -> RR$ bestehend aus in $DD$ stetigen Funktionen die gleichmässig gegen Funktion $f(x): DD -> RR$ konvergieren $==> f(x)$ ist in $DD$ stetig $notimplies f(x)$ ist differenzierbar.
 - Falls $f_n$ gleichmässig zu $f$ konvergiert \
-  $quad ==> lim_(n -> oo) sup |f_n(x) - f(x)| = 0, x in D$.
+  $quad ==> lim_(n -> oo) sup |f_n(x) - f(x)| = 0, x in DD$.
 - Für Folge $(f_n) "stetig differenzierbar", f_n ->^"konv." f, f^'_(n) ->^"konv."_"glm." g ==> f "stetig differenzierbar und" f^' = g$
 
 #subbox(title: "Cauchy Kriterium für Gleichmässige Konvergenz")[
-  $f_n: D -> RR$ ist gleichmässig konvergent $<==> forall epsilon > 0 ", " exists N in NN: markhl(forall n", " m) >= N ", " forall x in D: |f_markhl(n) (x) - f_markhl(m) (x)| < epsilon$.
+  $f_n: DD -> RR$ ist gleichmässig konvergent $<==> forall epsilon > 0 ", " exists N in NN: markhl(forall n", " m) >= N ", " forall x in DD: |f_markhl(n) (x) - f_markhl(m) (x)| < epsilon$.
 ]
 
 
@@ -862,15 +862,15 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
 ]
 
 #bspbox(title: "Beweis Gleichmässig Konvergent (Supremums-Kriterium)")[
-  Sei $D = [0, 1]$ und $f_n(x) = x/n^2 + x + 1$.
+  Sei $DD = [0, 1]$ und $f_n(x) = x/n^2 + x + 1$.
   #set enum(numbering: "1.")
   + *Grenzfunktion $f(x)$ finden (punktweiser Limes):* \
     $f(x) = lim_(n->oo) (x/n^2 + x + 1) = 0 + x + 1$
   + *Gleichmässige Konvergenz zeigen (Supremum gegen 0):* \
-    + *Maximalen Abstand bestimmen (Supremum) auf $D$:* \
+    + *Maximalen Abstand bestimmen (Supremum) auf $DD$:* \
       $sup_(x in [0, 1]) |f_n(x) - f(x)| = sup_(x in [0, 1]) |x/n^2 + x + 1 - (x + 1)| = sup_(x in [0, 1]) x/n^2= 1/n^2$ \
     + *Limes bilden*: \
-    $quad lim_(n -> oo) ( sup_(x in D) |f_n(x) - f(x)| ) = lim_(n -> oo) 1/n^2 = 0$ \
+    $quad lim_(n -> oo) ( sup_(x in DD) |f_n(x) - f(x)| ) = lim_(n -> oo) 1/n^2 = 0$ \
   Da der GW des max. Abstands $0$ ist, konvergiert $f_n$ gleichmässig.
 ]
 
@@ -880,9 +880,9 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
   Funktionenfolge ihrer Partialsummen $S_n(x) := sum_(k=0)^n f_k(x)$ konvergiert gleichmässig
   $==>$ Reihe $sum_(k=0)^oo f_k(x)$ konvergiert gleichmässig
 ]
-- *Majorantenkriterium:* Für $D subset RR$, Folge stetiger Funktionen $f_n: D -> RR$:
-  Falls $|f_n (x)| <= c_n quad forall x in D$ und $sum_(n=0)^oo (c_n)$ konvergent \
-  $==> sum_(n=0)^oo f_n (x)$ gleichmässig konvergent in $D$ und Grenzwert $f(x) := sum_(n=0)^oo f_n (x)$ ist in $D$ stetig.
+- *Majorantenkriterium:* Für $DD subset RR$, Folge stetiger Funktionen $f_n: DD -> RR$:
+  Falls $|f_n (x)| <= c_n quad forall x in DD$ und $sum_(n=0)^oo (c_n)$ konvergent \
+  $==> sum_(n=0)^oo f_n (x)$ gleichmässig konvergent in $DD$ und Grenzwert $f(x) := sum_(n=0)^oo f_n (x)$ ist in $DD$ stetig.
 
 == Potenzreihen
 #subbox(title: "Potenzreihe")[
@@ -917,19 +917,19 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
 == Grenzwert von Funktionenfolgen
 === Häufungspunkt und Grenzwert
 #mainbox(title: $x_0$ + " ist Häufungspunkt")[
-  $x_0 in RR$ ist ein Häufungspunkt der Menge $D$ falls \
-  $forall delta > 0: ((x_0 - delta, x_0 + delta) backslash {x_0}) inter D != diameter$.
+  $x_0 in RR$ ist ein Häufungspunkt der Menge $DD$ falls \
+  $forall delta > 0: ((x_0 - delta, x_0 + delta) backslash {x_0}) inter DD != diameter$.
   #minitext[
-    $x_0$ ist Häufungspunkt, wenn sich in jeder Umgebung von $x_0$ mindestens ein Punkt aus $D$ befindet.
+    $x_0$ ist Häufungspunkt, wenn sich in jeder Umgebung von $x_0$ mindestens ein Punkt aus $DD$ befindet.
   ]
 ]
 #grid(
   columns: (2fr, 1fr),
   [
     #minitext[
-      Bsp: $D = (1, 2) union (4, 5) union {6}$, Häufungspunkte: $D' = [1, 2] union [4, 5]$
+      Bsp: $DD = (1, 2) union (4, 5) union {6}$, Häufungspunkte: $DD' = [1, 2] union [4, 5]$
       Wäre 6 auch ein Häufungspunkt? $x_0 = 6, "mit" delta = 1/2$
-      $==> ((5.5, 6.5) backslash {6}) inter D =^↯ diameter -->$ Nein.
+      $==> ((5.5, 6.5) backslash {6}) inter DD =^↯ diameter -->$ Nein.
     ]
   ],
   image("img/haeufungspunkt.jpeg", width: 100%),
@@ -939,9 +939,9 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
   #grid(
     columns: (4.3fr, 1fr),
     [
-      Sei $x_0$ Häufungspunkt von $D$ und $f: D -> RR$: \
+      Sei $x_0$ Häufungspunkt von $DD$ und $f: DD -> RR$: \
       $A = lim_(x -> x_0) f(x) <==> forall epsilon > 0, exists delta > 0$ s.t. \
-      $forall x in D inter ((x_0 - delta, x_0 + delta) backslash {x_0}): |f(x) - A| < epsilon$.
+      $forall x in DD inter ((x_0 - delta, x_0 + delta) backslash {x_0}): |f(x) - A| < epsilon$.
     ],
     image("img/grenzwerthäufungspunkt.jpeg", width: 100%),
   )
@@ -961,21 +961,21 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
 )
 
 #mainbox(title: "Grenzwert in Häufungspunkt " + $x_0$ + " (Folgenkriterium)")[
-  Sei $x_0$ Häufungspunkt von $D$ und $f: D -> RR$: \
-  $A = lim_(x -> x_0) f(x) <==> forall (a_n)_(n >= 1) in D backslash {x_0}$ mit $lim_(n -> oo) a_n = x_0$ folgt $lim_(n -> oo) f(a_n) = A$. \
+  Sei $x_0$ Häufungspunkt von $DD$ und $f: DD -> RR$: \
+  $A = lim_(x -> x_0) f(x) <==> forall (a_n)_(n >= 1) in DD backslash {x_0}$ mit $lim_(n -> oo) a_n = x_0$ folgt $lim_(n -> oo) f(a_n) = A$. \
   #minitext[
     Für jede Folge mit Grenzwert $x_0$ ist Grenzwert der Bildfolge $A = lim_(x -> x_0) f(x)$.
   ]
 ]
 - $f$ muss am Grenzwert $x_0$ nicht zwingend definiert sein.
-- $f$ ist stetig in $x_0 in D <==> lim_(x -> x_0) f(x) = f(x_0)$.
+- $f$ ist stetig in $x_0 in DD <==> lim_(x -> x_0) f(x) = f(x_0)$.
 
 == Rechenregeln für Grenzwerte
-- Für $f, g: D -> RR$ und falls $exists lim_(x -> x_0) f(x)$ und $lim_(x -> x_0) g(x)$
+- Für $f, g: DD -> RR$ und falls $exists lim_(x -> x_0) f(x)$ und $lim_(x -> x_0) g(x)$
   - $==>$ $lim_(x -> x_0) (f + g)(x) = lim_(x -> x_0) f(x) + lim_(x -> x_0) g(x)$
   - $==>$ $lim_(x -> x_0) (f dot g)(x) = lim_(x -> x_0) f(x) dot lim_(x -> x_0) g(x)$
-- Für $f, g: D -> RR, f <= g$ und beide Grenzwerte existieren \ $==> lim_(x -> x_0) f(x) <= lim_(x -> x_0) g(x)$.
-- Für $f, g_1, g_2: D -> RR$, falls $g_1 <= f <= g_2$ und $lim_(x -> x_0) g_1(x) = lim_(x -> x_0) g_2(x) => exists lim_(x -> x_0) f(x)$ & $lim_(x -> x_0) f(x) = lim_(x -> x_0) g_1(x)$.
+- Für $f, g: DD -> RR, f <= g$ und beide Grenzwerte existieren \ $==> lim_(x -> x_0) f(x) <= lim_(x -> x_0) g(x)$.
+- Für $f, g_1, g_2: DD -> RR$, falls $g_1 <= f <= g_2$ und $lim_(x -> x_0) g_1(x) = lim_(x -> x_0) g_2(x) => exists lim_(x -> x_0) f(x)$ & $lim_(x -> x_0) f(x) = lim_(x -> x_0) g_1(x)$.
 - *Variablenwechsel/GW von Kompositionen* (falls $f$ in $b$ stetig): \ $lim_(x -> markhl(a, color: mygreen)) g(x) = markhl(b)$ und $lim_(x -> markhl(b)) f(x) = c ==> lim_(x -> markhl(a, color: mygreen)) f(g(x)) = c$.
 - *Exponentenregel:* Falls $f, g$ stetig in $x_0$ mit $f(x_0) > 0 ==> lim_(x -> x_0) f(x)^(g(x)) = f(x_0)^(g(x_0))$.
 
@@ -1007,16 +1007,16 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
 )
 
 #howtobox(title: "Grenzwert widerlegen (Folgenkriterium)")[
-  *Theorie:* $lim_(x -> a) f(x) = A <==>$ für _jede_ Folge $(x_n)$ in $D backslash {a}$ mit $limn x_n = a$ gilt $limn f(x_n) = A$. \
+  *Theorie:* $lim_(x -> a) f(x) = A <==>$ für _jede_ Folge $(x_n)$ in $DD backslash {a}$ mit $limn x_n = a$ gilt $limn f(x_n) = A$. \
   *Praxis:* Wir können die Existenz eines Grenzwertes widerlegen, indem wir zwei clevere Folgen $(a_n)$ und $(b_n)$ finden, für die gilt:
   $ limn a_n = a quad "und" quad limn b_n = a, quad "aber" quad limn f(a_n) != limn f(b_n) $
 ]
 
 === Grenzwerte: Varianten & Definitionen
 - *Rechtsseitig ($lim_(x -> x_0^+) f(x) = L$):* \
-  $forall epsilon > 0, exists delta > 0: x in bb(D)(f) inter (x_0, x_0 + delta) ==> |f(x) - L| < epsilon$
+  $forall epsilon > 0, exists delta > 0: x in bb(DD)(f) inter (x_0, x_0 + delta) ==> |f(x) - L| < epsilon$
 - *Linksseitig ($lim_(x -> x_0^-) f(x) = L$):* \
-  $forall epsilon > 0, exists delta > 0: x in bb(D)(f) inter (x_0 - delta, x_0) ==> |f(x) - L| < epsilon$
+  $forall epsilon > 0, exists delta > 0: x in bb(DD)(f) inter (x_0 - delta, x_0) ==> |f(x) - L| < epsilon$
 - *$x$ ist im Unendlichen ($lim_(x -> oo) f(x) = L$):* \
   $forall epsilon > 0 exists M > 0: x in bb(D)(f) inter (M, oo) ==> |f(x) - L| < epsilon$ \
   _(Analog für $-oo$: $x in bb(D)(f) inter (-oo, -M)$)_
@@ -1177,7 +1177,7 @@ Funktion ist differenzierbar $<==> forall x_i$ eine Tangente gelegt werden kann
 - $f$ differenzierbar in $x_0 ==> f$ stetig in $x_0$. Achtung! $notimpliedby$
 
 #mainbox(title: $f$ + " ist differenzierbar")[
-  $f$ differenzierbar $<==> f$ für jedes $x_0 in D$ differenzierbar.
+  $f$ differenzierbar $<==> f$ für jedes $x_0 in DD$ differenzierbar.
 ]
 
 // TODO: darf man weglassen? Ist glaub ich eigentlich nur 1. Taylorpolynom?
@@ -1203,14 +1203,14 @@ Funktion ist differenzierbar $<==> forall x_i$ eine Tangente gelegt werden kann
 
 // TODO: Hier weiterlesen
 == Rechenregeln Ableitung
-Für $D subset RR$, Häufungspunkt $x_0 in D$ und $f, g: D -> RR$ in $x_0$ differenzierbar:
+Für $DD subset RR$, Häufungspunkt $x_0 in DD$ und $f, g: DD -> RR$ in $x_0$ differenzierbar:
 - $bold((f + g)'(x_0)) = f'(x_0) + g'(x_0)$.
 - $bold((f g)'(x_0)) = f'(x_0)g(x_0) markhl(+) f(x_0)g'(x_0)$.
 - $bold((f/g)'(x_0)) = (f'(x_0)g(x_0) markhl(-) f(x_0)g'(x_0)) / g(x_0)^2, quad g(x_0) != 0$.
 - $bold((g compose f)'(x_0)) = (g(f(x)))' = g'(f(x_0)) dot f'(x_0)$ \
-  Für $f: D -> E, g: E -> RR, D, E subset RR$, Häufungspunkt $x_0 in D$ und $f$ differenzierbar in $x_0$ und $g$ differenzierbar in $f(x_0)$.
+  Für $f: DD -> E, g: E -> RR, DD, E subset RR$, Häufungspunkt $x_0 in DD$ und $f$ differenzierbar in $x_0$ und $g$ differenzierbar in $f(x_0)$.
 - $bold((f^(-1))'(y_0)) = 1/(f'(x_0)) = 1/(f'(f^(-1)(y_0)))$ \
-  Für $f: D -> E$ bijektiv, $x_0$ Häufungspunkt, $f$ in $x_0$ differenzierbar, $f'(x_0) != 0, f^(-1)$ in $y_0 = f(x_0)$ stetig $==> y_0$ ist ein Häufungspunkt von E und $f^(-1)$ ist in $y_0$ differenzierbar.
+  Für $f: DD -> E$ bijektiv, $x_0$ Häufungspunkt, $f$ in $x_0$ differenzierbar, $f'(x_0) != 0, f^(-1)$ in $y_0 = f(x_0)$ stetig $==> y_0$ ist ein Häufungspunkt von E und $f^(-1)$ ist in $y_0$ differenzierbar.
 - $bold((c dot f)'(x_0)) = c dot f'(x_0)$.
   #minitext[
     Konstante bleibt beim Ableiten erhalten.
@@ -1246,7 +1246,7 @@ Grenzwerte von Funktionen berechnen die auf einen unbestimmten Ausdruck führen:
 == Konvexität
 #image("img/konvexkonkav.jpeg", width: 100%)
 Für Intervall $I subset RR$ und $f: I -> RR$. $f$ ist:
-/ Konvex: auf I falls $forall x_0, x_1 in I, x_0 <= x_1, lambda in [0, 1]$ \
+/ Konvex: auf $I$ falls $forall x_0, x_1 in I, x_0 <= x_1, lambda in [0, 1]$ \
   #h(1em) #text(fill: blue, [ $f(lambda x_1 + (1- lambda)x_0)$ ]) $<=$ #text(
     fill: red,
     [ $lambda f(x_1) + (1 - lambda) f(x_0)$ ],
@@ -1256,12 +1256,12 @@ Für Intervall $I subset RR$ und $f: I -> RR$. $f$ ist:
     fill: red,
     [ $lambda f(x_1) + (1 - lambda) f(x_0)$ ],
   )
-/ Konkav: auf I falls $forall x_0, x_1 in I, x_0 <= x_1, lambda in [0, 1],$ \
+/ Konkav: auf $I$ falls $forall x_0, x_1 in I, x_0 <= x_1, lambda in [0, 1],$ \
   #h(1em) #text(fill: green, [ $f(lambda x_1 + (1- lambda)x_0)$ ]) $>=$ #text(
     fill: red,
     [ $lambda f(x_1) + (1 - lambda) f(x_0)$ ],
   )
-/ Streng Konkav: auf I falls $forall x_0, x_1 in I, x_0 < x_1, lambda in [0, 1],$ \
+/ Streng Konkav: auf $I$ falls $forall x_0, x_1 in I, x_0 < x_1, lambda in [0, 1],$ \
   #h(1em) #text(fill: green, [ $f(lambda x_1 + (1- lambda)x_0)$ ]) $>$ #text(
     fill: red,
     [ $lambda f(x_1) + (1 - lambda) f(x_0)$ ],
@@ -1281,72 +1281,94 @@ Für Intervall $I subset RR$ und $f: I -> RR$. $f$ ist:
 == Höhere Ableitungen, Definition $f$ Glatt
 #mainbox(title: "Höhere Ableitungen")[
   #set enum(numbering: "1.")
-  + Für $n >= 2$ ist $f$ $n$-mal differenzierbar in $D$ falls $f^((n-1))$ in $D$ differenzierbar ist. n-te Ableitung ist: $f^((n)) = (f^((n-1)))'$.
-  + $f$ ist $n$-mal stetig differenzierbar in $D$, falls sie n-mal differenzierbar ist und $f^((n))$ stetig in D ist.
-  + $f$ ist *glatt* in D, falls $forall n >= 1$, $f$ $n$-mal in D differenzierbar ist.
+  + Für $n >= 2$ ist $f$ $n$-mal differenzierbar in $DD$ falls $f^((n-1))$ in $DD$ differenzierbar ist. $n$-te Ableitung ist: $f^((n)) = (f^((n-1)))'$.
+  + $f$ ist $n$-mal stetig differenzierbar in $DD$, falls sie $n$-mal differenzierbar ist und $f^((n))$ stetig in $DD$ ist.
+  + $f$ ist *glatt* in $DD$, falls $forall n >= 1$, $f$ $n$-mal in $DD$ differenzierbar ist. \
     #minitext[
-      = Unendlich Differenzierbar.
+      \= unendlich Differenzierbar, $f in C^oo$.
     ]
-  Eine n-mal differenzierbare Funktion ist (n-1)-mal stetig differenzierbar.
+  Eine $n$-mal differenzierbare Funktion ist ($n$-1)-mal stetig differenzierbar.
 ]
 
-=== Glatte Funktionen
+=== Glatte Funktionen $f in C^oo$
 $exp(x), sin(x), cos(x), sinh(x), cosh(x), tanh(x), ln(x),$ \ $arcsin(x), arccos(x), "arccot"(x), arctan(x)$ & Polynome sind glatt. $tan(x)$ ist auf $RR backslash {pi/2 + k pi}, cot(x)$ auf $RR backslash {k pi}$ glatt.
 
 === Rechenregeln Höhere Ableitungen
-Für $f, g: D -> RR quad n$-mal differenzierbar:
-- *f + g:* ist n-mal diff. und $(f + g)^((n)) = f^((n)) + g^((n))$.
-- *f $dot$ g:* ist n-mal diff. und $(f dot g)^((n)) = sum_(k=0)^n binom(n, k) f^((k)) g^((n-k))$.
-- *f / g:* ist n-mal diff. falls $g(x) != 0 forall x in D$.
-- *g $compose$ f:* ist n-mal diff. und $(g compose f)^((n))(x) = sum_(k=1)^n A_(n,k)(x) (g^((k)) compose f)(x), A_(n,k)$ ist ein Polynom.
+Für $f, g: DD -> RR quad n$-mal differenzierbar:
+- *$f + g$:* ist $n$-mal diff. und $(f + g)^((n)) = f^((n)) + g^((n))$.
+- *$f dot g$:* ist $n$-mal diff. und $(f dot g)^((n)) = sum_(k=0)^n binom(n, k) f^((k)) g^((n-k))$.
+- *$f / g$:* ist $n$-mal diff. falls $g(x) != 0 forall x in DD$.
+- *$g compose f$:* ist $n$-mal diff. und $(g compose f)^((n))(x) = sum_(k=1)^n A_(n,k)(x) (g^((k)) compose f)(x), A_(n,k)$ ist ein Polynom.
 
 == Potenzreihen Ableitungsregeln
-- Für Folge $(f_n) in C^1, f_n ->_"glm." f, f'_n ->_"glm." g, f, g: (a, b) -> RR$. Dann $f in C^1$ und $f' = g$. Weiter ist
-  - f auf $]x_0 - rho, x_0 + rho[$ glatt
-  - $f^((j))(x) = sum_(k=1)^oo c_k (k!)/((k-j)!) (x - x_0)^(k-j)$
-  - $c_j = (f^((j))(x_0))/(j!)$
-- Für Potenzreihe $sum_(k=0)^oo c_k x^k$ mit $rho > 0$, dann ist
-  - $f(x) = sum_(k=0)^oo c_k (x - x_0)^k$ auf $]x_0 - rho, x_0 + rho[$ differenzierbar \
+- *Allgemeine Funktionenfolgen:* Für eine Folge $(f_n) in C^1$ mit $f_n ->_"glm." f$ und $f'_n ->_"glm." g$ auf $(a, b)$ gilt:
+  $f in C^1$ und $f' = g$.
+- *Potenzreihen:* Für eine Potenzreihe $f(x) = sum_(k=0)^oo c_k (x - x_0)^k$ mit Konvergenzradius $rho > 0$ gilt:
+  - $f$ ist auf $(x_0 - rho, x_0 + rho)$ glatt ($f in C^oo$).
     #minitext[
-      Durch Potenzreihe gegebene Funktionen ist im Konvergenzbereich differenzierbar.
+      Durch Potenzreihe gegebene Funktion ist im Konvergenzbereich gliedweise differenzierbar.
     ]
-  - $f'(x) = sum_(k=1)^oo k c_k (x - x_0)^(k-1) quad forall x in ]x_0 - rho, x_0 + rho[$ \
-    #minitext[
-      Für durch Potenzreihe gegebene Funktion: Ableitungen im Konvergenzbereich gliedweise berechenbar.
-    ]
-- Falls glatte Funktion f in einem Intervall $]-rho, rho[$ die Summe einer Potenzreihe $sum_(k=0)^oo c_k x^k$ mit Konvergenzbereich $rho$ ist $==> c_k = (f^((k))(0))/(k!)$.
-- Potenzreihen $==>$ glatte Funktion auf ihrem Konvergenzbereich.
+  - Die 1. Ableitung lautet: \
+    $f'(x) = sum_(k=1)^oo k c_k (x - x_0)^(k-1) quad forall x in (x_0 - rho, x_0 + rho)$
+  - Für die $j$-te Ableitung gilt:
+    $f^((j))(x) = sum_(k=markhl(j))^oo c_k (k!)/((k-j)!) (x - x_0)^(k-j)$
+- *Zusammenhang mit Taylor-Reihen:* \
+  Da eine Potenzreihe auf ihrem Konvergenzbereich immer eine glatte Funktion $f$ erzeugt, entsprechen ihre Koeffizienten exakt den Taylor-Koeffizienten:
+  $c_j = (f^((j))(x_0))/(j!)$
 
 == Sattelpunkt und Wendepunkt
 #grid(
-  columns: (1fr, auto),
+  columns: (4fr, 1fr),
   [
-    Stelle $x_0$ wo $f'(x_0) = 0$ aber kein Extremum.
-    / Wendepunkt:
-      - $f''(x_0) = 0$
-      - $f'(x_0) != 0$
-    / Sattelpunkt:
-      - $f'(x_0) = 0$
-      - $f''(x_0) = 0$
+    Stelle $x_0$ wo $f'(x_0) = 0$, aber kein Extremum.
+    #grid(
+      columns: (1fr, 1fr),
+      [
+        / Wendepunkt:
+          - $f'(x_0) markhl(!=) 0$
+          - $f''(x_0) = 0$
+      ],
+      [
+        / Sattelpunkt:
+          - $f'(x_0) markhl(=) 0$
+          - $f''(x_0) = 0$
+      ],
+    )
   ],
-  image("img/satelpunktwendepunkt.jpeg", width: 25%),
+  image("img/satelpunktwendepunkt.jpeg", width: 100%),
 )
-
+#colbreak()
 == Extremalstellen
-Für $n >= 0, a < x_0 < b, f: [a, b] -> RR$ in $(a, b)$ (n+1)-mal stetig differenzierbar und $f'(x_0) = f^((2))(x_0) = ... = f^((n))(x_0) = 0$. Falls
-- n gerade und $x_0$ lokales Extremum $==> f^((n+1))(x_0) = 0$
-- n ungerade und $f^((n+1))(x_0) > 0 ==> x_0$ ist eine strikte lokale Minimalstelle.
-- n ungerade und $f^((n+1))(x_0) < 0 ==> x_0$ ist eine strikte lokale Maximalstelle.
+#minitext[_Voraussetzung: $f$ ist auf $[a, b]$ stetig und im Inneren $(a,b)$ $(n+1)$-mal stetig differenzierbar. Sei $x_0 in (a, b)$._] \
+Sei $f$ an der Stelle $x_0$ sehr flach, d.h. die ersten $n$ Ableitungen verschwinden:
+$f'(x_0) = f''(x_0) = ... = f^((n))(x_0) = 0$. \
+Die erste Ableitung ungleich 0, sei die $(n+1)$-te Ableitung. Dann gilt:
+*Ist $(n+1)$ ungerade* ($n$ ist gerade): *Sattelpunkt* (kein Extremum).
+*Ist $(n+1)$ gerade* ($n$ ist ungerade): *Extremum*.
+- $f^((n+1))(x_0) > 0 ==> x_0$ = striktes lokales *Minimum* $union$
+- $f^((n+1))(x_0) < 0 ==> x_0$ = striktes lokales *Maximum* $inter$
+_Hinweis: Der klassische Test mit der 2. Ableitung ist der Spezialfall $n=1$._
 
-Für $f: [a, b] -> RR$ stetig und in $(a, b)$ zweimal stetig differenzierbar. Für $a < x_0 < b$ und $f'(x_0) = 0$. Falls
-- $f^((2))(x_0) > 0 ==> x_0$ ist eine strikte lokale Minimalstelle.
-- $f^((2))(x_0) < 0 ==> x_0$ ist eine strikte lokale Maximalstelle.
+=== Korrolar Implikationen der Ableitung
+Seien $f, g: [a, b] -> RR$ stetig und in $(a, b)$ differenzierbar und *für alle* $xi in [a, b]$ gilt. (gilt für alle $x, x_1, x_2 in [a, b]$)
+- $f'(xi) = 0$, dann ist $f$ konstant.
+- $f'(xi) = g'(xi)$, dann gibt es $c in RR$ mit $f(x) = g(x) + c$
+- $f'(xi) > 0$, dann ist $f$ auf $[a, b]$ streng mon. wachsend.
+- $f'(xi) >= 0$, dann ist $f$ auf $[a, b]$ monoton wachsend.
+- $f'(xi) < 0$, dann ist $f$ auf $[a, b]$ streng mon. fallend.
+- $f'(xi) <= 0$, dann ist $f$ auf $[a, b]$ monoton fallend.
+- $exists M >= f'(xi)$, dann gilt $|f(x_1) - f(x_2)| <= M |x_1 - x_2|$. \
+  #minitext[
+    Wenn Ableitung obere Schranke M hat, dann ist der Abstand der Funktionswerte immer kleiner als $M dot "Abstand der Argumente"$.
+  ]
+
 
 == Implikationen der Ableitungen
 #table(
   columns: (auto, auto, auto, auto, 1fr),
   align: (center, center, center, center, left),
   stroke: 0.5pt,
+  inset: 0.4em,
   [*$f(x)$*], [*$f'(x)$*], [*$f''(x)$*], [*$f'''(x)$*], [*Eigenschaft*],
   [$= 0$], [], [], [], [Nullstelle],
   [$= 0$], [$= 0$], [$!= 0$], [], [2-fache Nullstelle],
@@ -1362,21 +1384,7 @@ Für $f: [a, b] -> RR$ stetig und in $(a, b)$ zweimal stetig differenzierbar. F�
   [], [], [$< 0$], [], [Streng Konkav],
 )
 
-=== Korrolar Implikationen der Ableitung
-Seien $f, g: [a, b] -> RR$ stetig und in $(a, b)$ differenzierbar und *für alle* $xi in [a, b]$ gilt. (gilt für alle $x, x_1, x_2 in [a, b]$)
-- $f'(xi) = 0$, dann ist $f$ konstant.
-- $f'(xi) = g'(xi)$, dann gibt es $c in RR$ mit $f(x) = g(x) + c$
-- $f'(xi) > 0$, dann ist $f$ auf $[a, b]$ streng mon. wachsend.
-- $f'(xi) >= 0$, dann ist $f$ auf $[a, b]$ monoton wachsend.
-- $f'(xi) < 0$, dann ist $f$ auf $[a, b]$ streng mon. fallend.
-- $f'(xi) <= 0$, dann ist $f$ auf $[a, b]$ monoton fallend.
-- $exists M >= f'(xi)$, dann gilt $|f(x_1) - f(x_2)| <= M |x_1 - x_2|$. \
-  #minitext[
-    Wenn Ableitung obere Schranke M hat, dann ist der Abstand der Funktionswerte immer kleiner als $M dot "Abstand der Argumente"$.
-  ]
-
-== Satz von Rolle
-#subbox(title: "Satz von Rolle")[
+#mainbox(title: "Satz von Rolle")[
   #grid(
     columns: (4fr, 1fr),
     gutter: 0.5em,
@@ -1387,8 +1395,6 @@ Seien $f, g: [a, b] -> RR$ stetig und in $(a, b)$ differenzierbar und *für alle
     image("img/satzvonrolle.jpeg"),
   )
 ]
-
-== Mittelwertsatz (Lagrange)
 
 #mainbox(title: "Mittelwertsatz (Lagrange)")[
   #grid(
@@ -1405,18 +1411,20 @@ Seien $f, g: [a, b] -> RR$ stetig und in $(a, b)$ differenzierbar und *für alle
 
 == Taylor Approximation
 Annäherung glatter Funktionen als Potenzreihen am Entwicklungspunkt $a$.
-#mainbox(title: "T_n Taylor-Polynom vom Grad n")[ #subbox(title: "T_n Taylor-Polynom vom Grad n")[ ]
+#mainbox(title: $T_n$ + " Taylor-Polynom vom Grad " + $n$)[
   Sei $f: I -> RR in CC^oo quad (n+1)$-mal differenzierbar.
-  Das n-te Taylor-Polynom $T_n f(x; a)$ an einer Entwicklungspunkt a ist:
-  $T_n f(x; a) := sum_(k=0)^n (f^((k))(a))/(k!) dot (x - a)^k$ \
-  $= f(a) + f'(a) dot (x - a) + (f''(a))/(2!) dot (x - a)^2 + ...$ \
+  Das $n$-te Taylor-Polynom $T_n f(x; a)$ an einer Entwicklungspunkt $a$ ist:
+  $
+    T_(n f)(x; a) : & = sum_(k=0)^n (f^((k))(a))/(k!) dot (x - a)^k \
+                    & = f(a) + f'(a) dot (x - a) + (f''(a))/(2!) dot (x - a)^2 + ...
+  $
   #minitext[
-    Hinweis: $f^((k))(a)$ = k-te Ableitung von f an der Stelle a.
-  ]
+    Hinweis: $f^((k))(a)$ = $k$-te Ableitung von $f$ an der Stelle a.
+  ] // TODO: weglassen?
 ]
-- Entwicklungspunkt a ist Punkt wo die Annäherung startet.
-- x ist der Punkt welchen man annähern möchte.
-- Für $c < a < d, forall x in [c, d] quad exists xi$ zwischen x & a oder a & x: \
+- Entwicklungspunkt $a$ ist Punkt wo die Annäherung startet.
+- $x$ ist der Punkt welchen man annähern möchte.
+- Für $c < a < d, forall x in [c, d] quad exists xi$ zwischen $x$ & $a$ oder $a$ & $x$: \
   $
     f(x) &= underbrace(sum_(k=0)^n (f^((k))(a))/(k!)(x - a)^k, T_n (f, x, a)) + underbrace((f^((n+1))(xi))/((n+1)!)(x - a)^(n+1), R_n (f, x, a))
   $
@@ -1429,42 +1437,65 @@ Annäherung glatter Funktionen als Potenzreihen am Entwicklungspunkt $a$.
   #grid(
     columns: (5fr, 1fr),
     [
-      $T_1(x) \= sum_(k=0)^1 (f^((k))(a))/(k!) = (f^((0))(0))/(0!) dot (x - 0)^0 + (f^((1))(0))/(1!) dot (x - 0)^1 = 0 dot 1 + cos(0) dot x^1 = x$ \
-      $T_3(x) = sum_(k=0)^3 (f^((k))(a))/(k!) = (f^((0))(0))/(0!) dot x^0 + (f^((1))(0))/(1!) dot x^1 + (f^((2))(0))/(2!) dot x^2 + (f^((3))(0))/(3!) dot x^3 = (-cos(0))/(3!) dot x^3 + (-sin(0))/(2!) dot x^2 + (cos(0))/1 dot x^1 + 0 = -1/3 dot x^3 + 0 + 1 dot x^1 = -x^3/(3!) + x$
+      $T_(1 sin)(x; 0) \= sum_(k=0)^1 (f^((k))(a))/(k!) = (f^((0))(0))/(0!) dot (x - 0)^0 + (f^((1))(0))/(1!) dot (x - 0)^1 = 0 dot 1 + cos(0) dot x^1 = x$ \
+      $T_(3 sin)(x; 0) = sum_(k=0)^3 (f^((k))(a))/(k!) = (f^((0))(0))/(0!) dot x^0 + (f^((1))(0))/(1!) dot x^1 + (f^((2))(0))/(2!) dot x^2 + (f^((3))(0))/(3!) dot x^3 = (-cos(0))/(3!) dot x^3 + (-sin(0))/(2!) dot x^2 + (cos(0))/1 dot x^1 + 0 = -1/3! dot x^3 + 0 + 1 dot x^1 = -x^3/(3!) + x$
     ],
     image("img/tayplorpolynome.jpg", width: 100%),
   )
 ]
 
-#mainbox(title: "Taylorreihe von f an Stelle a")[
+#mainbox(title: "Taylorreihe von " + $f$ + " an Stelle " + $a$)[
   $f in CC^oo$ kann auch als unendliche Reihe dargestellt werden: \
   $T f(x; a) := T_oo = sum_(k=0)^oo (f^((k))(a))/(k!) dot (x - a)^k$
 ]
 - Taylorreihe von $f in C^oo$ ist Potenzreihe mit Konvergenzradius $rho$.
-- Taylorreihe konvergent $notimplies T_oo(x, a)$ konvergent gegen f.
+- Taylorreihe konvergent $notimplies T_oo (x, a)$ konvergent gegen $f$. \
+  #minitext[
+    Implikation gilt nicht, da Taylorreihe nur lokales Wissen am Entwicklungspunkt sammelt und deshalb bei manchen Funktionen zwar mathematisch konvergiert, abseits dieses Punktes aber gegen einen völlig falschen Wert konvergieren kann.
+  ]
 
+// TODO: hier weiterlesen
 === Wichtige Taylorreihen (für a=0)
 - $e^x = sum_(n=0)^oo x^n/(n!), quad forall x in RR$
 - $e^(-x) = sum_(n=0)^oo (-1)^n dot x^n/(n!), quad forall x in RR$
 - $sin(x) = sum_(n=0)^oo (-1)^n dot x^(2n+1)/((2n+1)!), quad forall x$
 - $cos(x) = sum_(n=0)^oo (-1)^n dot x^(2n)/((2n)!), quad forall x$
 
-#bspbox(title: "Taylor Approximation " + $f(x) = x^x$)[
-  Sei $f(x) = x^x, N = 3$, und $x_0 = 1$. Suche die Approximation für $(7/5)^(7/5) (==> x/x ==> x = 7/5)$.
-  - 1. $f'(x), f''(x)$ und $f'''(x)$ berechnen.
-  - 2. $f(x) = f(x_0) + f'(x_0)(x - 1) + (f''(x_0))/2 (x - 1)^2 + (f'''(x_0))/6 (x - 1)^3$
-  - 3. $f(7/5) = 1 + (7/5 - 1) + 2/2(7/5 - 1)^2 + 3/6(7/5 - 1)^3 = 199/125 = 1.592$
+#bspbox(title: "Taylor Approximation für " + $f(x) = x^x$)[
+  Sei $f(x) = x^x$, der Grad $N = 3$, Entwicklungspunkt $x_0 = 1$. \
+  Gesucht: Approx. für $(7/5)^(7/5)$, also werten wir Polynom an $x = 7/5$ aus.
+
+  + *Ableitungen im Punkt $x_0 = 1$ berechnen:*
+    $
+         f(x) & = x^x                         &    ==> f(1) = 1 \
+        f'(x) & = x^x (ln(x) + 1)             &   ==> f'(1) = 1 \
+       f''(x) & = x^x (ln(x) + 1)^2 + x^(x-1) &  ==> f''(1) = 2 \
+      f'''(x) & = ... "lange Ableitung" ...   & ==> f'''(1) = 3
+    $
+  + *Taylorpolynom $T_3(x; 1)$ aufstellen:*
+    $
+      T_3(x; 1) & = f(1) + f'(1)(x - 1) + (f''(1))/2 (x - 1)^2 + (f'''(1))/6 (x - 1)^3 quad \
+                & = 1 + 1(x - 1) + 2/2 (x - 1)^2 + 3/6 (x - 1)^3 \
+                & = 1 + (x - 1) + (x - 1)^2 + 1/2 (x - 1)^3
+    $
+
+  + *Wert $x = 7/5$ einsetzen* (beachte: $x - 1 = 7/5 - 1 = 2/5$): \
+    $
+      T_3(7/5; 1) = 1 + 2/5 + (2/5)^2 + 1/2 (2/5)^3
+      = 1 + 2/5 + 4/25 + 4/125 \
+      = 125/125 + 50/125 + 20/125 + 4/125 = 199/125 = 1.592
+    $
 ]
 
 #howtobox(title: "Rezept: Approximiere Punkt")[
-  Approximiere f mit Entwicklungspunkt a an stelle x mit Taylor von Ordnung n
-  #set enum(numbering: "1.")
-  + Leite $f quad n$ mal ab
-  + Bilde Taylorpolynom durch einsetzen von a und x
+  // TODO: Weglassen?
+  Approximiere $f$ mit Entwicklungspunkt $a$ an Stelle $x$ mit Taylor von Ordnung $n$:
+  + Leite $f$ $n$-mal ab
+  + Bilde Taylorpolynom durch Einsetzen von $a$ und $x$
 ]
 
 #howtobox(title: "Rezept: Finde Fehler von Taylorpolynom")[
-  Gegeben Taylorpolynom $T_n(f, x, a)$ mit n. Ordnung.
+  Gegeben Taylorpolynom $T_n(f, x, a)$ mit $n$. Ordnung.
   #set enum(numbering: "1.")
   + Leite $f^((n))$ ab
   + Bilde Restpolynom $R_N(f, x, a) = (f^((n+1))(xi))/((n + 1)!)(x - a)^(n + 1)$
@@ -1506,7 +1537,7 @@ Annäherung glatter Funktionen als Potenzreihen am Entwicklungspunkt $a$.
 )
 
 #mainbox(title: "Riemann-Summe")[
-  Sei f stetig mit $f(x): [a, b] -> RR$. Sei P in n Teile und Stützstellen $xi$. \
+  Sei $f$ stetig mit $f(x): [a, b] -> RR$. Sei P in $n$ Teile und Stützstellen $xi$. \
   $S(f, P, xi) := sum_(i=1)^n f(xi_i) dot (x_i - x_(i-1))$
 ]
 
@@ -1529,7 +1560,7 @@ Annäherung glatter Funktionen als Potenzreihen am Entwicklungspunkt $a$.
 ]
 
 == Riemann Integrierbar Kriterien
-#mainbox(title: "f Riemann-integrierbar")[
+#mainbox(title: "$f$ Riemann-integrierbar")[
   Beschränkte Funktion $f: [a, b] -> RR$ ist integrierbar
   - $<==> s(f) = S(f) =: integral_a^b f(x) d x$. \
     #minitext[ ($delta_i = d x$) \
@@ -1550,7 +1581,7 @@ Annäherung glatter Funktionen als Potenzreihen am Entwicklungspunkt $a$.
 
 === Rechenregeln Integrierbare Funktionen
 #subbox(title: "Weitere integrierbare Funktionen")[
-  Wenn f, g beschränkt und integrierbar sind, dann sind
+  Wenn $f$, $g$ beschränkt und integrierbar sind, dann sind
   $f + g, lambda dot f, f dot g, |f|, max(f, g), min(f, g), f/g$ integrierbar.
 ]
 
@@ -1566,7 +1597,7 @@ Für $f, g: [a, b] -> RR$ beschränkt integrierbar:
 #mainbox(title: "Unbestimmtes Integral")[
   $integral f(x) d x = F(x) + C$ \
   #minitext[
-    Menge aller Aufleitungen von f(x) a.k.a. aller Stammfunkt. C = Integrationskonstante.
+    Menge aller Aufleitungen von $f$($x$) a.k.a. aller Stammfunkt. C = Integrationskonstante.
   ]
 ]
 
@@ -1575,7 +1606,7 @@ Flächeninhalt unter der Kurve zwischen den Punkten a und b
 #mainbox(title: "Bestimmtes Integral")[
   $integral_a^b f(x) d x = limn sum_(i=1)^n f(xi_i) dot (x_i - x_(i-1)) = F(b) - F(a)$ \
   #minitext[
-    Grenzwert der Riemann-Summe wenn Anzahl Teilintervalle n gegen unendlich geht.
+    Grenzwert der Riemann-Summe wenn Anzahl Teilintervalle $n$ gegen unendlich geht.
   ]
 ]
 
@@ -1596,14 +1627,14 @@ Flächeninhalt unter der Kurve zwischen den Punkten a und b
     image("img/riemannmittelwertsatz.jpeg", width: 50%),
   )
 ]
-- für $f, g: [a, b] -> RR, f$ stetig, g beschränkt integrierbar und $g(x) >= 0 quad forall x in [a, b] ==> exists xi in [a, b], integral_a^b f(x)g(x) d x = f(xi) integral_a^b g(x) d x$.
+- für $f, g: [a, b] -> RR, f$ stetig, $g$ beschränkt integrierbar und $g(x) >= 0 quad forall x in [a, b] ==> exists xi in [a, b], integral_a^b f(x)g(x) d x = f(xi) integral_a^b g(x) d x$.
 
 == Stammfunktion
 #subbox(title: "Stammfunktion F")[
-  $F: [a, b] -> RR$ ist Stammfunktion von f \
+  $F: [a, b] -> RR$ ist Stammfunktion von $f$ \
   $<==> F$ (stetig) differenzierbar in $[a, b]$ & $F' = f$ in $[a, b]$.
 ]
-"f integrierbar" impliziert _nicht_, dass eine Stammfunktion existiert. Beispiel:
+"$f$ integrierbar" impliziert _nicht_, dass eine Stammfunktion existiert. Beispiel:
 $
   f(x) = cases(
     0 & "für" x <= 0,
@@ -1614,15 +1645,15 @@ $
 == Hauptsatz Differential-/Integralrechnung
 Für stetige Funktion existiert immer eine Stammfunktion.
 #mainbox(title: "Hauptsatz Differential-/Integralrechnung")[
-  $F(x) = integral_a^x f(t) d t$ ist Stammfunktion von f in $[a, b]$. \
+  $F(x) = integral_a^x f(t) d t$ ist Stammfunktion von $f$ in $[a, b]$. \
   $<==> F'(x) = f(x) quad forall x in [a, b]$. \
   #minitext[
-    Hinweis: f ist stetig und Stammfunktion F ist in [a, b] stetig differenzierbar
+    Hinweis: $f$ ist stetig und Stammfunktion F ist in [a, b] stetig differenzierbar
   ]
 ]
 
 == Fundamentalsatz der Analysis
-Bestimmtes Integral von f im Intervall $[a, b]$ berechnen.
+Bestimmtes Integral von $f$ im Intervall $[a, b]$ berechnen.
 #mainbox(title: "Fundamentalsatz der Analysis")[
   #minitext[
     $sum_a^b F'(x) triangle x =$
@@ -1636,7 +1667,7 @@ $integral c dot x^n d x = (c dot x^(n+1))/(n+1), quad (n != 0)$
 #howtobox(title: "Vorgehen Teil 1")[
   #set enum(numbering: "1.")
   + Verkettete Funktion? $->$ Substitution
-  + Produkt von Funktionen? $->$ Partielle Integration. $sin, cos$ immer g' und e immer f.
+  + Produkt von Funktionen? $->$ Partielle Integration. $sin, cos$ immer $g$' und e immer $f$.
   + Produkt von Funktionen mit $exp(x) = e^x, sin, cos$? $->$ (Mehrmals) Partielle Integration.
   + Uneigentliches Integral? $->$ nicht kompaktes Intervall Trick/unbeschränkte Funktion Trick mit anderen Werkzeugen kombinieren.
   + Umformen: Produktregel, Kettenregel, etc.
@@ -1649,7 +1680,7 @@ $integral c dot x^n d x = (c dot x^(n+1))/(n+1), quad (n != 0)$
     - 1. $integral_a^b (f(x))^c d x$ auflösen in $integral_a^b (f(x))^(c-1) dot f(x) d x$ um partielle Integration anzuwenden.
     - 2. $integral_a^b (f(x))^c dot 1$ Trick anwenden um partielle Integration zu benutzen.
   + Exponentenform
-    - 1. e / log Trick anwenden wenn Variable x in Exponent ist. erhält.
+    - 1. e / log Trick anwenden wenn Variable $x$ in Exponent ist. erhält.
     - 2. z.B. $3^x = e^(log(3) dot x)$
   + Summe im Integral: Summe aus dem Integral herausziehen. Die Reihe muss dazu gleichmässig konvergieren! \
     Bsp. $integral_0^oo sum_(n=0)^oo ((-1)^n t^(2n))/((2n+1)!) d t = sum_(n=0)^oo ((-1)^n)/((2n+1)!) integral_0^x t^(2n) d t = sum_(n=0)^oo ((-1)^n x^(2n+1))/((2n+1)!(2n+1))$
@@ -1703,14 +1734,14 @@ Integral mit verketteten Funktionen vereinfachen.
   - $integral_a^b f(phi(t)) phi'(t) d t$ (Produkt von Funktion & Ihrer Ableitung) $==>$ Anwendung von links nach rechts.
   - Integral in der Form $integral_alpha^beta f(x) d x ==>$ Anwendung von rechts nach links $==>$ versuch einer Substitution mittels $x = phi(t)$, wobei $phi(t_0) = alpha$ und $phi(t_1) = beta$. \
     #minitext[ Das Muster wie bei Links nach Rechts ist nicht zu erkennen. ]
-- *Achtung!* Bei beiden Richtungen beachten, dass die ursprünglichen Grenzen im Integral von t, nun für x angepasst werden müssen.
+- *Achtung!* Bei beiden Richtungen beachten, dass die ursprünglichen Grenzen im Integral von $t$, nun für $x$ angepasst werden müssen.
 - Unbestimmtes Integral $integral f(x) d x |_{x=phi(t)} = integral f(phi(t))phi'(t) d t + c$.
 
 #bspbox(title: $integral_0^1(1+t^2)^2022 dot t dot d t$ + " mit Substitution (Links nach Rechts)")[
   #set enum(numbering: "1.")
-  + Innere Funktion substitutieren und d x berechnen: \
+  + Innere Funktion substitutieren und d $x$ berechnen: \
     $phi(t) = 1+t^2 = x, phi'(t) = 2t = (d x)/(d t) ==> d x = 2t d t, f(x) = x^2022$
-  + Erkenne Muster der linken Seite. $phi'(t)$ ist in t versteckt: \
+  + Erkenne Muster der linken Seite. $phi'(t)$ ist in $t$ versteckt: \
     $integral_0^1(1+t^2)^2022 dot t dot d t = integral_0^1(1+t^2)^2022 dot 1/2 dot 2t dot d t$
   + Substitutionsregel mit Grenzen für $x = phi(x)$ angepasst: $phi(0) = 1$ & $phi(1) = 2$ \
     $==> 1/2 dot integral_(phi(0))^(phi(1)) x^2022 d x = integral_1^2 x^2022 d x$
@@ -1719,7 +1750,7 @@ Integral mit verketteten Funktionen vereinfachen.
 
 #bspbox(title: $integral e^(1/x)/x^2 d t$ + " mit Substitution (Links nach Rechts)")[
   #set enum(numbering: "1.")
-  + Innere Funktion substitutieren und d x berechnen: \
+  + Innere Funktion substitutieren und d $x$ berechnen: \
     $phi(t) = 1/t = x, phi'(t) = -1/t^2 = (d x)/(d t) ==> d x = -t^2 d t$
   + Erkenne Muster der linken Seite. $phi'(t)$ ist in $1/t^2$ versteckt. \
     $integral e^(1/t) dot 1/t^2 dot d t = integral e^(1/t) dot -1 dot -1/t^2 dot d t$
@@ -1737,7 +1768,7 @@ Integral mit verketteten Funktionen vereinfachen.
 
 == Integration konvergenter Reihen
 #mainbox(title: "Konvergente Reihen")[
-  Sei $f_n : [a,b] -> RR$ eine Folge von beschränkten, integrierbaren Funktionen die gleichmässig gegen eine Funktion $f: [a,b] -> RR$ konvergieren. So ist f beschränkt integrierbar:
+  Sei $f_n : [a,b] -> RR$ eine Folge von beschränkten, integrierbaren Funktionen die gleichmässig gegen eine Funktion $f: [a,b] -> RR$ konvergieren. So ist $f$ beschränkt integrierbar:
   $limn integral_a^b f_n(x) d x = integral_a^b f(x) d x$
 ]
 
@@ -1746,7 +1777,7 @@ Integral mit verketteten Funktionen vereinfachen.
 ]
 
 #subbox(title: "Integral durch Potenzreihen berechnen")[
-  Sei $f(x) = sum_(n=0)^oo c_k x^k$ eine Potenzreihe mit positivem Konvergenzradius $p > 0$. Dann ist für jedes $0 <= r < p$, f auf $[-r,r]$ integrierbar und es gilt \
+  Sei $f(x) = sum_(n=0)^oo c_k x^k$ eine Potenzreihe mit positivem Konvergenzradius $p > 0$. Dann ist für jedes $0 <= r < p$, $f$ auf $[-r,r]$ integrierbar und es gilt \
   $forall x in ]-p,p[: integral_0^x f(t) d t = sum_(k=0)^oo c_k dot (x^(k+1))/(k+1)$ \
   #minitext[
     Sei $f(x) = x^m, q = 0, b = 1$. Dann gilt: $integral_0^1 f(x) d x = integral_x^1 x^m d x = x^(m+1)/(m+1)|_0^1 = 1/(m+1)$
@@ -1762,7 +1793,7 @@ Integral berechnen für
 #mainbox(title: "Uneigentliches Integral")[
   Sei $f: [a, oo] -> RR$ beschränkt & integrierbar auf $[a,b] forall a < b$.
   Falls $exists lim_(b -> oo) integral_a^b f(x) d x$, bezeichnen wird Grenzwert mit
-  $integral_a^oo f(x) d x$ und f ist auf $[a, oo[$ integrierbar.
+  $integral_a^oo f(x) d x$ und $f$ ist auf $[a, oo[$ integrierbar.
 ]
 
 #bspbox(title: $integral_0^1 1/sqrt(x) d x$ + ": unbeschränkte Funktion")[
@@ -1812,7 +1843,7 @@ Integral berechnen für
   Reihe $sum_(n=a)^oo f(n)$ konvergiert $<==> integral_a^oo f(x) d x$ konvergiert & in diesem Fall ist $0 <= sum_(k=a)^oo f(k) - integral_a^oo f(x) d x <= f(a)$. \
   #minitext[
     ex: Sei $0 < s in RR$. Wann konvergiert Reihe $sum_(k=2)^oo 1/(k(log k)^s)$?
-    Sei $f(x) = 1/(x(log x)^s)$. f mon. fallend. \
+    Sei $f(x) = 1/(x(log x)^s)$. $f$ mon. fallend. \
     $I = integral 1/(x(log x)^s) d x, u = log x, (d u)/(d x) = 1/x$
     $==> lim_(b -> oo) integral_2^b 1/(x(log x)^s) d x = lim_(b -> oo) integral_(log 2)^(log b) (d u)/u^s = integral_(log 2)^oo (d u)/u^s$
   ]
@@ -1832,7 +1863,7 @@ Integral berechnen für
   + Konstrukt der Dekomposition erstellen: \ $f(x) = A/(2k-1) + B/(2k+1)$
   + A und B berechnen: $1 = A(2k+1)+B(2k-1)$ \
     Implies 2 new equations: \
-    $A+B = 0$ (no k on LHS) \
+    $A+B = 0$ (no $k$ on LHS) \
     $A-B = 1$ (if A+B = 0, then this must be 1) \
     Adding both equations we get: \
     $2A = 1 ==> A = 1/2, quad 1/2 + B = 0 ==> B = -1/2$
@@ -1848,10 +1879,10 @@ Nutzen um Rationale Funktionen $R(x) = P(x)/Q(x)$ zu integrieren.
   + Berechne die Nullstellen von $q(x)$.
   + Pro Nullstelle: Einen Partialbruch erstellen.
     - Einfach, reell: $x_1 -> A/(x - x_1)$
-    - n-fach, reell: $x_1 -> A_1/(x - x_1) + ... + A_r/((x-x_1)^r)$
+    - $n$-fach, reell: $x_1 -> A_1/(x - x_1) + ... + A_r/((x-x_1)^r)$
     - Einfach, komplex: $x^2 + p x + q -> (A x + B)/(x^2 + p x + q)$
-    - n-fach, komplex: $x^2 + p x + q -> (A_1 x+b_1)/(x^2+p x+q) + ...$
-  + Parameter $A_1, ..., A_n$ (bzw. $B_1, ..., B_n$) bestimmen. (x jeweils gleich Nullstelle setzen, umformen und lösen).
+    - $n$-fach, komplex: $x^2 + p x + q -> (A_1 x+b_1)/(x^2+p x+q) + ...$
+  + Parameter $A_1, ..., A_n$ (bzw. $B_1, ..., B_n$) bestimmen. ($x$ jeweils gleich Nullstelle setzen, umformen und lösen).
 ]
 
 == Euler-McLaurin-Formel
@@ -1860,7 +1891,7 @@ Voraussetzung sind Bernoulli-Polynome $B_n(x)$ und Bernoulli-Zahlen $B_n(0)$.
 Des weiteren polynomen dessen Eigenschaften sind:
 1. $P'_k = P_(k-1), k > 1 quad$ 2. $integral_0^1 P_k(x) d x = 0, forall k >= 1$
 
-Für das k-te Bernoulli-Polynom gilt: $B_k(x) = k! P_k(x)$.
+Für das $k$-te Bernoulli-Polynom gilt: $B_k(x) = k! P_k(x)$.
 Definiere $B_0=1$ & Bernoulli-Zahlen rekursiv: $B_(k-1) = sum_(i=0)^(k-1) binom(k, i) B_i = 0$.
 
 $==>$ Definition Bernoulli-Polynom: $B_k(x) = sum_(i=0)^k binom(k, i) B_i x^(k-i)$
@@ -1874,7 +1905,7 @@ $
 $
 
 #mainbox(title: "Euler-McLaurin-Summationsformel")[
-  Sei $f: [0, n] -> RR$ k-mal stetig differenzierbar. Dann gilt:
+  Sei $f: [0, n] -> RR$ $k$-mal stetig differenzierbar. Dann gilt:
   - Für $k = 1$: \
     $sum_(i = 1)^n f(i) = integral_0^n f(x) d x + 1/2(f(n) - f(0)) \ + integral_0^n tilde(B)_1(x)f'(x) d x$
   - Für $k>1$: \
@@ -2119,7 +2150,7 @@ Für die Lösung einer inhomogenen DGL muss ein geeigneter Ansatz für die parti
 )
 
 == Trivial stetige Funktionen
-$f(x) = c$ (c ist Konstante), $f(x) = x$, $f(x) = x^n$, $f(x) = a_n x^n + ... + a_1 x + a_n$, $f(x) = m x + b$, $f(x) = ln(x)$, $f(x) = exp(x)$
+$f(x) = c$ ($c$ ist Konstante), $f(x) = x$, $f(x) = x^n$, $f(x) = a_n x^n + ... + a_1 x + a_n$, $f(x) = m x + b$, $f(x) = ln(x)$, $f(x) = exp(x)$
 
 == Bekannte Reihen
 #table(
