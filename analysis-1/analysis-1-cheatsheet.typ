@@ -1334,7 +1334,7 @@ Für $f, g: DD -> RR quad n$-mal differenzierbar:
   ],
   image("img/satelpunktwendepunkt.jpeg", width: 100%),
 )
-#colbreak()
+
 == Extremalstellen
 #minitext[_Voraussetzung: $f$ ist auf $[a, b]$ stetig und im Inneren $(a,b)$ $(n+1)$-mal stetig differenzierbar. Sei $x_0 in (a, b)$._] \
 Sei $f$ an der Stelle $x_0$ sehr flach, d.h. die ersten $n$ Ableitungen verschwinden:
@@ -1434,7 +1434,7 @@ Annäherung glatter Funktionen als Potenzreihen am Entwicklungspunkt $a$.
   #grid(
     columns: (5fr, 1fr),
     [
-      $T_(1 sin)(x; 0) \= sum_(k=0)^1 (f^((k))(a))/(k!) = (f^((0))(0))/(0!) dot (x - 0)^0 + (f^((1))(0))/(1!) dot (x - 0)^1 = 0 dot 1 + cos(0) dot x^1 = x$ \
+      $T_(1 sin)(x; 0) \= sum_(k=0)^1 (f^((k))(a))/(k!) = (f^((0))(0))/(0!) dot (x - 0)^0 + (f^((1))(0))/(1!) dot (x - 0)^1 = 0 dot 1 + cos(0) dot x^1 = x$ \ \
       $T_(3 sin)(x; 0) = sum_(k=0)^3 (f^((k))(a))/(k!) = (f^((0))(0))/(0!) dot x^0 + (f^((1))(0))/(1!) dot x^1 + (f^((2))(0))/(2!) dot x^2 + (f^((3))(0))/(3!) dot x^3 = (-cos(0))/(3!) dot x^3 + (-sin(0))/(2!) dot x^2 + (cos(0))/1 dot x^1 + 0 = -1/3! dot x^3 + 0 + 1 dot x^1 = -x^3/(3!) + x$
     ],
     image("img/tayplorpolynome.jpg", width: 100%),
@@ -1677,65 +1677,87 @@ $integral_a^b f(x) d x = F(b) - F(a)$
 === Polynome
 $integral c dot x^n d x = c dot 1/(n+1) dot x^(n+1), quad (n != 0)$
 
-// TODO: hier weiterlesen
 == Integrale Berechnen
-#howtobox(title: "Vorgehen Teil 1")[
-  #set enum(numbering: "1.")
-  + Verkettete Funktion? $->$ Substitution
-  + Produkt von Funktionen? $->$ Partielle Integration. $sin, cos$ immer $g$' und e immer $f$.
-  + Produkt von Funktionen mit $exp(x) = e^x, sin, cos$? $->$ (Mehrmals) Partielle Integration.
-  + Uneigentliches Integral? $->$ nicht kompaktes Intervall Trick/unbeschränkte Funktion Trick mit anderen Werkzeugen kombinieren.
-  + Umformen: Produktregel, Kettenregel, etc.
-  + Bruchform: Vereinfachen bis Nenner von leicht integrierbaren Teilfunktionen. Partialbruchzerlegung. $(u')/(2 sqrt(u))$ oder $(u')/u$ erkennen ($sqrt(u) + C, log|u| + C$).
+// #howtobox(title: "Vorgehen Teil 1")[
+// + Verkettete Funktion? $->$ Substitution
+// + Produkt von Funktionen? $->$ Partielle Integration. $sin, cos$ immer $g$' und e immer $f$.
+// + Produkt von Funktionen mit $exp(x) = e^x, sin, cos$? $->$ (Mehrmals) Partielle Integration.
+// + Uneigentliches Integral? $->$ nicht kompaktes Intervall Trick/unbeschränkte Funktion Trick mit anderen Werkzeugen kombinieren.
+// + Umformen: Produktregel, Kettenregel, etc.
+// + Bruchform: Vereinfachen bis Nenner von leicht integrierbaren Teilfunktionen. Partialbruchzerlegung. $(u')/(2 sqrt(u))$ oder $(u')/u$ erkennen ($sqrt(u) + C, log|u| + C$).
+// + Komplizierter Ausdruck mit Potenzen
+// + $integral_a^b (f(x))^c d x$ auflösen in $integral_a^b (f(x))^(c-1) dot f(x) d x$ um partielle Integration anzuwenden.
+// + $integral_a^b (f(x))^c dot 1$ Trick anwenden um partielle Integration zu benutzen.
+// + Exponentenform
+//   + e / log Trick anwenden wenn Variable $x$ in Exponent ist.
+//   + z.B. $3^x = e^(log(3) dot x)$
+// + Summe im Integral: Summe aus dem Integral herausziehen. Die Reihe muss dazu gleichmässig konvergieren! \
+// Bsp. $integral_0^oo sum_(n=0)^oo ((-1)^n t^(2n))/((2n+1)!) d t = sum_(n=0)^oo ((-1)^n)/((2n+1)!) integral_0^x t^(2n) d t = sum_(n=0)^oo ((-1)^n x^(2n+1))/((2n+1)!(2n+1))$
+// ]
+
+#howtobox(title: "Rezept: Integral-Checkliste (Schritt-für-Schritt)")[
+  + *Umformen & Muster erkennen (Immer zuerst prüfen!)*
+    - Kosmetik: Ausmultiplizieren, Brüche trennen, Exponenten umschreiben ($a^x = e^(ln(a) dot x)$).
+    - Bruchform-Muster erkennen oder erschaffen: \ $(u'(x))/(u(x)) ==> ln|u(x)| + C, quad quad quad (u'(x))/(2 sqrt(u(x))) ==> sqrt(u(x)) + C$
+
+  + *Verkettete Funktion? Substitution (Kettenregel rückwärts)*
+    - Gibt es eine verkettete Funktion *und* steht ihre innere Ableitung (bis auf eine Konstante) als Faktor davor? $->$ $u$ substituieren.
+    - *Trigonometrische Substitution:* Um hartnäckige Terme aufzulösen:
+      - Muster $sqrt(a^2 - x^2) ==> x = a sin(u)$ (nutzt $sin^2(u) + cos^2(u) = 1$)
+      - Muster $1/(a^2 + x^2) ==> x = a tan(u)$ (führt oft zu $arctan$)
+
+  + *Produkt? Partielle Integration (Produktregel rückwärts)*
+    - Bei Produkten von verschiedenen Funktionsklassen.
+    - *Wahl von $f$ (wird abgeleitet):* Nutze die *ILATE*-Regel. Was weiter links steht, wird $f$:
+      *I*\nverse Trig. (arctan) $->$ *L*\og. (ln) $->$ *A*\lgebraisch ($x^2$) $->$ *T*\rig. (sin) $->$ *E*\xponential ($e^x$).
+    - *Der "1"-Trick:* $integral f(x) d x = integral 1 dot f(x) d x$. Super um $ln(x)$ oder $arctan(x)$ partiell zu integrieren.
+    - *Potenz-Abspaltung:* $integral (f(x))^c d x = integral (f(x))^(c-1) dot f(x) d x$ (hilft z.B. bei $sin^3(x)$).
+
+  + *Partialbruchzerlegung*
+    - Wenn ein Bruch aus zwei Polynomen $P(x)/Q(x)$ besteht und Substitution (Schritt 2) nicht klappt.
+    - Falls Grad Zähler $>=$ Grad Nenner: Zuerst Polynomdivision!
+
+  + *Uneigentliche Integrale & Reihen (Meta-Tricks)*
+    - *Uneigentlich:* Grenzen durch Limes ersetzen ($lim_(R -> oo) integral_a^R$) und Unbeschränktheiten isolieren.
+    - *Reihen:* Integral und Summe vertauschen (z.B. Taylorreihen integrieren). \
+      #minitext[Bedingung: Die Reihe muss auf dem Intervall gleichmässig konvergieren!]
+      E.g. $integral_0^oo sum_(n=0)^oo ((-1)^n t^(2n))/((2n+1)!) d t = sum_(n=0)^oo ((-1)^n)/((2n+1)!) integral_0^x t^(2n) d t = sum_(n=0)^oo ((-1)^n x^(2n+1))/((2n+1)!(2n+1))$
 ]
 
-#howtobox(title: "Vorgehen Teil 2")[
-  #set enum(start: 7, numbering: "1.")
-  + Komplizierter Ausdruck mit Potenzen
-    - 1. $integral_a^b (f(x))^c d x$ auflösen in $integral_a^b (f(x))^(c-1) dot f(x) d x$ um partielle Integration anzuwenden.
-    - 2. $integral_a^b (f(x))^c dot 1$ Trick anwenden um partielle Integration zu benutzen.
-  + Exponentenform
-    - 1. e / log Trick anwenden wenn Variable $x$ in Exponent ist. erhält.
-    - 2. z.B. $3^x = e^(log(3) dot x)$
-  + Summe im Integral: Summe aus dem Integral herausziehen. Die Reihe muss dazu gleichmässig konvergieren! \
-    Bsp. $integral_0^oo sum_(n=0)^oo ((-1)^n t^(2n))/((2n+1)!) d t = sum_(n=0)^oo ((-1)^n)/((2n+1)!) integral_0^x t^(2n) d t = sum_(n=0)^oo ((-1)^n x^(2n+1))/((2n+1)!(2n+1))$
+#mainbox(title: "Partielle Integration")[
+  Seien $f, g$ stetig differenzierbar.
+
+  $ integral f'(x) g(x) d x = f(x) g(x) - integral f(x) g'(x) d x $
+
+  Für ein Intervall $[a, b]$ gilt entsprechend:
+  $ integral_a^b f'(x)g(x) d x = [f(x)g(x)]_a^b - integral_a^b f(x)g'(x) d x $
 ]
 
-=== Partielle Integration
-Integral von produkt von Funktionen vereinfachen.
-#mainbox(title: "Partielle Integrationsregel")[
-  Sei $a < b$ und $f, g: [a, b] -> RR$ stetig differenzierbar. \
-  $integral_a^b f(x)g'(x) d x = f(x)g(x)|_a^b - integral_a^b f'(x)g(x) d x$ \
-  #minitext[
-    $= f(b)g(b) - f(a)g(a) - integral_a^b f'(x)g(x) d x$
-  ]
-]
+
 - Grundsätzlich leiten wir Polynome ab ($g(x)$) und sich wiederholende Funktionen ($sin, cos, e^x$ etc.) integrieren wir ($f'(x)$).
 - Manchmal müssen wir künstlich mit 1 multiplizieren, um partielle Integration anwenden zu können (Bsp. $integral log(x) d x$)
 - Wenn wir durch mehrfache partielle Integration wieder beim ursprünglichen Integral landen, können wir die erhaltene Gleichung nach diesem Integral auflösen.
 
 #bspbox(title: $I = integral_0^1 x e^x d x$ + " (bestimmt, partielle Integration)")[
-  $I = integral_0^1 x e^x d x = f g |_0^1 - integral_0^1 f' g d x$ \
-  Wahl 1: $f(x) = x, g'(x) = e^x ==> x e^x |_0^1 - integral_0^1 1 e^x d x$ (easier) \
-  $= x e^x |_0^1 - integral_0^1 e^x d x = x e^x |_0^1 - e^x |_0^1 = e - (e - 1) = 1$
+  $I = integral_0^1 x e^x d x = [ f g ]_0^1 - integral_0^1 f' g dx$ \
+  Wahl 1: $f(x) = x, g'(x) = e^x ==> [x e^x]_0^1 - integral_0^1 1 e^x dx quad quad$(einfach) \
+  $= [x e^x]_0^1 - integral_0^1 e^x dx = [x e^x]_0^1 - [e^x]_0^1 = e - (e - 1) = 1$
 
   #minitext[
-    Wahl 2: $f(x) = e^x, g'(x) = x ==> x^2/2 e^x|_0^1 - integral_0^1 x^2/2 e^x d x$ (useless)
+    Wahl 2: $f(x) = e^x, g'(x) = x ==> [x^2/2 e^x]_0^1 - integral_0^1 x^2/2 e^x dx$ (useless)
   ]
 ]
 
-#bspbox(title: $I = integral log(x) d x$ + " (unbestimmt, partielle Integration)")[
-  $I = integral ln(x) d x = integral ln(x) 1 d x$. Wahl: $f(x) = ln(x), g'(x) = 1$. \
-  $==> integral ln(x) 1 d x = ln(x) x - integral 1/x x d x = x ln(x) - x + C$
+#bspbox(title: $I = integral log(x) dx$ + " (unbestimmt, partielle Integration)")[
+  $I = integral ln(x) dx = integral ln(x) dot 1 dx$. Wahl: $f(x) = ln(x), g'(x) = 1$. \
+  $==> integral ln(x) 1 dx = ln(x) x - integral 1/x x dx = x ln(x) - x markhl(+ C)$
 ]
 
-#bspbox(title: $I = integral_(-oo)^0 x exp(3x) d x$ + " (uneigentlich, partielle Integration)")[
-  $I = integral_(-oo)^0 x exp(3x) d x = integral_(-oo)^0 x e^(3x) d x$. \
-  Wahl: $f(x) = e^(3x), g'(x) = x$ \
-  $= (1/2 x^2 e^(3x))|_{-oo}^0 - integral_(-oo)^0 (e^(3x) 1/2 x^2) = (1/2 x^2 e^(3x))|_{-oo}^0 - (e^(3x) 1/6 x^3)|_{-oo}^0$ \
-  $= lim_(b -> oo) integral_(-b)^0 x e^(3x) d x quad$ (Uneigentlich Trick) \
-  $= lim_(b -> oo) (1/2 x^2 e^(3x))|_{-b}^0 - (e^(3x) 1/6 x^3)|_{-b}^0$ \
-  $= lim_(b -> oo) 1/2 b^2 dot 1/(e^(3b)) - 1/(e^(3b)) dot 1/6 (-b)^3 = lim_(b -> oo) 1/(e^(3b)) (b^2/2 dot 1 - (-b)^2/6 dot 1) = 0$
+#bspbox(title: $I = integral_(-oo)^0 x e^(3x) dx$ + " (uneigentlich, partielle Integration)")[
+  $I &= integral_(-oo)^0 x e^(3x) dx => lim_(b -> oo) integral_(-b)^0 x e^(3x) dx quad "Wahl:" f(x) = e^(3x), g'(x) = x \
+  &= [(1/2 x^2 e^(3x))]_(-oo)^0 - integral_(-oo)^0 (e^(3x) 1/2 x^2) = [(1/2 x^2 e^(3x))]_(-oo)^0 - [e^(3x) 1/6 x^3]_(-oo)^0 \
+  &= lim_(b -> oo) [1/2 x^2 e^(3x)]_(-b)^0 - [e^(3x) 1/6 x^3]_(-b)^0 quad quad "(Uneigentlich Trick)" \
+  &= lim_(b -> oo) 1/2 b^2 dot 1/(e^(3b)) - 1/(e^(3b)) dot 1/6 (-b)^3 = lim_(b -> oo) markhl(1/(e^(3b))) (b^2/2 dot 1 - (-b)^3/6 dot 1) = markhl(0)$
 ]
 
 === Substitution
