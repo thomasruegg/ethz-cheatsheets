@@ -11,7 +11,7 @@
   number-align: center,
 )
 
-#set text(size: 9pt, lang: "de")
+#set text(size: 8pt, lang: "de")
 #set heading(numbering: "1.1")
 #set par(justify: true) // TODO: Does that make sense?
 #set list(marker: ([•], [◦]))
@@ -93,7 +93,7 @@
 //   text(size: 10pt, weight: "bold", it),
 // )
 #show table.cell.where(y: 0): strong
-#show: rest => columns(3, gutter: 0.75cm, rest)
+#show: rest => columns(3, gutter: 0.5cm, rest)
 
 = General
 Funktion vorstellen. Dann einige pos. & neg. Werte ausprobieren.
@@ -287,7 +287,7 @@ Um Verhalten von nicht konvergenten Folgen zu analysieren durch definieren zweie
 Konvergenz einer Folge prüfen, ohne Grenzwert zu kennen.
 
 #mainbox(title: "Cauchy-Kriterium")[
-  Folge $(a_n)$ konvergiert $<==> (a_n)_(n >= 1)$ beschränkt und $limn inf(a_n) = limn sup(a_n)$ \
+  Folge $(a_n)$ konvergiert $<==> (a_n)_(n >= 1)$ beschränkt und $limn inf(a_n) = limn sup(a_n)$
   #minitext[
     Folge konvergiert weil die Differenz zwischen Folgegliedern mit wachsendem Index immer kleiner wird.
   ]
@@ -1200,8 +1200,6 @@ Funktion ist differenzierbar $<==> forall x_i$ eine Tangente gelegt werden kann
 //   + In diesem Fall $Phi(x_0) = f'(x_0)$
 // - Für $f: D -> RR$ und $x_0 in D$ Häufigkeitspunkt von D. f in $x_0$ differenzierbar $==> f$ ist in $x_0$ stetig.
 
-
-// TODO: Hier weiterlesen
 == Rechenregeln Ableitung
 Für $DD subset RR$, Häufungspunkt $x_0 in DD$ und $f, g: DD -> RR$ in $x_0$ differenzierbar:
 - $bold((f + g)'(x_0)) = f'(x_0) + g'(x_0)$.
@@ -1226,7 +1224,6 @@ Für $DD subset RR$, Häufungspunkt $x_0 in DD$ und $f, g: DD -> RR$ in $x_0$ di
 == L'Hospital Bernoulli
 Grenzwerte von Funktionen berechnen die auf einen unbestimmten Ausdruck führen: $0/0, oo/oo, 0 dot oo, oo - oo, 0^0, oo^0, 1^oo$.
 
-// TODO: Hier weiterlesen
 #mainbox(title: "L'Hospital Bernoulli")[
   $ lim_(x -> x_0) f(x)/g(x) = lim_(x -> x_0) (f'(x)) / (g'(x)) $
 ]
@@ -1454,7 +1451,6 @@ Annäherung glatter Funktionen als Potenzreihen am Entwicklungspunkt $a$.
     Implikation gilt nicht, da Taylorreihe nur lokales Wissen am Entwicklungspunkt sammelt und deshalb bei manchen Funktionen zwar mathematisch konvergiert, abseits dieses Punktes aber gegen einen völlig falschen Wert konvergieren kann.
   ]
 
-// TODO: hier weiterlesen
 === Wichtige Taylorreihen (für a=0)
 - $e^x = sum_(n=0)^oo x^n/(n!), quad forall x in RR$
 - $e^(-x) = sum_(n=0)^oo (-1)^n dot x^n/(n!), quad forall x in RR$
@@ -1495,114 +1491,134 @@ Annäherung glatter Funktionen als Potenzreihen am Entwicklungspunkt $a$.
 ]
 
 #howtobox(title: "Rezept: Finde Fehler von Taylorpolynom")[
-  Gegeben Taylorpolynom $T_n(f, x, a)$ mit $n$. Ordnung.
+  Gegeben Taylorpolynom $T_(n f) (x; a)$ mit $n$-Ordnung.
   #set enum(numbering: "1.")
-  + Leite $f^((n))$ ab
-  + Bilde Restpolynom $R_N(f, x, a) = (f^((n+1))(xi))/((n + 1)!)(x - a)^(n + 1)$
-  + Select $xi in ]a, x]$ so das $R_N(f, x, a)$ maximal ist
+  + Leite $f^((n))$ ab (= rechne $f^((n+1))$ aus).
+  + Bilde Restpolynom $R_N (f, x, a) = (f^((n+1))(xi))/((n + 1)!)(x - a)^(n + 1)$
+  + Select $xi in (a, x]$ so das $R_N (f, x, a)$ maximal ist
+]
+
+#bspbox(title: "Fehlerabschätzung für " + $f(x) = e^x$)[
+  Wir wollen $e^1$ (also $x=1$) mit Taylorpoly 2. Grades ($n=2$) am Entwicklungspunkt $a=0$ annähern. Wie gross ist maximaler Fehler?
+
+  + *$(n markhl(+1))$-te Ableitung bilden:*
+    $f(x) = e^x -> f^(markhl(3))(x) = e^x$.
+  + *Restpolynom aufstellen:* \
+    Wir setzen $n=2, a=0$ & $x=1$ in die Restglied-Formel ein: \
+    $ R_2 = (f^((3))(xi))/(3!) (x - a)^3 = (e^xi)/(6) (1 - 0)^3 = (e^xi)/6 $
+  + *Maximales $xi$ wählen (Worst-Case):*
+    Das $xi$ ist irgendwo im Intervall $(a, x] = (0, 1]$.
+    Wir wollen Fehler nach *oben* abschätzen (wann wird Fehlerterm $(e^xi)/6$ in diesem Intervall am grössten)?
+    Da $e^x$ monoton wächst, ist Wert am rechten Rand $xi = 1$ am grössten.
+    Wir setzen Worst-Case $xi = 1$ ein & schätzen ab ($e < 3$): \
+    $ |R_2| <= (e^1)/6 < 3/6 = 1/2 = 0.5 $
+  *Fazit:* Wenn wir $e^1$ nur mit einem simplen Polynom 2. Grades annähern, ist garantiert, dass Ergebnis höchstens um $0.5$ vom exakten Wert abweicht.
 ]
 
 = Riemann Integral
-== Grundlagen
-*Integrieren* = Aufleiten: $f(x) -> F(x) + C$ \
-*Ableiten*: $f(x) -> f'(x)$
 
-== Vorgehen
 #howtobox(title: "Bestimmtes Integral berechnen")[
   #set enum(numbering: "1.")
-  + Bruch vereinfachen (Faktorisieren, erweitern, etc.)
-  + Bekannte ableitungen einsetzen
+  + Bruch vereinfachen (Faktorisieren, Erweitern, etc.)
+  + Bekannte Ableitungen einsetzen
   + Produkt von Funktionen? $->$ Partielle Integration
   + Verkettete Funktion? $->$ Substitution
 ]
 
 == Riemann-Summe
 #grid(
-  columns: (1fr, auto),
+  columns: (4fr, 1fr),
+  gutter: 0.5em,
   [
     Bestimmen der Fläche unter einer Kurve.
-    - *Partition* P ist eine endliche Teilmenge $P subset.neq [a, b], {a, b} subset.eq P$. \
+    - *Partition* $P$ ist eine endliche Teilmenge \ $P subset.neq [a, b], {a, b} subset.eq P$. \
       $P = {a = x_0 < x_1 < ... < x_n = b}$
     - *Feinheit:* $delta(P) := max_(1 <= i <= n) delta_i = max_(1 <= i <= n) (x_i - x_(i-1))$ \
       #minitext[
-        = länge des grössten Teilintervalls
+        \= länge des grössten Teilintervalls
       ]
     - *$P'$ ist Verfeinerung* von $P <==> P subset P'$. \
       #minitext[
-        = $P'$ enthält mehr Punkte, unterteilt daher in mehr Abschnitte, ist deshalb genauere.
+        \= $P'$ enthält mehr Punkte $=>$ unterteilt in mehr Abschnitte $=>$ genauer
       ]
-    - *Zwischen Punkte:* $xi_i in I_i$.
+    - *Zwischenpunkte:* $xi_i in I_i = [x_(i - 1), x_i]$.
   ],
-  image("img/riemann.jpeg", width: 25%),
+  image("img/riemann.jpeg", width: 100%),
 )
 
 #mainbox(title: "Riemann-Summe")[
-  Sei $f$ stetig mit $f(x): [a, b] -> RR$. Sei P in $n$ Teile und Stützstellen $xi$. \
+  Sei $f$ stetig mit $f(x): [a, b] -> RR$. Sei $P$ in $n$ Teile und Stützstellen $xi$. \
   $S(f, P, xi) := sum_(i=1)^n f(xi_i) dot (x_i - x_(i-1))$
+  #minitext[
+    Summe vieler kleiner Rechtecke.
+  ]
 ]
 
 #subbox(title: "Ober- und Untersumme")[
-  *Untersum.:* $underline(S)(f, P) := sum_(i=1)^n (x_i - x_(i-1)) dot inf_(x_(i-1) <= x <= x_i) f(x)$. \
-  *Obersum.:* $overline(S)(f, P) := sum_(i=1)^n (x_i - x_(i-1)) dot sup_(x_(i-1) <= x <= x_i) f(x)$.
+  *Obersumme:* $overline(S)(f, P) := sum_(i=1)^n (x_i - x_(i-1)) dot sup_(x_(i-1) <= x <= x_i) f(x)$.\
+  *Untersumme:* $underline(S)(f, P) := sum_(i=1)^n (x_i - x_(i-1)) dot inf_(x_(i-1) <= x <= x_i) f(x)$.
 ]
 - $underline(S)(f) <= overline(S)(f)$.
 - $underline(S)(f, P_1) <= overline(S)(f, P_2) quad forall P_1, P_2 subset I$. \
-  #minitext[ obersumme ist grösser als untersumme für jede beliebigen Partitionen ]
+  #minitext[ Obersumme ist grösser als Untersumme für zwei beliebige Partitionen (=Verfeinerungen).]
 - $underline(S)(f, P) <= underline(S)(f, P') <= overline(S)(f, P') <= overline(S)(f, P) quad forall P' subset P subset I$. \
   #text(
     size: 7pt,
     fill: luma(120),
-  )[ wenn P' Verfeinerung von P, dann ist untersumme von P kleiner als untersumme von P' und obersumme von P' kleiner als obersumme von P ]
+  )[ Wenn $P'$ Verfeinerung von $P$, dann ist Untersumme von $P$ kleiner als Untersumme von $P'$ und Obersumme von $P'$ kleiner als Obersumme von $P$. ]
 
 #subbox(title: "Oberes- & Unteres Integral")[
-  *Unteres Integral:* $underline(S)(f) := sup_(P in PP(I)) underline(S)(f, P)$. \
   *Oberes Integral:* $overline(S)(f) := inf_(P in PP(I)) overline(S)(f, P)$.
+  #minitext[Alle Verfeinerungen vergleichen] \
+  *Unteres Integral:* $underline(S)(f) := sup_(P in PP(I)) underline(S)(f, P)$.
 ]
 
 == Riemann Integrierbar Kriterien
-#mainbox(title: "$f$ Riemann-integrierbar")[
+#mainbox(title: $f$ + " Riemann-integrierbar")[
   Beschränkte Funktion $f: [a, b] -> RR$ ist integrierbar
-  - $<==> s(f) = S(f) =: integral_a^b f(x) d x$. \
+  - $<==> underline(S)(f) = overline(S)(f) =: integral_a^b f(x) d x$.
     #minitext[ ($delta_i = d x$) \
-      Integrierbar, wenn unter- und obersumme gleich sind. ]
-  - $<==> forall epsilon > 0 exists P in PP(I), S(f, P) - s(f, P) < epsilon$.
-  - $<==> forall epsilon > 0 exists delta > 0: forall P in PP_delta(I), S(f, P) - s(f, P) < epsilon$.
-  - mit $A := integral_a^b f(x) d x <==> forall epsilon > 0 exists delta > 0: forall P in PP_delta(I), xi_i in [x_(i-1), x_i], |A - sum_(i=1)^n f(xi_i) delta_i| < epsilon$.
-  - $<==> exists lim_(delta P -> 0) S(f, P, xi) =: integral_a^b f(x) d x$.
+      Integrierbar, wenn Unter- und Obersumme gleich sind. ]
+  - $<==> forall epsilon > 0, exists P in PP(I), overline(S)(f, P) - underline(S)(f, P) < epsilon$.
+    #minitext[(spezielle Partition $P$ finden)]
+  - $<==> forall epsilon > 0, exists delta > 0: forall P in PP_delta(I), overline(S)(f, P) - underline(S)(f, P) < epsilon$. #minitext[(Rechtecke kleiner)]
+  - mit $A := integral_a^b f(x) d x <==> forall epsilon > 0, exists delta > 0: forall P in PP_delta(I), xi_i in [x_(i-1), x_i], |A - sum_(i=1)^n f(xi_i) delta_i| < epsilon$. #minitext[Wenn Feinheit klein genug, liegt jede beliebige Riemann-Summe nah am echten Integralwert A]
+  - $<==> exists lim_(delta(P) -> 0) S(f, P, xi) =: integral_a^b f(x) d x$. #minitext[Integral ist Grenzwert der Riemann-Summen, wenn maximale Streifenbreite gegen 0 geht.]
 ]
 - $f: [a, b] -> RR$ stetig $==> f$ auf $[a, b]$ integrierbar. \
   #minitext[ Jede stetige funktion auf kompaktem Intervall ist integrierbar. ]
 - $f: [a, b] -> RR$ monoton $==> f$ auf $[a, b]$ integrierbar.
-- $a < b < c, f: [a, c] -> RR$ beschränkt mit $f|_[a,b]$ und $f|_[b,c]$ integrierbar $==> f$ integrierbar und $integral_a^c f(x) d x = integral_a^b f(x) d x + integral_b^c f(x) d x$. \
+- $a < b < c, f: [a, c] -> RR$ beschränkt mit $f|_[a,b]$ und $f|_[b,c]$ integrierbar $==> f$ integrierbar und $integral_a^c f(x) d x = integral_a^b f(x) d x + integral_b^c f(x) d x$.
   #minitext[ Monotonie von Integralen ]
 - $integral_a^a f(x) d x = 0 quad integral_a^b f(x) d x = -integral_b^a f(x) d x$
-- kompaktes Intervall $I subset RR$ mit Endpkt. a,b, Funktionen $f, g: I -> RR$ beschränkt, integrierbar & $alpha, beta in RR ==> integral_a^b (alpha f(x) + beta g(x)) d x = alpha integral_a^b f(x) d x + beta integral_a^b g(x) d x$ & $alpha f_1 + beta f_2$ integrierbar. \
+- Kompaktes Intervall $I=[a,b] subset RR$, Funktionen $f, g: I -> RR$ beschränkt, integrierbar & $alpha, beta in RR ==> integral_a^b (alpha f(x) + beta g(x)) d x = alpha integral_a^b f(x) d x + beta integral_a^b g(x) d x$ & $alpha f_1 + beta f_2$ integrierbar.
   #minitext[ Gebietsadditivität ]
 
 === Rechenregeln Integrierbare Funktionen
 #subbox(title: "Weitere integrierbare Funktionen")[
   Wenn $f$, $g$ beschränkt und integrierbar sind, dann sind
-  $f + g, lambda dot f, f dot g, |f|, max(f, g), min(f, g), f/g$ integrierbar.
+  $f + g, lambda dot f, f dot g, |f|, max(f, g), min(f, g)$ integrierbar.
+  _Achtung:_ $f/g$ ist nur integrierbar, falls $g$ strikt von Null weg bleibt ($|g(x)| >= c > 0$).
 ]
 
-Für $f, g: [a, b] -> RR$ beschränkt integrierbar:
+Für $f, g: [a, b] -> RR$ beschränkt und integrierbar:
 - falls $f(x) <= g(x) quad forall x in [a, b] ==> integral_a^b f(x) d x <= integral_a^b g(x) d x$.
 - $|integral_a^b f(x) d x| <= integral_a^b |f(x)| d x$.
 - $|integral_a^b f(x)g(x) d x| <= sqrt(integral_a^b f^2(x) d x) sqrt(integral_a^b g^2(x) d x)$.
-- Für Intervall $I subset RR$ und $f: I -> RR$ stetig:
-  - Für $a, b, c in RR$, Intervall $[a+c, b+c] in I ==> integral_(a+c)^(b+c) f(x) d x = integral_a^b f(t+c) d t$.
-  - Für $a, b, c in RR, c != 0$, Intervall $[a dot c, b dot c] in I ==> integral_a^b f(c dot t) d t = 1/c integral_(a c)^(b c) f(x) d x$.
+- #markhl(strong("Substitutionsregel:")) Für Intervall $I subset RR$ und $f: I -> RR$ stetig, $a, b, c in RR$:
+  - Für Intervall $[a+c, b+c] in I ==> markhl(integral_(a+c)^(b+c) f(x) d x = integral_a^b f(t+c) d t)$.
+  - Für $c != 0$, Intervall $[a dot c, b dot c] in I ==> markhl(integral_a^b f(c dot t) d t = 1/c integral_(a c)^(b c) f(x) d x)$.
 
 == Unbestimmtes Integral
 #mainbox(title: "Unbestimmtes Integral")[
   $integral f(x) d x = F(x) + C$ \
   #minitext[
-    Menge aller Aufleitungen von $f$($x$) a.k.a. aller Stammfunkt. C = Integrationskonstante.
+    Menge aller Integrationen von $f$($x$) a.k.a. aller Stammfunkt. $C$ = Integrationskonstante.
   ]
 ]
 
 == Bestimmtes Integral
-Flächeninhalt unter der Kurve zwischen den Punkten a und b
+Flächeninhalt unter der Kurve zwischen den Punkten $a$ und $b$
 #mainbox(title: "Bestimmtes Integral")[
   $integral_a^b f(x) d x = limn sum_(i=1)^n f(xi_i) dot (x_i - x_(i-1)) = F(b) - F(a)$ \
   #minitext[
@@ -1610,37 +1626,36 @@ Flächeninhalt unter der Kurve zwischen den Punkten a und b
   ]
 ]
 
-#bspbox(title: $integral_0^1 (x^2 - 6x + 8)/(x + 1)$ + " Bestimmtes Integral berechnen")[
-  $integral_0^1 (x^2 - 6x + 8)/(x + 1) = integral_0^1 (((x + 1)(x - 7))/(x + 1) + 15/(x + 1)) = integral_0^1 (x - 7) + 15 dot integral_0^1 1/(x + 1)$ \
-  Stammfunktion finden $==> (1/2 (x - 7)^2) |_0^1 + 15 dot (ln|x + 1|) |_0^1$ \
+#bspbox(title: $integral_0^1 (x^2 - 6x + 8)/(x + 1) d x$ + " Bestimmtes Integral berechnen")[
+  $integral_0^1 (x^2 - 6x + 8)/(x + 1) d x = integral_0^1 (((x + 1)(x - 7))/(x + 1) + 15/(x + 1)) d x = integral_0^1 (x - 7) d x + 15 dot integral_0^1 1/(x + 1) d x$ \
+  Stammfunktion finden $==> [(1/2 (x - 7)^2)]_0^1 + [15 dot (ln|x + 1|)]_0^1$ \
   $= 1/2(1^2 - 14 + 49) - 1/2 dot 49 + 15(ln(2) - ln(0)) = 18 - 24.5 + 15 dot ln(2)$
 ]
 
 == Mittelwertsatz für Integrale
 #mainbox(title: "Mittelwertsatz")[
   #grid(
-    columns: (1fr, auto),
+    columns: (6fr, 1fr),
     [
       $f: [a, b] -> RR$ stetig \
-      $==> exists xi in [a, b]$ mit $integral_a^b f(x) d x = f(xi) (b - a)$.
+      $==> exists xi in [a, b]$ mit $integral_a^b f(x) d x = f(xi) (b - a)$. \
+      Somit für $f, g: [a, b] -> RR$, $g$ beschränkt integrierbar und $g(x) >= 0$ \ $forall x in [a, b] ==> exists xi in [a, b], integral_a^b f(x)g(x) d x = f(xi) integral_a^b g(x) d x$.
     ],
-    image("img/riemannmittelwertsatz.jpeg", width: 50%),
+    image("img/riemannmittelwertsatz.jpeg", width: 100%),
   )
 ]
-- für $f, g: [a, b] -> RR, f$ stetig, $g$ beschränkt integrierbar und $g(x) >= 0 quad forall x in [a, b] ==> exists xi in [a, b], integral_a^b f(x)g(x) d x = f(xi) integral_a^b g(x) d x$.
+
 
 == Stammfunktion
 #subbox(title: "Stammfunktion F")[
   $F: [a, b] -> RR$ ist Stammfunktion von $f$ \
-  $<==> F$ (stetig) differenzierbar in $[a, b]$ & $F' = f$ in $[a, b]$.
+  $<==> markhl(F " (stetig) differenzierbar in" [a, b]) "und" F' = f$ in $[a, b]$.
 ]
-"$f$ integrierbar" impliziert _nicht_, dass eine Stammfunktion existiert. Beispiel:
-$
-  f(x) = cases(
-    0 & "für" x <= 0,
-    1 & "für" x > 0
-  )
-$
+"$f$ integrierbar" impliziert _nicht_, dass eine _Stammfunktion_ existiert. Beispiel:
+$f(x) = cases(
+  0 & "für" x <= 0,
+  1 & "für" x > 0
+) quad$ Weil Fkt an Stelle 0 Knick hat #markhl("kann man sie nicht ableiten").
 
 == Hauptsatz Differential-/Integralrechnung
 Für stetige Funktion existiert immer eine Stammfunktion.
@@ -1648,21 +1663,21 @@ Für stetige Funktion existiert immer eine Stammfunktion.
   $F(x) = integral_a^x f(t) d t$ ist Stammfunktion von $f$ in $[a, b]$. \
   $<==> F'(x) = f(x) quad forall x in [a, b]$. \
   #minitext[
-    Hinweis: $f$ ist stetig und Stammfunktion F ist in [a, b] stetig differenzierbar
+    Hinweis: $f$ ist stetig und Stammfunktion $F$ ist in $[a, b]$ stetig differenzierbar.
   ]
 ]
 
 == Fundamentalsatz der Analysis
-Bestimmtes Integral von $f$ im Intervall $[a, b]$ berechnen.
-#mainbox(title: "Fundamentalsatz der Analysis")[
-  #minitext[
-    $sum_a^b F'(x) triangle x =$
-  ]
-  $integral_a^b f(x) d x = F(b) - F(a)$
-]
-=== Polynome
-$integral c dot x^n d x = (c dot x^(n+1))/(n+1), quad (n != 0)$
+Bestimmtes Integral von $f$ im Intervall $[a, b]$ berechnen:
 
+
+$sum_a^b F'(x) Delta x =$
+$integral_a^b f(x) d x = F(b) - F(a)$
+
+=== Polynome
+$integral c dot x^n d x = c dot 1/(n+1) dot x^(n+1), quad (n != 0)$
+
+// TODO: hier weiterlesen
 == Integrale Berechnen
 #howtobox(title: "Vorgehen Teil 1")[
   #set enum(numbering: "1.")
