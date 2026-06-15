@@ -30,8 +30,9 @@
   $ integral_a^b f'(x)g(x) d x = [f(x)g(x)]_a^b - integral_a^b f(x)g'(x) d x $
 ]
 
-- Meist gilt: Polynome ableiten ($g(x)$), wo das Integral periodisch ist ($sin, cos, e^x, ...$) integrieren ($f'(x)$).
-- Teils: mit $1$ multiplizieren, um partielle Integration anwenden zu können (z.B. im Fall von $integral log(x) dif x$).
+- Grundsätzlich leiten wir Polynome ab ($g(x)$) und sich wiederholende Funktionen ($sin, cos, e^x$ etc.) integrieren wir ($f'(x)$).
+- Manchmal müssen wir künstlich mit 1 multiplizieren, um partielle Integration anwenden zu können (Bsp. $integral log(x) d x$)
+- Wenn wir durch mehrfache partielle Integration wieder beim ursprünglichen Integral landen, können wir die erhaltene Gleichung nach diesem Integral auflösen.
 
 #mainbox(title: "Substitution")[
   Um $integral_a^b f(g(x)) dif x$ zu berechnen: Ersetze $g(x)$ durch $u$ und integriere $integral_(g(a))^(g(b)) f(u) (dif u) / g'(x)$.
