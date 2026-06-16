@@ -92,7 +92,7 @@
 //   below: 6pt,
 //   text(size: 10pt, weight: "bold", it),
 // )
-#show table.cell.where(y: 0): strong
+// #show table.cell.where(y: 0): strong
 #show: rest => columns(3, gutter: 0.5cm, rest)
 
 = General
@@ -454,14 +454,27 @@ Ist $sum_(k=1)^oo a_k$ jedoch *nur bedingt konvergent*, dann ist die Reihenfolge
     columns: (1.5fr, 1fr),
     gutter: 0.5em,
     [
-      Wenn $(a_n) >= 0, forall n >= 1$ monoton fallend und $limn a_n = 0$ ist, dann konvergiert $S = sumk (-1)^(k+1) a_k$ und $a_1 - a_2 <= S <= a_1$.
+      Wenn $a_n >= 0, forall n >= 1$ monoton fallend und $limn a_n = 0$ ist, dann konvergiert die Reihe $S = sumk (-1)^(k+1) a_k$ und $a_1 - a_2 <= S <= a_1$.
       #minitext[
         Monoton fallende Folge alternierend summiert, ist konvergent.
+      ]
+      *Fehlerabschätzung:* $|S - s_N| <= a_(N+1)$
+      #minitext[
+        Der Abbruchfehler (Restglied) nach $N$ Summanden ist höchstens so gross wie das erste vernachlässigte Folgeglied.
       ]
     ],
     image("img/leibniz.png", width: 100%),
   )
 ]
+
+=== Alternierende Reihe (Leibniz-Kriterium)
+- $sum_(n = 1)^oo (-1)^n a_n$ oder $sum_(n = 1)^oo (-1)^(n-1) a_n$
+  - Voraussetzung: $(a_n)_(n>=1)$ ist eine reelle Folge mit $a_n >= 0$.
+  - Wenn $(a_n)$ monoton fallend & $lim_(n->oo) a_n = 0 ==>$ konvergent.
+  - *Fehlerabschätzung:* $|S - s_N| <= a_(N+1)$
+    #minitext[
+      Der Abbruchfehler (Restglied) nach $N$ Summanden ist höchstens so gross wie das erste vernachlässigte Folgeglied.
+    ]
 
 #bspbox(title: "Beispiel Leibnizkriterium")[
   Gegeben: $sumn (-1)^(k+1)(sqrt(k+1) - sqrt(k))$ \
@@ -507,7 +520,7 @@ $notimpliedby$ Gibt Bsp. wo Wurzelk. funktioniert & Quotientenk. nicht.
 ]
 
 #bspbox(title: "Beispiel Wurzelkriterium")[
-  $sum_(k=1)^oo ((5n + 2n^3)/(6n^3 + 5))^k$ \
+  $sum_(k=1)^oo ((5n + 2n^3)/(6n^3 + 5))^k$
   $==> a_n = ((5n + 2n^3)/(6n^3 + 5))^n$ \
   $==> |a_n|^(1/n) = |(5n + 2n^3)/(6n^3 + 5)|^(n dot 1/n) ==> limn(|(5n + 2n^3)/(6n^3 + 5)|) =2/6$ \
   $==> limn root(n, |a_n|) = 1/3 < 1 ==> "konvergiert absolut"$
@@ -1051,11 +1064,71 @@ cos: RR -> RR "stetig", quad cos(z) &= 1 - z^2/2! + z^4/4! - ... = sum_(n=0)^oo 
   } else {
     none
   },
-  table.header([], [$0° = 0$], [$30° = pi/6$], [$45° = pi/4$], [$60° = pi/3$], [$90° = pi/2$]),
+  [], [*$0° = 0$*], [*$30° = pi/6$*], [*$45° = pi/4$*], [*$60° = pi/3$*], [*$90° = pi/2$*],
   [*#text(fill: rgb("#fa0064"))[$sin(x)$]*], [$0$], [$1/2$], [$sqrt(2)/2$], [$sqrt(3)/2$], [$1$],
   [*#text(fill: rgb("#0c2896"))[$cos(x)$]*], [$1$], [$sqrt(3)/2$], [$sqrt(2)/2$], [$1/2$], [$0$],
   [*#text(fill: rgb("#0c6400"))[$tan(x)$]*], [$0$], [$sqrt(3)/3$], [$1$], [$sqrt(3)$], [$(plus.minus oo)$],
 )
+
+#import "@preview/cetz:0.4.2"
+
+#align(center)[
+  #cetz.canvas(length: 0.6cm, {
+    import cetz.draw: *
+    // Draw grid
+    grid(
+      (-7, -3),
+      (7, 3),
+      stroke: 0.25pt + luma(230),
+    )
+
+    // Draw axes
+    line((-7.5, 0), (7.5, 0), mark: (end: ">"), stroke: 0.5pt + luma(120))
+    line((0, -3.5), (0, 3.5), mark: (end: ">"), stroke: 0.5pt + luma(120))
+
+    // Draw tick labels
+    for y in (-2, -1, 1, 2) {
+      line((-0.1, y), (0.1, y))
+      content((-0.4, y), text(10pt)[#y])
+    }
+
+    for (x, label) in (
+      (-2 * calc.pi, [$-2 pi$]),
+      (-calc.pi, [$-pi$]),
+      (-calc.pi / 2, [$-pi / 2$]),
+      (calc.pi / 2, [$pi / 2$]),
+      (calc.pi, [$pi$]),
+      (2 * calc.pi, [$2 pi$]),
+    ) {
+      line((x, -0.1), (x, 0.1))
+      content((x, 0.4), text(10pt)[#label])
+    }
+
+    // Plot sin and cos
+    let sin-pts = ()
+    let cos-pts = ()
+    for i in range(120) {
+      let x = -6.5 + 13.0 * i / 120
+      sin-pts.push((x, calc.sin(x)))
+      cos-pts.push((x, calc.cos(x)))
+    }
+
+    // Plot tan (avoiding asymptotes)
+    let tan-pts = ()
+    for i in range(50) {
+      let x = -1.3 + 2.6 * i / 50
+      tan-pts.push((x, calc.tan(x)))
+    }
+
+    line(..sin-pts, stroke: 1pt + rgb("#0c2896"))
+    line(..cos-pts, stroke: 1pt + rgb("#fa0064"))
+    line(..tan-pts, stroke: 1pt + rgb("#0c6400"))
+
+    content((5.5, 1.2), text(10pt, fill: rgb("#0c2896"))[$sin(x)$])
+    content((3.5, -1.5), text(10pt, fill: rgb("#fa0064"))[$cos(x)$])
+    content((1.6, 2.0), text(10pt, fill: rgb("#0c6400"))[$tan(x)$])
+  })
+]
 
 - *Eulersche Formeln:* \
   $e^(i x) = cos(x) + i sin(x)$ \
@@ -2250,61 +2323,71 @@ Für die Lösung einer #markhl("inhomogenen DGL") muss ein geeigneter Ansatz fü
   align: left,
   stroke: none,
 
-  [$limxi 1/(1+epsilon)^n = 0$], [$limxi (x/y)^n = 0 quad forall x < y$],
+  [$limxi 1/(1+epsilon)^n = 0 quad forall epsilon > 0$], [$limxi (x/y)^n = 0 quad forall |x| < |y|$],
   [$limxi 1/x = 0$], [$limxi 1 + 1/x = 1$],
   [$limxi e^x = oo$], [$limxn e^x = 0$],
   [$limxi e^(-x) = 0$], [$limxn e^(-x) = oo$],
   [$limxi e^x/x^m = oo$], [$limxn x e^x = 0$],
-  [$limxi ln(x) = oo$], [$limxo ln(x) = -oo$],
+  [$limxi ln(x) = oo$], [$lim_(x->0^+) ln(x) = -oo$],
   [$limxi (1+x)^(1/x) = 1$], [$limxo (1+x)^(1/x) = e$],
-  [$limxi (1+1/x)^b = 1$], [$limxi n^(1/n) = 1$],
+  [$limxi (1+1/x)^b = 1$], [$limxi x^(1/x) = 1$],
   [$lim_(x->+-oo) (1 + 1/x)^x = e$], [$limxi (1-1/x)^x = 1/e$],
   [$lim_(x->+-oo) (1 + k/x)^(m x) = e^(k m)$], [$limxi (x/(x+k))^x = e^(-k)$],
-  [$limxo (a^x -1)/x = ln(a), forall a > 0$], [$limxi x^a q^x = 0, forall 0 <= q < 1$],
+  [$limxo (a^x -1)/x = ln(a) quad forall a > 0$], [$limxi x^a q^x = 0 quad forall 0 <= q < 1$],
   [$limxo (sin x)/x = 1$], [$limxo (sin k x)/x = k$],
   [$limxo 1/cos x = 1$], [$limxo (cos x -1)/x = 0$],
-  [$limxo (log 1 - x)/x = -1$], [$limxo x log x = 0$],
+  [$limxo ln(1 - x)/x = -1$], [$lim_(x->0^+) x ln(x) = 0$],
   [$limxo (1 - cos x)/x^2 = 1/2$], [$limxo (e^x-1)/x = 1$],
   [$limxo x/arctan x = 1$], [$limxi arctan x = pi/2$],
   [$limxo (e^(a x)-1)/x = a$], [$limxo ln(x+1)/x = 1$],
-  [$lim_(x->1) ln(x)/(x-1) = 1$], [$limxi log(x)/x^a = 0$],
+  [$lim_(x->1) ln(x)/(x-1) = 1$], [$limxi ln(x)/x^a = 0 quad forall a > 0$],
   [$limxi root(x, x) = 1$], [$limxi (2x)/2^x = 0$],
 )
 
 == Trivial stetige Funktionen
-$f(x) = c$ ($c$ ist Konstante), $f(x) = x$, $f(x) = x^n$, $f(x) = a_n x^n + ... + a_1 x + a_n$, $f(x) = m x + b$, $f(x) = ln(x)$, $f(x) = exp(x)$
+$f(x) = c$ ($c$ ist Konstante), $f(x) = x$, $f(x) = x^n$, $f(x) = a_n x^n + ... + a_1 x + a_0$, $f(x) = m x + b$, $f(x) = ln(x)$, $f(x) = exp(x)$
 
 == Bekannte Reihen
 #table(
-  columns: (2fr, 2fr, 1fr, 1fr, 1fr),
-  align: center,
+  columns: (auto, auto, auto, auto, auto),
+  align: center + horizon,
   stroke: 0.5pt,
   [*Reihe*], [*Terme*], [*Wert*], [*konv.*], [*div.*],
-  table.cell(colspan: 5, fill: luma(240), align: left)[*Harmonische Reihe*],
-  [$sum_(k=1)^oo 1/k$], [], [$oo$], [], [ja],
-  [$sum_(k=1)^oo 1/k^2$], [], [$pi^2/6$], [ja, abs], [],
-  [$sum_(k=1)^oo 1/k^4$], [], [$pi^4/90$], [ja, abs], [],
-  [$sum_(k=1)^oo 1/k^a$], [], [], [$a > 1$, abs], [$a <= 1$],
+
+  table.cell(colspan: 5, fill: luma(240), align: left)[*Geometrische Reihe*],
+  [$sum_(k=0)^oo q^k$], [$1 + q + q^2 + dots$], [$1/(1-q)$], [$|q| < 1$, abs], [$|q| >= 1$],
+
+  table.cell(colspan: 5, fill: luma(240), align: left)[*Harmonische Reihe (und p-Reihen)*],
+  [$sum_(k=1)^oo 1/k$], [$1 + 1/2 + 1/3 + dots$], [$oo$], [], [ja],
+  [$sum_(k=1)^oo 1/k^2$], [$1 + 1/4 + 1/9 + dots$], [$pi^2/6$], [ja, abs], [],
+  [$sum_(k=1)^oo 1/k^4$], [$1 + 1/16 + 1/81 + dots$], [$pi^4/90$], [ja, abs], [],
+  [$sum_(k=1)^oo 1/k^a$], [$1 + 1/2^a + 1/3^a + dots$], [], [$a > 1$, abs], [$a <= 1$],
+
   table.cell(colspan: 5, fill: luma(240), align: left)[*Alternierende Harmonische Reihe*],
-  [$sum_(k=1)^oo (-1)^(k+1)/k$], [], [$ln 2$], [ja], [],
-  [$sum_(k=1)^oo (-1)^(k+1)/k^2$], [], [$pi^2/12$], [ja, abs], [],
-  [$sum_(k=1)^oo (-1)^(k+1)/k^4$], [], [$pi^4/720$], [ja, abs], [],
-  [$sum_(k=0)^oo (-1)^k/(2k + 1)$], [$1 - 1/3 + 1/5 -$], [$pi/4$], [ja], [],
-  table.cell(colspan: 5, fill: luma(240), align: left)[*Teleskopreihe*],
-  [$sum_(k=1)^oo 1/(k(k+1))$], [], [$1$], [ja, abs], [],
-  table.cell(colspan: 5, fill: luma(240), align: left)[*Exponentialfunktion $z in CC$, konv. abs.*],
-  [$sum_(k=0)^oo z^k/(k!)$], [$1 + z + z^2/(2!) +$], [$exp(z)$], [ja, abs], [],
-  [$sum_(k=0)^oo (-a)^k/(k!)$], [], [$1/e^a$], [ja, abs], [],
-  [$sum_(k=0)^oo (-1)^k x^(2k+1)/((2k+1)!)$], [$x - x^3/(3!) + x^5/(5!) -$], [$sin x$], [ja, abs], [],
-  [$sum_(k=0)^oo (-1)^k x^(2k)/((2k)!)$], [$1 - x^2/2 + x^4/(4!) -$], [$cos x$], [ja, abs], [],
-  [$sum_(k=0)^oo x^(2k+1)/((2k+1)!)$], [$x + x^3/(3!) + x^5/(5!) +$], [$sinh x$], [ja, abs], [],
-  [$sum_(k=0)^oo x^(2k)/((2k)!)$], [$1 + x^2/2 + x^4/(4!) +$], [$cosh x$], [ja, abs], [],
-  table.cell(colspan: 5, fill: luma(240), align: left)[*Mengoli Reihe*],
-  [$sum_(n = 1)^oo 1/(n (n + 1)) = 1$], [], [1], [], [],
+  [$sum_(k=1)^oo (-1)^(k+1)/k$], [$1 - 1/2 + 1/3 - dots$], [$ln 2$], [ja], [],
+  [$sum_(k=1)^oo (-1)^(k+1)/k^2$], [$1 - 1/4 + 1/9 - dots$], [$pi^2/12$], [ja, abs], [],
+  [$sum_(k=1)^oo (-1)^(k+1)/k^4$], [$1 - 1/16 + 1/81 - dots$], [$7pi^4/720$], [ja, abs], [],
+  [$sum_(k=0)^oo (-1)^k/(2k + 1)$], [$1 - 1/3 + 1/5 - dots$], [$pi/4$], [ja], [],
+
+  table.cell(colspan: 5, fill: luma(240), align: left)[*Teleskopreihe (Mengoli-Reihe)*],
+  [$sum_(k=1)^oo 1/(k(k+1))$], [$1/2 + 1/6 + 1/12 + dots$], [$1$], [ja, abs], [],
+
+  table.cell(colspan: 5, fill: luma(240), align: left)[*Exponential-, Trigonometrische & Hyperbolische Funktionen*],
+  [$sum_(k=0)^oo z^k/(k!)$], [$1 + z + z^2/(2!) + dots$], [$exp(z)$], [ja, abs], [],
+  [$sum_(k=0)^oo (-a)^k/(k!)$], [$1 - a + a^2/(2!) - dots$], [$e^(-a)$], [ja, abs], [],
+  [$sum_(k=0)^oo (-1)^k x^(2k+1)/((2k+1)!)$], [$x - x^3/(3!) + x^5/(5!) - dots$], [$sin x$], [ja, abs], [],
+  [$sum_(k=0)^oo (-1)^k x^(2k)/((2k)!)$], [$1 - x^2/2 + x^4/(4!) - dots$], [$cos x$], [ja, abs], [],
+  [$sum_(k=0)^oo x^(2k+1)/((2k+1)!)$], [$x + x^3/(3!) + x^5/(5!) + dots$], [$sinh x$], [ja, abs], [],
+  [$sum_(k=0)^oo x^(2k)/((2k)!)$], [$1 + x^2/2 + x^4/(4!) + dots$], [$cosh x$], [ja, abs], [],
+
+  table.cell(colspan: 5, fill: luma(240), align: left)[*Weitere wichtige Taylorreihen (Logarithmus & Arkustangens)*],
+  [$sum_(k=1)^oo (-1)^(k+1) x^k/k$], [$x - x^2/2 + x^3/3 - dots$], [$ln(1+x)$], [$-1 < x <= 1$], [sonst],
+  [$sum_(k=0)^oo (-1)^k x^(2k+1)/(2k+1)$], [$x - x^3/3 + x^5/5 - dots$], [$arctan(x)$], [$|x| <= 1$], [sonst],
 )
 
 === Geometrische Reihe
-- $sum_(k=0)^oo q^k$:
+- *Endliche Partialsumme:* $s_n = sum_(k=0)^n q^k = (1-q^(n+1))/(1-q) quad$ (für $q != 1$)
+- *Unendliche Reihe:* $sum_(k=0)^oo q^k$:
   - $|q| < 1$: konvergiert gegen $1/(1 - q) quad$ (Bsp: $sum_(k=0)^oo (1/2)^k = 1/(1-1/2) = 2$)
   - $|q| >= 1$: divergiert
     - für $q >= 1$: divergiert *bestimmt* gegen $+oo$ (Bsp: $sum_(k=0)^oo 1 = oo$)
@@ -2312,79 +2395,85 @@ $f(x) = c$ ($c$ ist Konstante), $f(x) = x$, $f(x) = x^n$, $f(x) = a_n x^n + ... 
 - $sum_(k=0)^oo (k+1)q^k = 1/(1-q)^2 quad$ (für $|q| < 1$)
 
 === Teleskopreihe
-- $sum_(n=1)^oo (b_n - b_(n-1)) = sum_(n=1)^oo 1/(n(n+1)) = 1$
-  - $(b_n)_(n >= 1)$ konvergent $==> sum_(k=1)^oo (b_n - b_(n-1))$ konvergent. \
+- $sum_(n=1)^oo (b_n - b_(n+1))$
+  - Die Reihe konvergiert genau dann, wenn die Folge $(b_n)_(n >= 1)$ konvergiert. \
     #minitext[
-      Teleskopreihe ist konvergent, wenn zugrundeliegende Folge konvergent.
+      Die $N$-te Partialsumme ist $s_N = b_1 - b_(N+1)$. Alle mittleren Terme heben sich auf.
     ]
-  - $sum_(n = 1)^oo (b_n - b_(n-1)) = (limn b_n) - b_0$ \
+  - $sum_(n = 1)^oo (b_n - b_(n+1)) = b_1 - lim_(n->oo) b_n$ \
     #minitext[
-      Bsp: $sum_(n = 1)^oo (b_n - b_(n-1)) = sum_(n = 1)^oo (n+1)/(n(n+1)) - n/(n(n+1)) = 1/n + 1/(n+1)$ \
-      $= (limn b_n) - b_(n-1) = (limn b_n) - b_0 = (limn 1/n) - 1/(n-1) = 0 - 1/(0-1) = 1$ \
-      Bsp: $sum_(n = 3)^oo (b_n - b_(n-1)) = (limn b_n) - b_2 = limn 1/n - 1/2 = -1/2$
+      Bsp. Mengoli-Reihe: $sum_(n = 1)^oo 1/(n(n+1)) = sum_(n = 1)^oo (1/n - 1/(n+1))$.
+      Hier ist $b_n = 1/n$. Die Partialsumme ist $s_N = (1/1 - 1/2) + (1/2 - 1/3) + ... + (1/N - 1/(N+1)) = 1 - 1/(N+1)$. \
+      Grenzwert: $lim_(N->oo) s_N = 1 - 0 = 1$.
+    ] \
+    #minitext[
+      Bsp. ab anderem Index: $sum_(n = 3)^oo (1/n - 1/(n+1)) = b_3 - lim_(n->oo) b_n = 1/3 - 0 = 1/3$.
     ]
 
-=== Riemann Zeta-Funktion
-- $zeta(s) = sum_(n=1)^oo 1/n^s quad$
-  $s <= 1$: divergiert, $s > 1$: konvergiert
+=== Alternierende Reihe $==>$ siehe Leibniz-Kriterium
 
-=== Alternierende Reihe
-- $sum_(k = 1)^oo (-1)^k a_k$
-  - Wenn $a_k$ monoton fallend & $limn a_k = 0 ==>$ konvergent (Leibniz).
-
-== Ableitungen
-$F'(1) = 0$, weil Konstante verschwindet beim Ableiten.
+== Ableitungen & Stammfunktionen
+#minitext[
+  Beim Integrieren die Konstante $+ C$ nicht vergessen! ($C' = 0$, Konstanten verschwinden beim Ableiten).
+]
 
 #table(
-  columns: (auto, auto, auto),
-  align: center,
+  columns: (1.5fr, 1fr, 1.5fr),
+  align: center + horizon,
   stroke: 0.5pt,
   [*$F(x)$*], [*$f(x)$*], [*$f'(x)$*],
   [$1/6 3x^3$], [$1/2 3x^2$], [$3x$],
   [$1/6 x^3$], [$1/2 x^2$], [$x$],
-  [$-1/99 x^(-99)$], [$x^(-100)$], [$-100x^(-101)$],
-  [$x^(-a+1)/(-a+1)$], [$1/x^a$], [$a/x^(a+1)$],
-  [$x^(a+1)/(a+1)$], [$x^a (a != 1)$], [$a dot x^(a-1)$],
-  [$1/(k ln(a))a^(k x)$], [$a^(k x)$], [$k a^(k x) ln(a)$],
+  [$-1/99 x^(-99)$], [$x^(-100)$], [$-100 x^(-101)$],
+  [$x^(-a+1)/(-a+1)$], [$1/x^a$], [$-a/x^(a+1)$],
+  [$x^(a+1)/(a+1)$], [$x^a quad (a != -1)$], [$a dot x^(a-1)$],
+  [$1/(k ln(a)) a^(k x)$], [$a^(k x)$], [$k a^(k x) ln(a)$],
   [$ln |x|$], [$1/x$], [$-1/x^2$],
-  [$2/3 x^(3/2)$], [$sqrt(x)$], [$1/(2sqrt(x))$],
+  [$2/3 x^(3/2)$], [$sqrt(x)$], [$1/(2 sqrt(x))$],
   [$-cos(x)$], [$sin(x)$], [$cos(x)$],
   [$sin(x)$], [$cos(x)$], [$-sin(x)$],
-  [$1/2(x-1/2 sin(2x))$], [$sin^2(x)$], [$2 sin(x)cos(x)$],
-  [$1/2(x + 1/2 sin(2x))$], [$cos^2(x)$], [$-2sin(x)cos(x)$],
+  [$1/2(x - 1/2 sin(2x))$], [$sin^2(x)$], [$2 sin(x)cos(x)$],
+  [$1/2(x + 1/2 sin(2x))$], [$cos^2(x)$], [$-2 sin(x)cos(x)$],
   [$-ln|cos(x)|$], [$tan(x)$], [$1/cos^2(x)$],
-  [$log(cosh(x))$], [$tanh(x)$], [$1/cosh^2(x)$],
-  [$ln | sin(x)|$], [$cot(x)$], [$-1/sin^2(x)$],
+  [$ln(cosh(x))$], [$tanh(x)$], [$1/cosh^2(x)$],
+  [$ln |sin(x)|$], [$cot(x)$], [$-1/sin^2(x)$],
   [$1/c dot e^(c x)$], [$e^(c x)$], [$c dot e^(c x)$],
   [$x(ln |x| - 1)$], [$ln |x|$], [$1/x$],
   [$1/2(ln(x))^2$], [$ln(x)/x$], [$(1 - ln(x))/x^2$],
-  [$x/ln(a) (ln|x| -1)$], [$log_a |x|$], [$1/(ln(a)x)$],
-  [$arcsin(x)$], [$1/sqrt(1 - x^2)$], [],
-  [$arccos(x)$], [$-1/sqrt(1 - x^2)$], [],
-  [$arctan(x)$], [$1/(1 + x^2)$], [],
-  [$x^x (x > 0)$], [$x^x dot (1 + ln x)$], [],
+  [$x/(ln(a)) (ln|x| -1)$], [$log_a |x|$], [$1/(x ln(a))$],
+  [$x arcsin(x) + sqrt(1 - x^2)$], [$arcsin(x)$], [$1/sqrt(1 - x^2)$],
+  [$x arccos(x) - sqrt(1 - x^2)$], [$arccos(x)$], [$-1/sqrt(1 - x^2)$],
+  [$x arctan(x) - 1/2 ln(1 + x^2)$], [$arctan(x)$], [$1/(1 + x^2)$],
+  [---], [$x^x quad (x > 0)$], [$x^x (1 + ln x)$],
 )
 
 == Integrale
+#minitext[
+  Bei unbestimmten Integralen die Integrationskonstante $+ C$ nicht vergessen!
+]
+
 #table(
-  columns: (1fr, 1fr),
-  align: center,
+  columns: (1fr, 1.2fr),
+  align: center + horizon,
   stroke: 0.5pt,
-  [*$f(x)$*], [*$F(x)$*],
+  [*Integral*], [*Stammfunktion $F(x)$*],
+
   [$integral f'(x) f(x) d x$], [$1/2(f(x))^2$],
-  [$integral f'(x)/f(x) d x$], [$ln|f(x)|$],
-  [$integral_(-oo)^oo e^(-x^2) d x$], [$sqrt(pi)$],
-  [$integral (a x+b)^n d x$], [$1/(a(n+1))(a x+b)^(n+1)$],
-  [$integral x(a x+b)^n d x$], [$(a x+b)^(n+2)/((n+2)a^2) - (b(a x+b)^(n+1))/((n+1)a^2)$],
-  [$integral (a x^p+b)^n x^(p-1) d x$], [$(a x^p+b)^(n+1)/(a p(n+1))$],
+  [$integral (f'(x))/f(x) d x$], [$ln|f(x)|$],
+  [$integral (a x+b)^n d x$], [$1/(a(n+1))(a x+b)^(n+1) quad (n != -1)$],
+  [$integral x(a x+b)^n d x$], [$(a x+b)^(n+2)/((n+2)a^2) - (b(a x+b)^(n+1))/((n+1)a^2) quad (n != -1, -2)$],
+  [$integral (a x^p+b)^n x^(p-1) d x$], [$(a x^p+b)^(n+1)/(a p(n+1)) quad (n != -1)$],
   [$integral (a x^p + b)^(-1) x^(p-1) d x$], [$1/(a p) ln |a x^p + b|$],
   [$integral (a x+b)/(c x+d) d x$], [$(a x)/c - (a d-b c)/c^2 ln |c x +d|$],
-  [$integral 1/(x^2+a^2) d x$], [$1/a arctan x/a$],
+  [$integral 1/(x^2+a^2) d x$], [$1/a arctan(x/a)$],
   [$integral 1/(x^2 - a^2) d x$], [$1/(2a) ln| (x-a)/(x+a) |$],
-  [$integral sqrt(a^2+x^2) d x$], [$x/2 f(x) + a^2/2 ln(x+f(x))$],
+  [$integral 1/sqrt(a^2 - x^2) d x$], [$arcsin(x/a)$],
+  [$integral sqrt(a^2+x^2) d x$], [$x/2 sqrt(a^2+x^2) + a^2/2 ln|x + sqrt(a^2+x^2)|$],
+  [$integral sqrt(a^2-x^2) d x$], [$x/2 sqrt(a^2-x^2) + a^2/2 arcsin(x/a)$],
 )
 
-*Referenz Integrale*
-- $integral_1^oo 1/x^p d x = oo text(" für ") p <= 1$
-- $integral_1^oo 1/x^p d x = 1/(p-1) text(" für ") p > 1$
-- $integral_0^a 1/(x dot log(x)) d x text(" divergiert")$
+*Referenz-Integrale (für Majoranten- / Minorantenkriterium)*
+- $integral_1^oo 1/x^p d x = 1/(p-1)$ für $p > 1$, divergiert für $p <= 1$
+- $integral_0^1 1/x^p d x = 1/(1-p)$ für $p < 1$, divergiert für $p >= 1$
+- $integral_e^oo 1/(x (ln x)^p) d x$ konvergiert für $p > 1$, divergiert für $p <= 1$
+- $integral_(-oo)^oo e^(-x^2) d x = sqrt(pi) quad$ (Gaußsches Integral)
