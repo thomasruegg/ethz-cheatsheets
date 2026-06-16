@@ -2092,10 +2092,10 @@ Nutzen um Rationale Funktionen $R(x) = P(x)/Q(x)$ zu integrieren.
 ]
 
 #mainbox(title: "Variation der Konstanten")[
-  Für lineare, inhomogene DGL 1. Ordnung, die sich auf die Standardform $y' + p(x)y = s(x)$ bringen lassen.  
+  Für lineare, inhomogene DGL 1. Ordnung, die sich auf die Standardform $y' + p(x)y = s(x)$ bringen lassen.
   + *Zuerst homogene Gleichung:* #minitext[
-    *Prüfungs-Hack für homogene Lösung:* Man muss die Variablen nicht mühsam trennen! Die homogene Lösung lässt sich immer direkt ablesen durch die Formel: $markhl(y_h(x) = C dot e^(-integral p(x) d x))$
-  ]
+      *Prüfungs-Hack für homogene Lösung:* Man muss die Variablen nicht mühsam trennen! Die homogene Lösung lässt sich immer direkt ablesen durch die Formel: $markhl(y_h(x) = C dot e^(-integral p(x) d x))$
+    ]
   + *Variation der Konstante:* In der Lösung der homogenen DGL ($y_h$) wird die auftretende Konstante $C$ durch eine Funktion $K(x)$ ersetzt. _Beispiel:_ Ist die homogene Lösung $y_h(x) = C e^x$, lautet der Ansatz $y_p (x) = K(x)e^x$.
   + *Einfügen in Aufgabengleichung:* Setzt man den Ansatz in die DGL ein (e.g. $y_p (x) = K(x)e^x ==> y_p^' (x) = K'(x)e^x + K(x)e^x$), erhält man eine Gleichung für $K'(x)$ #minitext[($K(x)$ muss sich wegkürzen!)]. Dann $K(x) = integral K'(x) d x$
     - Integriert man zu $K(x)$ *ohne* Integrationskonstante $+C$, erhält man nur $y_p$. Die Lösung ist dann $y = y_h + y_p$.
@@ -2182,28 +2182,35 @@ Für die Lösung einer #markhl("inhomogenen DGL") muss ein geeigneter Ansatz fü
 #mainbox(title: "Formen & Operationen")[
   $z = a + i b$ #minitext[ Kartesische Form ],
   $quad quad overline(z) = a - i b$  #minitext[ Konjugation ]\
-  $|z| = sqrt(a^2 + b^2) = z dot overline(z)$ \
+  $|z| = sqrt(a^2 + b^2) = sqrt(z dot overline(z))$ \
   $z^(-1) = 1/z = 1/z dot overline(z)/overline(z) = overline(z)/(|z|^2), quad forall z != 0$
   #minitext[ Reziproke a.k.a. multiplikatives Inverses ]
 
-  $z_1 plus.minus z_2: (a_1 plus.minus a_2) + i dot (b_1 plus.minus b_2)$ \
-  $z_1 dot z_2 = (a_1 + i b_1) dot (a_2 + i b_2) quad quad quad  quad z_1/z_2 = (z_1 dot overline(z_2))/(|z_2|^2)$
+  $z_1 plus.minus z_2 = (a_1 plus.minus a_2) + i dot (b_1 plus.minus b_2)$ \
+  $z_1 dot z_2 = (a_1 + i b_1) dot (a_2 + i b_2) quad quad quad quad z_1/z_2 = (z_1 dot overline(z_2))/(|z_2|^2)$
 ]
 
 #mainbox(title: "Konjugation")[
   $z = a + i b in CC -> overline(z) = a - i b in CC$ \
-  Die Konjugation hat die folgenden Eigenschaften
+  Die Konjugation hat die folgenden Eigenschaften:
   - $z dot overline(z) = (a + i b) dot (a - i b) = a^2 - i^2 dot b^2 = a^2 + b^2 = |z|^2 \ ==> z^(-1) = overline(z)/(|z|^2), quad z != 0$
   - $overline((z_1 + z_2)) = overline(z_1) + overline(z_2)$
   - $overline((z_1 dot z_2)) = overline(z_1) dot overline(z_2)$
 ]
 
-
 #mainbox(title: "Eigenschaften des Betrags")[
-  - $|z dot w| = |z| dot |w|$
-  - $|z/w| = (|z|)/(|w|), quad w != 0$
-  - $|z| = |overline(z)|$
-  - $|z + w| <= |z| + |w|$
+  #grid(
+    columns: (1fr, 1.5fr),
+    [
+      - $|z dot w| = |z| dot |w|$
+      - $|z/w| = (|z|)/(|w|), quad w != 0$
+    ],
+    [
+      - $|z| = |overline(z)|$
+      - $|z + w| <= |z| + |w|$ #minitext[ Dreiecksungleichung ]
+
+    ],
+  )
 ]
 
 #mainbox(title: "Polarform")[
@@ -2215,7 +2222,7 @@ Für die Lösung einer #markhl("inhomogenen DGL") muss ein geeigneter Ansatz fü
       "mit" (phi in (- pi, pi])$ sei \
       $z = r dot e^(i dot phi)$ #minitext[ (Euler Form) ] \
       $z = r dot (cos(phi) + i dot sin(phi))$ #minitext[ (Trigonometrische Form) ] \
-      mit $r = ||z|| \= sqrt(a^2 + b^2)$, \
+      mit $r = |z| = sqrt(a^2 + b^2)$, \
       $a = r cos(phi), quad b = r sin(phi)$
     ],
     [$
@@ -2231,6 +2238,7 @@ Für die Lösung einer #markhl("inhomogenen DGL") muss ein geeigneter Ansatz fü
   )
 ]
 
+// TODO: ab hier fehler korrektur vornehmen!
 = Tabellen
 == Grenzwerte von Referenzfolgen
 #minitext[
