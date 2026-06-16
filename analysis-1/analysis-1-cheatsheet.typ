@@ -1453,42 +1453,68 @@ Annäherung glatter Funktionen als Potenzreihen am Entwicklungspunkt $a$.
 
 == Wichtige Taylorreihen ("Maclaurin-Reihen")
 #mainbox(title: "Standardreihen mit Entwicklungspunkt " + $a=0$)[
-  - $sin(x) = sum_(n=0)^oo (-1)^n 1/((2n+1)!) x^(2n+1) = x - x^3/(3!) + x^5/(5!) - x^7/(7!) + ... quad$ #text(fill: luma(120))[$(forall x in RR)$]
+  - $sin(x) = sum_(n=0)^oo (-1)^n 1/((2n+1)!) x^(2n+1) = x - x^3/(3!) + x^5/(5!) - x^7/(7!) + ... quad$ #text(
+      fill: luma(120),
+    )[$(forall x in RR)$]
 
-  - $cos(x) = sum_(n=0)^oo (-1)^n 1/((2n)!) x^(2n) = 1 - x^2/(2!) + x^4/(4!) - x^6/(6!) + ... quad$ #text(fill: luma(120))[$(forall x in RR)$]
+  - $cos(x) = sum_(n=0)^oo (-1)^n 1/((2n)!) x^(2n) = 1 - x^2/(2!) + x^4/(4!) - x^6/(6!) + ... quad$ #text(
+      fill: luma(120),
+    )[$(forall x in RR)$]
 
   - $e^x = sum_(n=0)^oo x^n/(n!) =1+x+x^2/(2!)+x^3/(3!)+x^4/(4!)+... quad$ #text(fill: luma(120))[$(forall x in RR)$]
 
-  - $e^(-x) = sum_(n=0)^oo (-1)^n x^n/(n!) = 1 - x + x^2/(2!) - x^3/(3!) + x^4/(4!) - ... quad$ #text(fill: luma(120))[$(forall x in RR)$]
+  - $e^(-x) = sum_(n=0)^oo (-1)^n x^n/(n!) = 1 - x + x^2/(2!) - x^3/(3!) + x^4/(4!) - ... quad$ #text(
+      fill: luma(120),
+    )[$(forall x in RR)$]
 
-  - $ln(1+x) = sum_(n=1)^oo (-1)^(n-1) 1/n x^n = x-x^2/2+x^3/3-x^4/4+... $ #text(size: 7pt, fill: rgb(255,0,0))[$markhl("für "(-1 < x < 1))$]
-  
-  - $arctan(x) = sum_(n=0)^oo (-1)^n x^(2n+1)/(2n+1) = x-x^3/3+x^5/5-... quad$ #text(size: 7pt, fill: rgb(255,0,0))[$markhl("für "(-1 < x < 1))$]
+  - $ln(1+x) = sum_(n=1)^oo (-1)^(n-1) 1/n x^n = x-x^2/2+x^3/3-x^4/4+...$ #text(size: 7pt, fill: rgb(
+      255,
+      0,
+      0,
+    ))[$markhl("für "(-1 < x < 1))$]
+
+  - $arctan(x) = sum_(n=0)^oo (-1)^n x^(2n+1)/(2n+1) = x-x^3/3+x^5/5-... quad$ #text(size: 7pt, fill: rgb(
+      255,
+      0,
+      0,
+    ))[$markhl("für "(-1 < x < 1))$]
 ]
 
 #subbox(title: "Geometrische & Binomische Reihen mit Entwicklungspunkt " + $a=0$)[
-  - $1/(1-x)=sum_(n=0)^oo x^n=1+x+x^2+x^3+... quad$ #text(size: 7pt, fill: rgb(255,0,0))[$markhl("für "(-1 < x < 1))$]
+  - $1/(1-x)=sum_(n=0)^oo x^n=1+x+x^2+x^3+... quad$ #text(size: 7pt, fill: rgb(255, 0, 0))[$markhl("für "(-1 < x < 1))$]
 
-  - $1/(1+x)=sum_(n=0)^oo (-1)^n x^n=1-x+x^2-x^3+... quad$ #text(size: 7pt, fill: rgb(255,0,0))[$markhl("für "(-1 < x < 1))$]
+  - $1/(1+x)=sum_(n=0)^oo (-1)^n x^n=1-x+x^2-x^3+... quad$ #text(size: 7pt, fill: rgb(
+      255,
+      0,
+      0,
+    ))[$markhl("für "(-1 < x < 1))$]
 
-  - $(1+x)^p = sum_(n=0)^oo binom(p, n) x^n = 1 + p x + (p(p-1))/(2!) x^2 + ... quad$ #text(size: 7pt, fill: rgb(255,0,0))[$markhl("für "(-1 < x < 1))$]
+  - $(1+x)^p = sum_(n=0)^oo binom(p, n) x^n = 1 + p x + (p(p-1))/(2!) x^2 + ... quad$ #text(size: 7pt, fill: rgb(
+      255,
+      0,
+      0,
+    ))[$markhl("für "(-1 < x < 1))$]
 ]
 
 #howtobox(title: "Herleitung: Taylorreihe von " + $f(x) = (1+x)^p$)[
   Wir suchen die dazugehörige Taylorreihe um den Entwicklungspunkt $x_0 = 0$ (Maclaurin-Reihe).
-  
+
   + *Ableitungen bilden & bei $x=0$ auswerten:*
-    $ f(0)   &= (1+0)^p = 1^p &= 1 \
-      f'(0)  &= p(1+x)^(p-1) |_(x=0) &= p \
-      f''(0) &= p(p-1)(1+x)^(p-2) |_(x=0) &= p(p-1) $
-      
+    $
+        f(0) & = (1+0)^p = 1^p             &      = 1 \
+       f'(0) & = p(1+x)^(p-1) |_(x=0)      &      = p \
+      f''(0) & = p(p-1)(1+x)^(p-2) |_(x=0) & = p(p-1)
+    $
+
   + *Allgemeines Muster für die $n$-te Ableitung erkennen:*
     $ f^((n))(0) = p(p-1)(p-2) dots.c (p-n+1) $
-    
+
   + *In allgemeine Taylor-Formel einsetzen:*
     Setzen wir $f^((n))(0)$ in Standardformel $sum_(n=0)^oo (f^((n))(0))/(n!) x^n$ ein, erhalten wir (mit $binom(p, 0) = 1$) die Taylorreihe:
-    $ T_(oo, f)(x; 0) = sum_(n=0)^oo (p(p-1) dots.c (p-n+1))/(n!) x^n = sum_(n=0)^oo p!/(n! (p-n)!) x^n = sum_(n=0)^oo binom(p, n) x^n quad $
-    
+    $
+      T_(oo, f)(x; 0) = sum_(n=0)^oo (p(p-1) dots.c (p-n+1))/(n!) x^n = sum_(n=0)^oo p!/(n! (p-n)!) x^n = sum_(n=0)^oo binom(p, n) x^n quad
+    $
+
   #minitext[
     *Warum ist diese Herleitung wichtig?* Sie zeigt, dass der verallgemeinerte Binomialkoeffizient keine Hexerei ist, sondern einfach nur das "Abfallprodukt" der Kettenregel ist, wenn man Terme wie $(1+x)^p$ unendlich oft ableitet und durch $n!$ teilt!
   ]
@@ -1903,9 +1929,9 @@ $integral c dot x^n d x = c dot 1/(n+1) dot x^(n+1), quad (n != 0)$
 ]
 
 #bspbox(title: $integral_1^oo x^(-2) d x$ + ": nicht kompaktes Intervall")[
-  Problematisches Integral, weil das Intervall bis $oo$ geht. 
-  Wir ersetzen $oo$ durch $b$ und bilden den Limes: 
-  $integral_1^oo x^(-2) d x = lim_(b -> oo) integral_1^b x^(-2) d x  = lim_(b -> oo) [-1/x]_1^b = lim_(b -> oo) (-1/b - (-1/1)) = lim_(b -> oo) (1 - 1/b) = 1$
+  Problematisches Integral, weil das Intervall bis $oo$ geht.
+  Wir ersetzen $oo$ durch $b$ und bilden den Limes:
+  $integral_1^oo x^(-2) d x = lim_(b -> oo) integral_1^b x^(-2) d x = lim_(b -> oo) [-1/x]_1^b = lim_(b -> oo) (-1/b - (-1/1)) = lim_(b -> oo) (1 - 1/b) = 1$
 ]
 
 === Konverg./Diverg. von uneigentlichen Integralen
@@ -1934,19 +1960,19 @@ $integral c dot x^n d x = c dot 1/(n+1) dot x^(n+1), quad (n != 0)$
   + *Gestauchte Schwingung an der Grenze $a$:* \
     Sei $f(x)$ auf $(a,b]$ stetig. Integrale der Form $integral_a^b f(x)sin(1/(x-a)) d x$ schwingen nahe $a$ unendlich dicht. \
     *Regel:* Ist die Dämpfung $f(x)(x-a)^2$ monoton wachsend (wachsend, da wir uns von rechts nach links an $a$ annähern) und gilt $lim_(x -> a^+) f(x)(x-a)^2 = 0$, dann konvergiert das Integral (analog für $cos$). \
-    
+
     #minitext[
       *Herleitung aus 1):* Wir substituieren $t = 1/(x-a)$ um das Problem in den Standardfall (1) zu verwandeln. Umformen: $x = a + 1/t$. Ableiten: $(d x)/(d t) = -1/t^2 quad ==> quad d x = -1/t^2 d t$. Grenzen: $x -> a^+ ==> t -> oo quad "und" quad x = b ==> t = 1/(b-a)$
-      
+
       Wir setzen alles ein und nutzen das Minuszeichen des $d x$, um die Grenzen umzudrehen:
       $integral_a^b f(x) sin(1/(x-a)) d x &= integral_oo^(1/(b-a)) f(a + 1/t) sin(t) (-1/t^2) d t \
-                                           &= integral_(1/(b-a))^oo [f(a + 1/t) dot 1/t^2] sin(t) d t $
+      &= integral_(1/(b-a))^oo [f(a + 1/t) dot 1/t^2] sin(t) d t$
       Damit dieses Integral nach Regel (1) konvergiert, muss der Term in den eckigen Klammern für $t -> oo$ gegen 0 gehen. Ersetzt man $t = 1/(x-a)$ zurück, entspricht exakt dieser Term $f(x)(x-a)^2$.
     ]
 ]
 
 #mainbox(title: "Definition für halboffene Intervalle")[
-  $f: (a,b] -> RR$. Ist $f$ für jedes $0 < epsilon$ im Intervall $[a + epsilon, b]$ beschränkt & integrierbar, dann ist $f$ integrierbar, falls $exists lim_(epsilon -> 0^+) integral_(a + epsilon)^b f(x) d x$. Dieser Grenzwert ist dann das Integral $integral_a^b f(x) d x$. 
+  $f: (a,b] -> RR$. Ist $f$ für jedes $0 < epsilon$ im Intervall $[a + epsilon, b]$ beschränkt & integrierbar, dann ist $f$ integrierbar, falls $exists lim_(epsilon -> 0^+) integral_(a + epsilon)^b f(x) d x$. Dieser Grenzwert ist dann das Integral $integral_a^b f(x) d x$.
   #minitext[
     ex: $f(x) = 1/x$ auf $(0, 1]$. Nicht definiert in $x = 0$.
   ]
@@ -2010,7 +2036,7 @@ Nutzen um Rationale Funktionen $R(x) = P(x)/Q(x)$ zu integrieren.
   + Parameter $A_1, ..., A_n$ (bzw. $B_1, ..., B_n$) bestimmen. ($x$ jeweils gleich Nullstelle setzen, umformen und lösen).
 ]
 
-#mainbox(title: "PBZ um rationale Fkt. wie "+$R(x)=p(x)/q(x)$+" zu integrieren.")[
+#mainbox(title: "PBZ um rationale Fkt. wie " + $R(x)=p(x)/q(x)$ + " zu integrieren.")[
   Seien $p(x), q(x)$ zwei Polynome. $integral p(x)/q(x) d x$ wird wie folgt berechnet:
   #set enum(numbering: "1.")
   + *Grad prüfen:* Falls $deg(p) >= deg(q)$, führe zuerst eine Polynomdivision durch. Dies führt zu $integral a(x) + r(x)/q(x) d x$. Für Bruch $r(x)/q(x)$: weiter mit Schritt 2.
@@ -2030,9 +2056,9 @@ Nutzen um Rationale Funktionen $R(x) = P(x)/Q(x)$ zu integrieren.
 == Grundlagen & Klassifizierung
 #mainbox(title: "Definition und Typen")[
   Ist eine Gleichung, in welcher die gesuchte Funktion sowie deren Ableitungen auftreten.
-  - *Ordnung:* Die maximale Ordnung der in der Gleichung vorkommenden Ableitungen.
+  - *Ordnung:* Die höchste in der Gleichung vorkommende Ableitung.
   - *Linearität:* Eine DGL heisst linear, wenn sie sich in der Form $a_n(x)y^((n))(x) + ... + a_1(x)y'(x) + a_0(x)y(x) = s(x)$ schreiben lässt.
-  - *Homogenität:* Störfunktion $s(x) = 0$ $->$ DGL homogen, andernfalls inhomogen.
+  - *Homogenität:* Störfunktion $s(x) = 0$ $->$ DGL homogen, sonst inhomogen.
   - *Konstante Koeffizienten:* Spezialfall, bei dem alle Vorfaktoren $a_i(x)$ konstante Zahlen sind.
 ]
 
@@ -2065,28 +2091,37 @@ Nutzen um Rationale Funktionen $R(x) = P(x)/Q(x)$ zu integrieren.
   - Integriert man $K(x)$ *mit* Integrationskonstante $+C$, liefert das Einsetzen in den Ansatz *direkt* die allgemeine Lösung!
 ]
 
+#mainbox(title: "Variation der Konstanten")[
+  Für lineare, inhomogene DGL 1. Ordnung, die sich auf die Standardform $y' + p(x)y = s(x)$ bringen lassen.  
+  + *Zuerst homogene Gleichung:* #minitext[
+    *Prüfungs-Hack für homogene Lösung:* Man muss die Variablen nicht mühsam trennen! Die homogene Lösung lässt sich immer direkt ablesen durch die Formel: $markhl(y_h(x) = C dot e^(-integral p(x) d x))$
+  ]
+  + *Variation der Konstante:* In der Lösung der homogenen DGL ($y_h$) wird die auftretende Konstante $C$ durch eine Funktion $K(x)$ ersetzt. _Beispiel:_ Ist die homogene Lösung $y_h(x) = C e^x$, lautet der Ansatz $y_p (x) = K(x)e^x$.
+  + *Einfügen in Aufgabengleichung:* Setzt man den Ansatz in die DGL ein (e.g. $y_p (x) = K(x)e^x ==> y_p^' (x) = K'(x)e^x + K(x)e^x$), erhält man eine Gleichung für $K'(x)$ #minitext[($K(x)$ muss sich wegkürzen!)]. Dann $K(x) = integral K'(x) d x$
+    - Integriert man zu $K(x)$ *ohne* Integrationskonstante $+C$, erhält man nur $y_p$. Die Lösung ist dann $y = y_h + y_p$.
+    - Integriert man zu $K(x)$ *mit* Integrationskonstante $+C$, liefert das Einsetzen in den Ansatz *direkt* die allgemeine Lösung $y(x)$!
+]
+
 == Lineare DGL beliebiger Ordnung
 #subbox(title: "Superpositionsprinzip & Fundamentallösungen")[
   Sind $y_1(x)$ und $y_2(x)$ Lösungen einer linearen, homogenen DGL, so ist auch jede Linearkombination $C_1 y_1(x) + C_2 y_2(x)$ eine Lösung (Superpositionsprinzip).
   Eine homogene DGL der Ordnung $n$ besitzt $n$ sogenannte Fundamentallösungen ($y_1, ..., y_n$), aus denen sich die allgemeine Lösung zusammensetzt.
 ]
 
-=== 1. Homogene Lösung ($y_h$)
+=== Homogene Lösung ($y_h$)
 #mainbox(title: "Eulerscher Ansatz")[
   Für lineare, homogene DGL mit konstanten Koeffizienten verwenden wir den Eulerschen Ansatz $y(x) = e^(lambda x)$.
   Dies führt uns auf das *charakteristische Polynom*:
   $p(lambda) = a_n lambda^n + a_(n-1) lambda^(n-1) + ... + a_1 lambda + a_0 = 0$.
   Abhängig von den berechneten Nullstellen ($lambda$) ergeben sich folgende Fundamentallösungen:
-  - *Einfache reelle Nullstelle* $lambda$: Liefert Lösung $e^(lambda x)$.
-  - *Mehrfache reelle Nullstelle* ($k$-fache Vielfachheit): Liefert $k$ Lösungen: $e^(lambda x), x e^(lambda x), ..., x^(k-1) e^(lambda x)$.
-  - *Komplex konjugierte Nullstellen* $lambda_(1,2) = markhl(a) plus.minus i dot markhl(b, color: mygreen)$: Um trotzdem reelle Lösung zu bekommen, Eulersche Formel nutzen: $e^(markhl(a) x)(C_1 cos(markhl(b, color: mygreen) x) + C_2 sin(markhl(b, color: mygreen) x))$.
+  - *Einfache reelle Nullstelle* $lambda$: Liefert Lösung $C_1 e^(lambda x)$.
+  - *Mehrfache reelle Nullstelle* ($k$-fache Vielfachheit): Liefert $k$ Lösungen: \ $C_1e^(lambda x) + C_2 x e^(lambda x) + ... + C_k x^(k-1) e^(lambda x)$.
+  - *Einfache komplex konjugierte Nullstellen* $lambda_(1,2) = markhl(a) plus.minus i dot markhl(b, color: mygreen)$: Um reelle Lösung zu bekommen, Euler Formel nutzen: $e^(markhl(a) x)(C_1 cos(markhl(b, color: mygreen) x) + C_2 sin(markhl(b, color: mygreen) x))$.
+  - *Mehrfache komplex konjugierte Nullstellen* ($k$-fach): Funktioniert analog zu reellen mehrfachen Nullstellen durch Multiplikation mit $x$: \ $e^(markhl(a) x)(C_1 cos(markhl(b, color: mygreen) x) + C_2 sin(markhl(b, color: mygreen) x)) + x e^(markhl(a) x)(C_3 cos(markhl(b, color: mygreen) x) + C_4 sin(markhl(b, color: mygreen) x)) + ...$
 ]
 
-
-
-
-=== 2. Partikuläre Lösung ($y_p$)
-Für die Lösung einer inhomogenen DGL muss ein geeigneter Ansatz für die partikuläre Lösung gewählt werden. Der Ansatz richtet sich nach der Störfunktion $s(x)$ (der rechten Seite der DGL):
+=== Partikuläre Lösung ($y_p$)
+Für die Lösung einer #markhl("inhomogenen DGL") muss ein geeigneter Ansatz für die partikuläre Lösung gewählt werden. Der Ansatz richtet sich nach der Störfunktion $s(x)$ (der rechten Seite der DGL):
 
 
 #howtobox(title: "Resonanzfall")[
@@ -2143,56 +2178,54 @@ Für die Lösung einer inhomogenen DGL muss ein geeigneter Ansatz für die parti
   ],
 )
 
-= Komplexe Zahlen
+= Komplexe Zahlen $i = sqrt(-1)$
 #mainbox(title: "Formen & Operationen")[
-  $z = x + y i$
-  #minitext[ Kartesische Form ],
-  $overline(z) = x - i y$
-  #minitext[ Konjugation ],
-  $i = sqrt(-1)$ \
-  $|z| = sqrt(x^2 + y^2) = z dot overline(z)$
-  #minitext[ Betrag ] \
-  $z^(-1) = 1/z = overline(z)/|z|^2, quad forall z != 0$
-  #minitext[ Reziproke a.k.a. multiplikative Inverses ]
+  $z = a + i b$ #minitext[ Kartesische Form ],
+  $quad quad overline(z) = a - i b$  #minitext[ Konjugation ]\
+  $|z| = sqrt(a^2 + b^2) = z dot overline(z)$ \
+  $z^(-1) = 1/z = 1/z dot overline(z)/overline(z) = overline(z)/(|z|^2), quad forall z != 0$
+  #minitext[ Reziproke a.k.a. multiplikatives Inverses ]
 
-  $+/-: (x_1 + x_2) + (y_1 + y_2) dot i$ \
-  $z_1 dot z_2 = (x_1 + y_1 i) dot (x_2 + y_2 i) quad z_1/z_2 = (z_1 dot overline(z_2))/|z_2|^2$
+  $z_1 plus.minus z_2: (a_1 plus.minus a_2) + i dot (b_1 plus.minus b_2)$ \
+  $z_1 dot z_2 = (a_1 + i b_1) dot (a_2 + i b_2) quad quad quad  quad z_1/z_2 = (z_1 dot overline(z_2))/(|z_2|^2)$
 ]
 
 #mainbox(title: "Konjugation")[
-  $z = x + i y in CC -> overline(z) = x - i y in CC$ \
+  $z = a + i b in CC -> overline(z) = a - i b in CC$ \
   Die Konjugation hat die folgenden Eigenschaften
-  - i) $z dot overline(z) = (x + i y) dot (x - i y) = x^2 - i^2 dot y^2 \ = x^2 + y^2 = |z|^2 ==> z^(-1) = overline(z)/|z|^2, quad z != 0$
-  - ii) $overline((z_1 + z_2)) = overline(z_1) + overline(z_2)$
-  - iii) $overline((z_1 dot z_2)) = overline(z_1) dot overline(z_2)$
+  - $z dot overline(z) = (a + i b) dot (a - i b) = a^2 - i^2 dot b^2 = a^2 + b^2 = |z|^2 \ ==> z^(-1) = overline(z)/(|z|^2), quad z != 0$
+  - $overline((z_1 + z_2)) = overline(z_1) + overline(z_2)$
+  - $overline((z_1 dot z_2)) = overline(z_1) dot overline(z_2)$
 ]
 
-- Weitere Eigenschaften
-  - i) $|z dot w| = |z| dot |w|$
-  - ii) $|z/w| = |z|/|w|, quad w != 0$
-  - iii) $|z| = |overline(z)|$
-  - iv) $|z + w| <= |z| + |w|$
+
+#mainbox(title: "Eigenschaften des Betrags")[
+  - $|z dot w| = |z| dot |w|$
+  - $|z/w| = (|z|)/(|w|), quad w != 0$
+  - $|z| = |overline(z)|$
+  - $|z + w| <= |z| + |w|$
+]
 
 #mainbox(title: "Polarform")[
   #grid(
     columns: (1fr, 1.3fr),
     [
       Die Polarform von \
-      $z = x + i y in CC quad \
+      $z = a + i b in CC quad \
       "mit" (phi in (- pi, pi])$ sei \
       $z = r dot e^(i dot phi)$ #minitext[ (Euler Form) ] \
       $z = r dot (cos(phi) + i dot sin(phi))$ #minitext[ (Trigonometrische Form) ] \
-      mit $r = ||z|| \= sqrt(x^2 + y^2)$, \
-      $x = r cos(phi), quad y = r sin(phi)$
+      mit $r = ||z|| \= sqrt(a^2 + b^2)$, \
+      $a = r cos(phi), quad b = r sin(phi)$
     ],
     [$
       phi = cases(
-        arctan(y/x) & x > 0,
-        arctan(y/x) + pi & x < 0 "und" y >= 0,
-        arctan(y/x) - pi & x < 0 "und" y < 0,
-        pi/2 & x = 0 "und" y > 0,
-        -pi/2 & x = 0 "und" y < 0,
-        text("undefiniert") & x = 0 "und" y = 0
+        arctan(b/a) & a > 0,
+        arctan(b/a) + pi quad & a < 0 "und" b >= 0,
+        arctan(b/a) - pi & a < 0 "und" b < 0,
+        pi/2 & a = 0 "und" b > 0,
+        -pi/2 & a = 0 "und" b < 0,
+        text("undefiniert") & a = 0 "und" b = 0
       )
     $],
   )
