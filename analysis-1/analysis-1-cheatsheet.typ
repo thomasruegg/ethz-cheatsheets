@@ -1443,7 +1443,7 @@ Annäherung glatter Funktionen als Potenzreihen am Entwicklungspunkt $a$.
 
 #mainbox(title: "Taylorreihe von " + $f$ + " an Stelle " + $a$)[
   $f in CC^oo$ kann auch als unendliche Reihe dargestellt werden: \
-  $T f(x; a) := T_oo = sum_(k=0)^oo (f^((k))(a))/(k!) dot (x - a)^k$
+  $T_(oo, f)(x; a) := sum_(k=0)^oo (f^((k))(a))/(k!) dot (x - a)^k$
 ]
 - Taylorreihe von $f in C^oo$ ist Potenzreihe mit Konvergenzradius $rho$.
 - Taylorreihe konvergent $notimplies T_oo (x, a)$ konvergent gegen $f$. \
@@ -1451,11 +1451,48 @@ Annäherung glatter Funktionen als Potenzreihen am Entwicklungspunkt $a$.
     Implikation gilt nicht, da Taylorreihe nur lokales Wissen am Entwicklungspunkt sammelt und deshalb bei manchen Funktionen zwar mathematisch konvergiert, abseits dieses Punktes aber gegen einen völlig falschen Wert konvergieren kann.
   ]
 
-=== Wichtige Taylorreihen (für a=0)
-- $e^x = sum_(n=0)^oo x^n/(n!), quad forall x in RR$
-- $e^(-x) = sum_(n=0)^oo (-1)^n dot x^n/(n!), quad forall x in RR$
-- $sin(x) = sum_(n=0)^oo (-1)^n dot x^(2n+1)/((2n+1)!), quad forall x$
-- $cos(x) = sum_(n=0)^oo (-1)^n dot x^(2n)/((2n)!), quad forall x$
+== Wichtige Taylorreihen ("Maclaurin-Reihen")
+#mainbox(title: "Standardreihen mit Entwicklungspunkt " + $a=0$)[
+  - $sin(x) = sum_(n=0)^oo (-1)^n 1/((2n+1)!) x^(2n+1) = x - x^3/(3!) + x^5/(5!) - x^7/(7!) + ... quad$ #text(fill: luma(120))[$(forall x in RR)$]
+
+  - $cos(x) = sum_(n=0)^oo (-1)^n 1/((2n)!) x^(2n) = 1 - x^2/(2!) + x^4/(4!) - x^6/(6!) + ... quad$ #text(fill: luma(120))[$(forall x in RR)$]
+
+  - $e^x = sum_(n=0)^oo x^n/(n!) =1+x+x^2/(2!)+x^3/(3!)+x^4/(4!)+... quad$ #text(fill: luma(120))[$(forall x in RR)$]
+
+  - $e^(-x) = sum_(n=0)^oo (-1)^n x^n/(n!) = 1 - x + x^2/(2!) - x^3/(3!) + x^4/(4!) - ... quad$ #text(fill: luma(120))[$(forall x in RR)$]
+
+  - $ln(1+x) = sum_(n=1)^oo (-1)^(n-1) 1/n x^n = x-x^2/2+x^3/3-x^4/4+... $ #text(size: 7pt, fill: rgb(255,0,0))[$markhl("für "(-1 < x < 1))$]
+  
+  - $arctan(x) = sum_(n=0)^oo (-1)^n x^(2n+1)/(2n+1) = x-x^3/3+x^5/5-... quad$ #text(size: 7pt, fill: rgb(255,0,0))[$markhl("für "(-1 < x < 1))$]
+]
+
+#subbox(title: "Geometrische & Binomische Reihen mit Entwicklungspunkt " + $a=0$)[
+  - $1/(1-x)=sum_(n=0)^oo x^n=1+x+x^2+x^3+... quad$ #text(size: 7pt, fill: rgb(255,0,0))[$markhl("für "(-1 < x < 1))$]
+
+  - $1/(1+x)=sum_(n=0)^oo (-1)^n x^n=1-x+x^2-x^3+... quad$ #text(size: 7pt, fill: rgb(255,0,0))[$markhl("für "(-1 < x < 1))$]
+
+  - $(1+x)^p = sum_(n=0)^oo binom(p, n) x^n = 1 + p x + (p(p-1))/(2!) x^2 + ... quad$ #text(size: 7pt, fill: rgb(255,0,0))[$markhl("für "(-1 < x < 1))$]
+]
+
+#howtobox(title: "Herleitung: Taylorreihe von " + $f(x) = (1+x)^p$)[
+  Wir suchen die dazugehörige Taylorreihe um den Entwicklungspunkt $x_0 = 0$ (Maclaurin-Reihe).
+  
+  + *Ableitungen bilden & bei $x=0$ auswerten:*
+    $ f(0)   &= (1+0)^p = 1^p &= 1 \
+      f'(0)  &= p(1+x)^(p-1) |_(x=0) &= p \
+      f''(0) &= p(p-1)(1+x)^(p-2) |_(x=0) &= p(p-1) $
+      
+  + *Allgemeines Muster für die $n$-te Ableitung erkennen:*
+    $ f^((n))(0) = p(p-1)(p-2) dots.c (p-n+1) $
+    
+  + *In allgemeine Taylor-Formel einsetzen:*
+    Setzen wir $f^((n))(0)$ in Standardformel $sum_(n=0)^oo (f^((n))(0))/(n!) x^n$ ein, erhalten wir (mit $binom(p, 0) = 1$) die Taylorreihe:
+    $ T_(oo, f)(x; 0) = sum_(n=0)^oo (p(p-1) dots.c (p-n+1))/(n!) x^n = sum_(n=0)^oo p!/(n! (p-n)!) x^n = sum_(n=0)^oo binom(p, n) x^n quad $
+    
+  #minitext[
+    *Warum ist diese Herleitung wichtig?* Sie zeigt, dass der verallgemeinerte Binomialkoeffizient keine Hexerei ist, sondern einfach nur das "Abfallprodukt" der Kettenregel ist, wenn man Terme wie $(1+x)^p$ unendlich oft ableitet und durch $n!$ teilt!
+  ]
+]
 
 #bspbox(title: "Taylor Approximation für " + $f(x) = x^x$)[
   Sei $f(x) = x^x$, der Grad $N = 3$, Entwicklungspunkt $x_0 = 1$. \
@@ -1760,156 +1797,207 @@ $integral c dot x^n d x = c dot 1/(n+1) dot x^(n+1), quad (n != 0)$
   &= lim_(b -> oo) 1/2 b^2 dot 1/(e^(3b)) - 1/(e^(3b)) dot 1/6 (-b)^3 = lim_(b -> oo) markhl(1/(e^(3b))) (b^2/2 dot 1 - (-b)^3/6 dot 1) = markhl(0)$
 ]
 
-=== Substitution
-Integral mit verketteten Funktionen vereinfachen.
 #mainbox(title: "Substitutionsregel")[
-  Für $a < b, phi: [a, b] -> RR$ stetig differenzierbar, Intervall $I subset RR$ mit $phi([a, b]) subset I$ und $f: I -> RR$ stetig
-  $==> integral_a^b f(phi(t)) phi'(t) d t = integral_(phi(a))^(phi(b)) f(x) d x$.
+  Integral mit verketteten Funktionen vereinfachen. \
+  Für $a < b, phi: [a, b] -> RR$ stetig differenzierbar, Intervall $I subset RR$ mit $phi([a, b]) subset I$ und $f: I -> RR$ stetig.
+  Sei $F$ eine Stammfunktion von $f$ (d.h. $F' = f$):
+  $
+    #text(fill: luma(50%))[ $integral_a^b d/(d t) [F(phi(t))] d t &= integral_a^b F'(phi(t)) phi'(t) d t$]\
+    &= integral_a^b f(phi(t)) phi'(t) d t = integral_(phi(a))^(phi(b)) f(x) d x
+  $
 ]
+- *2 Richtungen der Anwendung:*
+  - *Vorwärts (Links nach Rechts):* Integral der Form $integral_a^b f(phi(t)) dot phi'(t) d t$. \
+    Man sieht die innere Funktion und ihre Ableitung. \ Substitution: $x = phi(t), d x = phi'(t) d t$.
+  - *Rückwärts (Rechts nach Links):* Integral der Form $integral_alpha^beta f(x) d x$. \
+    Ersetzen der Variable durch eine neue Funktion, z.B. $x = phi(t)$ (oft bei trig. Substitution). Hier müssen zwingend neue Grenzen $t_0, t_1$ gefunden werden, sodass $phi(t_0) = alpha$ und $phi(t_1) = beta$.
 
-- 2 Richtungen:
-  - $integral_a^b f(phi(t)) phi'(t) d t$ (Produkt von Funktion & Ihrer Ableitung) $==>$ Anwendung von links nach rechts.
-  - Integral in der Form $integral_alpha^beta f(x) d x ==>$ Anwendung von rechts nach links $==>$ versuch einer Substitution mittels $x = phi(t)$, wobei $phi(t_0) = alpha$ und $phi(t_1) = beta$. \
-    #minitext[ Das Muster wie bei Links nach Rechts ist nicht zu erkennen. ]
-- *Achtung!* Bei beiden Richtungen beachten, dass die ursprünglichen Grenzen im Integral von $t$, nun für $x$ angepasst werden müssen.
-- Unbestimmtes Integral $integral f(x) d x |_{x=phi(t)} = integral f(phi(t))phi'(t) d t + c$.
+- *Achtung bei den Grenzen!* Bei bestimmten Integralen müssen die Grenzen *immer* an die neue Variable angepasst werden. (Aus den alten $t$-Grenzen $a, b$ werden die neuen $x$-Grenzen $phi(a), phi(b)$).
+
+- *Unbestimmtes Integral (ohne Grenzen):* Hier gibt es keine Grenzen zum Anpassen. Dafür muss am Ende zwingend die *Rücksubstitution* durchgeführt werden!
+  $integral f(phi(t)) phi'(t) d t = (integral f(x) d x) |_(x=phi(t))$
+
+// TODO: Hier irgendwo SADI Methode einfügen (Gilt nur für unbestimmte Integrale)
 
 #bspbox(title: $integral_0^1(1+t^2)^2022 dot t dot d t$ + " mit Substitution (Links nach Rechts)")[
   #set enum(numbering: "1.")
-  + Innere Funktion substitutieren und d $x$ berechnen: \
-    $phi(t) = 1+t^2 = x, phi'(t) = 2t = (d x)/(d t) ==> d x = 2t d t, f(x) = x^2022$
-  + Erkenne Muster der linken Seite. $phi'(t)$ ist in $t$ versteckt: \
-    $integral_0^1(1+t^2)^2022 dot t dot d t = integral_0^1(1+t^2)^2022 dot 1/2 dot 2t dot d t$
-  + Substitutionsregel mit Grenzen für $x = phi(x)$ angepasst: $phi(0) = 1$ & $phi(1) = 2$ \
-    $==> 1/2 dot integral_(phi(0))^(phi(1)) x^2022 d x = integral_1^2 x^2022 d x$
-  + Wert des Integrals berechnen: $= x^2023/(2 dot 2023) |_1^2 = 2^2022/2023 - 1/(2 dot 2023)$
+  + Innere Funktion substituieren und $dx$ berechnen: \
+    $phi(t) = 1+t^2 = x, quad phi'(t) = 2t = (d x)/(d t) ==> markhl(d x = 2t d t), quad f(x) = x^2022$
+  + Erkenne Muster der linken Seite. $phi'(t) = 2t$ ist in $t$ versteckt: \
+    $integral_0^1(1+t^2)^2022 dot t dot d t = integral_0^1(1+t^2)^2022 dot 1/2 markhl(underbrace(2t dot d t, dx))$
+  + Substitutionsregel mit Grenzen für $x = phi(t)$ angepasst ($phi(0) = 1$ & $phi(1) = 2$):
+    $==> 1/2 dot integral_(phi(0))^(phi(1)) x^2022 d x = 1/2 integral_1^2 x^2022 d x$
+  + Wert des Integrals berechnen:
+    $= 1/2 [x^2023/2023]_1^2 = [x^2023/(2 dot 2023)]_1^2 = 2^2022/2023 - 1/(2 dot 2023)$
 ]
 
-#bspbox(title: $integral e^(1/x)/x^2 d t$ + " mit Substitution (Links nach Rechts)")[
+#bspbox(title: $integral e^(1/t)/t^2 d t$ + " mit Substitution (Links nach Rechts)")[
   #set enum(numbering: "1.")
-  + Innere Funktion substitutieren und d $x$ berechnen: \
-    $phi(t) = 1/t = x, phi'(t) = -1/t^2 = (d x)/(d t) ==> d x = -t^2 d t$
-  + Erkenne Muster der linken Seite. $phi'(t)$ ist in $1/t^2$ versteckt. \
-    $integral e^(1/t) dot 1/t^2 dot d t = integral e^(1/t) dot -1 dot -1/t^2 dot d t$
-  + Substitutionsregel. $= -1 dot integral e^x d x = -e^x + C = -e^(1/t) + C$
+  + Innere Funktion substituieren und $dx$ berechnen: \
+    $phi(t) = 1/t = x, quad phi'(t) = -1/t^2 = (d x)/(d t) ==> markhl(d x = -1/t^2 d t)$
+  + Erkenne Muster der linken Seite. $phi'(t)$ ist in $1/t^2$ versteckt: \
+    $integral e^(1/t) dot 1/t^2 d t = integral e^(1/t) dot (-1) dot markhl((-1/t^2) d t)$
+  + Substitutionsregel & Rücksubstitution: \
+    $= -1 dot integral e^x d x = -e^x + C = -e^(1/t) + C$
 ]
 
-#bspbox(title: $integral_0^1 sqrt(1-x^2) d x$ + " mit Substitution (Rechts nach Links)")[
-  Wir nutzen die trigonometrische Eigenschaft $sin^2 + cos^2 = 1$ \
-  $==> 1-sin^2 = cos^2$ um die Wurzel zu eliminieren: \
-  $sin(t) = x, quad cos(t) d t = d x$ \
-  $integral_0^1 sqrt(1-x^2) d x = integral_0^(pi/2) sqrt(1-sin^2(t)) cos(t) d t$ \
-  $= integral_0^(pi/2) cos(t) dot cos(t) d t = integral_0^(pi/2) cos^2(t) d t$ \
-  *Hinweis:* Grenzen wurden während Umformung angepasst.
+
+
+#bspbox(title: $integral_0^1 sqrt(1-x^2) d x$ + " mit trig. Substitution (Rechts nach Links)")[
+  #set enum(numbering: "1.")
+  + *Substitution & Ableitung ($d x$):*
+    Wir wählen $x = sin(t)$ um die Wurzel später zu knacken.
+    Ableiten liefert: $(d x)/(d t) = cos(t) ==> d x = cos(t) d t$.
+
+  + *Neue Integralgrenzen berechnen:*
+    Aus den alten $x$-Grenzen werden durch die Formel $x = sin(t)$ neue $t$-Grenzen: \
+    $"Obere Grenze:" x &= 1 quad ==> quad sin(t) =^! 1 quad ==> quad t = pi/2 \
+    "Untere Grenze:" x &= 0 quad ==> quad sin(t) =^! 0 quad ==> quad t = 0$
+
+  + *Alles einsetzen:*
+    $integral_(x=0)^(x=1) sqrt(1-x^2) d x = integral_(t=0)^(t=pi/2) sqrt(1-sin^2(t)) dot cos(t) d t$
+
+  + *Wurzel auflösen (Trigo-Trick):*
+    Mit der Eigenschaft $1-sin^2(t) = cos^2(t)$ vereinfacht sich die Wurzel $sqrt(1-sin^2(t))$ zu $sqrt(cos^2(t))$.
+    #minitext[Da unsere neuen Grenzen $t in [0, pi/2]$ sind, ist der Cosinus dort garantiert positiv ($cos(t) >= 0$). Wir dürfen die Wurzel also einfach (ohne Betragsstriche) als $cos(t)$ auflösen!]
+
+  + *Finales Integral:*
+    $==> integral_0^(pi/2) cos(t) dot cos(t) d t = integral_0^(pi/2) cos^2(t) d t = ...$
 ]
 
-== Integration konvergenter Reihen
-#mainbox(title: "Konvergente Reihen")[
-  Sei $f_n : [a,b] -> RR$ eine Folge von beschränkten, integrierbaren Funktionen die gleichmässig gegen eine Funktion $f: [a,b] -> RR$ konvergieren. So ist $f$ beschränkt integrierbar:
-  $limn integral_a^b f_n(x) d x = integral_a^b f(x) d x$
+== Integration konvergenter Folgen und Reihen
+#mainbox(title: "Konvergente Folgen")[
+  Sei $f_n : [a,b] -> RR$ eine Folge von beschränkten, integrierbaren Funktionen die *gleichmässig* gegen eine Funktion $f: [a,b] -> RR$ konvergieren. So ist $f$ beschränkt und integrierbar:
+  $lim_(n -> oo) integral_a^b f_n (x) d x = integral_a^b f(x) d x$
 ]
 
-#subbox(title: $integral$ + " und lim vertauschbar")[
-  Sei $f_n : [a,b] -> RR$ eine Folge beschränkter, integrierbarer Funktionen, sodass $sum_(n=0)^oo f_n$ auf $[a,b]$ gleichmässig konvergiert. Dann gilt: $sum_(n=0)^oo integral_a^b f_n(x) d x = integral_a^b ( sum_(n=0)^oo f_n(x) ) d x$
+#subbox(title: "Reihen: " + $integral$ + " und lim vertauschbar")[
+  Sei $f_n : [a,b] -> RR$ eine Folge beschränkter und integrierbarer Funktionen, sodass die Reihe $sum_(n=0)^oo f_n$ auf $[a,b]$ gleichmässig konvergiert. Dann gilt:
+  $sum_(n=0)^oo integral_a^b f_n (x) d x = integral_a^b ( sum_(n=0)^oo f_n(x) ) d x$
 ]
 
 #subbox(title: "Integral durch Potenzreihen berechnen")[
   Sei $f(x) = sum_(n=0)^oo c_k x^k$ eine Potenzreihe mit positivem Konvergenzradius $p > 0$. Dann ist für jedes $0 <= r < p$, $f$ auf $[-r,r]$ integrierbar und es gilt \
-  $forall x in ]-p,p[: integral_0^x f(t) d t = sum_(k=0)^oo c_k dot (x^(k+1))/(k+1)$ \
+  $forall x in (-p,p): integral_0^x f(t) d t = sum_(k=0)^oo c_k dot (x^(k+1))/(k+1)$ \
   #minitext[
-    Sei $f(x) = x^m, q = 0, b = 1$. Dann gilt: $integral_0^1 f(x) d x = integral_x^1 x^m d x = x^(m+1)/(m+1)|_0^1 = 1/(m+1)$
+    _Beispiel:_ Sei $f(x) = x^m$ auf dem Intervall $[0, 1]$. Dann gilt gliedweises Integrieren: \
+    $integral_0^1 x^m d x = [x^(m+1)/(m+1)]_0^1 = 1/(m+1)$
   ]
 ]
 - Potenzreihen können auf ihrem Konvergenzbereich gliedweise differenziert und integriert werden.
 
 == Uneigentliche Integrale
-Integral berechnen für
-- unbeschränkte Funktionen
-- nicht kompakte Intervalle (unendliche Grenzen)
+- Integral berechnen für unbeschränkte Funktionen,
+- oder nicht kompakte Intervalle (unendliche Grenzen).
 
 #mainbox(title: "Uneigentliches Integral")[
-  Sei $f: [a, oo] -> RR$ beschränkt & integrierbar auf $[a,b] forall a < b$.
-  Falls $exists lim_(b -> oo) integral_a^b f(x) d x$, bezeichnen wird Grenzwert mit
-  $integral_a^oo f(x) d x$ und $f$ ist auf $[a, oo[$ integrierbar.
+  Sei $f: [a, oo) -> RR$ beschränkt & integrierbar auf $[a,b] quad forall a < b$.
+  Falls $exists lim_(b -> oo) integral_a^b f(x) d x$, bezeichnen wir den Grenzwert mit
+  $integral_a^oo f(x) d x$ und $f$ ist auf $[a, oo)$ integrierbar.
 ]
 
 #bspbox(title: $integral_0^1 1/sqrt(x) d x$ + ": unbeschränkte Funktion")[
-  Sinnloses Integral: $integral_0^1 1/sqrt(x) d x$. Weil $1/sqrt(x)$ undefiniert für $x=0$. \
-  Aber $forall epsilon$ ist $1/sqrt(x)$ auf $[epsilon, 1]$ definiert. \
-  $==> integral_0^1 1/sqrt(x) d x = integral_epsilon^1 x^(-1/2) d x = 2 sqrt(x)|_epsilon^1 = 2 dot 1 - 2 dot sqrt(epsilon)$. \
-  $==> lim_(epsilon -> 0) integral_epsilon^1 1/sqrt(x) d x = lim_(epsilon -> 0) 2 - 2 sqrt(epsilon) = 2$.
+  Problematisches Integral, weil $1/sqrt(x)$ für $x=0$ undefiniert ist. \
+  Wir ersetzen $0$ durch $epsilon$ und bilden den Limes: \
+  $integral_0^1 1/sqrt(x) d x = lim_(epsilon -> 0) integral_epsilon^1 x^(-1/2) d x = lim_(epsilon -> 0) [2 sqrt(x)]_epsilon^1 = lim_(epsilon -> 0) (2 dot 1 - 2 sqrt(epsilon)) = 2$
 ]
 
-#bspbox(title: $integral_0^oo x^(-2) d x = integral_0^oo 1/x^2 d x$ + ": nicht kompaktes Intervall")[
-  Sinnloses Integral: $integral_0^oo 1/x^2 d x$. Weil Grenzwert $oo$ \
-  Aber $forall b$ ist $integral_1^b x^(-2) d x = -1/x|_1^b = -1/b + 1 = 1 - 1/b$ \
-  $==> lim_(b -> oo) integral_1^b x^(-2) d x = lim_(b -> oo) 1 - 1/b = 1$.
+#bspbox(title: $integral_1^oo x^(-2) d x$ + ": nicht kompaktes Intervall")[
+  Problematisches Integral, weil das Intervall bis $oo$ geht. 
+  Wir ersetzen $oo$ durch $b$ und bilden den Limes: 
+  $integral_1^oo x^(-2) d x = lim_(b -> oo) integral_1^b x^(-2) d x  = lim_(b -> oo) [-1/x]_1^b = lim_(b -> oo) (-1/b - (-1/1)) = lim_(b -> oo) (1 - 1/b) = 1$
 ]
 
 === Konverg./Diverg. von uneigentlichen Integralen
-*Konvergent:* falls Integral existiert (d.h. Grenzwert $in RR$ ) \
+*Konvergent:* falls Integral existiert (d.h. Grenzwert $in RR$) \
 *Divergent:* andernfalls
 
 #mainbox(title: "Vergleichssatz (Majoranten-/Minorantenkriterium)")[
-  $f,g: ]a,b[ -> RR$ stetig mit $f(x) <= g(x) forall x in ]a,b[$
-  - $integral_a^b g(x) d x$ konvergent $==> integral_a^b f(x) d x$ konvergent
-  - $integral_a^b f(x) d x$ divergent $==> integral_a^b g(x) d x$ divergent
+  $f,g: (a,b) -> RR$ stetig mit $0 <= f(x) <= g(x) quad forall x in (a,b)$
+  - *Majorante:* $integral_a^b g(x) d x$ konvergent $==> integral_a^b f(x) d x$ konvergent
+  - *Minorante:* $integral_a^b f(x) d x$ divergent $==> integral_a^b g(x) d x$ divergent
 ]
 
 #mainbox(title: "Leibnitz-Kriterium")[
   #set enum(numbering: "1.")
-  + Sei $f(x)$ auf $[a, oo [$ stetig, monoton fallend und sei $lim_(x -> oo) f(x) = 0$, dann konvergieren die Integrale $integral_a^oo f(x)sin(x) d x$ und $integral_a^oo f(x)cos(x) d x$.
-  + Sei $f(x)$ auf $]a,b]$ stetig. Ist $f(x)(x-a)^2$ monoton wachsend und gilt $lim_(x -> a^+) f(x)(x-a)^2 = 0$
-    - $==> integral_a^b f(x)sin(1/(x-a)) d x$ konvergiert
-    - $==> integral_a^b f(x)cos(1/(x-a)) d x$ konvergiert
+  + Sei $f(x)$ auf $[a, oo)$ stetig, monoton fallend und sei $lim_(x -> oo) f(x) = 0$, dann konvergieren die Integrale $integral_a^oo f(x)sin(x) d x$ und $integral_a^oo f(x)cos(x) d x$.
+  + Sei $f(x)$ auf $(a,b]$ stetig. Ist $f(x)(x-a)^2$ monoton wachsend und gilt $lim_(x -> a^+) f(x)(x-a)^2 = 0$
+    - $==> integral_a^b f(x)sin(1/(x-a)) d x$ und $integral_a^b f(x)cos(1/(x-a)) d x$ konvergieren
 ]
 
-#mainbox(title: "")[
-  $f: ]a,b] -> RR forall$ Intervall $[alpha + epsilon, b], epsilon > 0$ beschränkt & integrierbar $==> f$ integrierbar, falls $exists lim_(epsilon -> 0^+) integral_(a + epsilon)^b f(x) d x$. Grenzwert ist $integral_a^b f(x) d x$. \
+#mainbox(title: "Leibnitz-Kriterium")[
+  #set enum(numbering: "1.")
+  + *Schwingung bis Unendlich (Standard):* \
+    Sei $f(x)$ auf $[a, oo)$ stetig, monoton fallend und $lim_(x -> oo) f(x) = 0$. \
+    $==> integral_a^oo f(x)sin(x) d x$ und $integral_a^oo f(x)cos(x) d x$ konvergieren.
+
+  + *Gestauchte Schwingung an der Grenze $a$:* \
+    Sei $f(x)$ auf $(a,b]$ stetig. Integrale der Form $integral_a^b f(x)sin(1/(x-a)) d x$ schwingen nahe $a$ unendlich dicht. \
+    *Regel:* Ist die Dämpfung $f(x)(x-a)^2$ monoton wachsend (wachsend, da wir uns von rechts nach links an $a$ annähern) und gilt $lim_(x -> a^+) f(x)(x-a)^2 = 0$, dann konvergiert das Integral (analog für $cos$). \
+    
+    #minitext[
+      *Herleitung aus 1):* Wir substituieren $t = 1/(x-a)$ um das Problem in den Standardfall (1) zu verwandeln. Umformen: $x = a + 1/t$. Ableiten: $(d x)/(d t) = -1/t^2 quad ==> quad d x = -1/t^2 d t$. Grenzen: $x -> a^+ ==> t -> oo quad "und" quad x = b ==> t = 1/(b-a)$
+      
+      Wir setzen alles ein und nutzen das Minuszeichen des $d x$, um die Grenzen umzudrehen:
+      $integral_a^b f(x) sin(1/(x-a)) d x &= integral_oo^(1/(b-a)) f(a + 1/t) sin(t) (-1/t^2) d t \
+                                           &= integral_(1/(b-a))^oo [f(a + 1/t) dot 1/t^2] sin(t) d t $
+      Damit dieses Integral nach Regel (1) konvergiert, muss der Term in den eckigen Klammern für $t -> oo$ gegen 0 gehen. Ersetzt man $t = 1/(x-a)$ zurück, entspricht exakt dieser Term $f(x)(x-a)^2$.
+    ]
+]
+
+#mainbox(title: "Definition für halboffene Intervalle")[
+  $f: (a,b] -> RR$. Ist $f$ für jedes $0 < epsilon$ im Intervall $[a + epsilon, b]$ beschränkt & integrierbar, dann ist $f$ integrierbar, falls $exists lim_(epsilon -> 0^+) integral_(a + epsilon)^b f(x) d x$. Dieser Grenzwert ist dann das Integral $integral_a^b f(x) d x$. 
   #minitext[
-    ex: $f(x) = 1/x: ]0, 1]$. Nicht definiert in $x = 0$.
+    ex: $f(x) = 1/x$ auf $(0, 1]$. Nicht definiert in $x = 0$.
   ]
 ]
 
 - $integral_1^oo 1/x^s d x = lim_(b -> oo) integral_1^b 1/x^s d x$
-  - konvergiert $<==> s > 1$.
-  - konvergent gegen $1/(s-1) <==> s < 1$.
-  - divergent $<==> s <= 1$.
-- $integral_a^b |f(x)|$ konvergent $==> d x integral_a^b f(x) d x$ abs. konv.
-- Für $f: [a, oo[ -> [0, oo[$ monoton fallend. \
-  Reihe $sum_(n=a)^oo f(n)$ konvergiert $<==> integral_a^oo f(x) d x$ konvergiert & in diesem Fall ist $0 <= sum_(k=a)^oo f(k) - integral_a^oo f(x) d x <= f(a)$. \
+  - konvergiert (mit Grenzwert $1/(s-1)$) $<==> s > 1$.
+  - divergiert $<==> s <= 1$.
+- $integral_a^b |f(x)| d x$ konvergent $==> integral_a^b f(x) d x$ konvergiert (absolut konvergent).
+- Für $f: [a, oo) -> [0, oo)$ stetig und monoton fallend gilt der Integraltest: \
+  Reihe $sum_(n=a)^oo f(n)$ konvergiert $<==> integral_a^oo f(x) d x$ konvergiert. In diesem Fall liegt der Fehler zwischen $0 <= sum_(k=a)^oo f(k) - integral_a^oo f(x) d x <= f(a)$. \
   #minitext[
-    ex: Sei $0 < s in RR$. Wann konvergiert Reihe $sum_(k=2)^oo 1/(k(log k)^s)$?
-    Sei $f(x) = 1/(x(log x)^s)$. $f$ mon. fallend. \
-    $I = integral 1/(x(log x)^s) d x, u = log x, (d u)/(d x) = 1/x$
-    $==> lim_(b -> oo) integral_2^b 1/(x(log x)^s) d x = lim_(b -> oo) integral_(log 2)^(log b) (d u)/u^s = integral_(log 2)^oo (d u)/u^s$
+    _Geometrisch:_ Die Differenz zwischen der Reihe (Rechtecke) und dem Integral (Fläche) sind nur die kleinen "Überhänge", die zusammengeschoben alle in das erste Rechteck $f(a)$ passen.
   ]
-- Für beidseitig offene Intervalle müssen mir den Grenzwert unabhängig nehmen: $integral_(-oo)^oo f(x) d x = lim_(a -> -oo) lim_(b -> +oo) integral_a^b f(x) d x$.
+  #minitext[
+    *Beispiel:* Sei $0 < s in RR$. Wann konvergiert die Reihe $sum_(k=2)^oo 1/(k(log k)^s)$?
+    Sei $f(x) = 1/(x(log x)^s)$. $f$ ist positiv, stetig und mon. fallend auf $[2, oo)$. \
+    Wir nutzen Substitution: $u = log x ==> (d u)/(d x) = 1/x ==> d x = x d u$. \
+    $==> lim_(b -> oo) integral_2^b 1/(x(log x)^s) d x = lim_(b -> oo) integral_(log 2)^(log b) 1/(x dot u^s) x d u = lim_(b -> oo) integral_(log 2)^(log b) 1/u^s d u$
+    Das ist das Standard-Integral $integral 1/u^s$. Das Integral (und damit die Reihe) konvergiert also exakt für $s>1$.
+  ]
+- Für beidseitig offene Intervalle müssen wir die Grenzwerte unabhängig nehmen: $integral_(-oo)^oo f(x) d x = lim_(a -> -oo) integral_a^0 f(x) d x + lim_(b -> +oo) integral_0^b f(x) d x$.
 - Gaus'sches Integral: $integral_(-oo)^oo e^(-x^2) d x = sqrt(pi)$.
 
-#bspbox(title: $integral_(-oo)^oo sin(x) dot e^(-x^2) d x$ + ": Beidseitig offenes Intervall")[
+#bspbox(title: $integral_(-oo)^oo sin(x) dot e^(-x^2) d x$ + ": Der Symmetrie-Trick")[
   #set enum(numbering: "1.")
-  + $integral_(-oo)^oo sin(x) dot e^(-x^2) d x \ = integral_(-oo)^0 sin(x) dot e^(-x^2) d x + integral_0^oo sin(x) dot e^(-x^2) d x$
-  + $lim_(b -> +oo) integral_0^b sin(x) dot e^(-x^2) d x \ = lim_(b -> +oo) (-sin(b) dot e^(-b^2))/b - 1/2 cos(b)e^(b^2)$
+  + *Problem:* $sin(x) dot e^(-x^2)$ besitzt keine elementare Stammfunktion. Von Hand integrieren ist unmöglich!
+  + *Symmetrie prüfen:* Wir checken $f(-x)$: \
+    $f(-x) = sin(-x) dot e^(-(-x)^2) = -sin(x) dot e^(-x^2) = -f(x)$ \
+    $==> f(x)$ ist eine *ungerade* Funktion (punktsymmetrisch zum Ursprung).
+  + *Fazit:* Bei einem symmetrischen Intervall von $-oo$ bis $oo$ heben sich die exakt gleich grossen neg. und pos. Flächenhälften gegenseitig auf (da $e^(-x^2)$ das Integral zum Konvergieren zwingt).
+    $==> integral_(-oo)^oo sin(x) dot e^(-x^2) d x = 0$
 ]
 
 == Partialbruchzerlegung
 #mainbox(title: "Generic Partialbruchzerlegung " + $f(x) = 1/(4k^2 - 1)$)[
   #set enum(numbering: "1.")
   + Nenner faktorisieren $f(x) = 1/((2k-1)(2k+1))$.
-  + Konstrukt der Dekomposition erstellen: \ $f(x) = A/(2k-1) + B/(2k+1)$
+  + Konstrukt der Dekomposition erstellen: $1/((2k-1)(2k+1)) = A/(2k-1) + B/(2k+1)$
   + A und B berechnen: $1 = A(2k+1)+B(2k-1)$ \
-    Implies 2 new equations: \
-    $A+B = 0$ (no $k$ on LHS) \
-    $A-B = 1$ (if A+B = 0, then this must be 1) \
-    Adding both equations we get: \
-    $2A = 1 ==> A = 1/2, quad 1/2 + B = 0 ==> B = -1/2$
+    Koeffizienzvergleich: $1=2k A + A + 2k B - B = 2k(A+B) + (A-B)$ \
+    $A+B = 0$ (kein $k$ auf der LHS) \
+    $A-B = 1$ (wenn $A+B = 0$, dann muss $A-B =^! 1$) \
+    Addiert man beide Gleichungen, erhält man: \
+    $2A = 1 ==> A = 1/2, quad quad 1/2 + B = 0 ==> B = -1/2$
   + A und B einfügen um Partialbruchzerlegung zu erhalten: \
     $f(x) = (1\/2)/(2k-1) - (1\/2)/(2k+1) = 1/(2(2k-1)) - 1/(2(2k+1))$
 ]
 
 Nutzen um Rationale Funktionen $R(x) = P(x)/Q(x)$ zu integrieren.
-#mainbox(title: "Partialbruchzerlegung")[
+#mainbox(title: "Partialbruchzerlegung bei Polynomen")[
   Seien $p(x), q(x)$ zwei Polynome. $integral p(x)/q(x)$ wird wie folgend berechnet:
   #set enum(numbering: "1.")
   + Falls $deg(p) >= deg(q)$, führe eine Polynomdivision durch. Dies führt zum Integral $integral a(x) + r(x)/q(x)$.
@@ -1922,64 +2010,20 @@ Nutzen um Rationale Funktionen $R(x) = P(x)/Q(x)$ zu integrieren.
   + Parameter $A_1, ..., A_n$ (bzw. $B_1, ..., B_n$) bestimmen. ($x$ jeweils gleich Nullstelle setzen, umformen und lösen).
 ]
 
-== Euler-McLaurin-Formel
-Summen wie $1^l + 2^l + 3^l + ... + n^l$ abzuschätzen.
-Voraussetzung sind Bernoulli-Polynome $B_n(x)$ und Bernoulli-Zahlen $B_n(0)$.
-Des weiteren polynomen dessen Eigenschaften sind:
-1. $P'_k = P_(k-1), k > 1 quad$ 2. $integral_0^1 P_k(x) d x = 0, forall k >= 1$
-
-Für das $k$-te Bernoulli-Polynom gilt: $B_k(x) = k! P_k(x)$.
-Definiere $B_0=1$ & Bernoulli-Zahlen rekursiv: $B_(k-1) = sum_(i=0)^(k-1) binom(k, i) B_i = 0$.
-
-$==>$ Definition Bernoulli-Polynom: $B_k(x) = sum_(i=0)^k binom(k, i) B_i x^(k-i)$
-
-Hier ein paar Bernoulli-Polynome: $B_0(x) = 1$, $B_1(x) = x - 1/2$, $B_2(x) = x^2 - x + 1/6$. Nun definieren wir noch:
-$
-  tilde(B)_k(x) = cases(
-    B_k(x) & forall x: 0 <= x < 1,
-    B_k(x-n) & forall x: n <= x < n + 1
-  )
-$
-
-#mainbox(title: "Euler-McLaurin-Summationsformel")[
-  Sei $f: [0, n] -> RR$ $k$-mal stetig differenzierbar. Dann gilt:
-  - Für $k = 1$: \
-    $sum_(i = 1)^n f(i) = integral_0^n f(x) d x + 1/2(f(n) - f(0)) \ + integral_0^n tilde(B)_1(x)f'(x) d x$
-  - Für $k>1$: \
-    $sum_(i = 1)^n f(i) = integral_0^n f(x) d x + 1/2(f(n) - f(0)) + \
-    sum_(j = 2)^k ((-1)^j B_j)/(j!)(f^((j-1))(n) + f^((j-1))(0)) + tilde(R)_k$ \
-    wobei $tilde(R)_k = ((-1)^(k-1))/(k!) integral_0^n tilde(B)_k(x)f^((k))(x) d x$
+#mainbox(title: "PBZ um rationale Fkt. wie "+$R(x)=p(x)/q(x)$+" zu integrieren.")[
+  Seien $p(x), q(x)$ zwei Polynome. $integral p(x)/q(x) d x$ wird wie folgt berechnet:
+  #set enum(numbering: "1.")
+  + *Grad prüfen:* Falls $deg(p) >= deg(q)$, führe zuerst eine Polynomdivision durch. Dies führt zu $integral a(x) + r(x)/q(x) d x$. Für Bruch $r(x)/q(x)$: weiter mit Schritt 2.
+  + *Nullstellen (NS) berechnen:* Faktorisiere den Nenner $q(x)$ komplett auf.
+  + *Ansatz aufstellen:* Pro NS einen oder mehrere Partialbrüche erstellen:
+    - Einfache NS, reell: $x_1 -> A/(x - x_1)$
+    - $n$-fache NS, reell: $x_1 -> A_1/(x - x_1) + A_2/((x-x_1)^2) + ... + A_n/((x-x_1)^n)$
+    - Einfache NS, komplex: $x^2 + p x + q -> (A x + B)/(x^2 + p x + q)$
+    - $n$-fache NS, komplex: $x^2 + p x + q -> (A_1 x + B_1)/(x^2+p x+q) + ... + (A_n x + B_n)/((x^2+p x+q)^n)$
+  + *Parameter bestimmen:* Gleichung mit Hauptnenner durchmultiplizieren.
+    - _Einsetzmethode:_ NS für $x$ einsetzen (sehr schnell, reicht aber bei mehrfachen/komplexen NS oft nicht aus).
+    - _Koeffizientenvergleich:_ Ausmultiplizieren, nach $x$-Potenzen sortieren und lineares Gleichungssystem lösen (funktioniert immer).
 ]
-
-#subbox(title: "Beispiel für Euler-McLaurin")[
-  $1^l + 2^l + 3^l + ... + n^l text(" wobei ") l >= 1, l in NN$ \
-  Angewandt auf $f(x) = x^l$ und $k = l + 1$ folgt für alle $l >= 1$: \
-  $1^l + 2^l + 3^l + ... + n^l = 1/(l + 1) sum_(j = 0)^l (-1)^j B_j binom(l + 1, j) n^(l+1-j)$
-]
-
-*Examples of Maclaurin Series*
-- $e^x=1+x+x^2/2+...$
-- $ln(1+x)=x-x^2/2+x^3/3-...$
-- $sin(x)=x-x^3/(3!)+x^5/(5!)-...$
-- $cos(x)=1-x^2/(2!)+x^4/(4!)-...$
-- $arctan(x)=x-x^3/3+x^5/5-...$
-
-== Gamma-Funktion
-Funktion $n |-> (n-1)!$ zu interpolieren. Weil $Gamma(n+1) = n!$
-#mainbox(title: "Gamma Funktion")[
-  $Gamma(s) := integral_0^oo e^(-x)x^(s-1) d x = (s-1)! quad forall s > 0$
-]
-Gamma-Funktion konvergiert $forall s > 0$ & hat Eingeschaften:
-- $Gamma(1) = 1$
-- $Gamma(s + 1) = s Gamma(s)$
-- $Gamma$ ist logarithmisch konvex, \
-  d.h.: $Gamma(lambda x + (2 - lambda)y) <= Gamma(x)^lambda Gamma(y)^(1 - lambda) forall x, y > 0$ & $0 <= lambda <= 1$
-Die Gamma-Funktion ist die einzige Funktion $]0, oo[ -> ]0, oo[$, die (1), (2) und (3) erfüllt. Zudem gilt: $Gamma(x) = limn (n! n^x)/(x(x+1)...(x+n)) quad forall x > 0$
-
-== Stirling'sche Formel
-Abschätzung der Fakultät. Mit der Euler-McLaurin-Formel kombiniert folgt
-$ n! = (sqrt(2 pi n) dot n^n)/e^n dot exp(1/(12n)+R_3(n)) $
-wobei $|R_3(n)| <= sqrt(3)/216 dot 1/n^2 quad forall n >= 1$
 
 = Differentialgleichungen (DGL)
 
