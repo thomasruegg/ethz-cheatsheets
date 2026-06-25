@@ -16,14 +16,14 @@
 #set par(justify: true) // TODO: Does that make sense?
 #set list(marker: ([•], [◦]))
 
-#let myblue = rgb(87, 178, 255)
-#let mybluecontrary = myblue.rotate(180deg).darken(20%)
-#let mygreen = rgb(51, 255, 102)
-#let mygreencontrary = mygreen.rotate(180deg).darken(20%)
-#let mypurple = rgb(255, 76, 255)
-#let mypurplecontrary = mypurple.rotate(180deg).darken(20%)
-#let mysub = rgb(204, 204, 204)
-#let mytitlebg = rgb(230, 230, 230)
+// 1. Globale vertikale Abstände minimieren
+#set par(spacing: 0.4em)
+#set block(spacing: 0.4em)
+#set list(tight: true) // Zieht Listenpunkte näher zusammen
+#show math.equation.where(block: true): set block(above: 0.3em, below: 0.3em) // Formel-Abstände
+
+// 2. Überschriften enger fassen (ersetzt deine auskommentierten Zeilen)
+#show heading: set block(above: 0.6em, below: 0.3em)
 
 #let basebox(title: "", body, color) = block(
   width: 100%,
@@ -36,19 +36,28 @@
       #block(
         fill: color.lighten(60%),
         width: 100%,
-        inset: 0.5em,
+        inset: 0.25em, // <--- HIER reduziert, vorher 0.5em
         radius: (top: 1pt, bottom: 0mm),
         below: 0pt,
         strong(title),
       )
     ]#block(
       width: 100%,
-      inset: 0.5em,
+      inset: 0.25em, // <--- HIER reduziert, vorher 0.5em
       above: 0pt,
       body,
     )
   ],
 )
+
+#let myblue = rgb(87, 178, 255)
+#let mybluecontrary = myblue.rotate(180deg).darken(20%)
+#let mygreen = rgb(51, 255, 102)
+#let mygreencontrary = mygreen.rotate(180deg).darken(20%)
+#let mypurple = rgb(255, 76, 255)
+#let mypurplecontrary = mypurple.rotate(180deg).darken(20%)
+#let mysub = rgb(204, 204, 204)
+#let mytitlebg = rgb(230, 230, 230)
 
 #let minitext(body, color: luma(40%)) = { text(size: 7pt, body, fill: color) }
 
@@ -74,31 +83,12 @@
 #let notimplies = $cancel(==>)$
 #let notimpliedby = $cancel(<==)$
 
-// Section formatting
-// #show heading.where(level: 1): it => block(
-//   spacing: 8pt,
-//   below: 2pt,
-//   text(fill: red, size: 14pt, weight: "bold", it),
-// )
-
-// #show heading.where(level: 2): it => block(
-//   spacing: 6pt,
-//   below: 2pt,
-//   text(size: 11pt, weight: "bold", it),
-// )
-
-// #show heading.where(level: 3): it => block(
-//   spacing: 5pt,
-//   below: 6pt,
-//   text(size: 10pt, weight: "bold", it),
-// )
-// #show table.cell.where(y: 0): strong
 #show: rest => columns(3, gutter: 0.5cm, rest)
 
 = General
-Funktion vorstellen. Dann einige pos. & neg. Werte ausprobieren.
+Funktion vorstellen. Dann einige positive & negative Werte ausprobieren.
 + Bestandteile der Aufgabe erkennen.
-+ Zugehörige Teile des Spicks lesen: \ $exists$ Fact I can use? $exists$ Beispielbeweis?
++ Zugehörige Teile des Spicks lesen: \ $exists$ Fakt den ich nutzen kann? $exists$ Beispielbeweis?
 + Referenzfolgen und Tabellen prüfen.
 
 #grid(
@@ -449,32 +439,23 @@ Falls $sum_(k=1)^oo a_k$ *absolut konvergent*, dann konvergiert jede Umordnung d
 Ist $sum_(k=1)^oo a_k$ jedoch *nur bedingt konvergent*, dann ist die Reihenfolge entscheidend! Zu jedem $A in R union {+-oo}$ existiert eine Umordnung, die gegen $A$ konvergiert, sowie eine Umordnung, die divergiert.
 
 == Leibnizkriterium
-#subbox(title: "Leibnizkriterium (alternierende Reihen)")[
+
+#subbox(title: "Leibnizkriterium (Alternierende Reihen)")[
   #grid(
     columns: (1.5fr, 1fr),
     gutter: 0.5em,
     [
-      Wenn $a_n >= 0, forall n >= 1$ monoton fallend und $limn a_n = 0$ ist, dann konvergiert die Reihe $S = sumk (-1)^(k+1) a_k$ und $a_1 - a_2 <= S <= a_1$.
-      #minitext[
-        Monoton fallende Folge alternierend summiert, ist konvergent.
-      ]
-      *Fehlerabschätzung:* $|S - s_N| <= a_(N+1)$
-      #minitext[
-        Der Abbruchfehler (Restglied) nach $N$ Summanden ist höchstens so gross wie das erste vernachlässigte Folgeglied.
-      ]
+      Für Reihen  $sum (-1)^n a_n$ oder $sum (-1)^(n+1) a_n$:
+      - *Voraussetzung:* $a_n >= 0$, monoton fallend und $limn a_n = 0$.
+      - *Folgerung:* #underline()[Reihe konvergiert] gegen $S$, mit $a_1 - a_2 <= S <= a_1$.
+      - *Fehlerabschätzung:* $|S - s_N| <= a_(N+1)$
+        #minitext[
+          Der Abbruchfehler nach $N$ Summanden ist höchstens so gross wie das erste vernachlässigte Folgeglied.
+        ]
     ],
     image("img/leibniz.png", width: 100%),
   )
 ]
-
-=== Alternierende Reihe (Leibniz-Kriterium)
-- $sum_(n = 1)^oo (-1)^n a_n$ oder $sum_(n = 1)^oo (-1)^(n-1) a_n$
-  - Voraussetzung: $(a_n)_(n>=1)$ ist eine reelle Folge mit $a_n >= 0$.
-  - Wenn $(a_n)$ monoton fallend & $lim_(n->oo) a_n = 0 ==>$ konvergent.
-  - *Fehlerabschätzung:* $|S - s_N| <= a_(N+1)$
-    #minitext[
-      Der Abbruchfehler (Restglied) nach $N$ Summanden ist höchstens so gross wie das erste vernachlässigte Folgeglied.
-    ]
 
 #bspbox(title: "Beispiel Leibnizkriterium")[
   Gegeben: $sumn (-1)^(k+1)(sqrt(k+1) - sqrt(k))$ \
@@ -2411,6 +2392,13 @@ $f(x) = c$ ($c$ ist Konstante), $f(x) = x$, $f(x) = x^n$, $f(x) = a_n x^n + ... 
     ]
 
 === Alternierende Reihe $==>$ siehe Leibniz-Kriterium
+
+=== Basics
+$
+          1 + 2 + ... + n = sum_(i=1)^n i & = (n(n + 1))/2 space "For any n. n could be" sqrt(n), n^4 \
+  1^2 + 2^2 + ... + n^2 = sum_(i=1)^n i^2 & = (n(n + 1)(2n + 1))/6 \
+  1^3 + 2^3 + ... + n^3 = sum_(i=1)^n i^3 & = (n^2(n + 1)^2)/2^2 = (sum_(i=1)^n i)^2 \
+$
 
 == Ableitungen & Stammfunktionen
 #minitext[
