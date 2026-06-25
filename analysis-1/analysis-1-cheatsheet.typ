@@ -2138,14 +2138,6 @@ Nutzen um Rationale Funktionen $R(x) = P(x)/Q(x)$ zu integrieren.
 ]
 
 #mainbox(title: "Variation der Konstanten")[
-  Für lineare, inhomogene DGL 1. Ordnung.
-  *Ansatz:* In der Lösung der homogenen DGL ($y_h$) wird die auftretende Konstante $C$ durch eine Funktion $K(x)$ ersetzt.
-  Beispiel: Ist die homogene Lösung $y_h(x) = C e^x$, lautet der Ansatz $y_p (x) = K(x)e^x$.
-  - Integriert man $K(x)$ *ohne* Integrationskonstante $+C$, erhält man nur $y_p$. Die Lösung ist dann $y = y_h + y_p$.
-  - Integriert man $K(x)$ *mit* Integrationskonstante $+C$, liefert das Einsetzen in den Ansatz *direkt* die allgemeine Lösung!
-]
-
-#mainbox(title: "Variation der Konstanten")[
   Für lineare, inhomogene DGL 1. Ordnung, die sich auf die Standardform $y' + p(x)y = s(x)$ bringen lassen.
   + *Zuerst homogene Gleichung:* #minitext[
       *Prüfungs-Hack für homogene Lösung:* Man muss die Variablen nicht mühsam trennen! Die homogene Lösung lässt sich immer direkt ablesen durch die Formel: $markhl(y_h(x) = C dot e^(-integral p(x) d x))$
