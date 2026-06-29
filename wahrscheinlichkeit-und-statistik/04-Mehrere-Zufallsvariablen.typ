@@ -60,15 +60,12 @@ Dann sind folgende Aussagen *äquivalent*:
     )
   $
 
-  *Randdichte von $X$:*
+  Randdichte von $X$ bzw. $Y$:
   $
     f_X (x) = integral_(-oo)^oo f(x,y) dif y
     = integral_0^4 1/8 dot bb(1)_(x in [-1,1]) dif y
     = 1/2 dot bb(1)_(x in [-1,1])
-  $
-
-  *Randdichte von $Y$:*
-  $
+    \
     f_Y (y) = integral_(-oo)^oo f(x,y) dif x
     = integral_(-1)^1 1/8 dot bb(1)_(y in [0,4]) dif x
     = 1/4 dot bb(1)_(y in [0,4])
