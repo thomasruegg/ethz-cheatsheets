@@ -90,21 +90,28 @@ Seien $X_1, ..., X_n$ i.i.d. $~ cal(N)(mu, sigma^2)$. Wir erinnern uns an die No
 - $X_1, ..., X_n ~ cal(U)([theta_1, theta_2])$ i.i.d.: $T_(theta_1) = min(X_i)$, $T_(theta_2) = max(X_i)$
 - $X_1, ..., X_n ~ cal(N)(theta_1, theta_2)$ i.i.d.: $T_(theta_1) = overline(X)_n$, $T_(theta_2) = S^2$
 
-#mainbox(title: "Wichtige Werte")[
-  #align(center)[
-    #table(
-      columns: (1fr, 1.2fr, 1.2fr, 1.2fr, 1.2fr, 1.2fr, 1.2fr),
-      align: horizon + center,
-      stroke: none,
-      fill: none,
-      [deg], [$0°$], [$30°$], [$45°$], [$60°$], [$90°$], [$180°$],
-      table.hline(stroke: 0.5pt + luma(0)),
-      [rad], [$0$], [$pi/6$], [$pi/4$], [$pi/3$], [$pi/2$], [$pi$],
-      [cos], [$1$], [$sqrt(3)/2$], [$sqrt(2)/2$], [$1/2$], [$0$], [$-1$],
-      [sin], [$0$], [$1/2$], [$sqrt(2)/2$], [$sqrt(3)/2$], [$1$], [$0$],
-      [tan], [$0$], [$1/sqrt(3)$], [$1$], [$sqrt(3)$], [$+oo$], [$0$],
-    )
-  ]
+#block[
+  #show table.cell.where(y: 0): set text(size: 9.2pt)
+
+  #table(
+    columns: (auto, auto, auto, auto, auto, auto),
+    align: horizon + center,
+    stroke: 0.5pt + luma(150),
+    inset: 0.5em,
+    fill: (x, y) => if y == 1 {
+      rgb("ffcccc")
+    } else if y == 2 {
+      rgb("#d5d8fb")
+    } else if y == 3 {
+      rgb("ccffcc")
+    } else {
+      none
+    },
+    [], [*$0° = 0$*], [*$30° = pi/6$*], [*$45° = pi/4$*], [*$60° = pi/3$*], [*$90° = pi/2$*],
+    [*#text(fill: rgb("#fa0064"))[$sin(x)$]*], [$0$], [$1/2$], [$sqrt(2)/2$], [$sqrt(3)/2$], [$1$],
+    [*#text(fill: rgb("#0c2896"))[$cos(x)$]*], [$1$], [$sqrt(3)/2$], [$sqrt(2)/2$], [$1/2$], [$0$],
+    [*#text(fill: rgb("#0c6400"))[$tan(x)$]*], [$0$], [$sqrt(3)/3$], [$1$], [$sqrt(3)$], [$(plus.minus oo)$],
+  )
 ]
 
 #align(center)[
@@ -148,25 +155,25 @@ Seien $X_1, ..., X_n$ i.i.d. $~ cal(N)(mu, sigma^2)$. Wir erinnern uns an die No
       cos-pts.push((x, calc.cos(x)))
     }
 
-    // Plot tan (avoiding asymptotes)
-    let tan-pts = ()
-    for i in range(50) {
-      let x = -1.3 + 2.6 * i / 50
-      tan-pts.push((x, calc.tan(x)))
+    line(..sin-pts, stroke: 1pt + rgb("#fa0064"))
+    line(..cos-pts, stroke: 1pt + rgb("#0c2896"))
+
+    // Plot tan (avoiding asymptotes by splitting into segments)
+    for k in (-2, -1, 0, 1, 2) {
+      let tan-pts = ()
+      for i in range(50) {
+        let x = k * calc.pi - 1.3 + 2.6 * i / 49
+        tan-pts.push((x, calc.tan(x)))
+      }
+      line(..tan-pts, stroke: 1pt + rgb("#0c6400"))
     }
 
-    line(..sin-pts, stroke: 1pt + rgb("#0c2896"))
-    line(..cos-pts, stroke: 1pt + rgb("#fa0064"))
-    line(..tan-pts, stroke: 1pt + rgb("#0c6400"))
-
-    content((5.5, 1.2), text(10pt, fill: rgb("#0c2896"))[$sin(x)$])
-    content((3.5, -1.5), text(10pt, fill: rgb("#fa0064"))[$cos(x)$])
-    content((1.6, 2.0), text(10pt, fill: rgb("#0c6400"))[$tan(x)$])
+    content((3, 1.2), text(10pt, fill: rgb("#fa0064"))[$sin(x)$])
+    content((3.3, -1.5), text(10pt, fill: rgb("#0c2896"))[$cos(x)$])
+    content((2.2, 2.5), text(10pt, fill: rgb("#0c6400"))[$tan(x)$])
   })
 ]
 
-#colbreak()
-#colbreak()
 
 
 == Ableitungen
