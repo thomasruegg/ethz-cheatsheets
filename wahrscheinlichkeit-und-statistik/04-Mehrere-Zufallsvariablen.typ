@@ -11,8 +11,10 @@
 Für $n$ diskrete ZV $X_1, ..., X_n$ definieren wir ihre *gemeinsame Gewichtsfunktion* $p: RR^n -> [0,1]$ durch:
 $ p(x_1, ..., x_n) := P(X_1 = x_1, ..., X_n = x_n) $
 Dann ist die *gemeinsame Verteilungsfunktion*:
-$ F(x_1, ..., x_n) &= P(X_1 <= x_1, ..., X_n <= x_n) \
-                    &= sum_(y_1 <= x_1, ..., y_n <= x_n) p(y_1, ..., y_n) $
+$
+  F(x_1, ..., x_n) & = P(X_1 <= x_1, ..., X_n <= x_n) \
+                   & = sum_(y_1 <= x_1, ..., y_n <= x_n) p(y_1, ..., y_n)
+$
 
 #subbox(title: "Verteilung des Bildes")[
   Sei $n >= 1$, $phi: RR^n -> RR$, $X_1, ..., X_n$ *diskrete* ZV mit Werten in $W_1, ..., W_n$. Dann ist $Z = phi(X_1, ..., X_n)$ diskret mit Werten in $W = phi(W_1 times ... times W_n)$. Die Verteilung von $Z$ für $z in W$ ist:
@@ -47,9 +49,32 @@ Seien $X_1, ..., X_n$ ZV mit Dichten $f_(X_1), ..., f_(X_n)$.\
 Dann sind folgende Aussagen *äquivalent*:
 - (i) $X_1, ..., X_n$ sind unabhängig,
 - (ii) $X_1, ..., X_n$ sind gemeinsam stetig mit gemeinsamer Dichte $f: RR^n -> RR_+$, d.h. die gemeinsame Dichtefunktion $f$ ist das Produkt der einzelnen Randdichten $f_(X_k)$, also:
-  $ f(x_1, ..., x_n) = f_(X_1)(x_1) · ... · f_(X_n)(x_n) $
+  $ f(x_1, ..., x_n) = f_(X_1)(x_1) dot ... dot f_(X_n)(x_n) $
 
+#subbox(title: "Beispiel Randdichten")[
+  Rechteck $R = [-1, 1] times [0, 4]$. Seien $X, Y$ ZV mit gemeinsamer Dichte $f: RR^2 -> RR_+$:
+  $
+    f(x,y) = 1/8 dot bb(1)_(x in [-1,1]) dot bb(1)_(y in [0,4]) = cases(
+      1/8 & "falls" (x,y) in R,
+      0 & "falls" (x,y) in.not R.
+    )
+  $
+
+  *Randdichte von $X$:*
+  $
+    f_X (x) = integral_(-oo)^oo f(x,y) dif y
+    = integral_0^4 1/8 dot bb(1)_(x in [-1,1]) dif y
+    = 1/2 dot bb(1)_(x in [-1,1])
+  $
+
+  *Randdichte von $Y$:*
+  $
+    f_Y (y) = integral_(-oo)^oo f(x,y) dif x
+    = integral_(-1)^1 1/8 dot bb(1)_(y in [0,4]) dif x
+    = 1/4 dot bb(1)_(y in [0,4])
+  $
+]
 
 == Stetiger Fall - Bedingte Dichte
-Seien $X,Y$ ZV auf $(Omega, cal(F), PP)$ mit gemeinsamer Dichte $f_(X,Y)(x,y)$ und Randdichte $f_Y (y) != 0$. Dann ist die bedingte Dichte von $X$ bedingt durch $Y$: 
+Seien $X,Y$ ZV auf $(Omega, cal(F), PP)$ mit gemeinsamer Dichte $f_(X,Y)(x,y)$ und Randdichte $f_Y (y) != 0$. Dann ist die bedingte Dichte von $X$ bedingt durch $Y$:
 $ f_(X|Y)(x|y) = (f_(X,Y)(x,y))/(f_Y (y)) $
