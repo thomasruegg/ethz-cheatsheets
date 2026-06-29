@@ -49,6 +49,8 @@
   ],
 )
 
+#let minitext(body, color: luma(40%)) = { text(size: 7pt, body, fill: color) }
+
 // Math helpers
 #let limn = $lim_(n -> oo)$
 #let limxo = $lim_(x -> 0)$
