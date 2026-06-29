@@ -10,8 +10,10 @@
   $ E[X] = integral_0^oo (1 - F_X (x)) dif x $
 
   Der *Allgemeine Erwartungswert* für eine reellwertige ZV $X$ mit $E[ |X| ] < oo$ ist definiert als:
-  $ E[X] &= E[X_+] - E[X_-] quad "mit" X_(plus.minus) = max(plus.minus X, 0) \
-         &= integral_0^oo (1 - F_X (x)) dif x - integral_(-oo)^0 F_X (x) dif x $
+  $
+    E[X] & = E[X_+] - E[X_-] quad "mit" X_(plus.minus) = max(plus.minus X, 0) \
+         & = integral_0^oo (1 - F_X (x)) dif x - integral_(-oo)^0 F_X (x) dif x
+  $
 ]
 
 #mainbox(title: "Erwartungswert (Diskrete ZV)")[
@@ -20,8 +22,10 @@
 ]
 
 Sei $X$ eine nicht-negative Zufallsvariable. Dann gilt $E[X] >= 0$. Gleichheit gilt genau dann, wenn $X = 0$ fast sicher ist.
-$ E[X] >= 0 &<== X >= 0 "immer" \
-  E[X] = 0 &<=> X = 0 "fast sicher, d.h." P(X != 0) = 0 $
+$
+  E[X] >= 0 & <== X >= 0 "immer" \
+   E[X] = 0 & <=> X = 0 "fast sicher, d.h." P(X != 0) = 0
+$
 
 == Rechnen mit Erwartungswerten
 *Linearität des Erwartungswertes*:
@@ -49,8 +53,24 @@ Sei $Y$ eine ZV mit endlicher Varianz. Für jedes $b > 0$ gilt dann:
 $ P(|Y - E(Y)| >= b) <= Var(Y) / b^2 $
 
 *Jensen-Ungleichung*\
-Sei $X$ eine ZV und $phi: RR -> RR$ eine konvexe Funktion, dann gilt:
-$ phi(E(X)) <= E(phi(X)) $
+Sei $X$ eine ZV und $phi: RR -> RR$ eine  Funktion, dann gilt:
+#grid(
+  columns: (1fr, 1fr),
+  gutter: 0.5em,
+  [
+    falls $phi$ #markhl("konvex"): \ $phi(E(X)) markhl(<=) E(phi(X))$
+  ],
+  [
+    falls $phi$ #markhl("konkav", color: rgb("#00ff00")): \ $phi(E(X)) markhl(>=, color: #rgb("#00ff00")) E(phi(X))$
+  ],
+)
+
+Daraus folgt (e.g. im #markhl("konvexen") Fall): $|E[X]| markhl(<=) E[ |X| ]$ und
+$
+  (E[ |X| ])^2 & markhl(<=) E[( |X| )^2] \
+  (E[ |X| ])^2 & markhl(<=) E[X^2] \
+      E[ |X| ] & markhl(<=) sqrt(E[X^2])
+$
 
 == Varianz
 #mainbox(title: "Varianz")[
@@ -66,10 +86,12 @@ $ phi(E(X)) <= E(phi(X)) $
 
 #mainbox(title: "Kovarianz")[
   Seien $X, Y$ ZV mit $E(X^2) < oo, space E(Y^2) < oo$. Wir definieren die *Kovarianz* zwischen $X$ und $Y$ durch:
-  $ cov(X,Y) &:= E[(X - E[X])(Y - E[Y])] \
-              &= E(X Y) - E(X) E(Y) $
+  $
+    cov(X, Y) & := E[(X - E[X])(Y - E[Y])] \
+              & = E(X Y) - E(X) E(Y)
+  $
 ]
-+ $cov(X,X) = bb(V)(X)$
++ $cov(X, X) = bb(V)(X)$
 + $X, Y$ unabhängig $=> cov(X, Y) = 0$ ($arrow.double.l.not$)
 + $bb(V)(X plus.minus Y) = bb(V)(X) + bb(V)(Y) plus.minus 2 cov(X, Y)$
 + ($star$) $cov(sum_(i=1)^n X_i, sum_(j=1)^n Y_j) = sum_(i=1)^n sum_(j=1)^n cov(X_i, Y_j)$

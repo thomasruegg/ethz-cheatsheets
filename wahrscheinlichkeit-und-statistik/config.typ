@@ -1,3 +1,5 @@
+#import "@preview/mannot:0.3.0": markhl
+
 #let mainbox(title: "", body) = block(
   width: 100%,
   fill: rgb("#ECF7FF"),
