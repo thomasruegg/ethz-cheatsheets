@@ -1108,20 +1108,22 @@ cos: RR -> RR "stetig", quad cos(z) &= 1 - z^2/2! + z^4/4! - ... = sum_(n=0)^oo 
       cos-pts.push((x, calc.cos(x)))
     }
 
-    // Plot tan (avoiding asymptotes)
-    let tan-pts = ()
-    for i in range(50) {
-      let x = -1.3 + 2.6 * i / 50
-      tan-pts.push((x, calc.tan(x)))
+    line(..sin-pts, stroke: 1pt + rgb("#fa0064"))
+    line(..cos-pts, stroke: 1pt + rgb("#0c2896"))
+
+    // Plot tan (avoiding asymptotes by splitting into segments)
+    for k in (-2, -1, 0, 1, 2) {
+      let tan-pts = ()
+      for i in range(50) {
+        let x = k * calc.pi - 1.3 + 2.6 * i / 49
+        tan-pts.push((x, calc.tan(x)))
+      }
+      line(..tan-pts, stroke: 1pt + rgb("#0c6400"))
     }
 
-    line(..sin-pts, stroke: 1pt + rgb("#0c2896"))
-    line(..cos-pts, stroke: 1pt + rgb("#fa0064"))
-    line(..tan-pts, stroke: 1pt + rgb("#0c6400"))
-
-    content((5.5, 1.2), text(10pt, fill: rgb("#0c2896"))[$sin(x)$])
-    content((3.5, -1.5), text(10pt, fill: rgb("#fa0064"))[$cos(x)$])
-    content((1.6, 2.0), text(10pt, fill: rgb("#0c6400"))[$tan(x)$])
+    content((3, 1.2), text(10pt, fill: rgb("#fa0064"))[$sin(x)$])
+    content((3.3, -1.5), text(10pt, fill: rgb("#0c2896"))[$cos(x)$])
+    content((2.2, 2.5), text(10pt, fill: rgb("#0c6400"))[$tan(x)$])
   })
 ]
 
