@@ -33,7 +33,7 @@
     [$p$: ErfolgsW'keit],
     [$p$],
     [$p(1-p)$],
-    [$p^t(1-p)^(1-t)$],
+    [$p^t (1-p)^(1-t)$],
     [$1-p$ für $0 <= t < 1$],
 
     [Binomial #minitext()[Anzahl Erfolge bei $n$ Versuchen]],
