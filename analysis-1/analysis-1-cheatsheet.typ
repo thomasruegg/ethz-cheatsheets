@@ -437,13 +437,13 @@ Ist $sum_(k=1)^oo a_k$ jedoch *nur bedingt konvergent*, dann ist die Reihenfolge
 
 == Leibnizkriterium
 
-#subbox(title: "Leibnizkriterium (Alternierende Reihen)")[
+#mainbox(title: "Leibnizkriterium (Alternierende Reihen)")[
   #grid(
     columns: (1.5fr, 1fr),
     gutter: 0.5em,
     [
       Für Reihen  $sum (-1)^n a_n$ oder $sum (-1)^(n+1) a_n$:
-      - *Voraussetzung:* $a_n >= 0$, monoton fallend und $limn a_n = 0$.
+      - *Voraussetzungen:* $a_n >= 0$, $(a_n)$ ist monoton fallend, und $limn a_n = 0$.
       - *Folgerung:* #underline()[Reihe konvergiert] gegen $S$, mit $a_1 - a_2 <= S <= a_1$.
 
     ],
@@ -789,7 +789,7 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
 
 
 #mainbox(title: $(f_n)_(n >= 1)$ + " konvergiert punktweise (" + $epsilon$ + "-Kriterium)")[
-  Funktionenfolge $(f_n)_(n >= 1)$ konvergiert punktweise gegen Funktion $f: DD -> RR <==>$ \
+  Funktionenfolge $(f_n)_(n >= 1)$ konvergiert punktweise gegen Funktion \ $f: DD -> RR <==>$ 
   $markhl(forall x in DD", " forall epsilon > 0", " exists N in NN " s.t. " forall n >= N): |f_n (x) - f(x)| < epsilon$. \
   #minitext[
     Die Schranke $N$ darf sowohl von $epsilon$ als auch von $x$ abhängen.
@@ -869,7 +869,7 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
     $f(x) = lim_(n->oo) (x/n^2 + x + 1) = 0 + x + 1$
   + *Gleichmässige Konvergenz zeigen (Supremum gegen 0):* \
     + *Maximalen Abstand bestimmen (Supremum) auf $DD$:* \
-      $sup_(x in [0, 1]) |f_n(x) - f(x)| = sup_(x in [0, 1]) |x/n^2 + x + 1 - (x + 1)| = sup_(x in [0, 1]) x/n^2= 1/n^2$ \
+      $sup_(x in [0, 1]) |f_n (x) - f(x)| = sup_(x in [0, 1]) |x/n^2 + x + 1 - (x + 1)| = sup_(x in [0, 1]) x/n^2= 1/n^2$ \
     + *Limes bilden*: \
     $quad lim_(n -> oo) ( sup_(x in DD) |f_n(x) - f(x)| ) = lim_(n -> oo) 1/n^2 = 0$ \
   Da der GW des max. Abstands $0$ ist, konvergiert $f_n$ gleichmässig.
@@ -1030,15 +1030,18 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
   _(Analog für $-oo$: $x in bb(D)(f) inter (-oo, -M)$)_
   #image("img/unendlichergrenzwert.jpeg", width: 50%)
 #grid(
-  columns: (4fr, 1fr),
+  columns: (3fr, 1fr),
   gutter: 0.5em,
   [
     - *Uneigentlich ($lim_(x -> x_0) f(x) = oo$):* \
-      $forall N > 0 exists delta > 0: x in bb(D)(f) inter (x_0 - delta, x_0 + delta) ==> f(x) >= N$ \
+      $forall N > 0 exists delta > 0: x in bb(D)(f) inter (x_0 - delta, x_0 + delta)$ \ $ ==> f(x) >= N quad quad$
       _(Analog für $-oo$: $f(x) <= -N$)_
 
   ],
-  image("img/linksrechtsseitigergrenzwerterweitert.jpeg"),
+  [
+    #v(-40pt)
+    #image("img/linksrechtsseitigergrenzwerterweitert.jpeg")
+  ]
 )
 
 == Trigonometrische Funktionen
@@ -1234,7 +1237,7 @@ cos: RR -> RR "stetig", quad cos(z) &= 1 - z^2/2! + z^4/4! - ... = sum_(n=0)^oo 
 == Vorgehen
 #howtobox(title: "Extremalstellen berechnen")[
   #set enum(numbering: "1.")
-  + Erste und zweite Ableitung berechnen (dazu Rechenregeln Ableitungen nutzen)
+  + Erste und zweite Ableitung berechnen (Rechenregeln Ableitungen nutzen)
   + Implikationen der Ableitungen nutzen.
 ]
 
@@ -1318,7 +1321,7 @@ Für Intervall $I subset RR$ und $f: I -> RR$. $f$ ist:
     fill: red,
     [ $lambda f(x_1) + (1 - lambda) f(x_0)$ ],
   )
-/ Streng Konvex: falls $forall x_0, x_1 in I, x_0 < x_1, lambda in ]0, 1[,$ \
+/ Streng Konvex: falls $forall x_0, x_1 in I, x_0 < x_1, lambda in (0, 1),$ \
   #h(1em) #text(fill: blue, [ $f(lambda x_1 + (1- lambda)x_0)$ ]) $<$ #text(
     fill: red,
     [ $lambda f(x_1) + (1 - lambda) f(x_0)$ ],
@@ -1334,7 +1337,7 @@ Für Intervall $I subset RR$ und $f: I -> RR$. $f$ ist:
     [ $lambda f(x_1) + (1 - lambda) f(x_0)$ ],
   )
 
-- $f: I -> RR$ ist konvex $<==> forall x_0 < x < x_1 in I, (f(x) - f(x_0))/(x - x_0) <= (f(x_1) - f(x))/(x_1 - x_0)$
+- $f: I -> RR$ ist konvex $<==> forall x_0 < x < x_1 in I, (f(x) - f(x_0))/(x - x_0) <= (f(x_1) - f(x))/(x_1 - x_0)$ \
   #minitext[
     konvex $<==>$ Sekante zwischen $(x_0, f(x_0))$ & $(x, f(x))$ hat kleinere Steigung als zwischen $(x, f(x))$ & $(x_1, f(x_1))$.
   ]
@@ -1358,13 +1361,13 @@ Für Intervall $I subset RR$ und $f: I -> RR$. $f$ ist:
 ]
 
 === Glatte Funktionen $f in C^oo$
-$exp(x), sin(x), cos(x), sinh(x), cosh(x), tanh(x), ln(x),$ \ $arcsin(x), arccos(x), "arccot"(x), arctan(x)$ & Polynome sind glatt. $tan(x)$ ist auf $RR backslash {pi/2 + k pi}, cot(x)$ auf $RR backslash {k pi}$ glatt.
+$exp(x), sin(x), cos(x), sinh(x), cosh(x), tanh(x), ln(x),$ \ $arcsin(x), arccos(x), "arccot"(x), arctan(x)$ & Polynome sind glatt. \ $tan(x)$ ist auf $RR backslash {pi/2 + k pi}, cot(x)$ auf $RR backslash {k pi}$ glatt.
 
 === Rechenregeln Höhere Ableitungen
 Für $f, g: DD -> RR quad n$-mal differenzierbar:
 - *$f + g$:* ist $n$-mal diff. und $(f + g)^((n)) = f^((n)) + g^((n))$.
 - *$f dot g$:* ist $n$-mal diff. und $(f dot g)^((n)) = sum_(k=0)^n binom(n, k) f^((k)) g^((n-k))$.
-- *$f / g$:* ist $n$-mal diff. falls $g(x) != 0 forall x in DD$.
+- *$f / g$:* ist $n$-mal diff. falls $g(x) != 0 med forall x in DD$.
 - *$g compose f$:* ist $n$-mal diff. und $(g compose f)^((n))(x) = sum_(k=1)^n A_(n,k)(x) (g^((k)) compose f)(x), A_(n,k)$ ist ein Polynom.
 
 == Potenzreihen Ableitungsregeln
@@ -1402,18 +1405,21 @@ Für $f, g: DD -> RR quad n$-mal differenzierbar:
       ],
     )
   ],
-  image("img/satelpunktwendepunkt.jpeg", width: 100%),
+  [
+    #v(-15pt)
+    #image("img/satelpunktwendepunkt.jpeg", width: 100%)
+  ]
 )
 
 == Extremalstellen
-#minitext[_Voraussetzung: $f$ ist auf $[a, b]$ stetig und im Inneren $(a,b)$ $(n+1)$-mal stetig differenzierbar. Sei $x_0 in (a, b)$._] \
-Sei $f$ an der Stelle $x_0$ sehr flach, d.h. die ersten $n$ Ableitungen verschwinden:
-$f'(x_0) = f''(x_0) = ... = f^((n))(x_0) = 0$. \
+#minitext[Voraussetzung: $f$ ist auf $[a, b]$ stetig und im Inneren $(a,b)$ $(n+1)$-mal stetig differenzierbar.]
+Sei $f$ an der Stelle $x_0 in (a, b)$ sehr flach, d.h. die ersten $n$ Ableitungen verschwinden:
+$f'(x_0) = f''(x_0) = ... = f^((n))(x_0) = 0$.
 Die erste Ableitung ungleich 0, sei die $(n+1)$-te Ableitung. Dann gilt:
-*Ist $(n+1)$ ungerade* ($n$ ist gerade): *Sattelpunkt* (kein Extremum).
-*Ist $(n+1)$ gerade* ($n$ ist ungerade): *Extremum*.
-- $f^((n+1))(x_0) > 0 ==> x_0$ = striktes lokales *Minimum* $union$
-- $f^((n+1))(x_0) < 0 ==> x_0$ = striktes lokales *Maximum* $inter$
+- *Ist $(n+1)$ ungerade* ($n$ ist gerade): *Sattelpunkt* (kein Extremum).
+- *Ist $(n+1)$ gerade* ($n$ ist ungerade): *Extremum*.
+  - $f^((n+1))(x_0) > 0 ==> x_0$ = striktes lokales *Minimum* $union$
+  - $f^((n+1))(x_0) < 0 ==> x_0$ = striktes lokales *Maximum* $inter$
 _Hinweis: Der klassische Test mit der 2. Ableitung ist der Spezialfall $n=1$._
 
 === Korrolar Implikationen der Ableitung
@@ -1590,6 +1596,19 @@ Annäherung glatter Funktionen als Potenzreihen am Entwicklungspunkt $a$.
   #minitext[
     *Warum ist diese Herleitung wichtig?* Sie zeigt, dass der verallgemeinerte Binomialkoeffizient keine Hexerei ist, sondern einfach nur das "Abfallprodukt" der Kettenregel ist, wenn man Terme wie $(1+x)^p$ unendlich oft ableitet und durch $n!$ teilt!
   ]
+]
+
+#howtobox(title: "Rezept: Taylorpolynom durch Standardreihen (Substitution)")[
+  *Wann?* Bei Funktionen der Form $x^m dot g(x^k)$ (z.B. $x cos(x^3)$). Viel schneller und weniger fehleranfällig als direktes, mehrfaches Ableiten!
+
+  + *Standardreihe notieren:* Schreibe Maclaurin-Reihe der bekannten "Basis-Funktion" $g(z)$ bis zur gesuchten Ordnung auf. 
+    #minitext[E.g. $cos(z)$: $quad 1 - z^2/(2!) + z^4/(4!) - ...$]
+  + *Substitution:* Ersetze das $z$ in Reihe durch das eigentliche innere Argument (z.B. $z = x^3$). 
+    #minitext[E.g. $cos(x^3)$: $quad 1 - (x^3)^2/2 + ... = 1 - x^6/2 + ...$]
+  + *Multiplizieren:* Multipliziere äussere Faktoren (z.B. $x$) in gesamte Reihe. \
+    #minitext[E.g. $x dot cos(x^3)$: $quad x dot (1 - x^6/2) = x - x^7/2 + ...$]
+  + *Koeffizient ablesen:* Vergleiche fertige Polynom mit allgemeiner Form $sum alpha_n x^n$. Der Faktor vor dem $x^n$ ist dein $alpha_n$.
+    #minitext[E.g. $f(x) = alpha_0x^0 + alpha_1 x^1+ alpha_2 x^2+ ...$. Gesucht $alpha_3$: Da im Polynom $x - x^7/2$ kein $x^3$ vorkommt, ist $alpha_3 = 0$.]
 ]
 
 #bspbox(title: "Taylor Approximation für " + $f(x) = x^x$)[
@@ -2286,8 +2305,8 @@ Für die Lösung einer #markhl("inhomogenen DGL") muss ein geeigneter Ansatz fü
       Die Polarform von \
       $z = a + i b in CC quad \
       "mit" (phi in (- pi, pi])$ sei \
-      $z = r dot e^(i dot phi)$ #minitext[ (Euler Form) ] \
-      $z = r dot (cos(phi) + i dot sin(phi))$ #minitext[ (Trigonometrische Form) ] \
+      $z = r dot markhl(e^(i dot phi))$ #minitext[ (Euler Form) ] \
+      $z = r dot markhl((cos(phi) + i dot sin(phi)))$ #minitext[ (Trigo Form) ] \
       mit $r = |z| = sqrt(a^2 + b^2)$, \
       $a = r cos(phi), quad b = r sin(phi)$
     ],
@@ -2350,11 +2369,15 @@ $f(x) = c$ ($c$ ist Konstante), $f(x) = x$, $f(x) = x^n$, $f(x) = a_n x^n + ... 
   table.cell(colspan: 5, fill: luma(240), align: left)[*Geometrische Reihe*],
   [$sum_(k=0)^oo q^k$], [$1 + q + q^2 + dots$], [$1/(1-q)$], [$|q| < 1$, abs], [$|q| >= 1$],
 
-  table.cell(colspan: 5, fill: luma(240), align: left)[*Harmonische Reihe (und $p$-Reihen)* #minitext()[Kehrwert der natürlichen Zahlen]],
+  table.cell(
+    colspan: 5,
+    fill: luma(240),
+    align: left,
+  )[*Harmonische Reihe (und $p$-Reihen)* #minitext()[Kehrwert der natürlichen Zahlen]],
   [$sum_(k=1)^oo 1/k$], [$1 + 1/2 + 1/3 + dots$], [$oo$], [], [ja],
   [$sum_(k=1)^oo 1/k^2$], [$1 + 1/4 + 1/9 + dots$], [$pi^2/6$], [ja, abs], [],
   [$sum_(k=1)^oo 1/k^4$], [$1 + 1/16 + 1/81 + dots$], [$pi^4/90$], [ja, abs], [],
-  [$sum_(k=1)^oo 1/k^a$], [$1 + 1/2^a + 1/3^a + dots$], [], [$a > 1$, abs], [$a <= 1$],
+  [$sum_(k=1)^oo 1/k^a$], [$1 + 1/2^a + 1/3^a + dots$], [siehe Ref.], [$a > 1$, abs], [$a <= 1$],
 
   table.cell(colspan: 5, fill: luma(240), align: left)[*Alternierende Harmonische Reihe*],
   [$sum_(k=1)^oo (-1)^(k+1)/k$], [$1 - 1/2 + 1/3 - dots$], [$ln 2$], [ja], [],
@@ -2366,14 +2389,14 @@ $f(x) = c$ ($c$ ist Konstante), $f(x) = x$, $f(x) = x^n$, $f(x) = a_n x^n + ... 
   [$sum_(k=1)^oo 1/(k(k+1))$], [$1/2 + 1/6 + 1/12 + dots$], [$1$], [ja, abs], [],
 
   table.cell(colspan: 5, fill: luma(240), align: left)[*Exponential-, Trigonometrische & Hyperbolische Funktionen*],
-  [$sum_(k=0)^oo z^k/(k!)$], [$1 + z + z^2/(2!) + dots$], [$exp(z)$], [ja, abs], [],
+  [$sum_(k=0)^oo z^k/(k!)$], [$1 + z + z^2/(2!) + dots$], [$e^(z)$], [ja, abs], [],
   [$sum_(k=0)^oo (-a)^k/(k!)$], [$1 - a + a^2/(2!) - dots$], [$e^(-a)$], [ja, abs], [],
   [$sum_(k=0)^oo (-1)^k x^(2k+1)/((2k+1)!)$], [$x - x^3/(3!) + x^5/(5!) - dots$], [$sin x$], [ja, abs], [],
   [$sum_(k=0)^oo (-1)^k x^(2k)/((2k)!)$], [$1 - x^2/2 + x^4/(4!) - dots$], [$cos x$], [ja, abs], [],
   [$sum_(k=0)^oo x^(2k+1)/((2k+1)!)$], [$x + x^3/(3!) + x^5/(5!) + dots$], [$sinh x$], [ja, abs], [],
   [$sum_(k=0)^oo x^(2k)/((2k)!)$], [$1 + x^2/2 + x^4/(4!) + dots$], [$cosh x$], [ja, abs], [],
 
-  table.cell(colspan: 5, fill: luma(240), align: left)[*Weitere wichtige Taylorreihen (Logarithmus & Arkustangens)*],
+  table.cell(colspan: 5, fill: luma(240), align: left)[*Logarithmus & Arkustangens Taylorreihen*],
   [$sum_(k=1)^oo (-1)^(k+1) x^k/k$], [$x - x^2/2 + x^3/3 - dots$], [$ln(1+x)$], [$-1 < x <= 1$], [sonst],
   [$sum_(k=0)^oo (-1)^k x^(2k+1)/(2k+1)$], [$x - x^3/3 + x^5/5 - dots$], [$arctan(x)$], [$|x| <= 1$], [sonst],
 )
@@ -2396,7 +2419,7 @@ Verhältnis $q$ zweier aufeinanderfolgender Glieder konstant ($a_(k+1) = a_k dot
     - für $markhl(q) <= -1$: divergiert *unbestimmt* (Reihe oszilliert, z.B. $1 - 1 + 1 - 1 ...$)
 
 === Potenzreihe
-Hängt von einer Variable $x$ ab. Verhält sich wie ein Polynom.
+Hängt von einer Variable $x$ ab. Verhält sich wie ein Polynom. \
 $f(x) = sum_(k=0)^oo c_k (x - x_0)^k = c_0 + c_1(x-x_0) + c_2(x-x_0)^2 +dots$
 - Konvergiert, wenn $|x - x_0| < R$ und divergiert, wenn $|x - x_0| > R$
 - $R$ ist der Konvergenzradius. Bestimmt durch das Wurzelkriterium: $R = lim_(n->oo) |c_n/c_(n+1)|$ oder Quotientenkriterium $R = 1 / (lim_(n->oo) root(n, |c_n|))$.
@@ -2433,7 +2456,7 @@ $
 ]
 
 #table(
-  columns: (1.5fr, 1fr, 1.5fr),
+  columns: (auto, 1fr, auto),
   align: center + horizon,
   stroke: 0.5pt,
   [*$F(x)$*], [*$f(x)$*], [*$f'(x)$*],
@@ -2449,7 +2472,7 @@ $
   [$sin(x)$], [$cos(x)$], [$-sin(x)$],
   [$1/2(x - 1/2 sin(2x))$], [$sin^2(x)$], [$2 sin(x)cos(x)$],
   [$1/2(x + 1/2 sin(2x))$], [$cos^2(x)$], [$-2 sin(x)cos(x)$],
-  [$-ln|cos(x)|$], [$tan(x)$], [$1/(cos^2(x))$],
+  [$-ln|cos(x)|$], [$tan(x)$], [$1/(cos^2(x)) = 1+tan^2(x)$],
   [$ln(cosh(x))$], [$tanh(x)$], [$1/(cosh^2(x))$],
   [$ln |sin(x)|$], [$cot(x)$], [$-1/(sin^2(x)) = -csc^2(x)$],
   [$ln |1/cos(x) + tan(x)|$], [$1/cos(x)=sec(x)$], [$sin(x)/cos^2(x)$],
@@ -2495,6 +2518,4 @@ $
 - $integral_e^oo 1/(x (ln x)^p) d x$ konvergiert für $p > 1$, divergiert für $p <= 1$
 - $integral_(-oo)^oo e^(-x^2) d x = sqrt(pi) quad$ (Gaußsches Integral)
 
-== Stirling-Formula
-\
-$n! approx (sqrt(2 pi n) dot n^n)/e^n$ für grosse $n$.
+== Stirling-Formula $n! approx (sqrt(2 pi n) dot n^n)/e^n$ für grosse $n$.
