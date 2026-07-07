@@ -42,7 +42,7 @@ $ E[product_(k=1)^n X_k] = product_(k=1)^n E[X_k] $
 == Ungleichungen
 *Monotonie*\
 Seien $X, Y$ ZV mit $X <= Y$ f.s., dann gilt:
-$ E(X) <= E(Y) $
+$E(X) <= E(Y)$
 
 *Markow-Ungleichung*\
 Sei $X$ eine ZV und ferner $g: X(Omega) -> [0, +oo)$ eine wachsende Funktion. Für jedes $c in RR$ mit $g(c) > 0$ gilt dann:

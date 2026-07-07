@@ -51,7 +51,7 @@ Man verwendet auch oft die Form für $overline(X)_n = 1/n S_n$ als:
 $ (overline(X)_n - mu) / (sigma / sqrt(n)) arrow.r.long^d cal(N)(0,1) #h(1fr) (star) $
 beziehungsweise:
 $
-  S_n arrow.r.long^d cal(N)(n mu, n sigma^2) " und " overline(X)_n arrow.r.long^d cal(N)(mu, 1/n sigma^2) #h(1fr) (star)
+  S_n arrow.r.long^d cal(N)(n mu, n sigma^2) " und " overline(X)_n arrow.r.long^d markhl(cal(N)(mu, 1/n sigma^2)) #h(1fr) (star)
 $
 
 === Beispielrechnung

@@ -63,34 +63,50 @@ Das bedeutet, jeder andere Test mit kleinerem Signifikanzniveau hat auch geringe
 
 == Konkrete Tests
 === z-Test / Gauss-Test
-*Sample i.i.d. normalverteilt, Test für $mu$, $sigma^2$ bekannt* \
-$mu$-Schätzer: $mu = overline(X)_n = 1/n sum_(i=1)^n X_i$ \
-+ Modell: $X_1, ..., X_n ~ cal(N)(theta, sigma^2)$ i.i.d. unter $PP_theta$
-+ Teststatistik $T := (overline(X)_n - mu)/(sqrt(sigma^2 / n)) ~ cal(N)(0,1)$ unter $PP_(theta_0)$
+*Sample i.i.d. normalverteilt, Test für $mu$; $sigma^2$ bekannt* \
+$mu$-Schätzer: $overline(X)_n = 1/n sum_(i=1)^n X_i$ \
++ Modell: $X_1, ..., X_n ~ cal(N)(mu, sigma^2)$ i.i.d. unter $PP_mu$
++ Hypothesen: $H_0: mu = mu_0$ gegen $H_A: mu != mu_0$ ($mu < mu_0$ oder $mu > mu_0$) mit Signifikanzniveau $alpha$.
++ Teststatistik $T := (overline(X)_n - mu_0)/(sigma / sqrt(n)) ~ cal(N)(0,1)$ unter $PP_(mu_0)$
++ Kritischer Bereich $K$: Ansatz für $c$ finden, sodass $PP_(mu_0)[T in K] = alpha$ gilt.
+  - *Linksseitig* ($H_A: mu < mu_0$): Ansatz $K = (-infinity, c_<)$ für ein $c_< in RR$. 
+    Finde $c_<$ s.t. $PP_(mu_0)[T < c_<] = alpha$ \
+    $=> c_< = z_alpha = -z_(1-alpha) => K = (-infinity, -z_(1-alpha))$
+  - *Rechtsseitig* ($H_A: mu > mu_0$): Ansatz $K = (c_>, infinity)$ für ein $c_> in RR$. 
+    Finde $c_>$ s.t. $PP_(mu_0)[T > c_>] = alpha$ \
+    $=> 1 - PP_(mu_0)[T <= c_>] = alpha => PP_(mu_0)[T <= c_>] = 1 - alpha => c_> = z_(1-alpha) => K = (z_(1-alpha), infinity)$
+  - *Zweiseitig* ($H_A: mu != mu_0$): Ansatz $K = (-infinity, -c_=) union (c_=, infinity)$ für ein $c_= in RR$ 
+    Finde $c_=$ s.t. \ $PP_(mu_0)[T in K] = alpha \
+    => PP_(mu_0)[-c_= < T < c_=] = 1 - alpha => 2 Phi(c_=) - 1 = 1 - alpha \
+     => Phi(c_=) = 1 - alpha/2 => c_= = z_(1-alpha/2) \
+    => K = (-infinity, -z_(1-alpha/2)) union (z_(1-alpha/2), infinity)$
++ *Dualität zum Konfidenzintervall (zweiseitig):* \
+  Die Nullhypothese wird genau dann *nicht* verworfen, wenn $T in K^c$, also:
+  $ |T| <= z_(1-alpha/2) <=> |(overline(X)_n - mu_0)/(sigma / sqrt(n))| <= z_(1-alpha/2) $
+  $ <=> -z_(1-alpha/2) dot sigma/sqrt(n) <= overline(X)_n - mu_0 <= z_(1-alpha/2) dot sigma/sqrt(n) $
+  $ <=> overline(X)_n - z_(1-alpha/2) dot sigma/sqrt(n) <= mu_0 <= overline(X)_n + z_(1-alpha/2) dot sigma/sqrt(n) $
+  Das Intervall $I = [overline(X)_n - z_(1-alpha/2) dot sigma/sqrt(n), overline(X)_n + z_(1-alpha/2) dot sigma/sqrt(n)]$ enthält genau alle hypothetischen Werte $mu_0$, die mit den Beobachtungen kompatibel sind (95%-KI für $alpha = 0.05$).
 
 === t-Test
-*Sample i.i.d. normalverteilt, Test für $mu$, $sigma^2$ UNbekannt* \
+*Sample i.i.d. normalverteilt, Test für $mu$; $sigma^2$ UNbekannt* \
 Parameter $arrow(theta) = (mu, sigma^2)$ ist zweidimensional! \
 $mu$-Schätzer: $overline(X)_n = 1/n sum_(i=1)^n X_i$ \
 $sigma^2$-Schätzer: $S^2 = 1/(n-1) sum_(i=1)^n (X_i - overline(X)_n)^2 $ \
-+ Modell: $X_1, ..., X_n ~ cal(N)(theta, sigma^2)$ i.i.d. unter $PP_arrow(theta)$
++ Modell: $X_1, ..., X_n ~ cal(N)(mu, sigma^2)$ i.i.d. unter $PP_arrow(theta)$
 + Hypothesen: $Theta_0 = ({mu_0} text(" oder ") {mu <= mu_0} text(" oder ") {mu >= mu_0}) times (0, infinity)$ #text(fill: luma(50%))[$<- "weil" arrow(theta) = (mu, sigma^2)$]
-+ Teststatistik $T := (overline(X)_n - mu_0)/(sqrt(S^2 / n)) ~ t_(n-1)$ unter $PP_(theta_0)$
++ Teststatistik $T := (overline(X)_n - mu_0)/(sqrt(S^2 / n)) ~ t_(n-1)$ unter $PP_(mu_0)$
 + Kritischer Bereich $K$: Ansatz für $c$ finden, sodass $PP_(mu_0)[T in K] = alpha$ gilt.
-  - *Linksseitig* ($H_A: mu < mu_0$): Ansatz $K = (-infinity, c_<)$ für ein $c_< in RR$ \
-    Finde $c_<$ s.t. $PP_(mu_0)[T < c_<] = alpha$ \
-    $=> c_< = t_(n-1, alpha) = -t_(n-1, 1-alpha)$ \
-    $=> K = (-infinity, -t_(n-1, 1-alpha))$
-  - *Rechtsseitig* ($H_A: mu > mu_0$): Ansatz $K = (c_>, infinity)$ für ein $c_> in RR$ \
-    Finde $c_>$ s.t. $PP_(mu_0)[T > c_>] = alpha$ \
-    $=> 1 - PP_(mu_0)[T <= c_>] = alpha \
-     => PP_(mu_0)[T <= c_>] = 1 - alpha => c_> = t_(n-1, 1-alpha)$ \
-    $=> K = (t_(n-1, 1-alpha), infinity)$
+  - *Linksseitig* ($H_A: mu < mu_0$): Ansatz $K = (-infinity, c_<)$ für ein $c_< in RR$. 
+    Finde $c_<$ s.t. $PP_(mu_0)[T < c_<] = alpha => c_< = -t_(n-1, 1-alpha) => K = (-infinity, -t_(n-1, 1-alpha))$
+  - *Rechtsseitig* ($H_A: mu > mu_0$): Ansatz $K = (c_>, infinity)$ für ein $c_> in RR$. 
+    Finde $c_>$ s.t. $PP_(mu_0)[T > c_>] = alpha => c_> = t_(n-1, 1-alpha) => K = (t_(n-1, 1-alpha), infinity)$
   - *Zweiseitig* ($H_A: mu != mu_0$): Ansatz $K = (-infinity, -c_=) union (c_=, infinity)$ für ein $c_= in RR^+$ \
-    Finde $c_=$ s.t. $PP_(mu_0)[|T| > c_=] = 2 dot PP_(mu_0)[T > c_=] = alpha$ \
-    $=> PP_(mu_0)[T > c_=] = alpha/2 \
-     => PP_(mu_0)[T <= c_=] = 1 - alpha/2 => c_= = t_(n-1, 1-alpha/2)$ \
-    $=> K = (-infinity, -t_(n-1, 1-alpha/2)) union (t_(n-1, 1-alpha/2), infinity)$
+    Finde $c_=$ s.t. $PP_(mu_0)[|T| > c_=] = alpha => c_= = t_(n-1, 1-alpha/2) \
+    => K = (-infinity, -t_(n-1, 1-alpha/2)) union (t_(n-1, 1-alpha/2), infinity)$
++ *Dualität zum Konfidenzintervall (zweiseitig):* \
+  Äquivalent zum z-Test durch Umformen von $|T| <= t_(n-1, 1-alpha/2)$ nach $mu_0$:
+  $ overline(X)_n - t_(n-1, 1-alpha/2) dot sqrt(S^2/n) <= mu_0 <= overline(X)_n + t_(n-1, 1-alpha/2) dot sqrt(S^2/n) $
+  $==>$ $I = [overline(X)_n - t_(n-1, 1-alpha/2) dot sqrt(S^2/n), overline(X)_n + t_(n-1, 1-alpha/2) dot sqrt(S^2/n)]$
 
 === Gepaarter Zweistichprobentest
 Sei $X_1,...,X_n ~ cal(N)(mu_X, sigma^2)$ i.i.d. und $Y_1,...,Y_n ~ cal(N)(mu_Y, sigma^2)$, wobei $X_i, Y_i$ unabhängig. \ 
@@ -109,29 +125,8 @@ Sei $X_1,...,X_n ~ cal(N)(mu_X, sigma^2)$ und $Y_1,...,Y_m ~ cal(N)(mu_Y, sigma^
  $ S^2 := (1)/(m + n - 2) ((n-1)S^2_X + (m-1)S^2_Y) $
  $ T := ((overline(X)_n - overline(Y)_n) - (mu_X - mu_Y))/(S sqrt(1/n + 1/m)) ~ t_(m+n-2) $
 
-/*=== T-Test / Gauss-Test
-Zuerst berechnen wir $T$:
-$ T = (overline(X)_n - theta_0) / sqrt(sigma^2 / n) ~ cal(N)(0, 1) $
-mit dem erwartungstreuen Schätzer:
-$ overline(X)_n = 1/n sum_(i=1)^n X_i $
-
-Dann unterscheiden wir zwischen den folgenden Fällen:
-+ *Einseitiger Test* $H_A$: $theta > theta_0$
-  - Obere Grenze: $c = Phi^(-1)(1 - alpha)$
-  - Verwerfungsbereich: Verwerfe $H_0$ falls $T > c$
-+ *Einseitiger Test* $H_A$: $theta < theta_0$
-  - Untere Grenze: $c = Phi^(-1)(alpha)$
-  - Verwerfungsbereich: Verwerfe $H_0$ falls $T < c$
-+ *Beidseitiger Test* $H_A$: $theta != theta_0$
-  - Untere Grenze: $c_1 = Phi^(-1)(alpha / 2)$\
-    Obere Grenze: $c_2 = Phi^(-1)(1 - alpha / 2)$
-  - Verwerfungsbereich: Verwerfe $H_0$ falls $T < c_1$ oder $T > c_2$
-
-_Notiz: Restliche Tests nicht in Vorlesung behandelt (siehe Nicolas Wehrli's Cheat Sheet)._
-*/
-
-== p-Wert
-#mainbox(title: "Definition p-Wert")[
-  Sei $H_0 : theta = theta_0$ eine einfache Nullhypothese. Sei $(T, K_t)_(t >= 0)$ eine geordnete Familie von Tests. Der p-Wert ist definiert als ZV $G(omega)$, wobei $ G : Omega |-> [0,1], space space space space G(omega) = PP_(theta_0)[T in K_(t(X_1(omega),...,X_n(omega)))] $
+== $p$-Wert
+#mainbox(title: "Definition "+$p$+"-Wert")[
+  Sei $H_0 : theta = theta_0$ eine einfache Nullhypothese. Sei $(T, K_t)_(t >= 0)$ eine geordnete Familie von Tests. Der $p$-Wert ist definiert als ZV $G(omega)$, wobei $ G : Omega |-> [0,1], space space space space G(omega) = PP_(theta_0)[T in K_(t(X_1(omega),...,X_n(omega)))] $
 ]
 *Intuitiv*: Kleinstes Signifikanzniveau $p$, bei welchem die Nullhypothese verworfen wird (anhand der Teststatistik mit effektiver Realisation $omega$). *Ansatz*: Berechne kleinsten Verwerfungsbereich $K$, sodass $T in K$ und löse $PP_(theta_0)[T in K] >= 1 - alpha$ auf.
