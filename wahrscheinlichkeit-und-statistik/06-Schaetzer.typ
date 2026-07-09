@@ -50,7 +50,7 @@ $ T_("ML") = t_("ML")(X_1, ..., X_n) in limits(op("arg max"))_(vartheta in Theta
   + Bestimme davon die Log-Likelihood-Funktion: \ $f(vartheta) := ln(L(x_1, ..., x_n; vartheta))$.
   + $f(vartheta)$ nach $vartheta$ ableiten.
   + Nullstelle von $f'(vartheta)$ finden. Punkt 5 nicht vergessen $arrow.b$
-  + $f''(vartheta) < 0$ oder anderes Argument, dass wir das Maximum $vartheta^*$ gefunden haben (evtl. Randstellen überprüfen!). _"$vartheta^*$ ist Maximum, da die Ableitung für $vartheta < vartheta^*$ strikt positiv, an Stelle $vartheta^*$ gleich Null und für $vartheta > vartheta^*$ strikt negativ ist._ 
+  + $f''(vartheta) < 0$ oder anderes Argument, dass wir das Maximum $vartheta^*$ gefunden haben (evtl. Randstellen überprüfen!). _"$vartheta^*$ ist Maximum, da die Ableitung für $vartheta < vartheta^*$ strikt positiv, an Stelle $vartheta^*$ gleich Null und für $vartheta > vartheta^*$ strikt negativ ist._
 ]
 
 == Momentenmethode /-schätzer
@@ -62,26 +62,32 @@ $ T_("ML") = t_("ML")(X_1, ..., X_n) in limits(op("arg max"))_(vartheta in Theta
 
 *Momentenschätzer.* \
 Der Schätzer $T = (T_1, T_2)$ ist allgemein in jedem Modell $P_vartheta$, in dem $X_1, ..., X_n$ i.i.d. sind, der sogenannte Momentenschätzer für:
-$ (E_vartheta [X], bb(V)_vartheta [X]) $
+$ T = (T_1, T_2) = (E_vartheta [X], bb(V)_vartheta [X]) $
 Dieser Schätzer ist allerdings nicht erwartungstreu für $(E_vartheta [X], bb(V)_vartheta [X])$. Es gilt zwar:
-$ E_vartheta [T_1] = E_vartheta [overline(X)_n] = E_vartheta [X] $
+$
+  E_vartheta [T_1] = E_vartheta [overline(X)_n] = E_vartheta [X] quad "(erwartungstreu ✓)" \
+  E_vartheta [T_2] = E_vartheta [1/n sum_(i=1)^n (X_i - overline(X)_n)^2] = markhl(E_vartheta [1/n sum_(i=1)^n [X_i^2] - (overline(X)_n)^2], color: #rgb("#00ff00"))
+$
+
 aber gemäss ($bb(V)[Y] = E[Y^2] - E[Y]^2$) angewandt auf $overline(X)_n$ gilt:
 $
   E_vartheta [(overline(X)_n)^2] &= bb(V)_vartheta [overline(X)_n] + E_vartheta [overline(X)_n]^2 \
-  &= 1/n bb(V)_vartheta [X] + E_vartheta [X]^2 quad quad quad  #text(fill: luma(50%), size: 8pt)[$(bb(V)[overline(X)_n] = 1/n bb(V)[X])$] \
+  &= 1/n bb(V)_vartheta [X] + E_vartheta [X]^2 quad quad quad #text(fill: luma(50%), size: 8pt)[$(bb(V)[overline(X)_n] = 1/n bb(V)[X])$] \
   &= 1/n (E_vartheta [X^2] - E_vartheta [X]^2) + E_vartheta [X]^2 \
   &= 1/n E_vartheta [X^2] + (n-1)/n E_vartheta [X]^2
 $
 Daraus folgt direkt für die Verzerrung des zweiten Moments:
-$ E_vartheta [T_2] = (n-1)/n dot bb(V)_vartheta [X] != bb(V)_vartheta [X] $
+$
+  E_vartheta [T_2] = markhl(E_vartheta [X^2] - E_vartheta [(overline(X)_n)^2], color: #rgb("#00ff00")) = (n-1)/n dot bb(V)_vartheta [X] != bb(V)_vartheta [X]
+$
 
 Um einen erwartungstreuen Schätzer $T'$ für $(E_vartheta [X], bb(V)_vartheta [X])$ zu erhalten, verwendet man:
 $
-  T'_(1) & = overline(X)_n \
+  T'_(1) & = overline(X)_n quad ==> E_vartheta [T'_1] = E_vartheta [X] "✓" \
   T'_(2) & = n/(n-1) dot T_2 = n/(n-1) dot 1/n sum_(k=1)^n (X_k - overline(X)_n)^2 \
-         & = 1/(n-1) sum_(k=1)^n (X_k^2 - 2 X_k overline(X)_n + overline(X)_n^2) \
-         & = 1/(n-1) ( sum_(k=1)^n X_k^2 - 2 n overline(X)_n^2+ overline(X)_n^2 ) \
-         & = 1/(n-1) sum_(k=1)^n X_k^2 - n/(n-1) (overline(X)_n)^2
+         & = 1/(n-1) sum_(k=1)^n [X_k^2 - 2 X_k overline(X)_n + overline(X)_n^2] \
+         & = 1/(n-1) ( sum_(k=1)^n [X_k^2] quad - 2 n overline(X)_n^2+ overline(X)_n^2 ) \
+         & = 1/(n-1) sum_(k=1)^n [X_k^2] - n/(n-1) (overline(X)_n)^2 ==> E_vartheta [T'_2] =VV_vartheta [X] "✓" 
 $
 Für $T'_(2)$ schreibt man oft:
 $ S^2 = 1/(n-1) sum_(k=1)^n (X_k - overline(X)_n)^2 $

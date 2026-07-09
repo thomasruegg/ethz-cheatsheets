@@ -47,7 +47,7 @@
 
 #align(center)[
   #table(
-    columns: 3,
+    columns: (1fr, 1fr, 1fr),
     align: horizon + center,
     stroke: 0.5pt + luma(150),
     table.cell(colspan: 3, fill: luma(240))[*Polarkoordinaten*],
@@ -182,7 +182,7 @@ Seien $X_1, ..., X_n$ i.i.d. $~ cal(N)(mu, sigma^2)$. Wir erinnern uns an die No
     columns: (1.2fr, 1.2fr, 1.2fr),
     align: horizon + center,
     stroke: 0.5pt + luma(150),
-    inset: 0.9em,
+    inset: 0.6em,
     [*$F(x)$*], [*$f(x)$*], [*$f'(x)$*],
     [$x^(-a+1) / (-a+1)$], [$1/x^a$], [$a / x^(a+1)$],
     [$x^(a+1) / (a+1)$], [$x^a (a != -1)$], [$a · x^(a-1)$],
@@ -211,7 +211,7 @@ Seien $X_1, ..., X_n$ i.i.d. $~ cal(N)(mu, sigma^2)$. Wir erinnern uns an die No
     columns: (1fr, 1fr),
     align: horizon + center,
     stroke: 0.5pt + luma(150),
-    inset: 0.9em,
+    inset: 0.6em,
     [*$F(x)$*], [*$f(x)$*],
     [$1/(a (n+1)) (a x + b)^(n+1)$], [$(a x + b)^n$],
     [$arcsin(x)$], [$1/sqrt(1 - x^2)$],
@@ -233,15 +233,13 @@ Seien $X_1, ..., X_n$ i.i.d. $~ cal(N)(mu, sigma^2)$. Wir erinnern uns an die No
   )
 ]
 
-#colbreak()
-
 == Integrale
 #align(center)[
   #table(
     columns: (1fr, 1fr),
     align: horizon + center,
     stroke: 0.5pt + luma(150),
-    inset: 0.9em,
+    inset: 0.6em,
     [*$f(x)$*], [*$F(x)$*],
     [$integral f'(x) f(x) dif x$], [$1/2 (f(x))^2$],
     [$integral f'(x)/f(x) dif x$], [$ln|f(x)|$],
