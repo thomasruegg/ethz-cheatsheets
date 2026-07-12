@@ -20,7 +20,18 @@ Die Funktion erfüllt folgende Eigenschaften:
 + $F_X$ ist rechtsstetig, d.h. $lim_(h -> 0^+) F_X (x+h) = F_X (x)$
 + $lim_(x -> -oo) F_X (x) = 0$ und $lim_(x -> oo) F_X (x) = 1$
 
-_Auch gilt:_ $forall a,b in RR, a < b: P(a < X <= b) = F_X (b) - F_X (a)$
+=== Rechenregeln für Intervalle (Verteilungsfunktion)
+$bb(P)[a <= X <= b] = bb(P)[X <= b] - bb(P)[X < a] = F_X (b) - F_X (a^-)$ \
+     _(Ausgefüllter Punkt bei b, offener Punkt bei a)_
+
+$bb(P)[a < X <= b] = bb(P)[X <= b] - bb(P)[X <= a] = F_X (b) - F_X (a)$ \
+     _(Ausgefüllter Punkt bei b, ausgefüllter Punkt bei a)_
+
+$bb(P)[a <= X < b] = bb(P)[X < b] - bb(P)[X < a] = F_X (b^-) - F_X (a^-)$ \
+     _(Offener Punkt bei b, offener Punkt bei a)_
+
+$bb(P)[a < X < b] = bb(P)[X < b] - bb(P)[X <= a] = F_X (b^-) - F_X (a)$ \
+     _(Offener Punkt bei b, ausgefüllter Punkt bei a)_
 
 *Linksstetigkeit*
 
