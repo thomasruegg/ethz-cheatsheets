@@ -46,10 +46,10 @@ Sei $(Omega, cal(F), P)$ ein Wahrscheinlichkeitsraum.
   $ P(A | B) = P(A inter B) / P(B) $
 ]
 
-*Satz der totalen Wahrscheinlichkeit*
-
+#mainbox(title: "Satz der totalen Wahrscheinlichkeit")[
 Sei $B_1, ..., B_N$ mit $P(B_n) > 0$ für jedes $1 <= n <= N$ eine Partition des Grundraums $Omega$, d.h. $union.big_(n=1)^N B_n = Omega$ mit $B_n inter B_m = empty$ für $n != m$. Dann gilt für alle $A in cal(F)$:
 $ P(A) = sum_(n=1)^N P(A | B_n) P(B_n) = sum_(n=1)^N P(A inter B_n) $
+]
 
 *Satz von Bayes*
 
