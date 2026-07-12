@@ -137,7 +137,7 @@ Maximum: $x in A$ ist und $x$ obere Schranke
   )
 ]
 
-- Wenn $x = sup A$, so gilt $x >= a forall a in A$ und all $y < x$ sind keine oberen Schranken. Falls $A$ ein Maximum hat, gilt $max A = sup A$.
+- Wenn $x = sup A$, so gilt $x >= a, forall a in A$ und all $y < x$ sind keine oberen Schranken. Falls $A$ ein Maximum hat, gilt $max A = sup A$.
 - Wenn $A subset B subset R$ und $B$ beschränkt ist, so ist $A$ beschränkt und $sup A <= sup B$, $inf A >= inf B$.
 - Für $A != diameter$ und nicht n.o.b. definieren wir \
   $sup A = oo$, falls nicht n.u.b. $inf A = -oo$.
@@ -229,7 +229,7 @@ Grenzwert von Folge bestimmen, wenn sie zwischen zwei anderen Folgen mit gleiche
   $a_n <= c_n <= b_n$, $forall n >= k$, dann gilt $limn (c_n) = alpha$.
 ]
 
-== Weierstrass
+== Weierstrass // TODO: COMPACT
 Grenzwert von monotonen, beschränkten Folgen berechnen. Weierstrass darf auch angewendet werden, wenn Folge erst nach einem Index $N$ monton wachsend/fallend ist.
 
 #mainbox(title: "Weierstrass (Monotoner Konvergenzsatz)")[
@@ -362,7 +362,7 @@ Abschätzen durch nur schnellstwachsende Terme prüfen.
   2. *Strukturanalyse (Form von $a_n$ bestimmt das Tool):*
     - Enthält $n!$ oder Mix aus $x^n$ und Polynomen? $==>$ *Quotientenkriterium*
     - Gesamter Term in $n$-ter Potenz: $(dots)^n$? $==>$ *Wurzelkriterium*
-    - Reiner rationaler Bruch (z.B. $n^a / n^b$)? $==>$ *Vergleichssatz* mit $sum 1/n^s$ (Quot./Wurzel versagen hier!).
+    - Reiner rationaler Bruch (z.B. $n^a / n^b$)? $==>$ *Majoranten-/Minorantenkriterium* mit $sum 1/n^s$ (Quot./Wurzel versagen hier!).
   3. *Vorzeichen prüfen:* Bei $(-1)^n$ zuerst absolute Konv. prüfen (Minus killen). Falls diese divergent, dann $==>$ *Leibnizkriterium* für bedingte Konvergenz.
 ]
 
@@ -409,7 +409,7 @@ _Hinweis:_ Funktioniert identisch für absolute Konvergenz!
 
 == Vergleichssatz
 Konv./absolute Konv./Divergenz durch Vergleich mit bekannter Reihe beweisen.
-#mainbox(title: "Vergleichssatz (Majoranten-/Minorantenkriterium)")[
+#mainbox(title: "Majoranten-/Minorantenkriterium (Vergleichssatz)")[
   Wenn $sumk a_k$ und $sumk b_k$ Reihen mit \
   $0 <= a_k <= b_k, forall k >= K >= 1$ sind, so gilt: \
   $sumk b_k " (absolut) konvergent" &implies sumk a_k " (absolut) konvergent" \
@@ -459,8 +459,8 @@ Ist $sum_(k=1)^oo a_k$ jedoch *nur bedingt konvergent*, dann ist die Reihenfolge
 ]
 
 #bspbox(title: "Beispiel Leibnizkriterium")[
-  Gegeben: $sumn (-1)^(k+1)(sqrt(k+1) - sqrt(k))$ \
-  $a_n = sqrt(n+1) - sqrt(n) = ((sqrt(k+1) - sqrt(k))(sqrt(k+1) + sqrt(k))) / (sqrt(k+1) + sqrt(k)) = 1 / (sqrt(n+1) + sqrt(n))$ \
+  Gegeben: $sumn (-1)^(n+1)(sqrt(n+1) - sqrt(n))$ \
+  $a_n = sqrt(n+1) - sqrt(n) = ((sqrt(n+1) - sqrt(n))(sqrt(n+1) + sqrt(n))) / (sqrt(n+1) + sqrt(n)) = 1 / (sqrt(n+1) + sqrt(n))$ \
   $==> a_n$ ist monoton fallend und $limn a_n = 0$
 ]
 
@@ -599,19 +599,23 @@ Ist ein Intervall $I subset RR$ falls $I = [a, b], a <= b$.
   )
 ]
 
+
 #mainbox(title: $f$ + " stetig in " + $x_0$ + " (punktweise) (Folgenkriterium)")[
-  - $f$ stetig in $x_0 <==> (forall (a_n)_(n in NN)$ in $DD:$ \
-    $quad quad quad quad quad quad quad lim_(n -> oo) a_n = x_0 ==> lim_(n -> oo) f(a_n) = f(x_0))$. \
+  - $f$ stetig in $x_0 <==> forall (a_n)_(n in NN)$ in $DD:$ \
+    $ lim_(n -> oo) a_n = x_0 quad ==> quad lim_(n -> oo) f(a_n) = f(x_0) $ 
     #minitext[
       $f$ stetig in $x_0 <==> forall$ Folge $(a_n)$ konv. gegen $x_0$, $quad$Bildfolge $f(a_n)$ konv. gegen $f(x_0)$.
     ]
-  - $f$ stetig in $x_0 <==> (forall (a_n)_(n in NN)$ in $DD:$ \
-    $quad quad quad quad quad quad quad quad quad quad quad quad lim_(n -> oo) f(a_n) = f(lim_(n -> oo) a_n))$. \
+  - $f$ stetig in $x_0 <==> forall (a_n)_(n in NN)$ in $DD:$
+    $lim_(n -> oo) f(a_n) = f(lim_(n -> oo) a_n)$. \
     #minitext[
-      Anwendung Operation "Funktion" & "Grenzwert" können vertauscht werden.
+      Anwendung: Operation "Funktion" & "Grenzwert" können vertauscht werden.
     ]
 ]
 
+#mainbox(title: $f$ + " stetig in " + $x_0$ + " (punktweise) (Grenzwert-Kriterium)")[
+  $f$ stetig in $x_0 <==> lim_(x -> x_0) f(x) = f(x_0)$
+]
 #mainbox(title: $f$ + " stetig")[
   $f$ ist für alle $x_0 in DD$ punktweise stetig.
 ]
@@ -634,8 +638,6 @@ Ist ein Intervall $I subset RR$ falls $I = [a, b], a <= b$.
 ]
 - gleichmässig stetig $==>$ stetig $==>$ in $x_0$ stetig
 - $f: [a, b] -> RR$ stetig im Kompakten Intervall $==>$ $f$ ist in $[a, b]$ gleichmässig stetig.
-
-// TODO: Howtobox machen wie man gleichmäßige Stetigkeit zeigen kann anhand Übungsserie
 
 === Polynomiale Funktionen
 Polynomiale Funktionen $P(x)$ sind auf ganz $RR$ stetig. \
@@ -789,7 +791,7 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
 
 
 #mainbox(title: $(f_n)_(n >= 1)$ + " konvergiert punktweise (" + $epsilon$ + "-Kriterium)")[
-  Funktionenfolge $(f_n)_(n >= 1)$ konvergiert punktweise gegen Funktion \ $f: DD -> RR <==>$ 
+  Funktionenfolge $(f_n)_(n >= 1)$ konvergiert punktweise gegen Funktion \ $f: DD -> RR <==>$
   $markhl(forall x in DD", " forall epsilon > 0", " exists N in NN " s.t. " forall n >= N): |f_n (x) - f(x)| < epsilon$. \
   #minitext[
     Die Schranke $N$ darf sowohl von $epsilon$ als auch von $x$ abhängen.
@@ -855,7 +857,7 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
   *2. $f$ konvergiert gleichmässig prüfen* \
   *A)* Indirekte Methode:
   - $f$ unstetig $==>$ keine gleichmässige Konvergenz
-  - $f$ stetig, monoton wachsend, ($f_n(x) <= f_(n+1), forall x in Omega$) und \ $Omega$ kompakt $==>$ gleichmässige Konvergenz
+  - $f$ stetig, monoton wachsend, ($f_n(x) <= f_(n+1), forall x in Omega$) und $Omega$ ist kompakt, also $Omega$ abgeschlossen & beschränkt (e.g. $[a,b]$) $==>$ gleichmässige Konvergenz
   *B)* Direkte Methode:
   #set enum(numbering: "1.")
   + Berechne $sup_(x in Omega) |f_n (x) - f(x)|$ (entweder man sieht Maximum direkt oder man rechnet die Ableitung von $|f_n (x) - f(x)|$ und setzt sie gleich 0).
@@ -863,16 +865,17 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
 ]
 
 #bspbox(title: "Beweis Gleichmässig Konvergent (Supremums-Kriterium)")[
-  Sei $DD = [0, 1]$ und $f_n(x) = x/n^2 + x + 1$.
+  Sei $DD = [0, 1)$ und $f_n (x) = x/n^2 + x + 1$.
   #set enum(numbering: "1.")
   + *Grenzfunktion $f(x)$ finden (punktweiser Limes):* \
     $f(x) = lim_(n->oo) (x/n^2 + x + 1) = 0 + x + 1$
   + *Gleichmässige Konvergenz zeigen (Supremum gegen 0):* \
     + *Maximalen Abstand bestimmen (Supremum) auf $DD$:* \
-      $sup_(x in [0, 1]) |f_n (x) - f(x)| = sup_(x in [0, 1]) |x/n^2 + x + 1 - (x + 1)| = sup_(x in [0, 1]) x/n^2= 1/n^2$ \
-    + *Limes bilden*: \
-    $quad lim_(n -> oo) ( sup_(x in DD) |f_n(x) - f(x)| ) = lim_(n -> oo) 1/n^2 = 0$ \
-  Da der GW des max. Abstands $0$ ist, konvergiert $f_n$ gleichmässig.
+      $sup_(x in [0, 1)) |f_n (x) - f(x)| = sup_(x in [0, 1)) |x/n^2 + x + 1 - (x + 1)| = sup_(x in [0, 1)) x/n^2 = 1/n^2$
+      _Hinweis:_ $markhl("Supremum" != "Maximum")$. Intervall ist bei 1 zwar offen aber weil Supremum dürfen wir den Rand auch einsetzen. \
+    + *Limes bilden*:
+      $lim_(n -> oo) ( sup_(x in DD) |f_n (x) - f(x)| ) = lim_(n -> oo) 1/n^2 = 0$ \
+  Da der GW des max. Abstands $0$ ist, konvergiert $f_n$ auf $[0, 1)$ gleichmässig.
 ]
 
 == Reihe der Funktionenfolge
@@ -1034,14 +1037,14 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
   gutter: 0.5em,
   [
     - *Uneigentlich ($lim_(x -> x_0) f(x) = oo$):* \
-      $forall N > 0 exists delta > 0: x in bb(D)(f) inter (x_0 - delta, x_0 + delta)$ \ $ ==> f(x) >= N quad quad$
+      $forall N > 0 exists delta > 0: x in bb(D)(f) inter (x_0 - delta, x_0 + delta)$ \ $==> f(x) >= N quad quad$
       _(Analog für $-oo$: $f(x) <= -N$)_
 
   ],
   [
     #v(-40pt)
     #image("img/linksrechtsseitigergrenzwerterweitert.jpeg")
-  ]
+  ],
 )
 
 == Trigonometrische Funktionen
@@ -1408,7 +1411,7 @@ Für $f, g: DD -> RR quad n$-mal differenzierbar:
   [
     #v(-15pt)
     #image("img/satelpunktwendepunkt.jpeg", width: 100%)
-  ]
+  ],
 )
 
 == Extremalstellen
@@ -1536,43 +1539,41 @@ Annäherung glatter Funktionen als Potenzreihen am Entwicklungspunkt $a$.
     Implikation gilt nicht, da Taylorreihe nur lokales Wissen am Entwicklungspunkt sammelt und deshalb bei manchen Funktionen zwar mathematisch konvergiert, abseits dieses Punktes aber gegen einen völlig falschen Wert konvergieren kann.
   ]
 
-== Wichtige Taylorreihen ("Maclaurin-Reihen")
-#mainbox(title: "Standardreihen mit Entwicklungspunkt " + $a=0$)[
-  - $sin(x) = sum_(n=0)^oo (-1)^n 1/((2n+1)markhl(!)) x^(2n+1) = x - x^3/(3!) + x^5/(5!) - x^7/(7!) + ... quad$ #text(
-      fill: luma(120),
-    )[$(forall x in RR)$]
-  - $cos(x) = sum_(n=0)^oo (-1)^n 1/((2n)markhl(!)) x^(2n) = 1 - x^2/(2!) + x^4/(4!) - x^6/(6!) + ... quad$ #text(
-      fill: luma(120),
-    )[$(forall x in RR)$]
-  - $e^x = sum_(n=0)^oo x^n/(n!) =1+x+x^2/(2!)+x^3/(3!)+x^4/(4!)+... quad$ #text(fill: luma(120))[$(forall x in RR)$]
-  - $e^(-x) = sum_(n=0)^oo (-1)^n x^n/(n!) = 1 - x + x^2/(2!) - x^3/(3!) + x^4/(4!) - ... quad$ #text(
-      fill: luma(120),
-    )[$(forall x in RR)$]
-  - $ln(1+x) = sum_(n=1)^oo (-1)^(n-1) 1/n x^n = x-x^2/2+x^3/3-x^4/4+...$ #text(size: 7pt, fill: rgb(
-      255,
-      0,
-      0,
-    ))[$markhl("für "(-1 < x < 1))$]
-  - $arctan(x) = sum_(n=0)^oo (-1)^n x^(2n+1)/(2n+1) = x-x^3/3+x^5/5-... quad$ #text(size: 7pt, fill: rgb(
-      255,
-      0,
-      0,
-    ))[$markhl("für "(-1 < x < 1))$]
-]
+== #highlight[Wichtige Taylorreihen ("Maclaurin-Reihen")]
+=== Standardreihen mit Entwicklungspunkt $a=0$)
+- $sin(x) = sum_(n=0)^oo (-1)^n 1/((2n+1)markhl(!)) x^(2n+1) = x - x^3/(3!) + x^5/(5!) - x^7/(7!) + ... quad$ #text(
+    fill: luma(120),
+  )[$(forall x in RR)$]
+- $cos(x) = sum_(n=0)^oo (-1)^n 1/((2n)markhl(!)) x^(2n) = 1 - x^2/(2!) + x^4/(4!) - x^6/(6!) + ... quad$ #text(
+    fill: luma(120),
+  )[$(forall x in RR)$]
+- $e^x = sum_(n=0)^oo x^n/(n!) =1+x+x^2/(2!)+x^3/(3!)+x^4/(4!)+... quad$ #text(fill: luma(120))[$(forall x in RR)$]
+- $e^(-x) = sum_(n=0)^oo (-1)^n x^n/(n!) = 1 - x + x^2/(2!) - x^3/(3!) + x^4/(4!) - ... quad$ #text(
+    fill: luma(120),
+  )[$(forall x in RR)$]
+- $ln(1+x) = sum_(n=1)^oo (-1)^(n-1) 1/n x^n = x-x^2/2+x^3/3-x^4/4+...$ #text(size: 7pt, fill: rgb(
+    255,
+    0,
+    0,
+  ))[$markhl("für "(-1 < x < 1))$]
+- $arctan(x) = sum_(n=0)^oo (-1)^n x^(2n+1)/(2n+1) = x-x^3/3+x^5/5-... quad$ #text(size: 7pt, fill: rgb(
+    255,
+    0,
+    0,
+  ))[$markhl("für "(-1 < x < 1))$]
 
-#subbox(title: "Geometrische & Binomische Reihen mit Entwicklungspunkt " + $a=0$)[
-  - $1/(1-x)=sum_(n=0)^oo x^n=1+x+x^2+x^3+... quad$ #text(size: 7pt, fill: rgb(255, 0, 0))[$markhl("für "(-1 < x < 1))$]
-  - $1/(1+x)=sum_(n=0)^oo (-1)^n x^n=1-x+x^2-x^3+... quad$ #text(size: 7pt, fill: rgb(
-      255,
-      0,
-      0,
-    ))[$markhl("für "(-1 < x < 1))$]
-  - $(1+x)^p = sum_(n=0)^oo binom(p, n) x^n = 1 + p x + (p(p-1))/(2!) x^2 + ... quad$ #text(size: 7pt, fill: rgb(
-      255,
-      0,
-      0,
-    ))[$markhl("für "(-1 < x < 1))$]
-]
+=== Geometrische & Binomische Reihen mit Entwicklungspkt $a=0$
+- $1/(1-x)=sum_(n=0)^oo x^n=1+x+x^2+x^3+... quad$ #text(size: 7pt, fill: rgb(255, 0, 0))[$markhl("für "(-1 < x < 1))$]
+- $1/(1+x)=sum_(n=0)^oo (-1)^n x^n=1-x+x^2-x^3+... quad$ #text(size: 7pt, fill: rgb(
+    255,
+    0,
+    0,
+  ))[$markhl("für "(-1 < x < 1))$]
+- $(1+x)^p = sum_(n=0)^oo binom(p, n) x^n = 1 + p x + (p(p-1))/(2!) x^2 + ... quad$ #text(size: 7pt, fill: rgb(
+    255,
+    0,
+    0,
+  ))[$markhl("für "(-1 < x < 1))$]
 
 #howtobox(title: "Herleitung: Taylorreihe von " + $f(x) = (1+x)^p$)[
   Wir suchen die dazugehörige Taylorreihe um den Entwicklungspunkt $x_0 = 0$ (Maclaurin-Reihe).
@@ -1601,9 +1602,9 @@ Annäherung glatter Funktionen als Potenzreihen am Entwicklungspunkt $a$.
 #howtobox(title: "Rezept: Taylorpolynom durch Standardreihen (Substitution)")[
   *Wann?* Bei Funktionen der Form $x^m dot g(x^k)$ (z.B. $x cos(x^3)$). Viel schneller und weniger fehleranfällig als direktes, mehrfaches Ableiten!
 
-  + *Standardreihe notieren:* Schreibe Maclaurin-Reihe der bekannten "Basis-Funktion" $g(z)$ bis zur gesuchten Ordnung auf. 
+  + *Standardreihe notieren:* Schreibe Maclaurin-Reihe der bekannten "Basis-Funktion" $g(z)$ bis zur gesuchten Ordnung auf.
     #minitext[E.g. $cos(z)$: $quad 1 - z^2/(2!) + z^4/(4!) - ...$]
-  + *Substitution:* Ersetze das $z$ in Reihe durch das eigentliche innere Argument (z.B. $z = x^3$). 
+  + *Substitution:* Ersetze das $z$ in Reihe durch das eigentliche innere Argument (z.B. $z = x^3$).
     #minitext[E.g. $cos(x^3)$: $quad 1 - (x^3)^2/2 + ... = 1 - x^6/2 + ...$]
   + *Multiplizieren:* Multipliziere äussere Faktoren (z.B. $x$) in gesamte Reihe. \
     #minitext[E.g. $x dot cos(x^3)$: $quad x dot (1 - x^6/2) = x - x^7/2 + ...$]
@@ -1862,7 +1863,7 @@ $integral c dot x^n d x = c dot 1/(n+1) dot x^(n+1), quad (n != 0)$
 
   + *Produkt? Partielle Integration (Produktregel rückwärts)*
     - Bei Produkten von verschiedenen Funktionsklassen.
-    - *Wahl von $f$ (wird abgeleitet):* Nutze die *ILATE*-Regel. Was weiter links steht, wird $f$:
+    - *Wahl von $f$ (wird abgeleitet):* Nutze die *ILATE*-Regel. Was weiter links steht, wird abgeleitet $(f)$:
       *I*\nverse Trig. (arctan) $->$ *L*\og. (ln) $->$ *A*\lgebraisch ($x^2$) $->$ *T*\rig. (sin) $->$ *E*\xponential ($e^x$).
     - *Der "1"-Trick:* $integral f(x) d x = integral 1 dot f(x) d x$. Super um $ln(x)$ oder $arctan(x)$ partiell zu integrieren.
     - *Potenz-Abspaltung:* $integral (f(x))^c d x = integral (f(x))^(c-1) dot f(x) d x$ (hilft z.B. bei $sin^3(x)$).
@@ -1890,7 +1891,7 @@ $integral c dot x^n d x = c dot 1/(n+1) dot x^(n+1), quad (n != 0)$
 
 - Grundsätzlich leiten wir Polynome ab ($g(x)$) und sich wiederholende Funktionen ($sin, cos, e^x$ etc.) integrieren wir ($f'(x)$).
 - Manchmal müssen wir künstlich mit 1 multiplizieren, um partielle Integration anwenden zu können (Bsp. $integral log(x) d x$)
-- Wenn wir durch mehrfache partielle Integration wieder beim ursprünglichen Integral landen, können wir die erhaltene Gleichung nach diesem Integral auflösen.
+- #highlight[Wenn wir durch mehrfache partielle Integration wieder beim ursprünglichen Integral landen, können wir die erhaltene Gleichung nach diesem Integral auflösen].
 
 #bspbox(title: $I = integral_0^1 x e^x d x$ + " (bestimmt, partielle Integration)")[
   $I = integral_0^1 x e^x d x = [ f g ]_0^1 - integral_0^1 f' g dx$ \
@@ -2116,33 +2117,34 @@ $integral c dot x^n d x = c dot 1/(n+1) dot x^(n+1), quad (n != 0)$
     $f(x) = (1\/2)/(2k-1) - (1\/2)/(2k+1) = 1/(2(2k-1)) - 1/(2(2k+1))$
 ]
 
-Nutzen um Rationale Funktionen $R(x) = P(x)/Q(x)$ zu integrieren.
-#mainbox(title: "Partialbruchzerlegung bei Polynomen")[
-  Seien $p(x), q(x)$ zwei Polynome. $integral p(x)/q(x)$ wird wie folgend berechnet:
+#mainbox(title: "Partialbruchzerlegung (PBZ) bei rationalen Funktionen")[
+  Für Integrale der Form $integral p(x)/q(x) d x$.
+
   #set enum(numbering: "1.")
-  + Falls $deg(p) >= deg(q)$, führe eine Polynomdivision durch. Dies führt zum Integral $integral a(x) + r(x)/q(x)$.
-  + Berechne die Nullstellen von $q(x)$.
-  + Pro Nullstelle: Einen Partialbruch erstellen.
-    - Einfach, reell: $x_1 -> A/(x - x_1)$
-    - $n$-fach, reell: $x_1 -> A_1/(x - x_1) + ... + A_r/((x-x_1)^r)$
-    - Einfach, komplex: $x^2 + p x + q -> (A x + B)/(x^2 + p x + q)$
-    - $n$-fach, komplex: $x^2 + p x + q -> (A_1 x+b_1)/(x^2+p x+q) + ...$
-  + Parameter $A_1, ..., A_n$ (bzw. $B_1, ..., B_n$) bestimmen. ($x$ jeweils gleich Nullstelle setzen, umformen und lösen).
+  + *Grad prüfen:* Ist $deg(p) >= deg(q)$? Wenn ja, zuerst *Polynomdivision*.
+  + *Nenner faktorisieren:* Finde alle reellen Nullstellen von $q(x)$. Nicht weiter zerlegbare quadratische Terme (wie $x^2+1$) bleiben als Block stehen.
+  + *Ansatz aufstellen:* Pro Faktor im Nenner einen Bruch erstellen:
+    - Einfache reelle NS: $x_1 -> A/(x - x_1)$
+    - Mehrfache reelle NS: $(x-x_1)^n -> A_1/(x - x_1) + ... + A_n/((x-x_1)^n)$
+    - Einfache komplexe NS: $x^2+p x+q -> (A x + B)/(x^2 + p x + q)$
+  + *Parameter bestimmen:* Die gesamte Gleichung mit dem Hauptnenner durchmultiplizieren.
+    - _Einsetzmethode:_ Nullstellen für $x$ einsetzen (sehr schnell, reicht aber bei komplexen NS oft nicht aus).
+    - _Koeffizientenvergleich:_ Ausmultiplizieren, nach $x$-Potenzen sortieren und lineares Gleichungssystem lösen (funktioniert immer).
 ]
 
-#mainbox(title: "PBZ um rationale Fkt. wie " + $R(x)=p(x)/q(x)$ + " zu integrieren.")[
-  Seien $p(x), q(x)$ zwei Polynome. $integral p(x)/q(x) d x$ wird wie folgt berechnet:
-  #set enum(numbering: "1.")
-  + *Grad prüfen:* Falls $deg(p) >= deg(q)$, führe zuerst eine Polynomdivision durch. Dies führt zu $integral a(x) + r(x)/q(x) d x$. Für Bruch $r(x)/q(x)$: weiter mit Schritt 2.
-  + *Nullstellen (NS) berechnen:* Faktorisiere den Nenner $q(x)$ komplett auf.
-  + *Ansatz aufstellen:* Pro NS einen oder mehrere Partialbrüche erstellen:
-    - Einfache NS, reell: $x_1 -> A/(x - x_1)$
-    - $n$-fache NS, reell: $x_1 -> A_1/(x - x_1) + A_2/((x-x_1)^2) + ... + A_n/((x-x_1)^n)$
-    - Einfache NS, komplex: $x^2 + p x + q -> (A x + B)/(x^2 + p x + q)$
-    - $n$-fache NS, komplex: $x^2 + p x + q -> (A_1 x + B_1)/(x^2+p x+q) + ... + (A_n x + B_n)/((x^2+p x+q)^n)$
-  + *Parameter bestimmen:* Gleichung mit Hauptnenner durchmultiplizieren.
-    - _Einsetzmethode:_ NS für $x$ einsetzen (sehr schnell, reicht aber bei mehrfachen/komplexen NS oft nicht aus).
-    - _Koeffizientenvergleich:_ Ausmultiplizieren, nach $x$-Potenzen sortieren und lineares Gleichungssystem lösen (funktioniert immer).
+#mainbox(title: "Beispiel PBZ: " + $integral (x^2-1)/(x^3+x) d x$)[
+  + *Faktorisieren:* $x^3 + x = x(x^2 + 1)$.
+    Wir haben einen linearen Faktor ($x$) und einen irreduziblen quadratischen Faktor ($x^2+1$).
+  + *Ansatz aufstellen:* $x^2+1$ erfordert einen linearen Zähler! \
+    $(x^2 - 1)/(x(x^2 + 1)) = A/x + (B x + C)/(x^2 + 1)$
+  + *Gleichung aufstellen:* Mit Hauptnenner $x(x^2+1)$ multiplizieren. \
+    $x^2 - 1 = A(x^2 + 1) + (B x + C)x <==> x^2 - 1 = (A+B)x^2 + C x + A$
+  + *Koeffizientenvergleich:* Linke Seite ($1x^2 + 0x - 1$) mit rechter Seite abgleichen. \
+    - $x^2$: $1 = A + B$
+    - $x^1$: $0 = C$
+    - $x^0$: $-1 = A quad => quad 1 = -1 + B quad => quad B = 2$
+  + *Integrieren:* Setze $A=-1, B=2, C=0$ in den Ansatz ein. \
+    $integral (-1)/x + (2x)/(x^2 + 1) d x = -ln|x| + ln(x^2 + 1) + C$
 ]
 
 = Differentialgleichungen (DGL)
