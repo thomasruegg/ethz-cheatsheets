@@ -47,10 +47,10 @@ $ T_("ML") = t_("ML")(X_1, ..., X_n) in limits(op("arg max"))_(vartheta in Theta
 #subbox(title: "Anwendung der Methode")[
   Die Maximum-Likelihood-Methode ist ein Weg, um systematisch einen Schätzer zu bestimmen:
   + Gemeinsame Dichte/Verteilung der ZV finden.
-  + Bestimme davon die Log-Likelihood-Funktion: \ $f(vartheta) := ln(L(x_1, ..., x_n; vartheta))$.
-  + $f(vartheta)$ nach $vartheta$ ableiten.
-  + Nullstelle von $f'(vartheta)$ finden. Punkt 5 nicht vergessen $arrow.b$
-  + $f''(vartheta) < 0$ oder anderes Argument, dass wir das Maximum $vartheta^*$ gefunden haben (evtl. Randstellen überprüfen!). _"$vartheta^*$ ist Maximum, da die Ableitung für $vartheta < vartheta^*$ strikt positiv, an Stelle $vartheta^*$ gleich Null und für $vartheta > vartheta^*$ strikt negativ ist._
+  + Bestimme davon die Log-Likelihood-Funktion: \ $l(vartheta) := ln(L(x_1, ..., x_n; vartheta))$.
+  + $l(vartheta)$ nach $vartheta$ ableiten.
+  + Nullstelle von $l'(vartheta)$ finden. Punkt 5 nicht vergessen $arrow.b$
+  + $l''(vartheta) < 0$ oder anderes Argument, dass wir das Maximum $vartheta^*$ gefunden haben (evtl. Randstellen überprüfen!). _"$vartheta^*$ ist Maximum, da die Ableitung für $vartheta < vartheta^*$ strikt positiv, an Stelle $vartheta^*$ gleich Null und für $vartheta > vartheta^*$ strikt negativ ist._
 ]
 
 == Momentenmethode /-schätzer

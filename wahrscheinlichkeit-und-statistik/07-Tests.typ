@@ -140,8 +140,6 @@ Sei $X_1,...,X_n ~ cal(N)(mu_X, sigma^2)$ und $Y_1,...,Y_m ~ cal(N)(mu_Y, sigma^
 #import "@preview/cetz:0.4.0"
 #import "@preview/cetz-plot:0.1.2": plot
 
-#colbreak()
-
 #subbox(title: "Visualisierung: Strenges Niveau (" + $alpha=1%$ + ")")[
   Hier wird Grenze des Verwerfungsbereichs $K$ durch das tiefe Signifikanzniveau so weit nach rechts "gedrückt", dass die Realisation $T in K$ gerade noch ausreicht, um $H_0$ zu verwerfen ($alpha = 1%$).
   #v(-4em)

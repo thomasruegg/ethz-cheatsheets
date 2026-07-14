@@ -47,17 +47,17 @@
 
 #align(center)[
   #table(
-    columns: (1fr, 1fr, 1fr),
+    columns: (1fr, 1fr, 1.3fr),
     align: horizon + center,
     stroke: 0.5pt + luma(150),
     table.cell(colspan: 3, fill: luma(240))[*Polarkoordinaten*],
     [$x = r cos theta$],
     [$0 <= r < oo$],
     [
-      $dif x dif y = r$ #text(fill: luma(120))[$dif r dif theta$]
+      $dif x dif y = r dif r dif theta$
     ],
-    [$y = r sin theta$], [$0 <= theta < 2 pi$], [],
-    [$x^2 + y^2 = r^2$], [], [],
+    [$y = r sin theta$], [$0 <= r <= 1$], [($<-$ beim Einheitskreis)],
+    [$x^2 + y^2 = r^2$], [$0 <= theta < 2 pi$], [],
   )
 ]
 

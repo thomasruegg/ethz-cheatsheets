@@ -24,7 +24,7 @@
 Sei $X$ eine nicht-negative Zufallsvariable. Dann gilt $E[X] >= 0$. Gleichheit gilt genau dann, wenn $X = 0$ fast sicher ist.
 $
   E[X] >= 0 & <== X >= 0 "immer" \
-   E[X] = 0 & <=> X = 0 "fast sicher, d.h." P(X != 0) = 0
+   E[X] = 0 & <==> X = 0 "fast sicher, d.h." P(X != 0) = 0
 $
 
 == Rechnen mit Erwartungswerten
@@ -51,6 +51,11 @@ $ P(X >= c) <= E(g(X)) / g(c) quad limits(==>)^(t > 0) quad P(X >= t) <= E(X) / 
 *Chebyshev-Ungleichung*\
 Sei $Y$ eine ZV mit endlicher Varianz. Für jedes $b > 0$ gilt dann:
 $ P(|Y - E(Y)| >= b) <= Var(Y) / b^2 $
+
+*Chernoff-Ungleichung*\  //TODO: REDUNDANT! Siehe anderes Kapitel
+Seien $X_1, ..., X_n$ unabhängig mit $X_k tilde "Ber"(p_k)$ und sei $S_n = sum_(k=1)^n X_k$. Sei $mu_n = E[S_n] = sum_(k=1)^n p_k$ und $delta > 0$, dann gilt
+$ bb(P)[S_n >= (1 + delta)mu_n] <= (e^delta / (1 + delta)^(1 + delta))^(mu_n) $
+
 
 *Jensen-Ungleichung*\
 Sei $X$ eine ZV und $phi: RR -> RR$ eine  Funktion, dann gilt:

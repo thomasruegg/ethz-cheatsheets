@@ -10,7 +10,7 @@
 #set par(justify: true)
 #set list(marker: ([•], [◦]))
 
-#columns(3, gutter: 1cm)[
+#columns(3, gutter: 0.5cm)[
   #include "01-Grundbegriffe.typ"
   #include "02-Zufallsvariablen.typ"
   #include "03-Erwartungswert.typ"

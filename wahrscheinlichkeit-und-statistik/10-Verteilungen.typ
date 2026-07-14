@@ -81,16 +81,16 @@
     [$[a,b]$: Intervall],
     [$(a+b)/2$],
     [$(b-a)^2/12$],
-    [$cases(1/(b-a) & a <= x <= b, 0 & "sonst")$],
-    [$cases(0 & x <= a, (t-a)/(b-a) & a < x < b, 1 & x >= b)$],
+    [$cases(1/(b-a) quad & a <= x <= b, 0 & "sonst")$],
+    [$cases(0 & x <= a, (t-a)/(b-a) quad & a < x < b, 1 & x >= b)$],
 
     [Exponentialverteilung #minitext()[Dauer zwischen zufälligen Ereignissen]],
     [$Exp(lambda)$],
     [$lambda: 1/E[X]$],
     [$1/lambda$],
     [$1/lambda^2$],
-    [$cases(lambda e^(-lambda t) & t >= 0, 0 & t < 0)$],
-    [$cases(1-e^(-lambda t) & t > 0, 0 & t <= 0)$],
+    [$cases(lambda e^(-lambda t) quad & t >= 0, 0 & t < 0)$],
+    [$cases(1-e^(-lambda t) quad & t >= 0, 0 & t < 0)$],
 
     [Normalverteilung #minitext()[Symmetrische Streuung um Mittelwert]],
     [$cal(N)(mu, sigma^2)$],
@@ -128,7 +128,7 @@
 
 
 
-#columns(3, gutter: 1cm)[
+#columns(3, gutter: 0.5cm)[
   #subbox(title: "Binomischer Lehrsatz")[
     $
       (x + y)^n & = sum_(k=0)^n binom(n, k) x^(n-k) y^k quad "mit:" quad binom(n, k) = n! / (k! (n-k)!) \

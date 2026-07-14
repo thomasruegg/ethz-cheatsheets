@@ -37,7 +37,7 @@
 == Zentraler Grenzwertsatz
 #mainbox(title: "Zentraler Grenzwertsatz")[
   Sei $(X_n)_(n in NN)$ eine Folge von i.i.d. Zufallsvariablen mit $E(X_i) = mu < oo$ und $Var(X_i) = sigma^2 < oo$ ($EE$ und $VV$ sind _von der einzelnen Variable_ $X_i$). Dann gilt:
-  $ limn P((S_n - n mu) / (sigma sqrt(n)) <= x) = Phi(x) quad forall x in RR $
+  $ limn P((S_n - n mu) / (sigma sqrt(n)) markhl(<=) med x) = Phi(x) quad forall x in RR $
   also:
   $
     text(#rgb("#969696"), ((1/n S_n - mu) / (sigma / sqrt(n)) =)) (S_n - n mu) / (sigma sqrt(n)) arrow.r.long^d cal(N)(0, 1)
