@@ -202,7 +202,7 @@ Folge konvergiert wenn die Differenz zwischen Folgegliedern und Grenzwert immer 
   Divergente Folge = nicht konvergent = kein Grenzwert.
   #set enum(numbering: "1.")
   + Suchen eines divergenten Minorant.
-  + *Alternierende Folgen:* Zeige, dass \
+  + *Alternierende Folgen:* Zeige, dass 
     $limn (a_("p1"(n))) != limn (a_("p2"(n)))$, \ z.B. bei einer Folge der Form $(-1)^n dot f(x)$.
 ]
 
@@ -315,7 +315,7 @@ Folgen können rekursiv definiert werden. Sei Folge \ $(a_k)_(k >= 1): a_1 = c, 
 #bspbox(title: "Grenzwert Rekursiver Folgen berechnen")[
   Sei Folge $(a_k)_(k >= 1): a_1 = c, a_(k+1) = sin(a_k), k >= 1$
   #set enum(numbering: "1.")
-  + Monotonie beweisen per Induktion \
+  + Monotonie beweisen per Induktion:
     $a_1 = c "und" c in [0, pi] ==> a_1 in [0, pi]$ \
     $sin(x) <= x quad forall x >= 0 ==> a_(k+1) <= a_k ==>$ monoton fallend
   + Beschränktheit zeigen \
@@ -840,7 +840,7 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
 - Für $DD subset RR$ und Funktionenfolge $(f_n): DD -> RR$ bestehend aus in $DD$ stetigen Funktionen die gleichmässig gegen Funktion $f(x): DD -> RR$ konvergieren $==> f(x)$ ist in $DD$ stetig $notimplies f(x)$ ist differenzierbar.
 - Falls $f_n$ gleichmässig zu $f$ konvergiert \
   $quad ==> lim_(n -> oo) sup |f_n(x) - f(x)| = 0, x in DD$.
-- Für Folge $(f_n) "stetig differenzierbar", f_n ->^"konv." f, f^'_(n) ->^"konv."_"glm." g ==> f "stetig differenzierbar und" f^' = g$
+- Für Folge $(f_n) "stetig differenzierbar", \f_n ->^"konv." f, f^'_(n) ->^"konv."_"glm." g ==> f "stetig differenzierbar und" f^' = g$
 
 #subbox(title: "Cauchy Kriterium für Gleichmässige Konvergenz")[
   $f_n: DD -> RR$ ist gleichmässig konvergent $<==> forall epsilon > 0 ", " exists N in NN: markhl(forall n", " m) >= N ", " forall x in DD: |f_markhl(n) (x) - f_markhl(m) (x)| < epsilon$.
@@ -1314,16 +1314,8 @@ Grenzwerte von Funktionen berechnen die auf einen unbestimmten Ausdruck führen:
 - *Verbotene Ausdrücke:* Bei $c/0$ (z.B. $2/0$) oder $oo/0$ divergiert der Grenzwert (Ergebnis geht gegen $plus.minus oo$). *Kein L'Hospital anwenden!*
 - *Umformung zwingend:* Andere unbestimmte Ausdrücke ($0 dot oo, oo - oo, 0^0, oo^0, 1^oo$) müssen *zuerst* algebraisch in $0/0$ oder $oo/oo$ überführt werden (z.B. durch Kehrwert im Nenner oder Logarithmieren), bevor abgeleitet werden darf.
 
-#bspbox(title: "Grenzwert der Funktion " + $lim_(x -> 2) (x^3 + 2x^2 - 8x)/(x - 2)$)[
-  Wenn wir $x = 2$ einsetzen, erhalten wir $(2^3 + 2(2^2) - 8 dot 2)/(2 - 2) = 0/0$. \
-  Wir verwenden l'Hospital (Zähler und Nenner ableiten): \
-  $
-    lim_(x -> 2) (3x^2 + 4x - 8)/1 & = lim_(x -> 2) 3x^2 + 4x - 8 = 3(2^2) + 4 dot 2 - 8 = 12
-  $
-]
-
-#bspbox(title: "Grenzwert der Funktion " + $lim_(x -> 0) (cos(x) - 1)/x^2$)[
-  Führt auf $0/0$. $lim_(x -> 0) (cos(x) - 1)/x^2 = lim_(x -> 0) ((cos(x) - 1)')/((x^2)') =^(0/0) lim_(x -> 0) (-sin(x))/(2x) =^(0/0) lim_(x -> 0) (-cos(x))/2 = (-cos(0))/2 = -1/2$
+#bspbox(title: "Grenzwert mit doppelter l'Hospital Anwendung")[
+  $lim_(x -> 0) (cos(x) - 1)/x^2 =^(0/0) lim_(x -> 0) (-sin(x))/(2x) =^(0/0) lim_(x -> 0) (-cos(x))/2 = (-cos(0))/2 = -1/2$
 ]
 
 == Konvexität
@@ -1490,7 +1482,7 @@ Seien $f, g: [a, b] -> RR$ stetig und in $(a, b)$ differenzierbar und *für alle
     columns: (2.2fr, 1fr),
     gutter: 0.5em,
     [
-      Sei $f: [a, b] -> RR$ stetig und in $(a, b)$ differenzierbar. Dann gibt es $xi in (a, b)$ mit $f(b) - f(a) &= f'(xi)(b - a) \
+      Sei $f: [a, b] -> RR$ stetig und in $(a, b)$ differenzierbar. Dann gibt es $xi in (a, b)$ mit $ f(b) - f(a) &= f'(xi)(b - a) \
       (f(b) - f(a))/(b - a) &= f'(xi)$
     ],
     [
@@ -2045,23 +2037,16 @@ $integral_a^b f(x) d x = F(b) - F(a)$
 
 #mainbox(title: "Leibnitz-Kriterium")[
   #set enum(numbering: "1.")
-  + Sei $f(x)$ auf $[a, oo)$ stetig, monoton fallend und sei $lim_(x -> oo) f(x) = 0$, dann konvergieren die Integrale $integral_a^oo f(x)sin(x) d x$ und $integral_a^oo f(x)cos(x) d x$.
-  + Sei $f(x)$ auf $(a,b]$ stetig. Ist $f(x)(x-a)^2$ monoton wachsend und gilt $lim_(x -> a^+) f(x)(x-a)^2 = 0$
-    - $==> integral_a^b f(x)sin(1/(x-a)) d x$ und $integral_a^b f(x)cos(1/(x-a)) d x$ konvergieren
-]
-
-#mainbox(title: "Leibnitz-Kriterium")[
-  #set enum(numbering: "1.")
   + *Schwingung bis Unendlich (Standard):* \
     Sei $f(x)$ auf $[a, oo)$ stetig, monoton fallend und $lim_(x -> oo) f(x) = 0$. \
-    $==> integral_a^oo f(x)sin(x) d x$ und $integral_a^oo f(x)cos(x) d x$ konvergieren.
+    $==>$ Dann konvergieren $integral_a^oo f(x)sin(x) d x$ und $integral_a^oo f(x)cos(x) d x$.
 
   + *Gestauchte Schwingung an der Grenze $a$:* \
     Sei $f(x)$ auf $(a,b]$ stetig. Integrale der Form $integral_a^b f(x)sin(1/(x-a)) d x$ schwingen nahe $a$ unendlich dicht. \
-    *Regel:* Ist die Dämpfung $f(x)(x-a)^2$ monoton wachsend (wachsend, da wir uns von rechts nach links an $a$ annähern) und gilt $lim_(x -> a^+) f(x)(x-a)^2 = 0$, dann konvergiert das Integral (analog für $cos$). \
+    *Regel:* Ist die Dämpfung $f(x)(x-a)^2$ monoton wachsend (wachsend, da wir uns von rechts nach links an $a$ annähern) und gilt $lim_(x -> a^+) f(x)(x-a)^2 = 0$ $==>$ Dann konvergieren $integral_a^b f(x)sin(1/(x-a)) d x$ und $integral_a^b f(x)cos(1/(x-a)) d x$. \
 
     #minitext[
-      *Herleitung aus 1):* Wir substituieren $t = 1/(x-a)$ um das Problem in den Standardfall (1) zu verwandeln. Umformen: $x = a + 1/t$. Ableiten: $(d x)/(d t) = -1/t^2 quad ==> quad d x = -1/t^2 d t$. Grenzen: $x -> a^+ ==> t -> oo quad "und" quad x = b ==> t = 1/(b-a)$
+      *Herleitung aus 1):* Wir substituieren $t = 1/(x-a)$ um das Problem in den Standardfall (1) zu verwandeln. Umformen: $x = a + 1/t$. Ableiten: $(d x)/(d t) = -1/t^2 quad ==> quad d x = -1/t^2 d t$. Grenzen: $x -> a ==> t -> oo quad "und" quad x = b ==> t = 1/(b-a)$
 
       Wir setzen alles ein und nutzen das Minuszeichen des $d x$, um die Grenzen umzudrehen:
       $integral_a^b f(x) sin(1/(x-a)) d x &= integral_oo^(1/(b-a)) f(a + 1/t) sin(t) (-1/t^2) d t \
@@ -2165,7 +2150,7 @@ $integral_a^b f(x) d x = F(b) - F(a)$
 #subbox(title: "Aufstellen von Differentialgleichungen")[
   Typische Situation: Es sind verschiedene Informationen gegeben und gesucht ist die Entwicklung einer bestimmten Grösse in einem kleinen Zeitintervall $Delta t$.
   - *Population:* $y'(t) = B(t) - T(t)$ (Geburtenrate minus Sterberate).
-  - *Beschränktes Wachstum:* $u'(t) = k dot u(t) (1 - u(t)/L)$ (wobei L die Schranke ist). $bullet$ *Mechanische Probleme:* Nutzen oft die Formel für Kräfte \ $F = m y'' = m a$ nach Newton.
+  - *Beschränktes Wachstum:* $u'(t) = k dot u(t) (1 - u(t)/L)$ (wobei L die Schranke ist). $bullet$ *Mechanische Probleme:* Nutzen oft die Formel für Kräfte \ $F = m dot y'' = m a$ nach Newton.
 ]
 
 == DGL 1. Ordnung lösen
