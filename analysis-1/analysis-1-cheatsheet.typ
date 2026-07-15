@@ -68,7 +68,7 @@
 
 // Math settings
 #let limn = $lim_(n->oo)$
-#let limxo = $lim_(x->0)$
+#let limxo = $lim_(x->markhl(0))$
 #let limxi = $lim_(x->oo)$
 #let limxn = $lim_(x->-oo)$
 #let sumk = $sum_(k=1)^oo$
@@ -103,6 +103,7 @@
 == Archimedisches Prinzip
 + Für $x in RR$ und $y > 0$ existiert $n in NN$ mit $n dot y > x$.
 + Für jedes $epsilon > 0$ existiert $n in NN$ mit $1/n < epsilon$.
+#minitext[$==>$ Die natürlichen Zahlen sind unbeschränkt in den Reellen Zahlen.]
 
 == Intervalle
 $]a,b[ = (a,b) = {x in RR | a < x < b}$ #minitext[offenes Intervall] \
@@ -330,7 +331,7 @@ Folgen können rekursiv definiert werden. Sei Folge \ $(a_k)_(k >= 1): a_1 = c, 
   Dividiere durch $sqrt(x^2) ==> lim_(x -> +oo) 2/(sqrt(e^x/x^2 - 1/x) + sqrt(e^x/x^2 - 1/x)) = 0$. \ Weil: $e^x/x^2 -> oo$ und $1/x -> 0 ==>$ Nenner geht gegen $oo$
 - *Limes Substitution:* $lim_(markhl(x -> oo)) (x^2(1 - cos(1/x)))$, $u = 1/x$ \
   $lim_(markhl(u -> 0)) (1 - cos(u))/u^2 =^"l'Hospital" lim_(markhl(u -> 0)) sin(u)/(2u) = lim_(markhl(u -> 0)) cos(u)/2 = 1/2$
-- *Limes Log:* Limes der form $oo^0$ oder $1^oo$ kann man mit $f(x)^g(x) = e^(g(x) dot ln(f(x)))$ lösen. Dann Bernoulli ($e$ ist stetig, daher betrachten wir nur den Exponenten) anwenden oder vereinfachen.
+- *Limes Log:* Limes der Form $oo^0$ oder $1^oo$ kann man mit $f(x)^g(x) = e^(g(x) dot ln(f(x)))$ lösen. Dann Bernoulli ($e$ ist stetig, daher betrachten wir nur den Exponenten) anwenden oder vereinfachen.
 
 #bspbox(title: "Grenzwert berechnen mit Fixpunktgleichung")[
   Sei $(x_n)_(n >= 1)$ rekursiv gegeben durch $x_1 = 1 "und" x_(n+1) := 1+ 1/x_n quad forall n >= 1$. Berechne den Grenzwert $g$. \
@@ -416,6 +417,19 @@ Konv./absolute Konv./Divergenz durch Vergleich mit bekannter Reihe beweisen.
   sumk a_k " divergent" &implies sumk b_k " divergent"$
 ]
 
+=== Referenz-Integrale (für Majoranten- / Minorantenkriterium)
+- $integral_markhl(0)^markhl(1) 1/x^p d x = 1/(1-p)$ für $p < 1$, divergiert für $p >= 1$
+- $integral_1^oo 1/x^p d x = 1/(p-1)$ für $p > 1$, divergiert für $p <= 1$
+  - Falls $p = 1$: $integral_e^oo 1/(x^markhl(1) (ln x)^beta) d x$ konvergiert für $beta > 1$, divergiert für $beta <= 1$
+- $integral_(-oo)^oo e^(-x^2) d x = sqrt(pi) quad$ (Gaußsches Integral)
+
+=== Wachstumshierarchie für grosse $n$
+$ ln(n) << n^epsilon << a^n << n! << n^n, forall epsilon >0 "und" a>1 $
+
+=== Klassische Ungleichungen (für Abschätzungen)
+- $ln(x) <= x - 1 < x quad$ ($forall x > 0$)
+- $x/(1+x) <= ln(1+x) <= x quad$ (sehr nützlich, wenn Terme gegen $0$ gehen)
+
 == Absolute Konvergenz
 #mainbox(title: "Absolute Konvergenz")[
   Reihe $sumk a_k$ ist _absolut konvergent_ \
@@ -464,7 +478,7 @@ Ist $sum_(k=1)^oo a_k$ jedoch *nur bedingt konvergent*, dann ist die Reihenfolge
   $==> a_n$ ist monoton fallend und $limn a_n = 0$
 ]
 
-== Wurzel- & Quotientenkriterium
+#highlight()[== Wurzel- & Quotientenkriterium]
 Prüfe ob Reihe divergent oder absolut konvergent ist. \
 Wurzelkriterium versagt $==>$ Quotientenkriterium versagt auch. \
 $notimpliedby$ Gibt Bsp. wo Wurzelk. funktioniert & Quotientenk. nicht.
@@ -528,19 +542,16 @@ $notimpliedby$ Gibt Bsp. wo Wurzelk. funktioniert & Quotientenk. nicht.
 = Stetige Funktionen
 == Reelwertige Funktionen
 Sei $DD subset.eq RR$ eine beliebige Menge. Eine reellwertige Funktion ist eine Abbildung $f: DD -> RR$.
-Die Menge aller auf $DD$ definierten Funktionen: $RR = {f: DD -> RR | f " eine Funktion"}$. \
+Die Menge aller auf $DD$ definierten Funktionen: $RR = {f: DD -> RR | f " eine Funktion"}$.
 $forall x in DD$: $(RR^DD, +, dot)$ ist ein Vektorraum.
 
 - *Addition*: $(f+g)(x) = f(x) + g(x)$
 - *Skalare Multiplikation*: $(lambda f)(x) = lambda dot f(x)$
-- *Nullfunktion*: $0(x) = 0 quad forall x in DD$ \
-  Entspricht Nullvektor in $RR^DD$.
+- *Nullfunktion*: $0(x) = 0 quad forall x in DD$ #minitext[Entspricht Nullvektor in $RR^DD$.]
 - *Produkt von Funktionen*: $(f dot g)(x) = f(x) dot g(x)$
-- *Konstante Funktion*: $(f dot 1)(x) = f(x)$ \
-  Entspricht dem Einheitsvektor in $RR^DD$.
+- *Konstante Funktion*: $(f dot 1)(x) = f(x)$ #minitext[Entspricht dem Einheitsvektor in $RR^DD$.]
 - *Quotient von Funktionen*: Sei $f, g: DD -> RR$ und $tilde(DD) = {x in DD | g(x) != 0}$. $(f/g)(x) = f(x)/g(x)$
-- *Komposition: Verkettung von Funktionen*: Zuerst $f$, dann $g$. Sei $f: DD -> RR$ & $g: E -> RR$ \
-  $g compose f: DD -> RR$ mit $(g compose f)(x) = g(f(x))$.
+- *Komposition: Verkettung von Funktionen*: Zuerst $f$, dann $g$. Sei $f: DD -> RR$ & $g: E -> RR ==> g compose f: DD -> RR$ mit $(g compose f)(x) = g(f(x))$.
 
 == Beschränktheit // TODO: weglassen?
 $f: DD -> RR$ ist:
@@ -560,9 +571,9 @@ Ist ein Intervall $I subset RR$ falls $I = [a, b], a <= b$.
 #mainbox(title: $f$ + " ist monoton")[
   $f: DD -> RR, DD subset RR, forall x, y in DD$ ist:
   - *monoton wachsend* falls $x <= y ==> f(x) <= f(y)$.
-  - *streng mono. wachs.:* falls $x < y ==> f(x) < f(y)$.
+  - *streng monoton wachsend:* falls $x < y ==> f(x) < f(y)$.
   - *monoton fallend:* falls $x >= y ==> f(x) >= f(y)$.
-  - *streng mon. fallend:* falls $x > y ==> f(x) > f(y)$.
+  - *streng monoton fallend:* falls $x > y ==> f(x) > f(y)$.
 ]
 - *monoton:* falls mono. wachsend oder mono. fallend.
 - *streng monoton:* falls streng monoton wachsend oder streng monoton fallend.
@@ -806,7 +817,7 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
   ]
 ]
 #minitext[
-  Beispiel: Sei $f_n(x) = x/n$ und Grenzfunktion $f(x) = 0$ \
+  Beispiel: Sei $f_n (x) = x/n$ und Grenzfunktion $f(x) = 0$ \
   $x = 3: f_1(3) = 3/1, f_2(3) = 3/2, f_3(3) = 3/3, f_4(3) = 3/4, ... quad f(3) = 0$ \
   $x = 4: f_1(4) = 4/1, f_2(4) = 4/2, f_3(4) = 4/3, f_4(4) = 4/4, ... quad f(4) = 0$ \
   $x = 5: f_1(5) = 5/1, f_2(5) = 5/2, f_3(5) = 5/3, f_4(5) = 5/4, ... quad f(5) = 0$
@@ -879,18 +890,18 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
 ]
 
 == Reihe der Funktionenfolge
-*Reihe der Funktionenfolge* $sum_(k=0)^oo f_k(x)$ ist unendliche Summe der Funktionenfolge $(f_n)_(n >= 1)$.
-#mainbox(title: $sum_(k=0)^oo f_k(x)$ + " konvergiert gleichmässig")[
-  Funktionenfolge ihrer Partialsummen $S_n(x) := sum_(k=0)^n f_k(x)$ konvergiert gleichmässig
-  $==>$ Reihe $sum_(k=0)^oo f_k(x)$ konvergiert gleichmässig
+*Reihe der Funktionenfolge* $sum_(k=0)^oo f_k (x)$ ist unendliche Summe der Funktionenfolge $(f_n)_(n >= 1)$.
+#mainbox(title: $sum_(k=0)^oo f_k (x)$ + " konvergiert gleichmässig")[
+  Funktionenfolge ihrer Partialsummen $S_n (x) := sum_(k=0)^n f_k (x)$ konvergiert gleichmässig
+  $==>$ Reihe $sum_(k=0)^oo f_k (x)$ konvergiert gleichmässig
 ]
 - *Majorantenkriterium:* Für $DD subset RR$, Folge stetiger Funktionen $f_n: DD -> RR$:
   Falls $|f_n (x)| <= c_n quad forall x in DD$ und $sum_(n=0)^oo (c_n)$ konvergent \
   $==> sum_(n=0)^oo f_n (x)$ gleichmässig konvergent in $DD$ und Grenzwert $f(x) := sum_(n=0)^oo f_n (x)$ ist in $DD$ stetig.
 
 == Potenzreihen
-#subbox(title: "Potenzreihe")[
-  Die Potenzreihe $sum_(n=0)^oo a_n x^n$ mit Entwicklungspunkt $x_0$ ist als $sum_(n=0)^oo a_n(x - x_0)^n$ definiert.
+#mainbox(title: "Potenzreihe")[
+  Die Potenzreihe $sum_(n=0)^oo a_n x^n$ mit Entwicklungspunkt $x_0$ ist als $sum_(n=0)^oo a_n (x - x_0)^n$ definiert.
 ]
 - Folge der Partialsummen $S_n (x)$ ist Funktionenfolge.
 - Folge der Partialsummen $S_n (x)$ einer Potenzreihe ist definiert als: $S_n (x) = sum_(k=0)^n c_k x^k$.
@@ -908,18 +919,20 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
       #image("img/konvergenzradius.jpeg", width: 100%)
     ],
   )
-
-  $ r = limn |markhl(a_n)/a_(n+1)| =^"oder" 1/(limn sup root(n, |a_n|)) $
+#v(-10pt)
+  $ r = limn |markhl(a_n)/a_(n+1)| =^"oder" 1/(limn sup root(n, |a_n|)) quad quad quad $
   _Hinweis:_ Konvergenzradius hängt nur von $markhl(a_n)$ ab, nicht von $x^n$. \
-  _Hinweis:_ Konvergenzverhalten jedes Randpunkts $|x - x_0| = r$ muss einzeln untersucht werden.
+  _Hinweis:_ Konvergenzverhalten jedes Randpunkts $|x - x_0| = r$ muss einzeln untersucht werden. \
+  *🚨 Falle falls $x^(k n)$ steht:* Formeln oben berechnen  Radius $R$ für $(x^k)^n$. Echter Konvergenzradius für $(root(k, x^k))^n=x^n$ ist dann $r = root(k, R)$ (e.g. $x^(2n) implies r = root(2, R)$).
 ]
 
 #minitext[
   Sei Potenzreihe: $sumn x^k/k^2$. Dann $r = 1/(lim sup root(n, a_n)) = 1/(lim sup root(k, 1/k^2)) = 1/(lim sup 1/root(k, k^2)) = 1/(1/1) = 1$
 ]
 
-- *Gleichmässige Konvergenz im Innern:* Eine Potenzreihe $sum_(k=0)^oo c_k x^k$ mit Konv.radius $r > 0$ konvergiert für jedes feste $r$ mit $0 <= markhl(rho < r)$ auf dem kompakten Teilintervall $[markhl(-rho", " rho)]$ gleichmässig.
+- *Gleichmässige Konvergenz im Innern:* Eine Potenzreihe $sum_(n=0)^oo a_n x^n$ mit Konv.radius $r > 0$ konvergiert für jedes feste $r$ mit $0 <= markhl(rho < r)$ auf dem kompakten Teilintervall $[markhl(-rho", " rho)]$ gleichmässig.
 - *Stetigkeit:* Jede Potenzreihe stellt im Innern ihres Konvergenzbereichs $(-r, r)$ eine stetige Funktion dar.
+
 
 == Grenzwert von Funktionenfolgen
 === Häufungspunkt und Grenzwert
@@ -1200,12 +1213,12 @@ cos: RR -> RR "stetig", quad cos(z) &= 1 - z^2/2! + z^4/4! - ... = sum_(n=0)^oo 
   )
 ]
 
-- Nullstellen von $sin(x) = {k dot pi | k in ZZ}$ \
-  - $sin(x) > 0, quad forall x in (2k pi, (2k+1) pi)$
-  - $sin(x) < 0, quad forall x in ((2k+1) pi, (2k+2) pi)$
-- Nullstellen von $cos(x) = {pi/2 + k dot pi | k in ZZ}$
-  - $cos(x) > 0, quad forall x in (-pi/2 + 2k pi, pi/2 + 2k pi)$
-  - $cos(x) < 0, quad forall x in (pi/2 + 2k pi, 3pi/2 + 2k pi)$
+// - Nullstellen von $sin(x) = {k dot pi | k in ZZ}$ \
+//   - $sin(x) > 0, quad forall x in (2k pi, (2k+1) pi)$
+//   - $sin(x) < 0, quad forall x in ((2k+1) pi, (2k+2) pi)$
+// - Nullstellen von $cos(x) = {pi/2 + k dot pi | k in ZZ}$
+//   - $cos(x) > 0, quad forall x in (-pi/2 + 2k pi, pi/2 + 2k pi)$
+//   - $cos(x) < 0, quad forall x in (pi/2 + 2k pi, 3pi/2 + 2k pi)$
 
 / Tangens: $tan(z) := sin(z)/cos(z), z in.not {pi/2 + k dot pi}$
 / Cotangens: $cot(z) := cos(z)/sin(z), z in.not {k dot pi}$
@@ -1236,13 +1249,7 @@ cos: RR -> RR "stetig", quad cos(z) &= 1 - z^2/2! + z^4/4! - ... = sum_(n=0)^oo 
     $exists y$ zwischen $x_1$ und $x_2$ mit $f(y) = c$. Da $c$ beliebig gewählt war, wird jeder Wert der Zielmenge angenommen. Somit ist $f$ surjektiv.
 ]
 
-= Differentialrechnung
-== Vorgehen
-#howtobox(title: "Extremalstellen berechnen")[
-  #set enum(numbering: "1.")
-  + Erste und zweite Ableitung berechnen (Rechenregeln Ableitungen nutzen)
-  + Implikationen der Ableitungen nutzen.
-]
+= Differentialrechnung (Ableiten)
 
 == Definition Differenzierbarkeit von $f$
 Funktion ist differenzierbar $<==> forall x_i$ eine Tangente gelegt werden kann
@@ -1299,10 +1306,13 @@ Für $DD subset RR$, Häufungspunkt $x_0 in DD$ und $f, g: DD -> RR$ in $x_0$ di
 
 == L'Hospital Bernoulli
 Grenzwerte von Funktionen berechnen die auf einen unbestimmten Ausdruck führen: $0/0, oo/oo, 0 dot oo, oo - oo, 0^0, oo^0, 1^oo$.
+*Wichtig:* Direkte Anwendung ist strikt *nur* bei $0/0$ und $oo/oo$ erlaubt! Dann gilt:
+#v(-10pt)
+  $ quad quad quad quad quad quad quad quad quad quad quad quad quad quad quad quad quad quad lim_(x -> x_0) f(x)/g(x) = lim_(x -> x_0) (f'(x)) / (g'(x)) $
 
-#mainbox(title: "L'Hospital Bernoulli")[
-  $ lim_(x -> x_0) f(x)/g(x) = lim_(x -> x_0) (f'(x)) / (g'(x)) $
-]
+*🚨 ACHTUNG: Fallen & Umformungen*
+- *Verbotene Ausdrücke:* Bei $c/0$ (z.B. $2/0$) oder $oo/0$ divergiert der Grenzwert (Ergebnis geht gegen $plus.minus oo$). *Kein L'Hospital anwenden!*
+- *Umformung zwingend:* Andere unbestimmte Ausdrücke ($0 dot oo, oo - oo, 0^0, oo^0, 1^oo$) müssen *zuerst* algebraisch in $0/0$ oder $oo/oo$ überführt werden (z.B. durch Kehrwert im Nenner oder Logarithmieren), bevor abgeleitet werden darf.
 
 #bspbox(title: "Grenzwert der Funktion " + $lim_(x -> 2) (x^3 + 2x^2 - 8x)/(x - 2)$)[
   Wenn wir $x = 2$ einsetzen, erhalten wir $(2^3 + 2(2^2) - 8 dot 2)/(2 - 2) = 0/0$. \
@@ -1356,9 +1366,9 @@ Für Intervall $I subset RR$ und $f: I -> RR$. $f$ ist:
   #set enum(numbering: "1.")
   + Für $n >= 2$ ist $f$ $n$-mal differenzierbar in $DD$ falls $f^((n-1))$ in $DD$ differenzierbar ist. $n$-te Ableitung ist: $f^((n)) = (f^((n-1)))'$.
   + $f$ ist $n$-mal stetig differenzierbar in $DD$, falls sie $n$-mal differenzierbar ist und $f^((n))$ stetig in $DD$ ist.
-  + $f$ ist *glatt* in $DD$, falls $forall n >= 1$, $f$ $n$-mal in $DD$ differenzierbar ist. \
+  + $f$ ist *glatt* in $DD$, falls $f$ $oo$-mal in $DD$ differenzierbar ist.
     #minitext[
-      \= unendlich Differenzierbar, $f in C^oo$.
+      $f in C^oo$.
     ]
   Eine $n$-mal differenzierbare Funktion ist ($n$-1)-mal stetig differenzierbar.
 ]
@@ -1825,12 +1835,8 @@ Für stetige Funktion existiert immer eine Stammfunktion.
 == Fundamentalsatz der Analysis
 Bestimmtes Integral von $f$ im Intervall $[a, b]$ berechnen:
 
-
 $sum_a^b F'(x) Delta x =$
 $integral_a^b f(x) d x = F(b) - F(a)$
-
-=== Polynome
-$integral c dot x^n d x = c dot 1/(n+1) dot x^(n+1), quad (n != 0)$
 
 == Integrale Berechnen
 // #howtobox(title: "Vorgehen Teil 1")[
@@ -1859,7 +1865,7 @@ $integral c dot x^n d x = c dot 1/(n+1) dot x^(n+1), quad (n != 0)$
     - Gibt es eine verkettete Funktion *und* steht ihre innere Ableitung (bis auf eine Konstante) als Faktor davor? $->$ $u$ substituieren.
     - *Trigonometrische Substitution:* Um hartnäckige Terme aufzulösen:
       - Muster $sqrt(a^2 - x^2) ==> x = a sin(u)$ (nutzt $sin^2(u) + cos^2(u) = 1$)
-      - Muster $1/(a^2 + x^2) ==> x = a tan(u)$ (führt oft zu $arctan$)
+      - Muster $1/(a^2 + x^2) ==> x = a tan(u)$. Dann $dx/(dif u)$ rechnen, $x$ & $d x$ im $integral$ ersetzen, Grenzen anpassen ODER Rücksubstitution. Trick: $1 + tan^2(u) = 1/(cos^2(u))$ kürzt sich raus. $u = arctan(x/a)$.
 
   + *Produkt? Partielle Integration (Produktregel rückwärts)*
     - Bei Produkten von verschiedenen Funktionsklassen.
@@ -1868,9 +1874,7 @@ $integral c dot x^n d x = c dot 1/(n+1) dot x^(n+1), quad (n != 0)$
     - *Der "1"-Trick:* $integral f(x) d x = integral 1 dot f(x) d x$. Super um $ln(x)$ oder $arctan(x)$ partiell zu integrieren.
     - *Potenz-Abspaltung:* $integral (f(x))^c d x = integral (f(x))^(c-1) dot f(x) d x$ (hilft z.B. bei $sin^3(x)$).
 
-  + *Partialbruchzerlegung*
-    - Wenn ein Bruch aus zwei Polynomen $P(x)/Q(x)$ besteht und Substitution (Schritt 2) nicht klappt.
-    - Falls Grad Zähler $>=$ Grad Nenner: Zuerst Polynomdivision!
+  + *Partialbruchzerlegung*: Wenn ein Bruch aus zwei Polys $P(x)/Q(x)$ besteht und Substitution (Schritt 2) nicht klappt. Falls Grad Zähler $>=$ Grad Nenner: Zuerst Polynomdivision (Terme sortieren, bei kleinerem Restgrad abbrechen)!
 
   + *Uneigentliche Integrale & Reihen (Meta-Tricks)*
     - *Uneigentlich:* Grenzen durch Limes ersetzen ($lim_(R -> oo) integral_a^R$) und Unbeschränktheiten isolieren.
@@ -2121,7 +2125,7 @@ $integral c dot x^n d x = c dot 1/(n+1) dot x^(n+1), quad (n != 0)$
   Für Integrale der Form $integral p(x)/q(x) d x$.
 
   #set enum(numbering: "1.")
-  + *Grad prüfen:* Ist $deg(p) >= deg(q)$? Wenn ja, zuerst *Polynomdivision*.
+  + *Grad prüfen:* Ist $deg(p) >= deg(q)$? Wenn ja, zuerst *Polynomdivision* (beide Terme nach absteigendem Grad sortieren, sofort abbrechen wenn Grad vom Rest $<$ Grad vom Nenner).
   + *Nenner faktorisieren:* Finde alle reellen Nullstellen von $q(x)$. Nicht weiter zerlegbare quadratische Terme (wie $x^2+1$) bleiben als Block stehen.
   + *Ansatz aufstellen:* Pro Faktor im Nenner einen Bruch erstellen:
     - Einfache reelle NS: $x_1 -> A/(x - x_1)$
@@ -2338,15 +2342,15 @@ Für die Lösung einer #markhl("inhomogenen DGL") muss ein geeigneter Ansatz fü
   stroke: none,
 
   [$limxi 1/(1+epsilon)^n = 0 quad forall epsilon > 0$], [$limxi (x/y)^n = 0 quad forall |x| < |y|$],
-  [$limxi 1/x = 0$], [$limxi 1 + 1/x = 1$],
+  [$limxi 1/x = 0$], [$limxi 1 + 1/x =limxi (n+1)/n= 1$],
   [$limxi e^x = oo$], [$limxn e^x = 0$],
   [$limxi e^(-x) = 0$], [$limxn e^(-x) = oo$],
   [$limxi e^x/x^m = oo$], [$limxn x e^x = 0$],
   [$limxi ln(x) = oo$], [$lim_(x->0^+) ln(x) = -oo$],
   [$limxi (1+x)^(1/x) = 1$], [$limxo (1+x)^(1/x) = e$],
-  [$limxi (1+1/x)^b = 1$], [$limxi x^(1/x) = 1$],
+  [$limxi (1+1/x)^b = 1$], [$markhl(limxi ((x+k)/x)^m x = e^(k m))$],
   [$lim_(x->plus.minus oo) (1 + 1/x)^x = e$], [$limxi (1-1/x)^x = 1/e$],
-  [$lim_(x->plus.minus oo) (1 + k/x)^(m x) = e^(k m)$], [$limxi (x/(x+k))^x = e^(-k)$],
+  [$markhl(lim_(x->plus.minus oo) (1 + k/x)^(m x) = e^(k m))$], [$limxi (x/(x+k))^x = e^(-k)$],
   [$limxo (a^x -1)/x = ln(a) quad forall a > 0$], [$limxi x^a q^x = 0 quad forall 0 <= q < 1$],
   [$limxo (sin x)/x = 1$], [$limxo (sin k x)/x = k$],
   [$limxo 1/cos x = 1$], [$limxo (cos x -1)/x = 0$],
@@ -2513,11 +2517,5 @@ $
   [$integral sqrt(a^2+x^2) d x$], [$x/2 sqrt(a^2+x^2) + a^2/2 ln|x + sqrt(a^2+x^2)|$],
   [$integral sqrt(a^2-x^2) d x$], [$x/2 sqrt(a^2-x^2) + a^2/2 arcsin(x/a)$],
 )
-
-*Referenz-Integrale (für Majoranten- / Minorantenkriterium)*
-- $integral_1^oo 1/x^p d x = 1/(p-1)$ für $p > 1$, divergiert für $p <= 1$
-- $integral_0^1 1/x^p d x = 1/(1-p)$ für $p < 1$, divergiert für $p >= 1$
-- $integral_e^oo 1/(x (ln x)^p) d x$ konvergiert für $p > 1$, divergiert für $p <= 1$
-- $integral_(-oo)^oo e^(-x^2) d x = sqrt(pi) quad$ (Gaußsches Integral)
 
 == Stirling-Formula $n! approx (sqrt(2 pi n) dot n^n)/e^n$ für grosse $n$.
