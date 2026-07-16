@@ -202,7 +202,7 @@ Folge konvergiert wenn die Differenz zwischen Folgegliedern und Grenzwert immer 
   Divergente Folge = nicht konvergent = kein Grenzwert.
   #set enum(numbering: "1.")
   + Suchen eines divergenten Minorant.
-  + *Alternierende Folgen:* Zeige, dass 
+  + *Alternierende Folgen:* Zeige, dass
     $limn (a_("p1"(n))) != limn (a_("p2"(n)))$, \ z.B. bei einer Folge der Form $(-1)^n dot f(x)$.
 ]
 
@@ -613,7 +613,7 @@ Ist ein Intervall $I subset RR$ falls $I = [a, b], a <= b$.
 
 #mainbox(title: $f$ + " stetig in " + $x_0$ + " (punktweise) (Folgenkriterium)")[
   - $f$ stetig in $x_0 <==> forall (a_n)_(n in NN)$ in $DD:$ \
-    $ lim_(n -> oo) a_n = x_0 quad ==> quad lim_(n -> oo) f(a_n) = f(x_0) $ 
+    $ lim_(n -> oo) a_n = x_0 quad ==> quad lim_(n -> oo) f(a_n) = f(x_0) $
     #minitext[
       $f$ stetig in $x_0 <==> forall$ Folge $(a_n)$ konv. gegen $x_0$, $quad$Bildfolge $f(a_n)$ konv. gegen $f(x_0)$.
     ]
@@ -842,7 +842,7 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
   $quad ==> lim_(n -> oo) sup |f_n(x) - f(x)| = 0, x in DD$.
 - Für Folge $(f_n) "stetig differenzierbar", \f_n ->^"konv." f, f^'_(n) ->^"konv."_"glm." g ==> f "stetig differenzierbar und" f^' = g$
 
-#subbox(title: "Cauchy Kriterium für Gleichmässige Konvergenz")[
+#mainbox(title: "Cauchy Kriterium für Gleichmässige Konvergenz")[
   $f_n: DD -> RR$ ist gleichmässig konvergent $<==> forall epsilon > 0 ", " exists N in NN: markhl(forall n", " m) >= N ", " forall x in DD: |f_markhl(n) (x) - f_markhl(m) (x)| < epsilon$.
 ]
 
@@ -919,7 +919,7 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
       #image("img/konvergenzradius.jpeg", width: 100%)
     ],
   )
-#v(-10pt)
+  #v(-10pt)
   $ r = limn |markhl(a_n)/a_(n+1)| =^"oder" 1/(limn sup root(n, |a_n|)) quad quad quad $
   _Hinweis:_ Konvergenzradius hängt nur von $markhl(a_n)$ ab, nicht von $x^n$. \
   _Hinweis:_ Konvergenzverhalten jedes Randpunkts $|x - x_0| = r$ muss einzeln untersucht werden. \
@@ -1308,11 +1308,13 @@ Für $DD subset RR$, Häufungspunkt $x_0 in DD$ und $f, g: DD -> RR$ in $x_0$ di
 Grenzwerte von Funktionen berechnen die auf einen unbestimmten Ausdruck führen: $0/0, oo/oo, 0 dot oo, oo - oo, 0^0, oo^0, 1^oo$.
 *Wichtig:* Direkte Anwendung ist strikt *nur* bei $0/0$ und $oo/oo$ erlaubt! Dann gilt:
 #v(-10pt)
-  $ quad quad quad quad quad quad quad quad quad quad quad quad quad quad quad quad quad quad lim_(x -> x_0) f(x)/g(x) = lim_(x -> x_0) (f'(x)) / (g'(x)) $
+$
+  quad quad quad quad quad quad quad quad quad quad quad quad quad quad quad quad quad quad lim_(x -> x_0) f(x)/g(x) = lim_(x -> x_0) (f'(x)) / (g'(x))
+$
 
 *🚨 ACHTUNG: Fallen & Umformungen*
 - *Verbotene Ausdrücke:* Bei $c/0$ (z.B. $2/0$) oder $oo/0$ divergiert der Grenzwert (Ergebnis geht gegen $plus.minus oo$). *Kein L'Hospital anwenden!*
-- *Umformung zwingend:* Andere unbestimmte Ausdrücke ($0 dot oo, oo - oo, 0^0, oo^0, 1^oo$) müssen *zuerst* algebraisch in $0/0$ oder $oo/oo$ überführt werden (z.B. durch Kehrwert im Nenner oder Logarithmieren), bevor abgeleitet werden darf.
+- *Umformung zwingend:* Andere unbestimmte Ausdrücke ($0 dot oo, oo - oo, 0^0, oo^0, 1^oo$) müssen *zuerst* algebraisch in $0/0$ oder $oo/oo$ überführt werden (z.B. durch Kehrwert im Nenner $A=1/(1/A)$ oder $f(x)^(g(x)) = e^(g(x) ln(f(x)))$), bevor abgeleitet werden darf.
 
 #bspbox(title: "Grenzwert mit doppelter l'Hospital Anwendung")[
   $lim_(x -> 0) (cos(x) - 1)/x^2 =^(0/0) lim_(x -> 0) (-sin(x))/(2x) =^(0/0) lim_(x -> 0) (-cos(x))/2 = (-cos(0))/2 = -1/2$
@@ -1482,7 +1484,7 @@ Seien $f, g: [a, b] -> RR$ stetig und in $(a, b)$ differenzierbar und *für alle
     columns: (2.2fr, 1fr),
     gutter: 0.5em,
     [
-      Sei $f: [a, b] -> RR$ stetig und in $(a, b)$ differenzierbar. Dann gibt es $xi in (a, b)$ mit $ f(b) - f(a) &= f'(xi)(b - a) \
+      Sei $f: [a, b] -> RR$ stetig und in $(a, b)$ differenzierbar. Dann gibt es $xi in (a, b)$ mit $f(b) - f(a) &= f'(xi)(b - a) \
       (f(b) - f(a))/(b - a) &= f'(xi)$
     ],
     [
@@ -1604,7 +1606,7 @@ Annäherung glatter Funktionen als Potenzreihen am Entwicklungspunkt $a$.
 #howtobox(title: "Rezept: Taylorpolynom durch Standardreihen (Substitution)")[
   *Wann?* Bei Funktionen der Form $x^m dot g(x^k)$ (z.B. $x cos(x^3)$). Viel schneller und weniger fehleranfällig als direktes, mehrfaches Ableiten!
 
-  + *Standardreihe notieren:* Schreibe Maclaurin-Reihe der bekannten "Basis-Funktion" $g(z)$ bis zur gesuchten Ordnung auf.
+  + #highlight[*Standardreihe notieren:*] Schreibe Maclaurin-Reihe der bekannten "Basis-Funktion" $g(z)$ bis zur gesuchten Ordnung auf.
     #minitext[E.g. $cos(z)$: $quad 1 - z^2/(2!) + z^4/(4!) - ...$]
   + *Substitution:* Ersetze das $z$ in Reihe durch das eigentliche innere Argument (z.B. $z = x^3$).
     #minitext[E.g. $cos(x^3)$: $quad 1 - (x^3)^2/2 + ... = 1 - x^6/2 + ...$]
@@ -2457,6 +2459,7 @@ $
   [$x^(-a+1)/(-a+1)$], [$1/x^a$], [$-a/x^(a+1)$],
   [$x^(a+1)/(a+1)$], [$markhl(x)^a quad (a != -1)$], [$a dot x^(a-1)$],
   [$1/(k ln(a)) a^(k x)$], [$a^(k dot markhl(x))$], [$k a^(k x) ln(a)$],
+  [---], [$x^x = e^(x ln x)$], [$x^x (1+ln x)$ ],
   [$ln |x|$], [$1/x$], [$-1/x^2$],
   [$2/3 x^(3/2)$], [$sqrt(x)$], [$1/(2 sqrt(x))$],
   [$-cos(x)$], [$sin(x)$], [$cos(x)$],
