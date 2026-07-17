@@ -9,7 +9,7 @@
 ]
 
 #mainbox(title: "Schwaches Gesetz der grossen Zahlen")[
-  Sei $X_1, X_2, ...$ eine Folge von unabhängigen Zufallsvariablen mit gleichen Erwartungswerten $EE[X_k] = mu$ und Varianzen $bb(V)[X_k] = sigma^2$. Sei
+  Sei $X_1, X_2, ...$ eine Folge von unabhängigen Zufallsvariablen mit gleichen Erwartungswerten $EE[X_k] = mu$ und Varianzen $Var[X_k] = sigma^2$. Sei
   $ overline(X)_n = 1/n S_n = 1/n sum_(i=1)^n X_i $
   Dann konvergiert $overline(X)_n$ für $n -> oo$ *in Wahrscheinlichkeit* gegen $mu = EE[X_i]$, d.h. für jedes $epsilon > 0$ gilt:
   $ PP(|overline(X)_n - mu| > epsilon) arrow.r^(n -> oo) 0 . $
@@ -36,7 +36,7 @@
 
 == Zentraler Grenzwertsatz
 #mainbox(title: "Zentraler Grenzwertsatz")[
-  Sei $(X_n)_(n in NN)$ eine Folge von i.i.d. Zufallsvariablen mit \ $markhl(EE[X_i] = mu, color: #rgb("#ffff00")) < oo$ und $markhl(Var(X_i) = sigma^2, color: #rgb("#00ff00")) < oo$ ($EE$ und $VV$ sind _von der einzelnen Variable_ $X_i$). Dann gilt:
+  Sei $(X_n)_(n in NN)$ eine Folge von i.i.d. Zufallsvariablen mit \ $markhl(EE[X_i] = mu, color: #rgb("#ffff00")) < oo$ und $markhl(Var(X_i) = sigma^2, color: #rgb("#00ff00")) < oo$ ($EE$ und $Var$ sind _von der einzelnen Variable_ $X_i$). Dann gilt:
   $
     limn PP((S_n - n dot markhl(mu, color: #rgb("#ffff00"))) / (sqrt(markhl(sigma^2, color: #rgb("#00ff00"))) dot sqrt(n)) markhl(<=) med x) = Phi(x) quad forall x in RR
   $
@@ -62,7 +62,7 @@ $
 
 *Generelles Standardisieren*:
 Sei $T_n$ eine Summe oder skalierter Durchschnitt oder sonst irgendwas von $n$ verschiedenen i.i.d. Zufallsvariablen. Dann gilt:
-$ (T_n - markhl(EE[T_n], color: #rgb("#ffff00"))) / sqrt(markhl("Var"(T_n), color: #rgb("#00ff00"))) arrow.r.long^d cal(N)(0,1) $
+$ (T_n - markhl(EE[T_n], color: #rgb("#ffff00"))) / sqrt(markhl(Var(T_n), color: #rgb("#00ff00"))) arrow.r.long^d cal(N)(0,1) $
 
 === Beispielrechnung
 Seien $(X_i)_(i >= 1)$, $(Y_i)_(i >= 1)$ und $(Z_i)_(i >= 1)$ Folgen von i.i.d. ZV mit:

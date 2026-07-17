@@ -80,14 +80,14 @@ $
 == Varianz
 #mainbox(title: "Varianz")[
   Sei $X$ eine ZV, sodass $EE[X^2] < oo$. Die *Varianz* von $X$ ist definiert durch:
-  $ bb(V)(X) = sigma_X^2 = EE[(X - EE[X])^2] = EE[X^2] - EE[X]^2 $
+  $ Var(X) = sigma_X^2 = EE[(X - EE[X])^2] = EE[X^2] - EE[X]^2 $
   wobei $m = EE[X]$. Dabei wird $sigma_X$ als *Standardabweichung* von $X$ bezeichnet und beschreibt den Erwartungswert für die Distanz von $X$ zu $EE[X]$.
 ]
 
 + Sei $X$ ein ZV, sodass $EE[X^2] < oo$ und $a, b in RR$:
-  $ bb(V)(a · X + b) = a^2 · bb(V)(X) $
+  $ Var(a · X + b) = a^2 · Var(X) $
 + Seien $X_1, ..., X_n$ paarweise unabhängig. Dann gilt:
-  $ bb(V)(X_1 + ... + X_n) = bb(V)(X_1) + ... + bb(V)(X_n) $
+  $ Var(X_1 + ... + X_n) = Var(X_1) + ... + Var(X_n) $
 
 #mainbox(title: "Kovarianz")[
   Seien $X, Y$ ZV mit $EE[X^2] < oo, space EE[Y^2] < oo$. Wir definieren die *Kovarianz* zwischen $X$ und $Y$ durch:
@@ -96,9 +96,9 @@ $
               & = EE[X Y] - EE[X] EE[Y]
   $
 ]
-+ $cov(X, X) = bb(V)(X)$
++ $cov(X, X) = Var(X)$
 + $X, Y$ unabhängig $=> cov(X, Y) = 0$ ($markhl(arrow.double.l.not)$)
-+ $markhl(bb(V)(X plus.minus Y) = bb(V)(X) + bb(V)(Y) plus.minus 2 cov(X, Y), color: #rgb("#ffff00"))$
++ $markhl(Var(X plus.minus Y) = Var(X) + Var(Y) plus.minus 2 cov(X, Y), color: #rgb("#ffff00"))$
 + ($star$) $cov(sum_(i=1)^n X_i, sum_(j=1)^n Y_j) = sum_(i=1)^n sum_(j=1)^n cov(X_i, Y_j)$
 
 *Korrelationen*
