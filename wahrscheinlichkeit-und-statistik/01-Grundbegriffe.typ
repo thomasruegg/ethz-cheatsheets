@@ -26,45 +26,45 @@ Daraus folgt
 + $A, B in cal(F) => (A union B), (A inter B) in cal(F)$
 
 und für $A, B in cal(F)$:
-+ $P(A^c) = 1 - P(A)$
-+ $A subset.eq B => P(A) <= P(B)$
-+ $P(A union B) = P(A) + P(B) - P(A inter B)$
++ $PP(A^c) = 1 - PP(A)$
++ $A subset.eq B => PP(A) <= PP(B)$
++ $PP(A union B) = PP(A) + PP(B) - PP(A inter B)$
 
 Sei $A_1, A_2, ... in cal(F)$, dann gilt:\
 *Union Bound*
-$ P(union.big_(i=1)^oo A_i) <= sum_(i=1)^oo P(A_i) $
+$ PP(union.big_(i=1)^oo A_i) <= sum_(i=1)^oo PP(A_i) $
 *Siebformel*
-$ P(union.big_(i=1)^n A_i) = sum_(k=1)^n (-1)^(k+1) sum_(1 <= i_1 < ... < i_k <= n) P(inter.big_(j=1)^k A_(i_j)) $
-Für $n=2$: $quad P(A union B) = P(A) + P(B) - P(A inter B)$
+$ PP(union.big_(i=1)^n A_i) = sum_(k=1)^n (-1)^(k+1) sum_(1 <= i_1 < ... < i_k <= n) PP(inter.big_(j=1)^k A_(i_j)) $
+Für $n=2$: $quad PP(A union B) = PP(A) + PP(B) - PP(A inter B)$
 
 == Bedingte Wahrscheinlichkeiten
 
 Sei $(Omega, cal(F), P)$ ein Wahrscheinlichkeitsraum.
 
 #mainbox(title: "Bedingte Wahrscheinlichkeit")[
-  Sei $A, B in cal(F)$ und $P(B) > 0$, dann ist die *bedingte Wahrscheinlichkeit von $A$ gegeben $B$*
-  $ P(A | B) = P(A inter B) / P(B) $
+  Sei $A, B in cal(F)$ und $PP(B) > 0$, dann ist die *bedingte Wahrscheinlichkeit von $A$ gegeben $B$*
+  $ PP(A | B) = PP(A inter B) / PP(B) $
 ]
 
 #mainbox(title: "Satz der totalen Wahrscheinlichkeit")[
-Sei $B_1, ..., B_N$ mit $P(B_n) > 0$ für jedes $1 <= n <= N$ eine Partition des Grundraums $Omega$, d.h. $union.big_(n=1)^N B_n = Omega$ mit $B_n inter B_m = empty$ für $n != m$. Dann gilt für alle $A in cal(F)$:
-$ P(A) = sum_(n=1)^N P(A | B_n) P(B_n) = sum_(n=1)^N P(A inter B_n) $
+Sei $B_1, ..., B_N$ mit $PP(B_n) > 0$ für jedes $1 <= n <= N$ eine Partition des Grundraums $Omega$, d.h. $union.big_(n=1)^N B_n = Omega$ mit $B_n inter B_m = empty$ für $n != m$. Dann gilt für alle $A in cal(F)$:
+$ PP(A) = sum_(n=1)^N PP(A | B_n) PP(B_n) = sum_(n=1)^N PP(A inter B_n) $
 ]
 
 *Satz von Bayes*
 
-Aus der Definition der bedingten W'keit folgt sofort die Bayessche Formel, welche den Zusammenhang zwischen $P(A | B)$ und $P(B | A)$ beschreibt:
-$ P(B | A) = (P(A | B) P(B)) / P(A) $
+Aus der Definition der bedingten W'keit folgt sofort die Bayessche Formel, welche den Zusammenhang zwischen $PP(A | B)$ und $PP(B | A)$ beschreibt:
+$ PP(B | A) = (PP(A | B) PP(B)) / PP(A) $
 Mit dem _Satz der totalen W'keit_ erhalten wir:
 
-Sei $B_1, ..., B_N in cal(F)$ eine *Partition* von $Omega$ mit $P(B_n) > 0$ für alle $n$. Für jedes Ereignis $A$ mit $P(A) > 0$ und jedes $n in {1, ..., N}$ gilt:
-$ P(B_n | A) = (P(A | B_n) P(B_n)) / (sum_(k=1)^N P(A | B_k) P(B_k)) $
+Sei $B_1, ..., B_N in cal(F)$ eine *Partition* von $Omega$ mit $PP(B_n) > 0$ für alle $n$. Für jedes Ereignis $A$ mit $PP(A) > 0$ und jedes $n in {1, ..., N}$ gilt:
+$ PP(B_n | A) = (PP(A | B_n) PP(B_n)) / (sum_(k=1)^N PP(A | B_k) PP(B_k)) $
 
 *Intuition Bayessche Statistik*
 
 In dieser Form würde man $A$ als das *eingetretene Ereignis* und die $B_i$ als die verschiedenen *Hypothesen* verstehen.
 
-In der Bayesschen Statistik versucht man die Hypothese zu finden, so dass $P(B_i | A)$ *maximiert* wird.
+In der Bayesschen Statistik versucht man die Hypothese zu finden, so dass $PP(B_i | A)$ *maximiert* wird.
 
 (Wurde in der Vorlesung nicht weiter behandelt)
 
@@ -72,18 +72,18 @@ In der Bayesschen Statistik versucht man die Hypothese zu finden, so dass $P(B_i
 
 #mainbox()[
   Zwei Ereignisse $A, B in cal(F)$ heissen *(stochastisch) unabhängig*, wenn
-  $ P(A inter B) = P(A) · P(B) $
+  $ PP(A inter B) = PP(A) · PP(B) $
 ]
 
 Es gilt ($star$):
-- $P(A) in {0, 1} => A$ zu jedem Ereignis unabhängig
-- $A$ zu sich selbst unabhängig $=> P(A) in {0,1}$
+- $PP(A) in {0, 1} => A$ zu jedem Ereignis unabhängig
+- $A$ zu sich selbst unabhängig $=> PP(A) in {0,1}$
 - $A, B$ unabhängig $=> A, B^c$ unabhängig
 
-Wenn $P(A) > 0, P(B) > 0$ gilt:\
-$A, B$ unabh. $<=> P(A | B) = P(A) <=> P(B | A) = P(B)$
+Wenn $PP(A) > 0, PP(B) > 0$ gilt:\
+$A, B$ unabh. $<=> PP(A | B) = PP(A) <=> PP(B | A) = PP(B)$
 
 #mainbox()[
   Eine Kollektion von Ereignissen $(A_i)_(i in I)$ heisst *(stochastisch) unabhängig*, wenn
-  $ J subset.eq I "endlich" => P(inter.big_(i in J) A_i) = product_(i in J) P(A_i) $
+  $ J subset.eq I "endlich" => PP(inter.big_(i in J) A_i) = product_(i in J) PP(A_i) $
 ]

@@ -18,13 +18,13 @@
 
 #mainbox(title: "Erwartungswert (Diskrete ZV)")[
   Sei $X: Omega -> RR$ eine diskrete Zufallsvariable, $W_X := X(Omega)$ und $phi: RR -> RR$ eine Abbildung. Falls die Summe wohldefiniert ist, gilt:
-  $ E(phi(X)) := sum_(x in W_X) phi(x) · P(X = x) $
+  $ E(phi(X)) := sum_(x in W_X) phi(x) · PP(X = x) $
 ]
 
 Sei $X$ eine nicht-negative Zufallsvariable. Dann gilt $E[X] >= 0$. Gleichheit gilt genau dann, wenn $X = 0$ fast sicher ist.
 $
   E[X] >= 0 & <== X >= 0 "immer" \
-   E[X] = 0 & <==> X = 0 "fast sicher, d.h." P(X != 0) = 0
+   E[X] = 0 & <==> X = 0 "fast sicher, d.h." PP(X != 0) = 0
 $
 
 == Rechnen mit Erwartungswerten
@@ -46,11 +46,11 @@ $E(X) <= E(Y)$
 
 *Markow-Ungleichung*\
 Sei $X$ eine ZV und ferner $g: X(Omega) -> [0, +oo)$ eine wachsende Funktion. Für jedes $c in RR$ mit $g(c) > 0$ gilt dann:
-$ P(X >= c) <= E(g(X)) / g(c) quad limits(==>)^(t > 0) quad P(X >= t) <= E(X) / t $
+$ PP(X >= c) <= E(g(X)) / g(c) quad limits(==>)^(t > 0) quad PP(X >= t) <= E(X) / t $
 
 *Chebyshev-Ungleichung*\
 Sei $Y$ eine ZV mit endlicher Varianz. Für jedes $b > 0$ gilt dann:
-$ P(|Y - E(Y)| >= b) <= Var(Y) / b^2 $
+$ PP(|Y - E(Y)| >= b) <= Var(Y) / b^2 $
 
 *Chernoff-Ungleichung*\  //TODO: REDUNDANT! Siehe anderes Kapitel
 Seien $X_1, ..., X_n$ unabhängig mit $X_k tilde "Ber"(p_k)$ und sei $S_n = sum_(k=1)^n X_k$. Sei $mu_n = E[S_n] = sum_(k=1)^n p_k$ und $delta > 0$, dann gilt

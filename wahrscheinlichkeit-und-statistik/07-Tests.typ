@@ -22,24 +22,24 @@ Wir wollen nun anhand der Daten $(X_1 (omega), ..., X_n (omega))$ entscheiden, o
 
 #subbox()[
   Ein *Fehler 1. Art* ist, wenn $H_0$ fälschlicherweise verworfen wird, obwohl sie richtig ist.
-  $ P_theta (T in K), quad theta in Theta_0 $
+  $ PP_theta (T in K), quad theta in Theta_0 $
   Ein *Fehler 2. Art* ist, wenn $H_0$ fälschlicherweise akzeptiert wird, obwohl sie falsch ist.
-  $ P_theta (T in.not K) = 1 - P_theta (T in K), quad theta in Theta_A $
+  $ PP_theta (T in.not K) = 1 - PP_theta (T in K), quad theta in Theta_A $
 ]
 
-*Bemerkung:* Da $T$ eine ZV und somit bezüglich dem Mass $P_theta : cal(F) -> [0,1]$ messbar ist, gilt ${T in K} in cal(F)$ und somit ist $P_theta (T in K)$ wohldefiniert.
+*Bemerkung:* Da $T$ eine ZV und somit bezüglich dem Mass $PP_theta : cal(F) -> [0,1]$ messbar ist, gilt ${T in K} in cal(F)$ und somit ist $PP_theta (T in K)$ wohldefiniert.
 
 == Signifikanzniveau und Macht
 Ein Test hat Signifikanzniveau $alpha in [0,1]$ falls:
-$ forall theta in Theta_0 quad P_theta (T in K) <= alpha $
+$ forall theta in Theta_0 quad PP_theta (T in K) <= alpha $
 Es ist meist unser primäres Ziel, die Fehler 1. Art zu minimieren.
 
 Das sekundäre Ziel ist, Fehler 2. Art zu vermeiden. Hierfür definieren wir die Macht eines Tests als Funktion:
-$ beta : Theta_A -> [0,1], quad theta |-> P_theta (T in K) $
+$ beta : Theta_A -> [0,1], quad theta |-> PP_theta (T in K) $
 Zu beachten ist, dass eine kleine Wahrscheinlichkeit für einen Fehler 2. Art einem *grossen* $beta$ entspricht.
 
 == Konstruktion von Tests
-Wir nehmen an, dass $X_1, ..., X_n$ diskret oder gemeinsam stetig unter $P_(theta_0)$ und $P_(theta_A)$ sind, wobei $Theta_0 inter Theta_A = empty$ einfach sind ($theta_0 in Theta_0 and theta_A in Theta_A$).
+Wir nehmen an, dass $X_1, ..., X_n$ diskret oder gemeinsam stetig unter $PP_(theta_0)$ und $PP_(theta_A)$ sind, wobei $Theta_0 inter Theta_A = empty$ einfach sind ($theta_0 in Theta_0 and theta_A in Theta_A$).
 
 Der Likelihood-Quotient ist somit wohldefiniert:
 $ R(x_1, ..., x_n) = L(x_1, ..., x_n; theta_A) / L(x_1, ..., x_n; theta_0) $
@@ -59,8 +59,8 @@ Wenn $R >> 1$, so gilt $H_A > H_0$ und analog $R << 1 => H_A < H_0$.
 
 *Neyman-Pearson-Lemma*
 
-Sei $Theta_0 = {vartheta_0}$ und $Theta_A = {vartheta_A}$. Sei $(T, K)$ ein Likelihood-Quotienten-Test mit Parameter $c$ und Signifikanzniveau $alpha^* := P_(vartheta_0)[T in K]$. Ist $(T', K')$ ein anderer Test mit Signifikanzniveau $alpha := P_(vartheta_0)[T' in K'] <= alpha^*$, so gilt:
-$ P_(vartheta_A)[T' in K'] <= P_(vartheta_A)[T in K] . $
+Sei $Theta_0 = {vartheta_0}$ und $Theta_A = {vartheta_A}$. Sei $(T, K)$ ein Likelihood-Quotienten-Test mit Parameter $c$ und Signifikanzniveau $alpha^* := PP_(vartheta_0)[T in K]$. Ist $(T', K')$ ein anderer Test mit Signifikanzniveau $alpha := PP_(vartheta_0)[T' in K'] <= alpha^*$, so gilt:
+$ PP_(vartheta_A)[T' in K'] <= PP_(vartheta_A)[T in K] . $
 Das bedeutet, jeder andere Test mit kleinerem Signifikanzniveau hat auch geringere Macht bzw. eine größere Wahrscheinlichkeit für einen Fehler 2. Art.
 
 == Konkrete Tests

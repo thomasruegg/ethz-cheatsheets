@@ -13,7 +13,7 @@ wobei $cal(B)(RR)$ die *Borelsche $sigma$-Algebra* auf $RR$ bezeichnet. Beispiel
 
 == Verteilungsfunktion
 Die *Verteilungsfunktion* ist die Abbildung $F_X : RR -> [0,1]$ definiert durch:
-$ F_X (t) := P(X <= t), quad forall t in RR $
+$ F_X (t) := PP(X <= t), quad forall t in RR $
 
 Die Funktion erfüllt folgende Eigenschaften:
 + $F_X$ ist monoton wachsend
@@ -38,49 +38,49 @@ $bb(P)[a < X < b] = bb(P)[X < b] - bb(P)[X <= a] = F_X (b^-) - F_X (a)$ \
 Die Verteilungsfunktion ist nicht immer linksstetig.
 Sei $F_X (a^-) := lim_(h -> 0^+) F_X (a-h)$ für beliebige $a in RR$.
 Dann gilt:
-$ P(X = a) = F_X (a) - F_X (a^-) $
+$ PP(X = a) = F_X (a) - F_X (a^-) $
 
 Intuitiv folgt daraus:
-- Wenn $F_X$ im Punkt $a in RR$ nicht stetig ist, dann ist die "Sprunghöhe" $F_X (a) - F_X (a^-)$ gleich der Wahrscheinlichkeit $P(X = a)$.
-- Wenn $F_X$ stetig im Punkt $a in RR$ ist, dann gilt $P(X = a) = 0$.
+- Wenn $F_X$ im Punkt $a in RR$ nicht stetig ist, dann ist die "Sprunghöhe" $F_X (a) - F_X (a^-)$ gleich der Wahrscheinlichkeit $PP(X = a)$.
+- Wenn $F_X$ stetig im Punkt $a in RR$ ist, dann gilt $PP(X = a) = 0$.
 
 #mainbox()[
   Seien $X_1, ..., X_n$ Zufallsvariablen auf einem Wahrscheinlichkeitsraum $(Omega, cal(F), P)$. Dann heissen $X_1, ..., X_n$ *unabhängig*, falls $forall x_1, ..., x_n in RR$:
-  $ P(X_1 <= x_1, ..., X_n <= x_n) = P(X_1 <= x_1) · ... · P(X_n <= x_n) . $
+  $ PP(X_1 <= x_1, ..., X_n <= x_n) = PP(X_1 <= x_1) · ... · PP(X_n <= x_n) . $
 ]
 
 == Diskrete Zufallsvariablen
 Sei $A in cal(F)$ ein Ereignis.\
-Wir sagen $A$ tritt *fast sicher (f.s.)* ein, falls $P(A) = 1$.\
-Seien $X, Y: Omega -> RR$ Zufallsvariablen: $X <= Y "f.s." <=> P(X <= Y) = 1$
+Wir sagen $A$ tritt *fast sicher (f.s.)* ein, falls $PP(A) = 1$.\
+Seien $X, Y: Omega -> RR$ Zufallsvariablen: $X <= Y "f.s." <=> PP(X <= Y) = 1$
 
 #mainbox()[
   Eine Zufallsvariable $X: Omega -> RR$ heisst *diskret*, falls eine endliche oder abzählbare Menge $W subset.eq RR$ existiert, sodass:
-  $ P(X in W) = 1 $
+  $ PP(X in W) = 1 $
   Falls $Omega$ endlich oder abzählbar ist, dann ist $X$ immer diskret.
 ]
 Die *Verteilungsfunktion* einer diskreten ZV $X$:
-$ F_X (x) = P(X <= x) = sum_(y in W) p(y) · bb(1)_(y <= x) $
+$ F_X (x) = PP(X <= x) = sum_(y in W) p(y) · bb(1)_(y <= x) $
 Die *Gewichtsfunktion* einer diskreten ZV $X$:
-$ forall x in X(Omega): p(x) = P(X=x) "wobei" sum_(x in X(Omega)) p(x) = 1 $
+$ forall x in X(Omega): p(x) = PP(X=x) "wobei" sum_(x in X(Omega)) p(x) = 1 $
 
 == Diskrete Verteilungen
 *Bernoulli-Verteilung:* $X ~ "Ber"(p)$\
 $X(Omega) = {0, 1}$ und die Gewichtsfunktion ist definiert durch:
-$ p(1) := P(X = 1) = p "und" p(0) := P(X = 0) = 1 - p . $
+$ p(1) := PP(X = 1) = p "und" p(0) := PP(X = 0) = 1 - p . $
 
 *Binomialverteilung:* $X ~ "Bin"(n, p)$\
 Wiederholung von $n$ unabhängigen Bernoulli-Experimenten mit gleichem Parameter $p$.
-$ p(k) := P(X = k) = binom(n, k) · p^k · (1-p)^(n-k) quad forall k in {0, 1, ..., n} $
+$ p(k) := PP(X = k) = binom(n, k) · p^k · (1-p)^(n-k) quad forall k in {0, 1, ..., n} $
 
 *Geometrische Verteilung:* $X ~ "Geo"(p)$\
 Warten auf den ersten Erfolg.
-$ p(k) := P(X = k) = (1-p)^(k-1) · p quad forall k in NN without {0} $
+$ p(k) := PP(X = k) = (1-p)^(k-1) · p quad forall k in NN without {0} $
 
 *Poisson-Verteilung:* $X ~ "Poisson"(lambda)$\
 Grenzwert der Binomialverteilung für grosse $n$ und kleine $p$.
-$ p(k) := P(X = k) = lambda^k / (k!) · e^(-lambda) quad forall k in NN_0, lambda > 0 $
-+ ($star$) Für $X_n ~ "Bin"(n, lambda/n)$ gilt $lim_(n -> oo) P(X_n = k) = P(Y = k)$ wobei $Y ~ "Poisson"(lambda)$.
+$ p(k) := PP(X = k) = lambda^k / (k!) · e^(-lambda) quad forall k in NN_0, lambda > 0 $
++ ($star$) Für $X_n ~ "Bin"(n, lambda/n)$ gilt $lim_(n -> oo) PP(X_n = k) = PP(Y = k)$ wobei $Y ~ "Poisson"(lambda)$.
 + ($star$) Seien $X_1 ~ "Poisson"(lambda_1)$ und $X_2 ~ "Poisson"(lambda_2)$ unabhängig. Dann gilt $(X_1 + X_2) ~ "Poisson"(lambda_1 + lambda_2)$.
 
 == Stetige Zufallsvariablen
@@ -110,12 +110,12 @@ $ f_(mu, sigma)(x) = 1 / sqrt(2 pi sigma^2) e^(- (x-mu)^2 / (2 sigma^2)) $
 + Sei $Z ~ cal(N)(0,1)$ eine *standardnormalverteilte* Zufallsvariable. Dann gilt für $X ~ cal(N)(mu, sigma^2)$:
   $ X = mu + sigma · Z $
 + Für $X ~ cal(N)(mu, sigma^2)$ gilt $(X-mu)/sigma ~ cal(N)(0,1)$, also:
-  $ F_X (x) = P((X-mu)/sigma <= (x-mu)/sigma) = Phi((x-mu)/sigma) . $
+  $ F_X (x) = PP((X-mu)/sigma <= (x-mu)/sigma) = Phi((x-mu)/sigma) . $
 + $Phi(-x) = 1 - Phi(x)$
 
 #mainbox(title: "Gedächtnislosigkeit")[
   Sei $T ~ "Geom"(p)$ mit $p in (0,1)$. Dann gilt für alle $n >= 0$ und alle $k >= 1$:
-  $ P(T >= n+k | T > n) = P(T >= k) . $
+  $ PP(T >= n+k | T > n) = PP(T >= k) . $
 
   ($star$) Hält auch für $T ~ "Exp"(lambda)$.
 ]

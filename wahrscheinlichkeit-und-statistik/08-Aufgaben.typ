@@ -11,31 +11,31 @@
 
 *Häufige Formen:*
 $
-  P(a < X <= b) & = P(X <= b) - P(X <= a) = F_X (b) - F_X (a) \
-       P(X > Y) & = sum_(i=1)^n P(X > Y | Y = i) P(Y = i) \
-       & = integral_(-oo)^oo P(X > Y | Y = y) f_Y (y) dif y
+  PP(a < X <= b) & = PP(X <= b) - PP(X <= a) = F_X (b) - F_X (a) \
+       PP(X > Y) & = sum_(i=1)^n PP(X > Y | Y = i) PP(Y = i) \
+       & = integral_(-oo)^oo PP(X > Y | Y = y) f_Y (y) dif y
 $
 
 $
-  P(max(X, Y) <= z) & = P(X <= z, Y <= z) \
+  PP(max(X, Y) <= z) & = PP(X <= z, Y <= z) \
                     & = F_X (z) · F_Y (z) quad (X, Y " unabh.") \
-  P(min(X, Y) <= z) & = 1 - P(min(X, Y) > z) \
-                    & = 1 - P(X > z, Y > z) \
-                    & = 1 - P(X > z) P(Y > z) quad (X, Y " unabh.") \
+  PP(min(X, Y) <= z) & = 1 - PP(min(X, Y) > z) \
+                    & = 1 - PP(X > z, Y > z) \
+                    & = 1 - PP(X > z) PP(Y > z) quad (X, Y " unabh.") \
                     & = 1 - (1 - F_X (z)) (1 - F_Y (z))
 $
 
-$ P(X + Y = t) = integral_0^t f_X (k) f_Y (t - k) dif k quad (t >= 0) $
+$ PP(X + Y = t) = integral_0^t f_X (k) f_Y (t - k) dif k quad (t >= 0) $
 
 Für $L = min(X_1, ..., X_n)$ und $M = max(X_1, ..., X_n)$:
 $
-  P(M < m, L <= l) & = P(M < m) - P(M < m, L > l) \
-                   & = P(M < m) - P(l < X_1 < m, ..., l < X_n < m) \
-                   & = (P(X_1 < m))^n - (P(l < X_1 < m))^n quad ("iid.")
+  PP(M < m, L <= l) & = PP(M < m) - PP(M < m, L > l) \
+                   & = PP(M < m) - PP(l < X_1 < m, ..., l < X_n < m) \
+                   & = (PP(X_1 < m))^n - (PP(l < X_1 < m))^n quad ("iid.")
 $
 
 Sei $X_1, ..., X_n$ i.i.d. mit $X_1 ~ cal(U)([a,b])$:
-$ P(X_1 > X_2, X_1 > X_3, ..., X_1 > X_n) = ((n-1)!) / (n!) $
+$ PP(X_1 > X_2, X_1 > X_3, ..., X_1 > X_n) = ((n-1)!) / (n!) $
 
 == Multiple Choice Aufgaben
 
@@ -44,7 +44,7 @@ Seien $X, Y$ zwei ZV mit gemeinsamer Dichte $f_(X,Y)$. Welche Aussage ist korrek
 - [□] Die ZV sind nicht notwendigerweise stetig.
 
 Sei $Y$ eine stetige Zufallsvariable. Für alle $s, t in RR^+$:
-$ exists lambda > 0. Y ~ "Exp"(lambda) <=> P(Y > s) = P(Y > s + t | Y > t) $
+$ exists lambda > 0. Y ~ "Exp"(lambda) <=> PP(Y > s) = PP(Y > s + t | Y > t) $
 - [✓] wahr.
 - [□] falsch.
 
@@ -59,7 +59,7 @@ Seien $X, Y$ unabhängig und lognormalverteilt ($ln X, ln Y$ sind normalverteilt
 - [□] $e^(X + Y)$ ist normalverteilt.
 
 // *Tabelle der Standard-Normalverteilungsfunktion*\
-// $Phi(z) = P(Z <= z)$ mit $Z ~ cal(N)(0, 1)$ und $Phi(-x) = 1 - Phi(x)$.
+// $Phi(z) = PP(Z <= z)$ mit $Z ~ cal(N)(0, 1)$ und $Phi(-x) = 1 - Phi(x)$.
 
 // #align(center)[
 //   #table(
