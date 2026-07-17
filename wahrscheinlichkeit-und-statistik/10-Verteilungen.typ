@@ -18,7 +18,7 @@
       }
     },
 
-    [*Verteilung*], [*Notation*], [*Parameter*], [*$E[X]$*], [*$Var(X)$*], [*$p_X (t)$ bzw. $f_X (t)$*], [*$F_X (t)$*],
+    [*Verteilung*], [*Notation*], [*Parameter*], [*$EE[X]$*], [*$Var(X)$*], [*$p_X (t)$ bzw. $f_X (t)$*], [*$F_X (t)$*],
 
     [Gleichverteilung (diskret) #minitext()[Alle Ereignisse gleich wahrscheinlich]],
     [unbekannt],
@@ -86,7 +86,7 @@
 
     [Exponentialverteilung #minitext()[Dauer zwischen zufälligen Ereignissen]],
     [$Exp(lambda)$],
-    [$lambda: 1/E[X]$],
+    [$lambda: 1/EE[X]$],
     [$1/lambda$],
     [$1/lambda^2$],
     [$cases(lambda e^(-lambda t) quad & t >= 0, 0 & t < 0)$],

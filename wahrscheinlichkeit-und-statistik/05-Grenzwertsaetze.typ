@@ -9,14 +9,14 @@
 ]
 
 #mainbox(title: "Schwaches Gesetz der grossen Zahlen")[
-  Sei $X_1, X_2, ...$ eine Folge von unabhängigen Zufallsvariablen mit gleichen Erwartungswerten $E[X_k] = mu$ und Varianzen $bb(V)[X_k] = sigma^2$. Sei
+  Sei $X_1, X_2, ...$ eine Folge von unabhängigen Zufallsvariablen mit gleichen Erwartungswerten $EE[X_k] = mu$ und Varianzen $bb(V)[X_k] = sigma^2$. Sei
   $ overline(X)_n = 1/n S_n = 1/n sum_(i=1)^n X_i $
-  Dann konvergiert $overline(X)_n$ für $n -> oo$ *in Wahrscheinlichkeit* gegen $mu = E(X_i)$, d.h. für jedes $epsilon > 0$ gilt:
+  Dann konvergiert $overline(X)_n$ für $n -> oo$ *in Wahrscheinlichkeit* gegen $mu = EE[X_i]$, d.h. für jedes $epsilon > 0$ gilt:
   $ PP(|overline(X)_n - mu| > epsilon) arrow.r^(n -> oo) 0 . $
 ]
 
 #mainbox(title: "Starkes Gesetz der grossen Zahlen")[
-  Sei $X_1, X_2, ...$ eine Folge von u.i.v. (unabhängig und identisch verteilten) Zufallsvariablen. Sei $E(|X_1|) < oo$ und $mu = E(X_1)$. Für
+  Sei $X_1, X_2, ...$ eine Folge von u.i.v. (unabhängig und identisch verteilten) Zufallsvariablen. Sei $EE[ |X_1| ] < oo$ und $mu = EE[X_1]$. Für
   $ overline(X)_n = 1/n S_n = 1/n sum_(i=1)^n X_i $
   gilt dann:
   $ overline(X)_n arrow.r^(n -> oo) mu quad P"-fast sicher," $
@@ -25,18 +25,18 @@
 ]
 
 #subbox()[
-  Sei $X$ eine nicht-negative Zufallsvariable. Dann gilt $E[X] >= 0$. Gleichheit gilt genau dann, wenn $X=0$ fast sicher gilt.\
+  Sei $X$ eine nicht-negative Zufallsvariable. Dann gilt $EE[X] >= 0$. Gleichheit gilt genau dann, wenn $X=0$ fast sicher gilt.\
   Also (aus Vorlesung):
   $
-    E[X] >= 0 & <== X >= 0 "gilt immer" \
+    EE[X] >= 0 & <== X >= 0 "gilt immer" \
               & "und" \
-     E[X] = 0 & <=> X = 0 "fast sicher, also" PP(X != 0) = 0
+     EE[X] = 0 & <=> X = 0 "fast sicher, also" PP(X != 0) = 0
   $
 ]
 
 == Zentraler Grenzwertsatz
 #mainbox(title: "Zentraler Grenzwertsatz")[
-  Sei $(X_n)_(n in NN)$ eine Folge von i.i.d. Zufallsvariablen mit \ $markhl(E(X_i) = mu, color: #rgb("#ffff00")) < oo$ und $markhl(Var(X_i) = sigma^2, color: #rgb("#00ff00")) < oo$ ($EE$ und $VV$ sind _von der einzelnen Variable_ $X_i$). Dann gilt:
+  Sei $(X_n)_(n in NN)$ eine Folge von i.i.d. Zufallsvariablen mit \ $markhl(EE[X_i] = mu, color: #rgb("#ffff00")) < oo$ und $markhl(Var(X_i) = sigma^2, color: #rgb("#00ff00")) < oo$ ($EE$ und $VV$ sind _von der einzelnen Variable_ $X_i$). Dann gilt:
   $
     limn PP((S_n - n dot markhl(mu, color: #rgb("#ffff00"))) / (sqrt(markhl(sigma^2, color: #rgb("#00ff00"))) dot sqrt(n)) markhl(<=) med x) = Phi(x) quad forall x in RR
   $
@@ -75,7 +75,7 @@ wobei $norm((x,y,z))_2 := sqrt(x^2 + y^2 + z^2)$ die euklidische Norm ist.
 
 _Schritt 1:_ $forall alpha > 1/2$ zeigen wir $PP(|S_n^((x))| <= n^alpha) arrow.r^(n -> oo) 1$.
 
-Da $E(X_i) = 0$ und $Var(X_i) = 1$ folgt für beliebige $a in RR$ per ZGS:
+Da $EE[X_i] = 0$ und $Var(X_i) = 1$ folgt für beliebige $a in RR$ per ZGS:
 $ PP(S_n^((x)) <= a sqrt(n)) = PP(S_n^((x)) / sqrt(n) <= a) arrow.r^(n -> oo) Phi(a) $
 und somit auch:
 $
@@ -101,7 +101,7 @@ $
 
 #subbox(title: "Momenterzeugende Funktion")[
   Die momenterzeugende Funktion einer Zufallsvariablen $X$ ist für $t in RR$ definiert durch:
-  $ M_X (t) = E[e^(t X)] = integral_(-oo)^oo e^(t x) f_X (x) dif x . $
+  $ M_X (t) = EE[e^(t X)] = integral_(-oo)^oo e^(t x) f_X (x) dif x . $
   Immer wohldefiniert in $[0, oo]$, kann aber $+oo$ werden.
 ]
 
@@ -110,5 +110,5 @@ Seien $X_1, ..., X_n$ i.i.d. Zufallsvariablen, für welche $M_X (t)$ für alle $
 $ PP(S_n >= b) <= exp(inf_(t in RR) (n log M_X (t) - t b)) . $
 
 *Chernoff-Schranke*\
-Seien $X_1, ..., X_n$ unabhängig mit $X_k ~ "Ber"(p_k)$ und sei $S_n = sum_(k=1)^n X_k$, $mu_n = E[S_n] = sum_(k=1)^n p_k$ und $delta > 0$, dann gilt:
+Seien $X_1, ..., X_n$ unabhängig mit $X_k ~ "Ber"(p_k)$ und sei $S_n = sum_(k=1)^n X_k$, $mu_n = EE[S_n] = sum_(k=1)^n p_k$ und $delta > 0$, dann gilt:
 $ PP(S_n >= (1 + delta) mu_n) <= (e^delta / (1+delta)^(1+delta))^(mu_n) . $

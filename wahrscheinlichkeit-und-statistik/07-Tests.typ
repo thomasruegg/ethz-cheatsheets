@@ -103,7 +103,7 @@ $sigma^2$-Schätzer: $S^2 = 1/(n-1) sum_(i=1)^n (X_i - overline(X)_n)^2$ \
   - *Rechtsseitig* ($H_A: mu > mu_0$): Ansatz $K = (c_>, infinity)$ für ein $c_> in RR$.
     Finde $c_>$ s.t. $PP_(mu_0)[T > c_>] = alpha => c_> = t_(n-1, 1-alpha) => K = (t_(n-1, 1-alpha), infinity)$
   - *Zweiseitig* ($H_A: mu != mu_0$): Ansatz $K = (-infinity, -c_=) union (c_=, infinity)$ für ein $c_= in RR^+$ \
-    Finde $c_=$ s.t. $PP_(mu_0)[|T| > c_=] = alpha => c_= = t_(n-1, 1-alpha/2) \
+    Finde $c_=$ s.t. $PP_(mu_0)[ |T| > c_=] = alpha => c_= = t_(n-1, 1-alpha/2) \
     => K = (-infinity, -t_(n-1, 1-alpha/2)) union (t_(n-1, 1-alpha/2), infinity)$
 + *Dualität zum Konfidenzintervall (zweiseitig):* \
   Äquivalent zum z-Test durch Umformen von $|T| <= t_(n-1, 1-alpha/2)$ nach $mu_0$:

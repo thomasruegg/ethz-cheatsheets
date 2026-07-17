@@ -4,56 +4,56 @@
 
 #mainbox(title: "Erwartungswert (Stetige ZV)")[
   Sei $X: Omega -> RR$ eine stetige Zufallsvariable mit Dichte $f_X$. Sei $phi: RR -> RR$ eine Abbildung, sodass $phi(X)$ eine Zufallsvariable ist. Dann gilt:
-  $ E[phi(X)] = integral_(-oo)^oo phi(x) f_X (x) dif x, $
+  $ EE[phi(X)] = integral_(-oo)^oo phi(x) f_X (x) dif x, $
   falls das Integral wohldefiniert ist (bei $phi = "id"$ absolut konvergent).\
   Sei $X$ eine stetige ZV mit $X >= 0$ f.s., dann gilt:
-  $ E[X] = integral_0^oo (1 - F_X (x)) dif x $
+  $ EE[X] = integral_0^oo (1 - F_X (x)) dif x $
 
-  Der *Allgemeine Erwartungswert* für eine reellwertige ZV $X$ mit $E[ |X| ] < oo$ ist definiert als:
+  Der *Allgemeine Erwartungswert* für eine reellwertige ZV $X$ mit $EE[ |X| ] < oo$ ist definiert als:
   $
-    E[X] & = E[X_+] - E[X_-] quad "mit" X_(plus.minus) = max(plus.minus X, 0) \
+    EE[X] & = EE[X_+] - EE[X_-] quad "mit" X_(plus.minus) = max(plus.minus X, 0) \
          & = integral_0^oo (1 - F_X (x)) dif x - integral_(-oo)^0 F_X (x) dif x
   $
 ]
 
 #mainbox(title: "Erwartungswert (Diskrete ZV)")[
   Sei $X: Omega -> RR$ eine diskrete Zufallsvariable, $W_X := X(Omega)$ und $phi: RR -> RR$ eine Abbildung. Falls die Summe wohldefiniert ist, gilt:
-  $ E(phi(X)) := sum_(x in W_X) phi(x) · PP(X = x) $
+  $ EE[phi(X)] := sum_(x in W_X) phi(x) · PP(X = x) $
 ]
 
-Sei $X$ eine nicht-negative Zufallsvariable. Dann gilt $E[X] >= 0$. Gleichheit gilt genau dann, wenn $X = 0$ fast sicher ist.
+Sei $X$ eine nicht-negative Zufallsvariable. Dann gilt $EE[X] >= 0$. Gleichheit gilt genau dann, wenn $X = 0$ fast sicher ist.
 $
-  E[X] >= 0 & <== X >= 0 "immer" \
-   E[X] = 0 & <==> X = 0 "fast sicher, d.h." PP(X != 0) = 0
+  EE[X] >= 0 & <== X >= 0 "immer" \
+   EE[X] = 0 & <==> X = 0 "fast sicher, d.h." PP(X != 0) = 0
 $
 
 == Rechnen mit Erwartungswerten
 *Linearität des Erwartungswertes*:
 
 Seien $X, Y: Omega -> RR$ ZV mit $lambda in RR$. Falls die Erwartungswerte wohldefiniert sind, gilt:
-$ E(lambda · X + Y) = lambda · E(X) + E(Y) $
+$ EE[lambda · X + Y] = lambda · EE[X] + EE[Y] $
 
 Falls $X, Y$ *unabhängig* sind, dann gilt auch:
-$ E(X · Y) = E(X) · E(Y) $
+$ EE[X · Y] = EE[X] · EE[Y] $
 
 Generell: $X_1, X_2, ..., X_n$ unabhängig und endlich:
-$ E[product_(k=1)^n X_k] = product_(k=1)^n E[X_k] $
+$ EE[product_(k=1)^n X_k] = product_(k=1)^n EE[X_k] $
 
 == Ungleichungen
 *Monotonie*\
 Seien $X, Y$ ZV mit $X <= Y$ f.s., dann gilt:
-$E(X) <= E(Y)$
+$EE[X] <= EE[Y]$
 
 *Markow-Ungleichung*\
 Sei $X$ eine ZV und ferner $g: X(Omega) -> [0, +oo)$ eine wachsende Funktion. Für jedes $c in RR$ mit $g(c) > 0$ gilt dann:
-$ PP(X >= c) <= E(g(X)) / g(c) quad limits(==>)^(t > 0) quad PP(X >= t) <= E(X) / t $
+$ PP(X >= c) <= EE[g(X)] / g(c) quad limits(==>)^(t > 0) quad PP(X >= t) <= EE[X] / t $
 
 *Chebyshev-Ungleichung*\
 Sei $Y$ eine ZV mit endlicher Varianz. Für jedes $b > 0$ gilt dann:
-$ PP(|Y - E(Y)| >= b) <= Var(Y) / b^2 $
+$ PP(|Y - EE[Y]| >= b) <= Var(Y) / b^2 $
 
 *Chernoff-Ungleichung*\  //TODO: REDUNDANT! Siehe anderes Kapitel
-Seien $X_1, ..., X_n$ unabhängig mit $X_k tilde "Ber"(p_k)$ und sei $S_n = sum_(k=1)^n X_k$. Sei $mu_n = E[S_n] = sum_(k=1)^n p_k$ und $delta > 0$, dann gilt
+Seien $X_1, ..., X_n$ unabhängig mit $X_k tilde "Ber"(p_k)$ und sei $S_n = sum_(k=1)^n X_k$. Sei $mu_n = EE[S_n] = sum_(k=1)^n p_k$ und $delta > 0$, dann gilt
 $ bb(P)[S_n >= (1 + delta)mu_n] <= (e^delta / (1 + delta)^(1 + delta))^(mu_n) $
 
 
@@ -63,37 +63,37 @@ Sei $X$ eine ZV und $phi: RR -> RR$ eine  Funktion, dann gilt:
   columns: (1fr, 1fr),
   gutter: 0.5em,
   [
-    falls $phi$ #markhl("konvex"): \ $phi(E(X)) markhl(<=) E(phi(X))$
+    falls $phi$ #markhl("konvex"): \ $phi(EE[X]) markhl(<=) EE[phi(X)]$
   ],
   [
-    falls $phi$ #markhl("konkav", color: rgb("#00ff00")): \ $phi(E(X)) markhl(>=, color: #rgb("#00ff00")) E(phi(X))$
+    falls $phi$ #markhl("konkav", color: rgb("#00ff00")): \ $phi(EE[X]) markhl(>=, color: #rgb("#00ff00")) EE[phi(X)]$
   ],
 )
 
-Daraus folgt (e.g. im #markhl("konvexen") Fall): $|E[X]| markhl(<=) E[ |X| ]$ und
+Daraus folgt (e.g. im #markhl("konvexen") Fall): $|EE[X]| markhl(<=) EE[ |X| ]$ und
 $
-  (E[ |X| ])^2 & markhl(<=) E[( |X| )^2] \
-  (E[ |X| ])^2 & markhl(<=) E[X^2] \
-      E[ |X| ] & markhl(<=) sqrt(E[X^2])
+  (EE[ |X| ])^2 & markhl(<=) EE[( |X| )^2] \
+  (EE[ |X| ])^2 & markhl(<=) EE[X^2] \
+      EE[ |X| ] & markhl(<=) sqrt(EE[X^2])
 $
 
 == Varianz
 #mainbox(title: "Varianz")[
-  Sei $X$ eine ZV, sodass $E(X^2) < oo$. Die *Varianz* von $X$ ist definiert durch:
-  $ bb(V)(X) = sigma_X^2 = E[(X - E[X])^2] = E[X^2] - E[X]^2 $
-  wobei $m = E(X)$. Dabei wird $sigma_X$ als *Standardabweichung* von $X$ bezeichnet und beschreibt den Erwartungswert für die Distanz von $X$ zu $E(X)$.
+  Sei $X$ eine ZV, sodass $EE[X^2] < oo$. Die *Varianz* von $X$ ist definiert durch:
+  $ bb(V)(X) = sigma_X^2 = EE[(X - EE[X])^2] = EE[X^2] - EE[X]^2 $
+  wobei $m = EE[X]$. Dabei wird $sigma_X$ als *Standardabweichung* von $X$ bezeichnet und beschreibt den Erwartungswert für die Distanz von $X$ zu $EE[X]$.
 ]
 
-+ Sei $X$ ein ZV, sodass $E(X^2) < oo$ und $a, b in RR$:
++ Sei $X$ ein ZV, sodass $EE[X^2] < oo$ und $a, b in RR$:
   $ bb(V)(a · X + b) = a^2 · bb(V)(X) $
 + Seien $X_1, ..., X_n$ paarweise unabhängig. Dann gilt:
   $ bb(V)(X_1 + ... + X_n) = bb(V)(X_1) + ... + bb(V)(X_n) $
 
 #mainbox(title: "Kovarianz")[
-  Seien $X, Y$ ZV mit $E(X^2) < oo, space E(Y^2) < oo$. Wir definieren die *Kovarianz* zwischen $X$ und $Y$ durch:
+  Seien $X, Y$ ZV mit $EE[X^2] < oo, space EE[Y^2] < oo$. Wir definieren die *Kovarianz* zwischen $X$ und $Y$ durch:
   $
-    cov(X, Y) & := E[(X - E[X])(Y - E[Y])] \
-              & = E(X Y) - E(X) E(Y)
+    cov(X, Y) & := EE[(X - EE[X])(Y - EE[Y])] \
+              & = EE[X Y] - EE[X] EE[Y]
   $
 ]
 + $cov(X, X) = bb(V)(X)$
@@ -110,7 +110,7 @@ Es gilt: $X_i, X_j$ unabhängig $=> X_i, X_j$ unkorreliert. \
 Sowie: $X_i, X_j$ korreliert $=> X_i, X_j$ abhängig.
 
 *Eigenschaften der Kovarianz*\
-Für $X, Y, Z$ mit $E[X_i^2] < oo$ und $a, b, c, d, e, f, g, h in RR$:
+Für $X, Y, Z$ mit $EE[X_i^2] < oo$ und $a, b, c, d, e, f, g, h in RR$:
 + Positive Semidefinitheit: $cov(X, X) >= 0$
 + Symmetrie: $cov(X, Y) = cov(Y, X)$
 + Bilinearität: $cov(a X + b, c Y + d) = a c cov(X, Y)$ und \ $cov(X, (e Y + f) + (g Z + h)) = e cov(X, Y) + g cov(X, Z)$

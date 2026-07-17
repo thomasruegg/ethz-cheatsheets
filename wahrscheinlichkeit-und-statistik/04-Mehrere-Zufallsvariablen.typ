@@ -25,7 +25,7 @@ $
 $ PP(X_k = x) = sum_(x_ell in W_ell \ ell in {1, ..., n} without {k}) p(x_1, ..., x_(k-1), x, x_(k+1), ..., x_n) $
 
 *Der Erwartungswert des Bildes der Funktion* $phi: RR^n -> RR$ ist:
-$ E(phi(X_1, ..., X_n)) = sum_(x_1, ..., x_n) phi(x_1, ..., x_n) p(x_1, ..., x_n) $
+$ EE[phi(X_1, ..., X_n)] = sum_(x_1, ..., x_n) phi(x_1, ..., x_n) p(x_1, ..., x_n) $
 
 Seien $X_1, ..., X_n$ diskrete ZV mit gemeinsamer Verteilung ${p(x_1, ..., x_n)}_(x_1 in W_1, ..., x_n in W_n)$. Dann ist *äquivalent*:
 - (i) $X_1, ..., X_n$ sind unabhängig,

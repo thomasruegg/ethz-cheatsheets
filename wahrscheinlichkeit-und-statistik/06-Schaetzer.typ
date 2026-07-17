@@ -16,16 +16,16 @@ Wir nennen die Gesamtheit der beobachteten Daten $x_1, ..., x_n$ (wobei $x_i = X
 ]
 
 Ein Schätzer $T$ ist *erwartungstreu*, falls für alle $vartheta in Theta$ gilt:
-$ E_vartheta [T] = vartheta $
+$ EE_vartheta [T] = vartheta $
 
 Sei $vartheta in Theta$ und $T$ ein Schätzer. Der *Bias* (erwartete Schätzfehler) von $T$ im Modell $PP_vartheta$ is definiert als:
-$ E_vartheta [T] - vartheta $
+$ EE_vartheta [T] - vartheta $
 
 == Mittlerer quadratischer Schätzfehler (MSE)
 Der mittlere quadratische Schätzfehler (MSE) von $T$ im Modell $PP_vartheta$ ist definiert als:
 $
-  "MSE"_vartheta [T] & = E_vartheta [(T - vartheta)^2] \
-                     & = Var_vartheta (T) + (E_vartheta [T] - vartheta)^2
+  "MSE"_vartheta [T] & = EE_vartheta [(T - vartheta)^2] \
+                     & = Var_vartheta (T) + (EE_vartheta [T] - vartheta)^2
 $
 
 Eine Folge von Schätzern $T^((n)), n in NN$, heisst *konsistent* für $vartheta$, falls $T^((n))$ für $n -> oo$ in $PP_vartheta$-Wahrscheinlichkeit gegen $vartheta$ konvergiert, d.h. für jedes $vartheta in Theta$ und jedes $epsilon > 0$ gilt:
@@ -62,32 +62,32 @@ $ T_("ML") = t_("ML")(X_1, ..., X_n) in limits(op("arg max"))_(vartheta in Theta
 
 *Momentenschätzer.* \
 Der Schätzer $T = (T_1, T_2)$ ist allgemein in jedem Modell $PP_vartheta$, in dem $X_1, ..., X_n$ i.i.d. sind, der sogenannte Momentenschätzer für:
-$ T = (T_1, T_2) = (E_vartheta [X], bb(V)_vartheta [X]) $
-Dieser Schätzer ist allerdings nicht erwartungstreu für $(E_vartheta [X], bb(V)_vartheta [X])$. Es gilt zwar:
+$ T = (T_1, T_2) = (EE_vartheta [X], bb(V)_vartheta [X]) $
+Dieser Schätzer ist allerdings nicht erwartungstreu für $(EE_vartheta [X], bb(V)_vartheta [X])$. Es gilt zwar:
 $
-  E_vartheta [T_1] = E_vartheta [overline(X)_n] = E_vartheta [X] quad "(erwartungstreu ✓)" \
-  E_vartheta [T_2] = E_vartheta [1/n sum_(i=1)^n (X_i - overline(X)_n)^2] = markhl(E_vartheta [1/n sum_(i=1)^n [X_i^2] - (overline(X)_n)^2], color: #rgb("#00ff00"))
+  EE_vartheta [T_1] = EE_vartheta [overline(X)_n] = EE_vartheta [X] quad "(erwartungstreu ✓)" \
+  EE_vartheta [T_2] = EE_vartheta [1/n sum_(i=1)^n (X_i - overline(X)_n)^2] = markhl(EE_vartheta [1/n sum_(i=1)^n [X_i^2] - (overline(X)_n)^2], color: #rgb("#00ff00"))
 $
 
-aber gemäss ($bb(V)[Y] = E[Y^2] - E[Y]^2$) angewandt auf $overline(X)_n$ gilt:
+aber gemäss ($bb(V)[Y] = EE[Y^2] - EE[Y]^2$) angewandt auf $overline(X)_n$ gilt:
 $
-  E_vartheta [(overline(X)_n)^2] &= bb(V)_vartheta [overline(X)_n] + E_vartheta [overline(X)_n]^2 \
-  &= 1/n bb(V)_vartheta [X] + E_vartheta [X]^2 quad quad quad #text(fill: luma(50%), size: 8pt)[$(bb(V)[overline(X)_n] = 1/n bb(V)[X])$] \
-  &= 1/n (E_vartheta [X^2] - E_vartheta [X]^2) + E_vartheta [X]^2 \
-  &= 1/n E_vartheta [X^2] + (n-1)/n E_vartheta [X]^2
+  EE_vartheta [(overline(X)_n)^2] &= bb(V)_vartheta [overline(X)_n] + EE_vartheta [overline(X)_n]^2 \
+  &= 1/n bb(V)_vartheta [X] + EE_vartheta [X]^2 quad quad quad #text(fill: luma(50%), size: 8pt)[$(bb(V)[overline(X)_n] = 1/n bb(V)[X])$] \
+  &= 1/n (EE_vartheta [X^2] - EE_vartheta [X]^2) + EE_vartheta [X]^2 \
+  &= 1/n EE_vartheta [X^2] + (n-1)/n EE_vartheta [X]^2
 $
 Daraus folgt direkt für die Verzerrung des zweiten Moments:
 $
-  E_vartheta [T_2] = markhl(E_vartheta [X^2] - E_vartheta [(overline(X)_n)^2], color: #rgb("#00ff00")) = (n-1)/n dot bb(V)_vartheta [X] != bb(V)_vartheta [X]
+  EE_vartheta [T_2] = markhl(EE_vartheta [X^2] - EE_vartheta [(overline(X)_n)^2], color: #rgb("#00ff00")) = (n-1)/n dot bb(V)_vartheta [X] != bb(V)_vartheta [X]
 $
 
-Um einen erwartungstreuen Schätzer $T'$ für $(E_vartheta [X], bb(V)_vartheta [X])$ zu erhalten, verwendet man:
+Um einen erwartungstreuen Schätzer $T'$ für $(EE_vartheta [X], bb(V)_vartheta [X])$ zu erhalten, verwendet man:
 $
-  T'_(1) & = overline(X)_n quad ==> E_vartheta [T'_1] = E_vartheta [X] "✓" \
+  T'_(1) & = overline(X)_n quad ==> EE_vartheta [T'_1] = EE_vartheta [X] "✓" \
   T'_(2) & = n/(n-1) dot T_2 = n/(n-1) dot 1/n sum_(k=1)^n (X_k - overline(X)_n)^2 \
          & = 1/(n-1) sum_(k=1)^n [X_k^2 - 2 X_k overline(X)_n + overline(X)_n^2] \
          & = 1/(n-1) ( sum_(k=1)^n [X_k^2] quad - 2 n overline(X)_n^2+ overline(X)_n^2 ) \
-         & = 1/(n-1) sum_(k=1)^n [X_k^2] - n/(n-1) (overline(X)_n)^2 ==> E_vartheta [T'_2] =VV_vartheta [X] "✓"
+         & = 1/(n-1) sum_(k=1)^n [X_k^2] - n/(n-1) (overline(X)_n)^2 ==> EE_vartheta [T'_2] =VV_vartheta [X] "✓"
 $
 $T'_(2)$ ist die (korrigierte) #highlight[*empirische Varianz*] $S^2$:
 $ S^2 = 1/(n-1) sum_(k=1)^n (X_k - overline(X)_n)^2 $
