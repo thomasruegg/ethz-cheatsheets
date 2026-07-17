@@ -36,22 +36,33 @@
 
 == Zentraler Grenzwertsatz
 #mainbox(title: "Zentraler Grenzwertsatz")[
-  Sei $(X_n)_(n in NN)$ eine Folge von i.i.d. Zufallsvariablen mit $E(X_i) = mu < oo$ und $Var(X_i) = sigma^2 < oo$ ($EE$ und $VV$ sind _von der einzelnen Variable_ $X_i$). Dann gilt:
-  $ limn P((S_n - n mu) / (sigma sqrt(n)) markhl(<=) med x) = Phi(x) quad forall x in RR $
-  also:
+  Sei $(X_n)_(n in NN)$ eine Folge von i.i.d. Zufallsvariablen mit \ $markhl(E(X_i) = mu, color: #rgb("#ffff00")) < oo$ und $markhl(Var(X_i) = sigma^2, color: #rgb("#00ff00")) < oo$ ($EE$ und $VV$ sind _von der einzelnen Variable_ $X_i$). Dann gilt:
   $
-    text(#rgb("#969696"), ((1/n S_n - mu) / (sigma / sqrt(n)) =)) (S_n - n mu) / (sigma sqrt(n)) arrow.r.long^d cal(N)(0, 1)
+    limn P((S_n - n dot markhl(mu, color: #rgb("#ffff00"))) / (sqrt(markhl(sigma^2, color: #rgb("#00ff00"))) dot sqrt(n)) markhl(<=) med x) = Phi(x) quad forall x in RR
+  $
+  #v(-12pt)
+  also:
+  #v(-10pt)
+  $
+    text(#rgb("#969696"), ((1/n S_n - markhl(mu, color: #rgb("#ffff00"))) / sqrt(markhl(sigma^2, color: #rgb("#00ff00")) / n) =)) (S_n - n dot markhl(mu, color: #rgb("#ffff00"))) / (sqrt(markhl(sigma^2, color: #rgb("#00ff00"))) dot sqrt(n)) arrow.r.long^d cal(N)(0, 1)
   $
 ]
 
 *Bemerkungen:*
 
 Man verwendet auch oft die Form für $overline(X)_n = 1/n S_n$ als:
-$ (overline(X)_n - mu) / (sigma / sqrt(n)) arrow.r.long^d cal(N)(0,1) #h(1fr) (star) $
+$
+  (overline(X)_n - markhl(mu, color: #rgb("#ffff00"))) / (sqrt(markhl(sigma^2, color: #rgb("#00ff00")) / n)) arrow.r.long^d cal(N)(0,1) #h(1fr) (star)
+$
+#v(-12pt)
 beziehungsweise:
 $
-  S_n arrow.r.long^d cal(N)(n mu, n sigma^2) " und " overline(X)_n arrow.r.long^d markhl(cal(N)(mu, 1/n sigma^2)) #h(1fr) (star)
+  S_n ~ cal(N)(n dot markhl(mu, color: #rgb("#ffff00")), n dot markhl(sigma^2, color: #rgb("#00ff00"))) " und " overline(X)_n ~ markhl(cal(N)(mu, 1/n sigma^2)) #h(1fr) (star)
 $
+
+*Generelles Standardisieren*:
+Sei $T_n$ eine Summe oder skalierter Durchschnitt oder sonst irgendwas von $n$ verschiedenen i.i.d. Zufallsvariablen. Dann gilt:
+$ (T_n - markhl(EE[T_n], color: #rgb("#ffff00"))) / sqrt(markhl("Var"(T_n), color: #rgb("#00ff00"))) arrow.r.long^d cal(N)(0,1) $
 
 === Beispielrechnung
 Seien $(X_i)_(i >= 1)$, $(Y_i)_(i >= 1)$ und $(Z_i)_(i >= 1)$ Folgen von i.i.d. ZV mit:

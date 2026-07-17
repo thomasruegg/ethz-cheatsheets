@@ -44,7 +44,7 @@ Für jedes $x_1, ..., x_n in W$ sei $t_("ML")(x_1, ..., x_n)$ der Wert, welcher 
 $ T_("ML") = t_("ML")(X_1, ..., X_n) in limits(op("arg max"))_(vartheta in Theta) L(X_1, ..., X_n; vartheta) $
 *Notiz:* Nicht vergessen zu zeigen, dass es ein *Maximum* ist.
 
-#subbox(title: "Anwendung der Methode")[
+#subbox(title: "Anwendung: Maximum-Likelihood-Schätzer finden")[
   Die Maximum-Likelihood-Methode ist ein Weg, um systematisch einen Schätzer zu bestimmen:
   + Gemeinsame Dichte/Verteilung der ZV finden.
   + Bestimme davon die Log-Likelihood-Funktion: \ $l(vartheta) := ln(L(x_1, ..., x_n; vartheta))$.
@@ -87,11 +87,10 @@ $
   T'_(2) & = n/(n-1) dot T_2 = n/(n-1) dot 1/n sum_(k=1)^n (X_k - overline(X)_n)^2 \
          & = 1/(n-1) sum_(k=1)^n [X_k^2 - 2 X_k overline(X)_n + overline(X)_n^2] \
          & = 1/(n-1) ( sum_(k=1)^n [X_k^2] quad - 2 n overline(X)_n^2+ overline(X)_n^2 ) \
-         & = 1/(n-1) sum_(k=1)^n [X_k^2] - n/(n-1) (overline(X)_n)^2 ==> E_vartheta [T'_2] =VV_vartheta [X] "✓" 
+         & = 1/(n-1) sum_(k=1)^n [X_k^2] - n/(n-1) (overline(X)_n)^2 ==> E_vartheta [T'_2] =VV_vartheta [X] "✓"
 $
-Für $T'_(2)$ schreibt man oft:
+$T'_(2)$ ist die (korrigierte) #highlight[*empirische Varianz*] $S^2$:
 $ S^2 = 1/(n-1) sum_(k=1)^n (X_k - overline(X)_n)^2 $
-Man nennt $S^2$ die (korrigierte) *empirische Varianz*.
 
 #subbox(title: "Gammafunktion")[
   Die Funktion $Gamma$ nennt man (Eulersche) Gammafunktion und sie ist für $x >= 0$ definiert durch:

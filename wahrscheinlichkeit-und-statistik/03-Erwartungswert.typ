@@ -97,8 +97,8 @@ $
   $
 ]
 + $cov(X, X) = bb(V)(X)$
-+ $X, Y$ unabhängig $=> cov(X, Y) = 0$ ($arrow.double.l.not$)
-+ $bb(V)(X plus.minus Y) = bb(V)(X) + bb(V)(Y) plus.minus 2 cov(X, Y)$
++ $X, Y$ unabhängig $=> cov(X, Y) = 0$ ($markhl(arrow.double.l.not)$)
++ $markhl(bb(V)(X plus.minus Y) = bb(V)(X) + bb(V)(Y) plus.minus 2 cov(X, Y), color: #rgb("#ffff00"))$
 + ($star$) $cov(sum_(i=1)^n X_i, sum_(j=1)^n Y_j) = sum_(i=1)^n sum_(j=1)^n cov(X_i, Y_j)$
 
 *Korrelationen*
@@ -113,4 +113,4 @@ Sowie: $X_i, X_j$ korreliert $=> X_i, X_j$ abhängig.
 Für $X, Y, Z$ mit $E[X_i^2] < oo$ und $a, b, c, d, e, f, g, h in RR$:
 + Positive Semidefinitheit: $cov(X, X) >= 0$
 + Symmetrie: $cov(X, Y) = cov(Y, X)$
-+ Bilinearität: $cov(a X + b, c Y + d) = a c cov(X, Y)$ und $cov(X, (e Y + f) + (g Z + h)) = e cov(X, Y) + g cov(X, Z)$
++ Bilinearität: $cov(a X + b, c Y + d) = a c cov(X, Y)$ und \ $cov(X, (e Y + f) + (g Z + h)) = e cov(X, Y) + g cov(X, Z)$
