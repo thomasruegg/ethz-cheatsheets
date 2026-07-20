@@ -331,7 +331,7 @@ Folgen können rekursiv definiert werden. Sei Folge \ $(a_k)_(k >= 1): a_1 = c, 
   Dividiere durch $sqrt(x^2) ==> lim_(x -> +oo) 2/(sqrt(e^x/x^2 - 1/x) + sqrt(e^x/x^2 - 1/x)) = 0$. \ Weil: $e^x/x^2 -> oo$ und $1/x -> 0 ==>$ Nenner geht gegen $oo$
 - *Limes Substitution:* $lim_(markhl(x -> oo)) (x^2(1 - cos(1/x)))$, $u = 1/x$ \
   $lim_(markhl(u -> 0)) (1 - cos(u))/u^2 =^"l'Hospital" lim_(markhl(u -> 0)) sin(u)/(2u) = lim_(markhl(u -> 0)) cos(u)/2 = 1/2$
-- *Limes Log:* Limes der Form $oo^0$ oder $1^oo$ kann man mit $f(x)^g(x) = e^(g(x) dot ln(f(x)))$ lösen. Dann Bernoulli ($e$ ist stetig, daher betrachten wir nur den Exponenten) anwenden oder vereinfachen.
+- *Limes Log:* Limes der Form $oo^0$ oder $1^oo$ kann man mit $f(x)^g(x) = e^(g(x) dot ln(f(x)))$ lösen. Dann l'Hospital ($e$ ist stetig, daher betrachten wir nur den Exponenten) anwenden oder vereinfachen.
 
 #bspbox(title: "Grenzwert berechnen mit Fixpunktgleichung")[
   Sei $(x_n)_(n >= 1)$ rekursiv gegeben durch $x_1 = 1 "und" x_(n+1) := 1+ 1/x_n quad forall n >= 1$. Berechne den Grenzwert $g$. \
@@ -429,6 +429,11 @@ $ ln(n) << n^epsilon << a^n << n! << n^n, forall epsilon >0 "und" a>1 $
 === Klassische Ungleichungen (für Abschätzungen)
 - $ln(x) <= x - 1 < x quad$ ($forall x > 0$)
 - $x/(1+x) <= ln(1+x) <= x quad$ (sehr nützlich, wenn Terme gegen $0$ gehen)
+- $(1+x)^n >= 1+n dot x quad$ ($forall x > -1, n in NN$)
+
+=== Young'sche Ungleichung
+$ forall epsilon >0, forall x, y in RR, 2 dot |x y| <= epsilon x^2 + 1/epsilon y^2 $
+
 
 == Absolute Konvergenz
 #mainbox(title: "Absolute Konvergenz")[
@@ -2157,11 +2162,11 @@ $integral_a^b f(x) d x = F(b) - F(a)$
 
 == DGL 1. Ordnung lösen
 
-#mainbox(title: "Trennung der Variablen")[
+#mainbox(title: "Trennung der Variablen (führt direkt zur allgemeinen Lösung)")[
   Eignet sich besonders für DGLs der Form $y'(x) = f(x) dot g(y)$.
   *Grundidee:* Alle Ausdrücke mit der unabhängigen Variablen ($x$) auf eine Seite und alle Ausdrücke mit der abhängigen Variablen ($y$) auf die andere Seite bringen.
   $ (d y)/(d x) = f(x) dot g(y) ==> 1/g(y) d y = f(x) d x ==> integral 1/g(y) d y = integral f(x) d x $
-  Anschliessend werden beide Seiten unbestimmt integriert.
+  Anschliessend werden beide Seiten unbestimmt integriert $-->$ allg. Lösung
 ]
 
 #mainbox(title: "Lineare Substitution")[
@@ -2255,6 +2260,8 @@ Für die Lösung einer #markhl("inhomogenen DGL") muss ein geeigneter Ansatz fü
     $+ (B_n x^n + ... + B_0) e^(a x) cos(b x)$
   ],
 )
+== Stationäre Lösung
+Eine Gleichgewichtslösung (oder stationäre Lösung) ist ein Zustand, in dem sich ein System im Laufe der Zeit nicht mehr verändert ($==> y'(x) =^! 0$). Somit einfach $y'(x)$ auf 0 setzen und nach $y$ auflösen.
 
 = Komplexe Zahlen $i = sqrt(-1)$
 #mainbox(title: "Formen & Operationen")[
@@ -2459,7 +2466,7 @@ $
   [$x^(-a+1)/(-a+1)$], [$1/x^a$], [$-a/x^(a+1)$],
   [$x^(a+1)/(a+1)$], [$markhl(x)^a quad (a != -1)$], [$a dot x^(a-1)$],
   [$1/(k ln(a)) a^(k x)$], [$a^(k dot markhl(x))$], [$k a^(k x) ln(a)$],
-  [---], [$x^x = e^(x ln x)$], [$x^x (1+ln x)$ ],
+  [---], [$x^x = e^(\x ln x) med (x>0)$], [$x^x (1+ln x)$ ],
   [$ln |x|$], [$1/x$], [$-1/x^2$],
   [$2/3 x^(3/2)$], [$sqrt(x)$], [$1/(2 sqrt(x))$],
   [$-cos(x)$], [$sin(x)$], [$cos(x)$],
@@ -2478,7 +2485,6 @@ $
   [$x arcsin(x) + sqrt(1 - x^2)$], [$arcsin(x)$], [$1/sqrt(1 - x^2)$],
   [$x arccos(x) - sqrt(1 - x^2)$], [$arccos(x)$], [$-1/sqrt(1 - x^2)$],
   [$x arctan(x) - 1/2 ln(1 + x^2)$], [$arctan(x)$], [$1/(1 + x^2)$],
-  [---], [$x^x quad (x > 0)$], [$x^x (1 + ln x)$],
 )
 
 == Integrale
@@ -2506,4 +2512,4 @@ $
   [$integral sqrt(a^2-x^2) d x$], [$x/2 sqrt(a^2-x^2) + a^2/2 arcsin(x/a)$],
 )
 
-== Stirling-Formula $n! approx (sqrt(2 pi n) dot n^n)/e^n$ für grosse $n$.
+== Stirling-Formel $n! approx (sqrt(2 pi n) dot n^n)/e^n$ für grosse $n$.
