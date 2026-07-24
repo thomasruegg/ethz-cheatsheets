@@ -22,8 +22,9 @@ $
 ]
 
 *Randdichte/Randgewicht.* Seien $X_1, ..., X_n$ diskrete ZV mit gemeinsamer Gewichtsfkt. $p$. Für jedes $k in {1, ..., n}$ und jedes $x in W_k$ gilt:
-$ PP(X_k = x) = sum_(x_ell in W_ell \ ell in {1, ..., n} without {k}) p(x_1, ..., x_(k-1), x, x_(k+1), ..., x_n) $
-
+#v(-10pt)
+$ PP(X_k = x) = sum_(x_ell in W_ell \ ell in {1, ..., n} without {k}) p(x_1, ..., x_(k-1), underbrace(x, x_k "locked"), x_(k+1), ..., x_n) $
+#v(-10pt)
 *Der Erwartungswert des Bildes der Funktion* $phi: RR^n -> RR$ ist:
 $ EE[phi(X_1, ..., X_n)] = sum_(x_1, ..., x_n) phi(x_1, ..., x_n) p(x_1, ..., x_n) $
 

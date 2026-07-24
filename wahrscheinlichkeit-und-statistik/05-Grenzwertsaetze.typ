@@ -62,7 +62,11 @@ $
 
 *Generelles Standardisieren*:
 Sei $T_n$ eine Summe oder skalierter Durchschnitt oder sonst irgendwas von $n$ verschiedenen i.i.d. Zufallsvariablen. Dann gilt:
-$ (T_n - markhl(EE[T_n], color: #rgb("#ffff00"))) / sqrt(markhl(Var(T_n), color: #rgb("#00ff00"))) arrow.r.long^d cal(N)(0,1) $
+$ (T_n - markhl(EE[T_n], color: #rgb("#ffff00"))) / sqrt(markhl(Var(T_n), color: #rgb("#00ff00"))) arrow.r.long^d cal(N)(0,1) "und" T_n ~ cal(N)(EE[T_n], Var(T_n)) $
+
+*Noch allgemeiner (Linearkombinationen):*
+Seien $a, lambda_1, ..., lambda_n in RR$ und $X_1 ~ cal(N)(mu_1, sigma_1^2), ..., X_n ~ cal(N)(mu_n, sigma_n^2)$ unabhängige Zufallsvariablen. Dann gilt:
+$ (a + lambda_1 X_1 + ... + lambda_n X_n) \ ~ cal(N)(a + lambda_1 mu_1 + ... + lambda_n mu_n, lambda_1^2 sigma_1^2 + ... + lambda_n^2 sigma_n^2) $
 
 === Beispielrechnung
 Seien $(X_i)_(i >= 1)$, $(Y_i)_(i >= 1)$ und $(Z_i)_(i >= 1)$ Folgen von i.i.d. ZV mit:
