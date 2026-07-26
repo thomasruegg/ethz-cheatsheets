@@ -282,7 +282,7 @@ Konvergenz einer Folge prüfen, ohne Grenzwert zu kennen.
 ]
 
 #mainbox(title: "Cauchy-Folge")[
-  $(a_n)$ heisst Cauchy-Folge falls \
+  $(a_n)$ heisst Cauchy-Folge falls
   $forall epsilon > 0, limits(exists) N in NN: |a_n - a_m| < epsilon quad forall m,n >= N$ \
   #minitext[
     Bei einer _Cauchy-Folge_ ist egal welchen Abstand $epsilon$ man wählt, nach endlichen Ausnahmeindizes $N$ ist der Abstand zwischen *_beliebigen_* Folgengliedern trotzdem kleiner als $epsilon$. Daher ist sie konvergent.
@@ -382,10 +382,10 @@ Abschätzen durch nur schnellstwachsende Terme prüfen.
 
 #mainbox(title: "Cauchy-Kriterium")[
   Reihe $sumk a_k$ konvergent \
-  $<==> forall epsilon > 0, exists N >= 1$ mit $|S_n - S_m| < epsilon, forall m >= n >= N$. \
-  _Hinweis:_ $|S_n - S_m| = |sum_(k=n)^m a_k|$ \
+  $<==> forall epsilon > 0, exists N >= 1$ mit $|S_n - S_m| < epsilon, forall m, n >= N$. \
+  _Hinweis:_ $|S_n - S_m| = |sum_(k=n)^m a_k|$ für $n <= m$ \
   #minitext[
-    Bei _Cauchy-Reihe_ ist egal welches $epsilon$ man wählt, nach endlichen Ausnahmeindizes $N$ ist die Summe der Folgengliedern unter $epsilon$. Reihe konvergiert weil Summe beliebig vieler aufeinanderfolgender Glieder immer kleiner wird. Daher ist sie konvergent.
+    Bei _Cauchy-Reihe_ ist egal welches $epsilon$ man wählt, nach endlichen Ausnahmeindizes $N$ ist die Summe der Folgengliedern unter $epsilon$. Reihe konvergiert weil Summe beliebig vieler aufeinanderfolgender Glieder beliebig klein wird. Daher ist Reihe konvergent.
   ]
 ]
 
@@ -411,8 +411,9 @@ _Hinweis:_ Funktioniert identisch für absolute Konvergenz!
 == Vergleichssatz
 Konv./absolute Konv./Divergenz durch Vergleich mit bekannter Reihe beweisen.
 #mainbox(title: "Majoranten-/Minorantenkriterium (Vergleichssatz)")[
-  Wenn $sumk a_k$ und $sumk b_k$ Reihen mit \
+  Wenn $sumk a_k$ und $sumk b_k$ Reihen mit
   $0 <= a_k <= b_k, forall k >= K >= 1$ sind, so gilt: \
+  #v(5pt)
   $sumk b_k " (absolut) konvergent" &implies sumk a_k " (absolut) konvergent" \
   sumk a_k " divergent" &implies sumk b_k " divergent"$
 ]
@@ -424,16 +425,14 @@ Konv./absolute Konv./Divergenz durch Vergleich mit bekannter Reihe beweisen.
 - $integral_(-oo)^oo e^(-x^2) d x = sqrt(pi) quad$ (Gaußsches Integral)
 
 === Wachstumshierarchie für grosse $n$
-$ ln(n) << n^epsilon << a^n << n! << n^n, forall epsilon >0 "und" a>1 $
+$ ln(n) << n^epsilon << a^n << n! << n^n, quad quad forall epsilon >0 "und" a>1 $
 
 === Klassische Ungleichungen (für Abschätzungen)
 - $ln(x) <= x - 1 < x quad$ ($forall x > 0$)
 - $x/(1+x) <= ln(1+x) <= x quad$ (sehr nützlich, wenn Terme gegen $0$ gehen)
 - $(1+x)^n >= 1+n dot x quad$ ($forall x > -1, n in NN$)
 
-=== Young'sche Ungleichung
-$ forall epsilon >0, forall x, y in RR, 2 dot |x y| <= epsilon x^2 + 1/epsilon y^2 $
-
+=== Young'sche Ungleichung $forall epsilon >0, forall x, y in RR, 2 dot |x y| <= epsilon x^2 + 1/epsilon y^2$
 
 == Absolute Konvergenz
 #mainbox(title: "Absolute Konvergenz")[
@@ -1180,7 +1179,7 @@ cos: RR -> RR "stetig", quad cos(z) &= 1 - z^2/2! + z^4/4! - ... = sum_(n=0)^oo 
 )
 - *Halbwinkel / Quadrate:* \
   $sin^2(x/2) = (1 - cos(x))/2, quad cos^2(x/2) = (1 + cos(x))/2, quad tan^2(x/2) = (1 - cos(x))/(1 + cos(x))$ \
-  *(Alternativ mit Doppelwinkel:* $sin^2(x) = (1 - cos(2x))/2, quad cos^2(x) = (1 + cos(2x))/2$ *)*
+  #highlight[*Alternativ mit Doppelwinkel:*] $sin^2(x) = (1 - cos(2x))/2, quad cos^2(x) = (1 + cos(2x))/2$
 - *Summe zu Produkt (Faktorzerlegung):* \
   $sin(x) + sin(y) = 2 sin((x+y)/2) cos((x-y)/2)$ \
   $sin(x) - sin(y) = 2 cos((x+y)/2) sin((x-y)/2)$ \
@@ -1373,7 +1372,7 @@ Für Intervall $I subset RR$ und $f: I -> RR$. $f$ ist:
 ]
 
 === Glatte Funktionen $f in C^oo$
-$exp(x), sin(x), cos(x), sinh(x), cosh(x), tanh(x), ln(x),$ \ $arcsin(x), arccos(x), "arccot"(x), arctan(x)$ & Polynome sind glatt. \ $tan(x)$ ist auf $RR backslash {pi/2 + k pi}, cot(x)$ auf $RR backslash {k pi}$ glatt.
+$x, 1-x ,exp(x), sin(x), cos(x), sinh(x), cosh(x), tanh(x), ln(x) (x in (0, oo)),$ \ $arcsin(x) \& arccos(x) (x in (-1, 1)), "arccot"(x), arctan(x)$ & Polynome \ $tan(x)$ ist auf $RR backslash {pi/2 + k pi}, cot(x)$ auf $RR backslash {k pi}$ glatt.
 
 === Rechenregeln Höhere Ableitungen
 Für $f, g: DD -> RR quad n$-mal differenzierbar:
@@ -1383,7 +1382,7 @@ Für $f, g: DD -> RR quad n$-mal differenzierbar:
 - *$g compose f$:* ist $n$-mal diff. und $(g compose f)^((n))(x) = sum_(k=1)^n A_(n,k)(x) (g^((k)) compose f)(x), A_(n,k)$ ist ein Polynom.
 
 == Potenzreihen Ableitungsregeln
-- *Allgemeine Funktionenfolgen:* Für eine Folge $(f_n) in C^1$ mit $f_n ->_"glm." f$ und $f'_n ->_"glm." g$ auf $(a, b)$ gilt:
+- *Allgemeine Funktionenfolgen:* Für eine Folge $(f_n) in C^1$ mit $f_n ->_"glm." f$ und \ #v(-2pt) $f'_n ->_"glm." g$ auf $(a, b)$ gilt:
   $f in C^1$ und $f' = g$.
 - *Potenzreihen:* Für eine Potenzreihe $f(x) = sum_(k=0)^oo c_k (x - x_0)^k$ mit Konvergenzradius $rho > 0$ gilt:
   - $f$ ist auf $(x_0 - rho, x_0 + rho)$ glatt ($f in C^oo$).
@@ -1432,7 +1431,9 @@ Die erste Ableitung ungleich 0, sei die $(n+1)$-te Ableitung. Dann gilt:
 - *Ist $(n+1)$ gerade* ($n$ ist ungerade): *Extremum*.
   - $f^((n+1))(x_0) > 0 ==> x_0$ = striktes lokales *Minimum* $union$
   - $f^((n+1))(x_0) < 0 ==> x_0$ = striktes lokales *Maximum* $inter$
-_Hinweis: Der klassische Test mit der 2. Ableitung ist der Spezialfall $n=1$._
+_Hinweis: Der klassische Test mit der 2. Ableitung ist der Spezialfall $n=1$._ \
+#v(-2pt)
+_Achtung 🚨: Sollen globale Extrema in $[a, b]$ gefunden werden, nicht nur Stellen $f'(x) = 0$ untersuchen, sondern immer auch Randwerte $f(a)$ und $f(b)$ prüfen!_
 
 === Korrolar Implikationen der Ableitung
 Seien $f, g: [a, b] -> RR$ stetig und in $(a, b)$ differenzierbar und *für alle* $xi in [a, b]$ gilt. (gilt für alle $x, x_1, x_2 in [a, b]$)
@@ -1584,7 +1585,7 @@ Annäherung glatter Funktionen als Potenzreihen am Entwicklungspunkt $a$.
     0,
   ))[$markhl("für "(-1 < x < 1))$]
 
-#howtobox(title: "Herleitung: Taylorreihe von " + $f(x) = (1+x)^p$)[
+#bspbox(title: "Herleitung: Taylorreihe von " + $f(x) = (1+x)^p$)[
   Wir suchen die dazugehörige Taylorreihe um den Entwicklungspunkt $x_0 = 0$ (Maclaurin-Reihe).
 
   + *Ableitungen bilden & bei $x=0$ auswerten:*
@@ -1649,8 +1650,7 @@ Annäherung glatter Funktionen als Potenzreihen am Entwicklungspunkt $a$.
 #howtobox(title: "Rezept: Approximiere Punkt")[
   // TODO: Weglassen?
   Approximiere $f$ mit Entwicklungspunkt $a$ an Stelle $x$ mit Taylor von Ordnung $n$:
-  + Leite $f$ $n$-mal ab
-  + Bilde Taylorpolynom durch Einsetzen von $a$ und $x$
+  *1. *Leite $f$ $n$-mal ab, *2. *Bilde Taylorpolynom durch Einsetzen von $a$ und $x$
 ]
 
 #howtobox(title: "Rezept: Finde Fehler von Taylorpolynom")[
@@ -1674,6 +1674,7 @@ Annäherung glatter Funktionen als Potenzreihen am Entwicklungspunkt $a$.
     Wir wollen Fehler nach *oben* abschätzen (wann wird Fehlerterm $(e^xi)/6$ in diesem Intervall am grössten)?
     Da $e^x$ monoton wächst, ist Wert am rechten Rand $xi = 1$ am grössten.
     Wir setzen Worst-Case $xi = 1$ ein & schätzen ab ($e < 3$): \
+    #v(-10pt)
     $ |R_2| <= (e^1)/6 < 3/6 = 1/2 = 0.5 $
   *Fazit:* Wenn wir $e^1$ nur mit einem simplen Polynom 2. Grades annähern, ist garantiert, dass Ergebnis höchstens um $0.5$ vom exakten Wert abweicht.
 ]
@@ -1774,9 +1775,9 @@ Für $f, g: [a, b] -> RR$ beschränkt und integrierbar:
 
 == Unbestimmtes Integral
 #mainbox(title: "Unbestimmtes Integral")[
-  $integral f(x) d x = F(x) + C$ \
+  $integral f(x) d x = F(x) markhl(+ C)$
   #minitext[
-    Menge aller Integrationen von $f$($x$) a.k.a. aller Stammfunkt. $C$ = Integrationskonstante.
+    Menge aller Integrationen von $f$($x$) a.k.a. aller Stammfunkt.
   ]
 ]
 
@@ -2135,10 +2136,8 @@ $integral_a^b f(x) d x = F(b) - F(a)$
     $(x^2 - 1)/(x(x^2 + 1)) = A/x + (B x + C)/(x^2 + 1)$
   + *Gleichung aufstellen:* Mit Hauptnenner $x(x^2+1)$ multiplizieren. \
     $x^2 - 1 = A(x^2 + 1) + (B x + C)x <==> x^2 - 1 = (A+B)x^2 + C x + A$
-  + *Koeffizientenvergleich:* Linke Seite ($1x^2 + 0x - 1$) mit rechter Seite abgleichen. \
-    - $x^2$: $1 = A + B$
-    - $x^1$: $0 = C$
-    - $x^0$: $-1 = A quad => quad 1 = -1 + B quad => quad B = 2$
+  + *Koeffizientenvergleich:* Linke Seite ($1x^2 + 0x - 1$) mit rechter Seite abgleichen.
+    $x^2: 1 = A + B, quad x^1: 0 = C, quad x^0: -1 = A quad => quad 1 = -1 + B quad => quad B = 2$
   + *Integrieren:* Setze $A=-1, B=2, C=0$ in den Ansatz ein. \
     $integral (-1)/x + (2x)/(x^2 + 1) d x = -ln|x| + ln(x^2 + 1) + C$
 ]
@@ -2204,8 +2203,8 @@ $integral_a^b f(x) d x = F(b) - F(a)$
 ]
 
 === Partikuläre Lösung ($y_p$)
-Für die Lösung einer #markhl("inhomogenen DGL") muss ein geeigneter Ansatz für die partikuläre Lösung gewählt werden. Der Ansatz richtet sich nach der Störfunktion $s(x)$ (der rechten Seite der DGL):
-
+Für die Lösung einer #markhl("inhomogenen DGL") muss ein geeigneter Ansatz für die partikuläre Lösung gewählt werden. Der Ansatz richtet sich nach der Störfunktion $s(x)$ (der rechten Seite der DGL).
+Dann $y_p (x)$ ableiten und $y_p, y_p^', y_p^'', ...$ in Aufgabengleichung einsetzen.
 
 #howtobox(title: "Resonanzfall")[
   Liegt vor, wenn $s(x)$ (die rechte Seite) oder ein Teil davon in Form und Exponent bereits in der homogenen Lösung auftaucht.
@@ -2350,7 +2349,7 @@ Eine Gleichgewichtslösung (oder stationäre Lösung) ist ein Zustand, in dem si
   [$limxo 1/cos x = 1$], [$limxo (cos x -1)/x = 0$],
   [$limxo ln(1 - x)/x = -1$], [$lim_(x->0^+) x ln(x) = 0$],
   [$limxo (1 - cos x)/x^2 = 1/2$], [$limxo (e^x-1)/x = 1$],
-  [$limxo x/arctan x = 1$], [$limxi arctan x = pi/2$],
+  [$limxo x/arctan(x) = 1$], [$limxi arctan(x) = pi/2$],
   [$limxo (e^(a x)-1)/x = a$], [$limxo ln(x+1)/x = 1$],
   [$lim_(x->1) ln(x)/(x-1) = 1$], [$limxi ln(x)/x^a = 0 quad forall a > 0$],
   [$limxi root(x, x) = 1$], [$limxi (2x)/2^x = 0$],
@@ -2513,3 +2512,11 @@ $
 )
 
 == Stirling-Formel $n! approx (sqrt(2 pi n) dot n^n)/e^n$ für grosse $n$.
+
+== Vollständige Induktion
+*(BEH):* [Formel].
+*(BC):* $n=1$: [...].
+*(IH):* Wir nehmen an, Behauptung gilt für ein beliebiges, aber festes $n$ (Bedingung hinzufügen, z. B. $n >= 1$).
+*(IS):* Zu zeigen: Behauptung gilt auch für $n+1$.
+$n -> n + 1$: [...] $=^("IH")$ [...].
+*(CC):* Nach Prinzip der vollst. Induktion gilt Behauptung somit für alle $n >= 1$.
