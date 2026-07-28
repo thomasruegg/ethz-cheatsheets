@@ -113,4 +113,4 @@ Sowie: $X_i, X_j$ korreliert $=> X_i, X_j$ abhängig.
 Für $X, Y, Z$ mit $EE[X_i^2] < oo$ und $a, b, c, d, e, f, g, h in RR$:
 + Positive Semidefinitheit: $cov(X, X) >= 0$
 + Symmetrie: $cov(X, Y) = cov(Y, X)$
-+ Bilinearität: $cov(a X + b, c Y + d) = a c cov(X, Y)$ und \ $cov(X, (e Y + f) + (g Z + h)) = e cov(X, Y) + g cov(X, Z)$
++ #highlight[Bilinearität:] $cov(a X + b, c Y + d) = a c cov(X, Y)$ und \ $cov(X, (e Y + f) + (g Z + h)) = e cov(X, Y) + g cov(X, Z)$

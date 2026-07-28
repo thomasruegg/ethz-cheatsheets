@@ -71,19 +71,20 @@ $mu$-Schätzer: $overline(X)_n = 1/n sum_(i=1)^n X_i$ \
 + Hypothesen: $H_0: mu = mu_0$ gegen $H_A: mu != mu_0$ ($mu < mu_0$ oder $mu > mu_0$) mit Signifikanzniveau $alpha$.
 + Teststatistik $T := (overline(X)_n - mu_0)/(sigma / sqrt(n)) ~ cal(N)(0,1)$ unter $PP_(mu_0)$
 + Kritischer Bereich $K$: Ansatz für $c$ finden, sodass $PP_(mu_0)[T in K] = alpha$ gilt.
-  - *Linksseitig* ($H_A: mu < mu_0$): Ansatz $K = (-infinity, c_<)$ für ein $c_< in RR$.
+  - *Linksseitig* ($H_A: mu_A < mu_0$): Ansatz $K = (-infinity, c_<)$ für ein $c_< in RR$.
     Finde $c_<$ s.t. $PP_(mu_0)[T < c_<] = alpha$ \
     $=> c_< = z_alpha = -z_(1-alpha) => K = (-infinity, -z_(1-alpha))$
-  - *Rechtsseitig* ($H_A: mu > mu_0$): Ansatz $K = (c_>, infinity)$ für ein $c_> in RR$.
+  - *Rechtsseitig* ($H_A: mu_A > mu_0$): Ansatz $K = (c_>, infinity)$ für ein $c_> in RR$.
     Finde $c_>$ s.t. $PP_(mu_0)[T > c_>] = alpha$ \
     $=> 1 - PP_(mu_0)[T <= c_>] = alpha => PP_(mu_0)[T <= c_>] = 1 - alpha => c_> = z_(1-alpha) => K = (z_(1-alpha), infinity)$
-  - *Zweiseitig* ($H_A: mu != mu_0$): Ansatz $K = (-infinity, -c_=) union (c_=, infinity)$ für ein $c_= in RR$
+  - *Zweiseitig* ($H_A: mu_A != mu_0$): Ansatz $K = (-infinity, -c_=) union (c_=, infinity)$ für ein $c_= in RR$
     Finde $c_=$ s.t. \ $PP_(mu_0)[T in K] = alpha \
     => PP_(mu_0)[-c_= < T < c_=] = 1 - alpha => 2 Phi(c_=) - 1 = 1 - alpha \
     => Phi(c_=) = 1 - alpha/2 => c_= = z_(1-alpha/2) \
     => K = (-infinity, -z_(1-alpha/2)) union (z_(1-alpha/2), infinity)$
 + *Dualität zum Konfidenzintervall (zweiseitig):* \
   Die Nullhypothese wird genau dann *nicht* verworfen, wenn $T in K^c$, also:
+  #v(-18pt)
   $ |T| <= z_(1-alpha/2) <=> |(overline(X)_n - mu_0)/(sigma / sqrt(n))| <= z_(1-alpha/2) $
   $ <=> -z_(1-alpha/2) dot sigma/sqrt(n) <= overline(X)_n - mu_0 <= z_(1-alpha/2) dot sigma/sqrt(n) $
   $ <=> overline(X)_n - z_(1-alpha/2) dot sigma/sqrt(n) <= mu_0 <= overline(X)_n + z_(1-alpha/2) dot sigma/sqrt(n) $
@@ -98,15 +99,16 @@ $sigma^2$-Schätzer: $S^2 = 1/(n-1) sum_(i=1)^n (X_i - overline(X)_n)^2$ \
 + Hypothesen: $Theta_0 = ({mu_0} text(" oder ") {mu <= mu_0} text(" oder ") {mu >= mu_0}) times (0, infinity)$ #text(fill: luma(50%))[$<- "weil" arrow(theta) = (mu, sigma^2)$]
 + Teststatistik $T := (overline(X)_n - mu_0)/(sqrt(S^2 / n)) ~ t_(n-1)$ unter $PP_(mu_0)$
 + Kritischer Bereich $K$: Ansatz für $c$ finden, sodass $PP_(mu_0)[T in K] = alpha$ gilt.
-  - *Linksseitig* ($H_A: mu < mu_0$): Ansatz $K = (-infinity, c_<)$ für ein $c_< in RR$.
+  - *Linksseitig* ($H_A: mu_A < mu_0$): Ansatz $K = (-infinity, c_<)$ für ein $c_< in RR$.
     Finde $c_<$ s.t. $PP_(mu_0)[T < c_<] = alpha => c_< = -t_(n-1, 1-alpha) => K = (-infinity, -t_(n-1, 1-alpha))$
-  - *Rechtsseitig* ($H_A: mu > mu_0$): Ansatz $K = (c_>, infinity)$ für ein $c_> in RR$.
+  - *Rechtsseitig* ($H_A: mu_A > mu_0$): Ansatz $K = (c_>, infinity)$ für ein $c_> in RR$.
     Finde $c_>$ s.t. $PP_(mu_0)[T > c_>] = alpha => c_> = t_(n-1, 1-alpha) => K = (t_(n-1, 1-alpha), infinity)$
-  - *Zweiseitig* ($H_A: mu != mu_0$): Ansatz $K = (-infinity, -c_=) union (c_=, infinity)$ für ein $c_= in RR^+$ \
+  - *Zweiseitig* ($H_A: mu_A != mu_0$): Ansatz $K = (-infinity, -c_=) union (c_=, infinity)$ für ein $c_= in RR^+$ \
     Finde $c_=$ s.t. $PP_(mu_0)[ |T| > c_=] = alpha => c_= = t_(n-1, 1-alpha/2) \
     => K = (-infinity, -t_(n-1, 1-alpha/2)) union (t_(n-1, 1-alpha/2), infinity)$
 + *Dualität zum Konfidenzintervall (zweiseitig):* \
   Äquivalent zum z-Test durch Umformen von $|T| <= t_(n-1, 1-alpha/2)$ nach $mu_0$:
+  #v(-15pt)
   $ overline(X)_n - t_(n-1, 1-alpha/2) dot sqrt(S^2/n) <= mu_0 <= overline(X)_n + t_(n-1, 1-alpha/2) dot sqrt(S^2/n) $
   $==>$ $I = [overline(X)_n - t_(n-1, 1-alpha/2) dot sqrt(S^2/n), overline(X)_n + t_(n-1, 1-alpha/2) dot sqrt(S^2/n)]$
 
