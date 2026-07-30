@@ -11,7 +11,7 @@
   number-align: center,
 )
 
-#set text(size: 8pt, lang: "de")
+#set text(size: 7pt, lang: "de")
 #set heading(numbering: "1.1")
 #set par(justify: true) // TODO: Does that make sense?
 #set list(marker: ([•], [◦]))
@@ -106,21 +106,17 @@
 #minitext[$==>$ Die natürlichen Zahlen sind unbeschränkt in den Reellen Zahlen.]
 
 == Intervalle
-$]a,b[ = (a,b) = {x in RR | a < x < b}$ #minitext[offenes Intervall] \
-$[a,b[ = [a,b) = {x in RR | a <= x < b}$ #minitext[halb-offenes Intervvall] \
-$]a,b] = (a,b] = {x in RR | a < x <= b}$ #minitext[halb-offenes Intervall] \
-$[a,b] = [a,b] = {x in RR | a <= x <= b}$ #minitext[abgeschlossenes Intervall] \
+
+$[a,b] = {x in RR | a <= x <= b}$ #minitext[abgeschlossenes Intervall, kompakt wenn $a, b != plus.minus oo$] \
 Abgeschlossenes Intervall: $I in RR$ ist abgeschlossen, wenn $forall$ konvergenten Folgen $(a_n)_(n >= 1)$ auch Grenzwert $limn (a_n) in I$.
 
-== Beschränktheit, Schranken
+== Beschränktheit, Schranken, Minimum, Maximum
 $x$ ist die obere/untere Schranke. $A in RR$ heisst
 - (n.o.b) nach oben beschränkt: $exists x in RR$ s.t. $x >= a$ $forall a in A$.
 - (n.u.b) nach unten beschränkt: $exists x in RR$ s.t. $x <= a$ $forall a in A$.
 - beschränkt: (n.o.b) und (n.u.b)
-
-== Minimum, Maximum
-Minimum: $x in A$ ist und $x$ untere Schranke \
-Maximum: $x in A$ ist und $x$ obere Schranke
+- Minimum: $x in A$ und $x$ untere Schranke \
+- Maximum: $x in A$ und $x$ obere Schranke
 
 == Infimum & Supremum
 #mainbox[
@@ -213,17 +209,12 @@ Sei $(a_n)_(n >= 1)$ und $(b_n)_(n >= 1)$ konvergente Folgen mit $limn (a_n) = a
 - wenn $b_n != 0, forall n >= 1 "und" b != 0$ dann ist $(a_n/b_n)_(n >= 1)$ konvergent und $limn (a_n/b_n) = a/b$
 
 == Monotone Folgen
-- monoton wachsend: $forall n in NN$ gilt, dass $a_n <= a_(n + 1)$
-- streng monoton wachsend: $forall n in NN$ gilt, dass $a_n < a_(n + 1)$
-- monoton fallend: $forall n in NN$ gilt, dass $a_n >= a_(n + 1)$
-- streng monoton fallend: $forall n in NN$ gilt, dass $a_n > a_(n + 1)$
-
 #bspbox(title: "Monotonie prüfen durch Ableitung")[
   Ersetze $n$ durch $x$ und berechne die Ableitung nach $x$.\ $a'(x) >= 0 ==>$ monoton wachsend, $a'(x) <= 0 ==>$ monoton fallend.
 ]
 Kann auch durch Induktionsbeweis gezeigt werden. Siehe "Grenzwert rekursiver Folgen berechnen".
 
-== Sandwhich Theorem
+== Sandwich Theorem
 Grenzwert von Folge bestimmen, wenn sie zwischen zwei anderen Folgen mit gleichem, bereits bekannten Grenzwert liegt.
 #mainbox(title: "Sandwich-Theorem")[
   Sei $limn (a_n) = alpha$, $limn (b_n) = alpha$ und \
@@ -311,7 +302,7 @@ Konvergenz einer Folge prüfen, ohne Grenzwert zu kennen.
 - Es gibt je eine Teilfolge von $(a_n)_(n in NN)$ die $lim_(n -> oo) inf a_n$ resp. $lim_(n -> oo) sup a_n$ als Limes annehmen.
 
 == Rekursive Folgen (Induktiv definierte)
-Folgen können rekursiv definiert werden. Sei Folge \ $(a_k)_(k >= 1): a_1 = c, quad a_(k+1) = f(a_k), quad k >= 1$
+Folgen können rekursiv definiert werden. Sei $(a_k)_(k >= 1): a_1 = c, a_(k+1) = f(a_k)$
 #bspbox(title: "Grenzwert Rekursiver Folgen berechnen")[
   Sei Folge $(a_k)_(k >= 1): a_1 = c, a_(k+1) = sin(a_k), k >= 1$
   #set enum(numbering: "1.")
@@ -572,17 +563,9 @@ Ist ein Intervall $I subset RR$ falls $I = [a, b], a <= b$.
   ]
 
 == Monotonie von Funktionen // TODO: weglassen?
-#mainbox(title: $f$ + " ist monoton")[
-  $f: DD -> RR, DD subset RR, forall x, y in DD$ ist:
-  - *monoton wachsend* falls $x <= y ==> f(x) <= f(y)$.
-  - *streng monoton wachsend:* falls $x < y ==> f(x) < f(y)$.
-  - *monoton fallend:* falls $x >= y ==> f(x) >= f(y)$.
-  - *streng monoton fallend:* falls $x > y ==> f(x) > f(y)$.
-]
-- *monoton:* falls mono. wachsend oder mono. fallend.
-- *streng monoton:* falls streng monoton wachsend oder streng monoton fallend.
-- Symmetrische Funktionen sind nie monoton.
-- $f$ streng mono. wachsend $==>$ $f$ injektiv
+
+- Gerade Funktionen (e.g. $cos(x)$) sind nie monoton (und nie injektiv).
+- $f$ streng monoton $==> f$ injektiv.
 
 == Definition Stetigkeit von $f$
 #grid(
@@ -626,6 +609,33 @@ Ist ein Intervall $I subset RR$ falls $I = [a, b], a <= b$.
     #minitext[
       Anwendung: Operation "Funktion" & "Grenzwert" können vertauscht werden.
     ]
+]
+
+#bspbox(title: "Stetigkeitspunkte (Folgenkriterium & Dichtheit)")[
+
+  #grid(
+    columns: (1fr, 1.5fr),
+    gutter: 0.5em,
+    [
+      $
+        f(x) = cases(
+          x^2 & x in QQ,
+          3 - 2x quad & x in RR \\ QQ
+        )
+      $
+      - Rationale Folge $a_n in QQ$: $lim_(n->oo) f(a_n) = x_0^2$
+    ],
+    [
+      Für Punkt $x_0 in RR$ betrachten wir zwei konvergierende Folgen $a_n -> x_0$:
+      - Irrationale Folge $a_n in RR \\ QQ$: $lim_(n->oo) f(a_n) = 3 - 2x_0$ \
+    ],
+  )
+
+
+
+  Für Stetigkeit müssen beide Grenzwerte exakt übereinstimmen:
+  $ x_0^2 = 3 - 2x_0 quad ==> quad x_0^2 + 2x_0 - 3 = 0 quad ==> quad (x_0-1)(x_0+3) = 0 $
+  $==> f$ ist *nur* in $x_1 = 1$ und $x_2 = -3$ stetig.
 ]
 
 #mainbox(title: $f$ + " stetig in " + $x_0$ + " (punktweise) (Grenzwert-Kriterium)")[
@@ -702,7 +712,7 @@ Für $DD subset RR, f, g: DD -> RR, x_0 in DD$.
   _Ziel:_ Zeigen, dass ein $x = sup(X)$ existiert mit $f(x) = c$.
 
   #set enum(numbering: "1.")
-  + *Menge & Supremum definieren:* \
+  + *Menge & Supremum definieren:*
     Sei $X := {t in [a,b] | f(t) <= c}$. \
     $X$ ist nicht leer (da $a in X$) und beschränkt ($X subset [a,b]$). \
     Nach dem Vollständigkeitsaxiom existiert somit das Supremum $x := sup(X)$.
@@ -714,7 +724,7 @@ Für $DD subset RR, f, g: DD -> RR, x_0 in DD$.
 
   + *Zeige $f(x) = c$ (per Widerspruch):* \
     Annahme: $markhl(f(x) < c)$. (Daraus folgt sofort $x < b$, da $c <= f(b)$). \
-    Wir wählen den Abstand $epsilon = c - f(x) > 0$. Wegen der Stetigkeit von $f$ existiert nun ein $delta > 0$, sodass sich $f$ im Bereich $[x, x+delta]$ um weniger als $epsilon$ verändert. \
+    Wir wählen den Abstand $epsilon = c - f(x) > 0$. Wegen der Stetigkeit von $f$ existiert nun ein $delta > 0$, sodass sich $f$ im Bereich $[x, x+delta]$ um weniger als $epsilon$ verändert.
     Es gilt dort also: $markhl(f(y) < f(x) + epsilon = c)$. \
     Das bedeutet, das Intervall $(x, x+delta) inter [a,b]$ liegt komplett in $X$. \
     *Widerspruch!* Wir hätten Elemente in $X$ gefunden, die echt grösser als unser definiertes Supremum $x$ sind. \
@@ -725,7 +735,7 @@ Für $DD subset RR, f, g: DD -> RR, x_0 in DD$.
   #minitext[
     Hilfsfunktion & Nullstellenmove zeigen, dass stetige Funktion $f$ den Wert $e^x$ annimmt.
   ] \
-  _Zu beweisen:_ Wenn $f$ stetig ist, $f(0) < 1$ & $f(1) > e$, dann $exists x in [0, 1]$ s.t. $f(x) = e^x$. \
+  _Zu beweisen:_ Wenn $f$ stetig ist, $f(0) < 1$ & $f(1) > e$, dann $exists x in [0, 1]$ s.t. $f(x) = e^x$.
   _Proof:_ Definiere Hilfsfunktion $g(x) = f(x) - e^x$. \
   $g(x)$ ist stetig, da die Differenz stetiger Funktionen stetig ist. \
   Es gilt: $g(0) = f(0) - e^0 < 1 - 1 = 0 ==> g(0) < 0$. \
@@ -1122,7 +1132,7 @@ cos: RR -> RR "stetig", quad cos(z) &= 1 - z^2/2! + z^4/4! - ... = sum_(n=0)^oo 
       content((x, 0.4), text(10pt)[#label])
     }
 
-    // Plot sin and cos
+    // 1. Plot sin and cos
     let sin-pts = ()
     let cos-pts = ()
     for i in range(120) {
@@ -1130,11 +1140,10 @@ cos: RR -> RR "stetig", quad cos(z) &= 1 - z^2/2! + z^4/4! - ... = sum_(n=0)^oo 
       sin-pts.push((x, calc.sin(x)))
       cos-pts.push((x, calc.cos(x)))
     }
-
     line(..sin-pts, stroke: 1pt + rgb("#fa0064"))
     line(..cos-pts, stroke: 1pt + rgb("#0c2896"))
 
-    // Plot tan (avoiding asymptotes by splitting into segments)
+    // 2. Plot tan (avoiding asymptotes by splitting into segments)
     for k in (-2, -1, 0, 1, 2) {
       let tan-pts = ()
       for i in range(50) {
@@ -1144,23 +1153,56 @@ cos: RR -> RR "stetig", quad cos(z) &= 1 - z^2/2! + z^4/4! - ... = sum_(n=0)^oo 
       line(..tan-pts, stroke: 1pt + rgb("#0c6400"))
     }
 
+    // 3. Plot arctan (Domain: R)
+    let arctan-pts = ()
+    for i in range(120) {
+      let x = -6.5 + 13.0 * i / 119
+      arctan-pts.push((x, calc.atan(x).rad()))
+    }
+    line(..arctan-pts, stroke: 1pt + rgb("#17becf")) // Cyan
+
+    // 4. Plot arcsin and arccos (Domain: [-1, 1])
+    let arcsin-pts = ()
+    let arccos-pts = ()
+    for i in range(50) {
+      let x = -1.0 + 2.0 * i / 49
+      arcsin-pts.push((x, calc.asin(x).rad()))
+      arccos-pts.push((x, calc.acos(x).rad()))
+    }
+    line(..arcsin-pts, stroke: 1pt + rgb("#ff7f0e")) // Orange
+    line(..arccos-pts, stroke: 1pt + rgb("#9467bd")) // Violett
+
+    // --- Labels ---
     content((3, 1.2), text(10pt, fill: rgb("#fa0064"))[$sin(x)$])
     content((3.3, -1.5), text(10pt, fill: rgb("#0c2896"))[$cos(x)$])
     content((2.2, 2.5), text(10pt, fill: rgb("#0c6400"))[$tan(x)$])
+
+    content((2, 1.9), text(10pt, fill: rgb("#ff7f0e"))[$arcsin(x)$])
+    content((-1.6, 2.8), text(10pt, fill: rgb("#9467bd"))[$arccos(x)$])
+    content((6, 1.7), text(10pt, fill: rgb("#17becf"))[$arctan(x)$])
   })
 ]
 
-- *Eulersche Formeln:* \
-  $e^(i x) = cos(x) + i sin(x)$ \
-  $sin(x) = (e^(i x) - e^(-i x))/(2i), quad cos(x) = (e^(i x) + e^(-i x))/2$
-- *Pythagoreische Identitäten:* \
+#grid(
+  columns: (1.2fr, 1fr),
+  [
+    - *Eulersche Formeln:* \
+      $e^(i x) = cos(x) + i sin(x)$ \
+      $sin(x) = (e^(i x) - e^(-i x))/(2i), quad cos(x) = (e^(i x) + e^(-i x))/2$
+  ],
+  [
+    - *Symmetrie (Negative Winkel):* \
+    $sin(-x) = markhl(-)sin(x), quad cos(-x) = cos(x), quad tan(-x) = -tan(x)$
+  ],
+)
+#v(5pt)
+- *Pythagoreische IDs:*
   $sin^2(x) + cos^2(x) = 1, quad 1/(cos^2(x)) = 1 + tan^2(x)$
-- *Symmetrie (Negative Winkel):* \
-  $sin(-x) = markhl(-)sin(x), quad cos(-x) = cos(x), quad tan(-x) = -tan(x)$
+
 - *Additionstheoreme:* \
   $sin(x plus.minus y) = sin(x) cos(y) plus.minus cos(x) sin(y)$ \
-  $cos(x plus.minus y) = cos(x) cos(y) minus.plus sin(x) sin(y)$ \
-  $tan(x plus.minus y) = (tan(x) plus.minus tan(y))/(1 minus.plus tan(x) tan(y))$
+  $cos(x plus.minus y) = cos(x) cos(y) minus.plus sin(x) sin(y)$
+  $quad quad tan(x plus.minus y) = (tan(x) plus.minus tan(y))/(1 minus.plus tan(x) tan(y))$
 #grid(
   columns: (1fr, 1fr),
   [
@@ -1435,21 +1477,16 @@ _Hinweis: Der klassische Test mit der 2. Ableitung ist der Spezialfall $n=1$._ \
 #v(-2pt)
 _Achtung 🚨: Sollen globale Extrema in $[a, b]$ gefunden werden, nicht nur Stellen $f'(x) = 0$ untersuchen, sondern immer auch Randwerte $f(a)$ und $f(b)$ prüfen!_
 
-=== Korrolar Implikationen der Ableitung
-Seien $f, g: [a, b] -> RR$ stetig und in $(a, b)$ differenzierbar und *für alle* $xi in [a, b]$ gilt. (gilt für alle $x, x_1, x_2 in [a, b]$)
+
+== Implikationen der Ableitungen
+Seien $f, g: [a, b] -> RR$ stetig & in $(a, b)$ differenzierbar und *für alle* $xi in [a, b]$ gilt:
 - $f'(xi) = 0$, dann ist $f$ konstant.
 - $f'(xi) = g'(xi)$, dann gibt es $c in RR$ mit $f(x) = g(x) + c$
-- $f'(xi) > 0$, dann ist $f$ auf $[a, b]$ streng mon. wachsend.
-- $f'(xi) >= 0$, dann ist $f$ auf $[a, b]$ monoton wachsend.
-- $f'(xi) < 0$, dann ist $f$ auf $[a, b]$ streng mon. fallend.
-- $f'(xi) <= 0$, dann ist $f$ auf $[a, b]$ monoton fallend.
 - $exists M >= f'(xi)$, dann gilt $|f(x_1) - f(x_2)| <= M |x_1 - x_2|$. \
   #minitext[
     Wenn Ableitung obere Schranke M hat, dann ist der Abstand der Funktionswerte immer kleiner als $M dot "Abstand der Argumente"$.
   ]
 
-
-== Implikationen der Ableitungen
 #table(
   columns: (auto, auto, auto, auto, 1fr),
   align: (center, center, center, center, left),
@@ -1458,8 +1495,8 @@ Seien $f, g: [a, b] -> RR$ stetig und in $(a, b)$ differenzierbar und *für alle
   [*$f(x)$*], [*$f'(x)$*], [*$f''(x)$*], [*$f'''(x)$*], [*Eigenschaft*],
   [$= 0$], [], [], [], [Nullstelle],
   [$= 0$], [$= 0$], [$!= 0$], [], [2-fache Nullstelle],
-  [], [$> 0$], [], [], [Strikt Monoton Steigend],
-  [], [$< 0$], [], [], [Strikt Monoton Fallend],
+  [], [$>= 0$], [], [], [Monoton Steigend (streng wenn "$>$")],
+  [], [$<= 0$], [], [], [Monoton Fallend (streng wenn "$<$")],
   [], [$= 0$], [$< 0$], [], [Lokales Maximum],
   [], [$= 0$], [$> 0$], [], [Lokales Minimum],
   [], [$!= 0$], [$= 0$], [$> 0$], [Wendepunkt r $->$ l],
@@ -2055,11 +2092,6 @@ $integral_a^b f(x) d x = F(b) - F(a)$
 
     #minitext[
       *Herleitung aus 1):* Wir substituieren $t = 1/(x-a)$ um das Problem in den Standardfall (1) zu verwandeln. Umformen: $x = a + 1/t$. Ableiten: $(d x)/(d t) = -1/t^2 quad ==> quad d x = -1/t^2 d t$. Grenzen: $x -> a ==> t -> oo quad "und" quad x = b ==> t = 1/(b-a)$
-
-      Wir setzen alles ein und nutzen das Minuszeichen des $d x$, um die Grenzen umzudrehen:
-      $integral_a^b f(x) sin(1/(x-a)) d x &= integral_oo^(1/(b-a)) f(a + 1/t) sin(t) (-1/t^2) d t \
-      &= integral_(1/(b-a))^oo [f(a + 1/t) dot 1/t^2] sin(t) d t$
-      Damit dieses Integral nach Regel (1) konvergiert, muss der Term in den eckigen Klammern für $t -> oo$ gegen 0 gehen. Ersetzt man $t = 1/(x-a)$ zurück, entspricht exakt dieser Term $f(x)(x-a)^2$.
     ]
 ]
 
@@ -2266,11 +2298,9 @@ Eine Gleichgewichtslösung (oder stationäre Lösung) ist ein Zustand, in dem si
 #mainbox(title: "Formen & Operationen")[
   $z = a + i b$ #minitext[ Kartesische Form ],
   $quad quad overline(z) = a - i b$  #minitext[ Konjugation ]\
-  $|z| = sqrt(a^2 + b^2) = sqrt(z dot overline(z))$ \
+  $|z| = sqrt(a^2 + b^2) = sqrt(z dot overline(z)), quad quad quad z_1 plus.minus z_2 = (a_1 plus.minus a_2) + i dot (b_1 plus.minus b_2)$ \
   $z^(-1) = 1/z = 1/z dot overline(z)/overline(z) = overline(z)/(|z|^2), quad forall z != 0$
-  #minitext[ Reziproke a.k.a. multiplikatives Inverses ]
-
-  $z_1 plus.minus z_2 = (a_1 plus.minus a_2) + i dot (b_1 plus.minus b_2)$ \
+  #minitext[ Reziproke a.k.a. multiplikatives Inverses ] \
   $z_1 dot z_2 = (a_1 + i b_1) dot (a_2 + i b_2) quad quad quad quad z_1/z_2 = (z_1 dot overline(z_2))/(|z_2|^2)$
 ]
 
@@ -2412,7 +2442,7 @@ Verhältnis $q$ zweier aufeinanderfolgender Glieder konstant ($a_(k+1) = a_k dot
 - *Endliche Partialsumme:* $s_n = sum_(k=0)^n q^k = (1-q^(n+1))/(1-q) quad$ (für $q != 1$)
 - *Unendliche Reihe:* $sum_(k=0)^oo markhl(q)^k$:
   - $|markhl(q)| < 1$: konvergiert gegen $1/(1 - q) quad$ (Bsp: $sum_(k=0)^oo (1/2)^k = 1/(1-1/2) = 2$)
-  - *Allgemein:* $sum_(k=0)^oo a_1 dot q^k = a_1/(1-q) quad$ (wobei $a_1$ das allererste Glied der Reihe ist)
+  - *Allgemein:* $sum_(k=0)^oo a_1 dot q^k = a_1/(1-q) quad$ (wobei $a_1$ allererstes Glied der Reihe ist)
   - $|markhl(q)| >= 1$: divergiert
     - für $markhl(q) >= 1$: divergiert *bestimmt* gegen $+oo$ (Bsp: $sum_(k=0)^oo 1 = oo$)
     - für $markhl(q) <= -1$: divergiert *unbestimmt* (Reihe oszilliert, z.B. $1 - 1 + 1 - 1 ...$)
