@@ -1,5 +1,3 @@
-// TODO: Alle Fotos kurz prüfen.
-
 #import "@preview/mannot:0.3.0": markhl
 
 
@@ -13,7 +11,7 @@
 
 #set text(size: 7pt, lang: "de")
 #set heading(numbering: "1.1")
-#set par(justify: true) // TODO: Does that make sense?
+#set par(justify: true)
 #set list(marker: ([•], [◦]))
 
 // 1. Globale vertikale Abstände minimieren
@@ -108,13 +106,14 @@
 == Intervalle
 
 $[a,b] = {x in RR | a <= x <= b}$ #minitext[abgeschlossenes Intervall, kompakt wenn $a, b != plus.minus oo$] \
-Abgeschlossenes Intervall: $I in RR$ ist abgeschlossen, wenn $forall$ konvergenten Folgen $(a_n)_(n >= 1)$ auch Grenzwert $limn (a_n) in I$.
+Abgeschlossenes Intervall: $I subset RR$ ist abgeschlossen, wenn $forall$ konvergenten Folgen $(a_n)_(n >= 1)$ auch Grenzwert $limn (a_n) in I$.
 
 == Beschränktheit, Schranken, Minimum, Maximum
-$x$ ist die obere/untere Schranke. $A in RR$ heisst
+$x$ ist die obere/untere Schranke. $A subset RR$ heisst
 - (n.o.b) nach oben beschränkt: $exists x in RR$ s.t. $x >= a$ $forall a in A$.
 - (n.u.b) nach unten beschränkt: $exists x in RR$ s.t. $x <= a$ $forall a in A$.
-- beschränkt: (n.o.b) und (n.u.b)
+- beschränkt: (n.o.b) und (n.u.b).
+- *"unbeschränkt":* nicht beschränkt (also auch e.g. n.u.b aber nicht n.o.b oder umgekehrt).
 - Minimum: $x in A$ und $x$ untere Schranke \
 - Maximum: $x in A$ und $x$ obere Schranke
 
@@ -221,23 +220,23 @@ Grenzwert von Folge bestimmen, wenn sie zwischen zwei anderen Folgen mit gleiche
   $a_n <= c_n <= b_n$, $forall n >= k$, dann gilt $limn (c_n) = alpha$.
 ]
 
-== Weierstrass // TODO: COMPACT
+== Weierstrass
 Grenzwert von monotonen, beschränkten Folgen berechnen. Weierstrass darf auch angewendet werden, wenn Folge erst nach einem Index $N$ monton wachsend/fallend ist.
 
 #mainbox(title: "Weierstrass (Monotoner Konvergenzsatz)")[
   - Folge $(a_n)$ monoton wachsend & nach oben beschränkt \
-    $==> limn (a_n) = sup{a_n: n >= 1}$ \
+    $==> limn (a_n) = sup{a_n: n >= 1}$
     #minitext[
-      Grenzwert ist Supremum des Intervalls der Folge $a_n$
+      Grenzwert ist Supremum des Intervalls von Folge
     ]
-  - Folge $(a_n)$ monoton wachsend & nach oben #emph[un]beschränkt \
+  - Folge $(a_n)$ monoton wachsend & nach oben #emph[un]beschränkt
     $==> limn (a_n) = oo$
   - Folge $(a_n)$ monoton fallend & nach unten beschränkt \
-    $==> limn (a_n) = inf{a_n: n >= 1}$ \
+    $==> limn (a_n) = inf{a_n: n >= 1}$
     #minitext[
       Grenzwert ist Infimum des Intervalls der Folge $a_n$
     ]
-  - Folge $(a_n)$ monoton fallend & nach unten #emph[un]beschränkt \
+  - Folge $(a_n)$ monoton fallend & nach unten #emph[un]beschränkt
     $==> limn (a_n) = -oo$
 ]
 
@@ -306,12 +305,12 @@ Folgen können rekursiv definiert werden. Sei $(a_k)_(k >= 1): a_1 = c, a_(k+1) 
 #bspbox(title: "Grenzwert Rekursiver Folgen berechnen")[
   Sei Folge $(a_k)_(k >= 1): a_1 = c, a_(k+1) = sin(a_k), k >= 1$
   #set enum(numbering: "1.")
-  + Monotonie beweisen per Induktion:
+  + *Monotonie beweisen per Induktion:*
     $a_1 = c "und" c in [0, pi] ==> a_1 in [0, pi]$ \
     $sin(x) <= x quad forall x >= 0 ==> a_(k+1) <= a_k ==>$ monoton fallend
-  + Beschränktheit zeigen \
+  + *Beschränktheit zeigen: *
     $sin(x) >= 0 quad forall x in [0, pi] ==> a_k >= 0, forall k >= 1 ==>$ n.u.b
-  + Weierstrass Monoton Konvergenzsatz \
+  + *Weierstrass Monoton Konvergenzsatz:* 
     $1. "und" 2. ==> a_k$ monoton fallend & n.u.b \
     $==> limn (a_n) = inf(a_k : k >= 1) = 0$
 ]
@@ -354,7 +353,7 @@ Abschätzen durch nur schnellstwachsende Terme prüfen.
   2. *Strukturanalyse (Form von $a_n$ bestimmt das Tool):*
     - Enthält $n!$ oder Mix aus $x^n$ und Polynomen? $==>$ *Quotientenkriterium*
     - Gesamter Term in $n$-ter Potenz: $(dots)^n$? $==>$ *Wurzelkriterium*
-    - Reiner rationaler Bruch (z.B. $n^a / n^b$)? $==>$ *Majoranten-/Minorantenkriterium* mit $sum 1/n^s$ (Quot./Wurzel versagen hier!).
+    - Reiner rationaler Bruch (z.B. $n^a / n^b$) oder Logarithmen? $==>$ *Majoranten-/Minorantenkriterium* mit $sum 1/n^s$ (Quot./Wurzel versagen hier!).
   3. *Vorzeichen prüfen:* Bei $(-1)^n$ zuerst absolute Konv. prüfen (Minus killen). Falls diese divergent, dann $==>$ *Leibnizkriterium* für bedingte Konvergenz.
 ]
 
@@ -369,7 +368,7 @@ Abschätzen durch nur schnellstwachsende Terme prüfen.
 ]
 
 - Für $a_k >= 0$: Reihe $sumk a_k$ konvergent $<==>$ Folge $(S_n)_(n >= 1)$ n.o.b.
-- *Reihe* bleibt konvergent/divergent bei Verschiebungen um $k$, so wie die Folgen (aber bei Folgen würde der auch noch Grenzwert gleich bleiben). #minitext[Falls *Folge* $(a_n)$ gegen $l$ konvergiert, so konvergiert auch $b_n := a_(n+k)$ gegen $l$.] // TODO: Weglassen?
+- *Reihe* bleibt konvergent/divergent bei Verschiebungen um $k$, so wie die Folgen (aber bei Folgen würde auch noch der Grenzwert gleich bleiben). #minitext[Falls *Folge* $(a_n)$ gegen $l$ konvergiert, so konvergiert auch $b_n := a_(n+k)$ gegen $l$.] // TODO: Weglassen?
 
 #mainbox(title: "Cauchy-Kriterium")[
   Reihe $sumk a_k$ konvergent \
@@ -385,7 +384,7 @@ Abschätzen durch nur schnellstwachsende Terme prüfen.
     #minitext[
       Wenn Reihe konvergiert $==>$ Folge aller Partialsummen konvergiert $==>$ Partialsummen werden immer kleiner $==>$ $(a_n)$ konv. gegen 0.
     ]
-  - Folge $(a_n)_(n >= 1)$ der Reihe hat $limn a_n != 0$ (_keine Nullfolge_) $==>$ Reihe $sumk a_k$ divergent \
+  - Folge $(a_n)_(n >= 1)$ der Reihe hat $limn a_n != 0$ (_keine Nullfolge_) $==>$ Reihe $sumk a_k$ divergent
     #minitext[
       Folge der Reihe konv. nicht gegen 0 $==>$ Partialsummen wachsen immer mindestens um Grenzwert $==>$ Folge aller Partialsummen divergiert $==>$ Reihe divergiert. (Ausnahme: harm. Reihe $sum_(n=1)^oo 1/n$)
     ]
@@ -415,8 +414,7 @@ Konv./absolute Konv./Divergenz durch Vergleich mit bekannter Reihe beweisen.
   - Falls $p = 1$: $integral_e^oo 1/(x^markhl(1) (ln x)^beta) d x$ konvergiert für $beta > 1$, divergiert für $beta <= 1$
 - $integral_(-oo)^oo e^(-x^2) d x = sqrt(pi) quad$ (Gaußsches Integral)
 
-=== Wachstumshierarchie für grosse $n$
-$ ln(n) << n^epsilon << a^n << n! << n^n, quad quad forall epsilon >0 "und" a>1 $
+=== Wachstumshierarchie grosse $n$: $ln(n) << n^epsilon << a^n << n! << n^n, forall epsilon >0, forall a>1$
 
 === Klassische Ungleichungen (für Abschätzungen)
 - $ln(x) <= x - 1 < x quad$ ($forall x > 0$)
@@ -427,8 +425,7 @@ $ ln(n) << n^epsilon << a^n << n! << n^n, quad quad forall epsilon >0 "und" a>1 
 
 == Absolute Konvergenz
 #mainbox(title: "Absolute Konvergenz")[
-  Reihe $sumk a_k$ ist _absolut konvergent_ \
-  $<==>$ Reihe der Absolutbeträge $sumk |a_k|$ konvergent.
+  Reihe $sumk a_k$ ist _absolut konvergent_ $<==>$ Reihe der Absolutbeträge $sumk |a_k|$ konvergent.
 ]
 - $sumk |a_k|$ konvergent $==> sumk a_k$ konvergent. Aber! $notimpliedby$ \
   #minitext[
@@ -442,7 +439,7 @@ $ ln(n) << n^epsilon << a^n << n! << n^n, quad quad forall epsilon >0 "und" a>1 
 Falls $sum_(k=1)^oo a_k$ *absolut konvergent*, dann konvergiert jede Umordnung der Reihe mit dem selben Grenzwert.
 
 === Satz Riemann (Umordnung)
-Ist $sum_(k=1)^oo a_k$ jedoch *nur bedingt konvergent*, dann ist die Reihenfolge entscheidend! Zu jedem $A in R union {+-oo}$ existiert eine Umordnung, die gegen $A$ konvergiert, sowie eine Umordnung, die divergiert.
+Ist $sum_(k=1)^oo a_k$ jedoch *nur bedingt konvergent*, dann ist die Reihenfolge entscheidend! Zu jedem $A in RR union {plus.minus oo}$ existiert eine Umordnung, die gegen $A$ konvergiert, sowie eine Umordnung, die divergiert.
 
 == Leibnizkriterium
 
@@ -478,7 +475,7 @@ Prüfe ob Reihe divergent oder absolut konvergent ist. \
 Wurzelkriterium versagt $==>$ Quotientenkriterium versagt auch. \
 $notimpliedby$ Gibt Bsp. wo Wurzelk. funktioniert & Quotientenk. nicht.
 
-#mainbox(title: "Quotientenkriterium (bei " + $!, x^n, ...$ + ")")[
+#mainbox(title: "Quotientenkriterium (bei " + $n!, c^n, x^n, ...$ + ")")[
   Sei $(a_n)_(n >= 1)$ die Folge der Glieder mit $a_n != 0 quad forall n >= 1$
   $
     limn(| a_(n+1)/a_n |) = cases(
@@ -496,7 +493,7 @@ $notimpliedby$ Gibt Bsp. wo Wurzelk. funktioniert & Quotientenk. nicht.
   $limn |a_(n+1)/a_n| = limn |(n+1)!/(n+1)^(n+1) dot n^n/n!| = limn |((n+1)!)/n! dot (n/(n+1))^n dot 1/(n+1)| = limn |(n+1) dot (n/(n+1))^n dot 1/(n+1)| = limn |(n/(n+1))^n| = limn |1/((n+1)/n)^n| = limn |1/(1 + 1/n)^n| = 1/e < 1$
 ]
 
-#mainbox(title: "Wurzelkriterium (bei " + $(...)^n, x^n, !, ...$ + " )")[
+#mainbox(title: "Wurzelkriterium (bei " + $(...)^n, x^n$ + " )")[
   Sei $(a_n)_(n >= 1)$ die Folge der Glieder
   $
     limn root(n, |a_n|) = cases(
@@ -562,7 +559,7 @@ Ist ein Intervall $I subset RR$ falls $I = [a, b], a <= b$.
     Jede konvergente Folge die immer im Intervall $[a, b]$ liegt, hat ihren Grenzwert in $[a, b]$.
   ]
 
-== Monotonie von Funktionen // TODO: weglassen?
+== Monotonie von Funktionen
 
 - Gerade Funktionen (e.g. $cos(x)$) sind nie monoton (und nie injektiv).
 - $f$ streng monoton $==> f$ injektiv.
@@ -623,19 +620,58 @@ Ist ein Intervall $I subset RR$ falls $I = [a, b], a <= b$.
           3 - 2x quad & x in RR \\ QQ
         )
       $
-      - Rationale Folge $a_n in QQ$: $lim_(n->oo) f(a_n) = x_0^2$
+      - Rationale Folge $a_n in QQ$: \ $lim_(n->oo) f(a_n) = x_0^2$
     ],
     [
-      Für Punkt $x_0 in RR$ betrachten wir zwei konvergierende Folgen $a_n -> x_0$:
-      - Irrationale Folge $a_n in RR \\ QQ$: $lim_(n->oo) f(a_n) = 3 - 2x_0$ \
+      Da $QQ$ & $RR \\ QQ$ *dicht* in $RR$ liegen, finden wir für beliebiges $x_0 in RR$ zwei konv. Folgen $a_n, b_n -> x_0$:
+      - Irrationale Folge $a_n in RR \\ QQ$: \ $lim_(n->oo) f(a_n) = 3 - 2x_0$ \
     ],
   )
-
-
 
   Für Stetigkeit müssen beide Grenzwerte exakt übereinstimmen:
   $ x_0^2 = 3 - 2x_0 quad ==> quad x_0^2 + 2x_0 - 3 = 0 quad ==> quad (x_0-1)(x_0+3) = 0 $
   $==> f$ ist *nur* in $x_1 = 1$ und $x_2 = -3$ stetig.
+]
+
+#bspbox(title: "Beispiel: Stetigkeit mit Parameter (Dämpfung vs. Oszillation)")[
+  #grid(
+    columns: (1fr, 1fr),
+    gutter: 0.5em,
+    [
+      $
+        f(x) = cases(
+          |x|^2 log(|x|) & "für" x < 0,
+          0 & "für" x = 0,
+          x^alpha sin(1/x) & "für" x > 0
+        )
+      $
+    ],
+    [
+      Bestimme alle $alpha in RR$, für welche $f$ stetig auf $RR$ ist.
+    ],
+  )
+  Für $x != 0$ ist Funktion als Komposition stetiger Funktionen stetig ✓
+  Wir prüfen kritische Stelle $x = 0$. Damit $f$ dort stetig ist, muss gelten:
+  $lim_(x -> 0^-) f(x) = lim_(x -> 0^+) f(x) = f(0) = 0$
+
+  *1. Linksseitiger Grenzwert ($x -> 0^-$):*
+  Da $x < 0$ ist, gilt $|x| = -x$. Wir substituieren $t = -x$ (mit $t -> 0^+$ für $x -> 0^-$) und wenden L'Hôpital an:
+  $
+    lim_(x -> 0^-) |x|^2 log(|x|) &= lim_(t -> 0^+) t^2 log(t) = lim_(t -> 0^+) (log(t)) / (t^(-2))
+    &=^"L'H" lim_(t -> 0^+) (1/t) / (-2t^(-3)) = lim_(t -> 0^+) -t^2 / 2 = 0
+  $
+  Dieser Teil konvergiert unabhängig von $alpha$ gegen $0$.
+
+  *2. Rechtsseitiger Grenzwert ($x -> 0^+$):* \
+  Wir betrachten $x^alpha sin(1/x)$. Der Sinus ist beschränkt:
+  $-1 <= sin(1/x) <= 1$. \
+  Damit der Grenzwert $0$ wird, muss die Dämpfung $x^alpha$ für $x -> 0^+$ gegen $0$ streben. Das erfordert strikt *$alpha > 0$*.
+  Ist dies erfüllt, dürfen wir die Ungleichungskette mit dem positiven $x^alpha$ multiplizieren:
+  $-x^alpha <= x^alpha sin(1/x) <= x^alpha$
+  Da $lim_(x -> 0^+) (-x^alpha) = 0$ und $lim_(x -> 0^+) (x^alpha) = 0$, folgt gemäss Sandwich-Theorem zwingend:
+  $lim_(x -> 0^+) x^alpha sin(1/x) = 0$
+
+  *Fazit:* Die Funktion ist stetig auf ganz $RR$ für alle *$alpha > 0$*.
 ]
 
 #mainbox(title: $f$ + " stetig in " + $x_0$ + " (punktweise) (Grenzwert-Kriterium)")[
@@ -655,11 +691,9 @@ Ist ein Intervall $I subset RR$ falls $I = [a, b], a <= b$.
 - $f$ stetig auf _kompaktem Intervall_ $==>$ $f$ beschränkt
 
 #mainbox(title: $f$ + " gleichmässig stetig")[
-  Stärkere Form der Stetigkeit. $forall$ Punktepaare im Definitionsbereich der Funktion *existiert gemeinsames $delta$*. \
-  $
-    forall epsilon > 0, exists delta > 0, forall x, y in DD: \
-    |x - y| < delta ==> |f(x) - f(y)| < epsilon
-  $
+  Stärkere Form der Stetigkeit. $forall$ Punktepaare im Definitionsbereich der Funktion *existiert gemeinsames $delta$*.
+  $forall epsilon > 0, exists delta > 0, forall x, y in DD:
+  |x - y| < delta ==> |f(x) - f(y)| < epsilon$
 ]
 - gleichmässig stetig $==>$ stetig $==>$ in $x_0$ stetig
 - $f: [a, b] -> RR$ stetig im Kompakten Intervall $==>$ $f$ ist in $[a, b]$ gleichmässig stetig.
@@ -693,10 +727,10 @@ Für $DD subset RR, f, g: DD -> RR, x_0 in DD$.
     columns: (4fr, 1fr),
     gutter: 0.5em,
     [
-      Sei $f: [a, b] --> RR$ eine stetige (inklusive Rand!) Funktion und sei $f(a) <= c <= f(b)$. Dann gibt es ein $x in [a, b]$ mit $f(x) = c$.
+      Sei $f: [a, b] --> RR$ eine stetige (inklusive Rand!) Funktion und sei $f(a) <= c <= f(b)$ (oder umgekehrt, falls $f$ fallend ist: $f(b) <= c <= f(a)$). Dann gibt es ein $x in [a, b]$ mit $f(x) = c$. Falls $f(a), f(b)$ bekannt und $!=c$, dann sogar $x in (a, b)$.
     ],
     [
-      #v(-10pt)
+      #v(-7pt)
       #image("img/zwischenwertsatz.png")
     ],
   )
@@ -742,6 +776,14 @@ Für $DD subset RR, f, g: DD -> RR, x_0 in DD$.
   Es gilt: $g(1) = f(1) - e^1 > e - e = 0 ==> g(1) > 0$. \
   $==> exists x in (0, 1)$ s.t. $g(x) = 0 ==> f(x) - e^x = 0 ==> f(x) = e^x$.
 ]
+
+=== Satz von Darboux (Zwischenwertsatz für Ableitungen) // TODO: Weglassen?
+Sei $f: [a, b] -> RR$ eine differenzierbare Funktion. Dann nimmt die Ableitungsfunktion $f'$ jeden Wert zwischen $f'(a)$ und $f'(b)$ an.
+
+#minitext[Ist $y$ eine Zahl zwischen $f'(a)$ und $f'(b)$, so existiert mindestens ein $c in (a, b)$ mit:
+  $f'(c) = y$]
+
+*Wichtige Konsequenz:* Dies gilt, obwohl Ableitungsfunktionen $f'$ *nicht stetig* sein müssen! Daraus folgt umgekehrt: Funktionen mit Sprungstellen können niemals die Ableitung einer Funktion sein, da sie nicht jeden Zwischenwert annehmen.
 
 == Stetige Funktion auf kompaktem Intervall
 #minitext[
@@ -816,7 +858,7 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
 
 
 #mainbox(title: $(f_n)_(n >= 1)$ + " konvergiert punktweise (" + $epsilon$ + "-Kriterium)")[
-  Funktionenfolge $(f_n)_(n >= 1)$ konvergiert punktweise gegen Funktion \ $f: DD -> RR <==>$
+  Funktionenfolge $(f_n)_(n >= 1)$ konvergiert punktweise gegen Funktion $f: DD -> RR$ \ $<==>$
   $markhl(forall x in DD", " forall epsilon > 0", " exists N in NN " s.t. " forall n >= N): |f_n (x) - f(x)| < epsilon$. \
   #minitext[
     Die Schranke $N$ darf sowohl von $epsilon$ als auch von $x$ abhängen.
@@ -825,7 +867,7 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
 ]
 
 #mainbox(title: $(f_n)_(n >= 1)$ + " konvergiert punktweise (Folgenkriterium)")[
-  Funktionenfolge $(f_n)_(n >= 1)$ konvergiert punktweise gegen Funktion $f: DD -> RR <==> forall x in DD: f(x) = limn f_n(x)$. \
+  Funktionenfolge $(f_n)_(n >= 1)$ konvergiert punktweise gegen Funktion $f: DD -> RR$ \ $ <==> forall x in DD: f(x) = limn f_n (x)$. \
   #minitext[
     Konv. punktweise $<==>$ Für jedes $x$ konv. die Funktionenfolge $f_n (x)$ gegen  Grenzfkt $f(x)$.
   ]
@@ -838,7 +880,7 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
 ]
 
 #mainbox(title: $(f_n)_(n >= 1)$ + " konvergiert gleichmässig")[
-  Funktionenfolge $(f_n)_(n >= 1)$ konvergiert gleichmässig gegen Funktion $f: DD -> RR <==> markhl(forall epsilon > 0 ", " exists N in NN ", " "s.t." forall n >= N ", " forall x in DD) : |f_n (x) - f(x)| < epsilon$.
+  Funktionenfolge $(f_n)_(n >= 1)$ konvergiert gleichmässig gegen Funktion $f: DD -> RR$ \ $<==> markhl(forall epsilon > 0 ", " exists N in NN ", " "s.t." forall n >= N ", " forall x in DD) : |f_n (x) - f(x)| < epsilon$.
   #minitext[
     Das $N$ darf nicht mehr vom Punkt $x$ abhängen, sondern nur noch von $epsilon$! Konv. gleichmässig $<==>$ Es gibt ein Ausnahmeindizes $N$ nach welchem die Funktionswerte aller folgenden Funktionen $f_n (x)$ für jedes $x$ in derselben $epsilon$-Umgebung der Grenzfunktion $f(x)$ liegen.
     $<==>$ Für jedes $x$ konvergiert die Funktionenfolge $f_n (x)$ _gleich schnell_ gegen die Grenzfunktion $f(x)$.
@@ -897,7 +939,7 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
   + *Gleichmässige Konvergenz zeigen (Supremum gegen 0):* \
     + *Maximalen Abstand bestimmen (Supremum) auf $DD$:* \
       $sup_(x in [0, 1)) |f_n (x) - f(x)| = sup_(x in [0, 1)) |x/n^2 + x + 1 - (x + 1)| = sup_(x in [0, 1)) x/n^2 = 1/n^2$
-      _Hinweis:_ $markhl("Supremum" != "Maximum")$. Intervall ist bei 1 zwar offen aber weil Supremum dürfen wir den Rand auch einsetzen. \
+      _Hinweis:_ $markhl("Supremum" != "Maximum")$. Intervall ist bei 1 zwar offen aber weil Supremum dürfen wir den Rand auch einsetzen. Und manchmal findet man Max nur mit Ableiten. \
     + *Limes bilden*:
       $lim_(n -> oo) ( sup_(x in DD) |f_n (x) - f(x)| ) = lim_(n -> oo) 1/n^2 = 0$ \
   Da der GW des max. Abstands $0$ ist, konvergiert $f_n$ auf $[0, 1)$ gleichmässig.
@@ -920,6 +962,25 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
 - Folge der Partialsummen $S_n (x)$ ist Funktionenfolge.
 - Folge der Partialsummen $S_n (x)$ einer Potenzreihe ist definiert als: $S_n (x) = sum_(k=0)^n c_k x^k$.
 - Potenzreihe $sum_(n=0)^oo a_n x^n$ konv. gleichmässig $==>$ Folge der Partialsummen $S_n (x)$ konv. gleichmässig
+
+
+#bspbox(title: "Potenzreihe von " + $f(x) = (1+e^x)^3$ + " um " + $x_0 = a$)[
+  Wir entwickeln die Funktion um beliebigen Punkt $a != 0$, ohne abzuleiten. $a=0$ wär easier.
+
+  + *Ausmultiplizieren & Entwicklungspunkt "erzwingen":*
+    Wir lösen die Klammer auf und addieren im Exponenten eine $0$ in der Form $(-a+a)$, um die Struktur $(x-a)$ zu erhalten: $(1+e^x)^3 = 1 + 3e^x + 3e^(2x) + e^(3x)
+    = 1 + 3e^(x-a+a) + 3e^(2(x-a)+2a) + e^(3(x-a)+3a)
+    = 1 + 3e^a e^(x-a) + 3e^(2a) e^(2(x-a)) + e^(3a) e^(3(x-a))$
+  + *Standardreihen einsetzen:*
+    Wir ersetzen die verbliebenen Terme mit $x$ durch die Standardreihe $e^z = sum_(n=0)^oo z^n/(n!)$:
+    $1 + 3e^a sum_(n=0)^oo (x-a)^n/(n!) + 3e^(2a) sum_(n=0)^oo (2^n (x-a)^n)/(n!) + e^(3a) sum_(n=0)^oo (3^n (x-a)^n)/(n!)$
+  + *Zusammenfassen & Konstantes Glied ($n=0$) überprüfen:*
+    Wir ziehen alles in eine einzige Summe und klammern $(x-a)^n/(n!)$ aus:
+    $1 + sum_(n=0)^oo (3e^a + 3e^(2a) dot 2^n + e^(3a) dot 3^n)/(n!) (x-a)^n$
+    Für $n=0$ ergibt der Bruch in der Summe $3e^a + 3e^(2a) + e^(3a)$. Addieren wir dazu die $1$ von ganz vorne, erhalten wir $(1+e^a)^3$. Entspricht exakt $f(a)$ und bestätigt Ergebnis!
+
+  + *T-reihe um $x_0 = a$ lautet:* $(1+e^x)^3 = (1+e^a)^3 + sum_(n=1)^oo (3e^a + 3e^(2a) dot 2^n + e^(3a) dot 3^n)/(n!) (x-a)^n$
+]
 
 #mainbox(title: $sum_(n=0)^oo a_n x^n$ + " Konvergenzradius um " + $x_0$)[
   #grid(
@@ -947,6 +1008,24 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
 - *Gleichmässige Konvergenz im Innern:* Eine Potenzreihe $sum_(n=0)^oo a_n x^n$ mit Konv.radius $r > 0$ konvergiert für jedes feste $r$ mit $0 <= markhl(rho < r)$ auf dem kompakten Teilintervall $[markhl(-rho", " rho)]$ gleichmässig.
 - *Stetigkeit:* Jede Potenzreihe stellt im Innern ihres Konvergenzbereichs $(-r, r)$ eine stetige Funktion dar.
 
+#howtobox(title: "Konvergenz am Rand von Potenzreihen prüfen")[
+  Gegeben: Potenzreihe um $x_0$ mit Radius $r < oo$. Was passiert bei $|x - x_0| = r$?
+  + *Randpunkte explizit einsetzen:*
+    Setze $x = x_0 + r$ und $x = x_0 - r$ einzeln in die Reihe ein.
+    #minitext[$implies$ Aus der Potenzreihe entstehen zwei numerische Reihen.]
+  + *🚨 Wurzel- & Quotientenkrit.  hier nutzlos!*
+    #minitext[Liefern am Rand per Def. _immer_ Wert 1.]
+  + *Nullfolgenkriterium (Schnelltest):* \
+    Gehen die Reihenglieder für $n -> oo$ nicht gegen 0? $implies$ sofort *Divergent*.
+  + *Kriterien für numerische Reihen anwenden:*
+    - *Alternierende Terme* (entstehen oft am linken Rand durch $(-r)^n = (-1)^n r^n$): \
+      $implies$ *Leibniz-Kriterium* anwenden (monoton fallende Nullfolge?).
+    - *Positive Terme:*
+      $implies$ *Vergleichskriterien* (Majorante/Minorante). Vergleiche meist mit der $p$-Reihe $sum 1/n^p$ (konvergiert für $p > 1$, divergiert für $p <= 1$).
+  + *Konvergenzintervall notieren:* \
+    Randpunkt konvergiert $implies$ Intervallklammer schliessen (z.B. `]`). \
+    Randpunkt divergiert $implies$ Intervallklammer offen lassen (z.B. `)`).
+]
 
 == Grenzwert von Funktionenfolgen
 === Häufungspunkt und Grenzwert
@@ -1288,11 +1367,9 @@ cos: RR -> RR "stetig", quad cos(z) &= 1 - z^2/2! + z^4/4! - ... = sum_(n=0)^oo 
 #bspbox(title: "Zeige Funktion ist surjektiv")[
   Mit Zwischenwertsatz: Sei die Zielmenge $(a, b)$ und $f$ eine *stetige* Funktion.
   #set enum(numbering: "1.")
-  + Grenzwerte zeigen: $lim_(x -> -oo) f(x) = a$ und $lim_(x -> oo) f(x) = b$ \
-    *(oder genau umgekehrt)*.
-  + Sei nun $c in (a, b)$ beliebig. Wegen der Grenzwerte von $f$ existieren $x_1, x_2 in RR$ mit $f(x_1) < c < f(x_2)$.
-  + Da $f$ stetig ist, gilt nach dem Zwischenwertsatz: \
-    $exists y$ zwischen $x_1$ und $x_2$ mit $f(y) = c$. Da $c$ beliebig gewählt war, wird jeder Wert der Zielmenge angenommen. Somit ist $f$ surjektiv.
+  + *Grenzwerte zeigen:* $lim_(x -> -oo) f(x) = a$ und $lim_(x -> oo) f(x) = b$
+    *(oder umgekehrt)*.
+  + *Zwischenwertsatz:* Sei nun $y in (a, b)$ beliebig. Wegen der Grenzwerte von $f$ existieren $x_1, x_2 in RR$ mit $f(x_1) < y < f(x_2)$. Da $f$ stetig ist, gilt nach dem Zwischenwertsatz: $exists x in (x_1, x_2)$ mit $f(x) = y$. Da $y$ beliebig gewählt war, wird jeder Wert der Zielmenge angenommen. Somit ist $f$ surjektiv.
 ]
 
 = Differentialrechnung (Ableiten)
@@ -1334,7 +1411,7 @@ Für $DD subset RR$, Häufungspunkt $x_0 in DD$ und $f, g: DD -> RR$ in $x_0$ di
 - $bold((f + g)'(x_0)) = f'(x_0) + g'(x_0)$.
 - $bold((f g)'(x_0)) = f'(x_0)g(x_0) markhl(+) f(x_0)g'(x_0)$.
 - $bold((f/g)'(x_0)) = (f'(x_0)g(x_0) markhl(-) f(x_0)g'(x_0)) / g(x_0)^2, quad g(x_0) != 0$.
-- $bold((g compose f)'(x_0)) = (g(f(x)))' = g'(f(x_0)) dot f'(x_0)$ \
+- $bold((g compose f)'(x_0)) = (g(f(x)))' = g'(f(x_0)) dot f'(x_0)$ 
   Für $f: DD -> E, g: E -> RR, DD, E subset RR$, Häufungspunkt $x_0 in DD$ und $f$ differenzierbar in $x_0$ und $g$ differenzierbar in $f(x_0)$.
 - $bold((f^(-1))'(y_0)) = 1/(f'(x_0)) = 1/(f'(f^(-1)(y_0)))$ \
   Für $f: DD -> E$ bijektiv, $x_0$ Häufungspunkt, $f$ in $x_0$ differenzierbar, $f'(x_0) != 0, f^(-1)$ in $y_0 = f(x_0)$ stetig $==> y_0$ ist ein Häufungspunkt von E und $f^(-1)$ ist in $y_0$ differenzierbar.
@@ -1355,7 +1432,7 @@ Grenzwerte von Funktionen berechnen die auf einen unbestimmten Ausdruck führen:
 *Wichtig:* Direkte Anwendung ist strikt *nur* bei $0/0$ und $oo/oo$ erlaubt! Dann gilt:
 #v(-10pt)
 $
-  quad quad quad quad quad quad quad quad quad quad quad quad quad quad quad quad quad quad lim_(x -> x_0) f(x)/g(x) = lim_(x -> x_0) (f'(x)) / (g'(x))
+  lim_(x -> x_0) f(x)/g(x) = lim_(x -> x_0) (f'(x)) / (g'(x))
 $
 
 *🚨 ACHTUNG: Fallen & Umformungen*
@@ -1369,7 +1446,7 @@ $
 == Konvexität
 #image("img/konvexkonkav.jpeg", width: 100%)
 Für Intervall $I subset RR$ und $f: I -> RR$. $f$ ist:
-/ Konvex: auf $I$ falls $forall x_0, x_1 in I, x_0 <= x_1, lambda in [0, 1]$ \
+/ Konvex: #h(6pt) auf $I$ falls $forall x_0, x_1 in I, x_0 <= x_1, lambda in [0, 1]$ \
   #h(1em) #text(fill: blue, [ $f(lambda x_1 + (1- lambda)x_0)$ ]) $<=$ #text(
     fill: red,
     [ $lambda f(x_1) + (1 - lambda) f(x_0)$ ],
@@ -1379,27 +1456,29 @@ Für Intervall $I subset RR$ und $f: I -> RR$. $f$ ist:
     fill: red,
     [ $lambda f(x_1) + (1 - lambda) f(x_0)$ ],
   )
-/ Konkav: auf $I$ falls $forall x_0, x_1 in I, x_0 <= x_1, lambda in [0, 1],$ \
+/ Konkav: #h(6pt) auf $I$ falls $forall x_0, x_1 in I, x_0 <= x_1, lambda in [0, 1],$ \
   #h(1em) #text(fill: green, [ $f(lambda x_1 + (1- lambda)x_0)$ ]) $>=$ #text(
     fill: red,
     [ $lambda f(x_1) + (1 - lambda) f(x_0)$ ],
   )
-/ Streng Konkav: auf $I$ falls $forall x_0, x_1 in I, x_0 < x_1, lambda in [0, 1],$ \
+/ Streng Konkav: falls $forall x_0, x_1 in I, x_0 < x_1, lambda in (0, 1),$ \
   #h(1em) #text(fill: green, [ $f(lambda x_1 + (1- lambda)x_0)$ ]) $>$ #text(
     fill: red,
     [ $lambda f(x_1) + (1 - lambda) f(x_0)$ ],
   )
 
-- $f: I -> RR$ ist konvex $<==> forall x_0 < x < x_1 in I, (f(x) - f(x_0))/(x - x_0) <= (f(x_1) - f(x))/(x_1 - x_0)$ \
+- $f: I -> RR$ ist konvex $<==> forall x_0 < x < x_1 in I, (f(x) - f(x_0))/(x - x_0) <= (f(x_1) - f(x))/(x_1 - x)$ \
   #minitext[
     konvex $<==>$ Sekante zwischen $(x_0, f(x_0))$ & $(x, f(x))$ hat kleinere Steigung als zwischen $(x, f(x))$ & $(x_1, f(x_1))$.
   ]
 - Summe von zwei konvexen(/konkaven) Funktionen ist konvex(/konkav).
+- Funktion $f$ ist eine Gerade $<==>$ konvex und konkav gleichzeitig (aber nicht streng!)
 - Für $f: (a, b) -> RR$ in $(a, b)$ differenzierbar. \
   $f$ ist (streng) konvex $<==> f'$ (streng) mon. wachsend \
   $f$ ist (streng) konkav $<==> f'$ (streng) mon. fallend
 - Für $f: (a, b) -> RR$ zwei mal differenzierbar. \
-  $f''(x) >= 0 <==> f$ ist (streng) konvex
+  $f''(x) >= 0 <==> f$ ist konvex (streng wenn $f''(x) > 0$) \
+  $f''(x) <= 0 <==> f$ ist konkav (streng wenn $f''(x) < 0$) // TODO: Weglassen weil in Tabelle?
 
 == Höhere Ableitungen, Definition $f$ Glatt
 #mainbox(title: "Höhere Ableitungen")[
@@ -1468,23 +1547,38 @@ Für $f, g: DD -> RR quad n$-mal differenzierbar:
 #minitext[Voraussetzung: $f$ ist auf $[a, b]$ stetig und im Inneren $(a,b)$ $(n+1)$-mal stetig differenzierbar.]
 Sei $f$ an der Stelle $x_0 in (a, b)$ sehr flach, d.h. die ersten $n$ Ableitungen verschwinden:
 $f'(x_0) = f''(x_0) = ... = f^((n))(x_0) = 0$.
-Die erste Ableitung ungleich 0, sei die $(n+1)$-te Ableitung. Dann gilt:
+Die erste Ableitung ungleich 0, sei die $(n+1)$-te Ableitung. Dann gilt: (_Hinweis: Der klassische Test mit 2. Ableitung ist Spezialfall $n=1$._)
 - *Ist $(n+1)$ ungerade* ($n$ ist gerade): *Sattelpunkt* (kein Extremum).
 - *Ist $(n+1)$ gerade* ($n$ ist ungerade): *Extremum*.
   - $f^((n+1))(x_0) > 0 ==> x_0$ = striktes lokales *Minimum* $union$
   - $f^((n+1))(x_0) < 0 ==> x_0$ = striktes lokales *Maximum* $inter$
-_Hinweis: Der klassische Test mit der 2. Ableitung ist der Spezialfall $n=1$._ \
 #v(-2pt)
 _Achtung 🚨: Sollen globale Extrema in $[a, b]$ gefunden werden, nicht nur Stellen $f'(x) = 0$ untersuchen, sondern immer auch Randwerte $f(a)$ und $f(b)$ prüfen!_
 
+#bspbox(title: "Globale Extrema auf kompaktem Intervall "+$[0,5]$ +" bei "+ $markhl(f(x)) = sqrt(1+x) - 1/2 sqrt(x)$)[
+
+_Die 2. Ableitung kostet hier nur Zeit (und ist eine Fehlerquelle)!_
+
++ *Kritische Punkte finden:* $f'(x) =^! 0$ berechnen. $f'(x) = 1/(2sqrt(1+x)) - 1/(4sqrt(x)) =^! 0 ==> x = 1/3$
+
++ *y-Werte berechnen:* Setze alle kritischen Punkte *UND* Randstellen ($0$ & $5$) in $markhl(f(x))$ ein.
+$f(0) = sqrt(1) - 1/2 sqrt(0) = 1, quad 
+  f(1/3) = sqrt(4/3) - 1/2 sqrt(1/3) = 3/(2 sqrt(3)) = (sqrt(3))/2 approx 0.866,$ \ $
+  f(5) = sqrt(6) - 1/2 sqrt(5) approx 2.45 - 1.12 approx 1.33$
+
+*3. Fazit durch reinen Vergleich:* 
+Der kleinste Wert ist $0.866 quad =>$ *Minimum bei* $x = 1/3$ \
+Der grösste Wert ist $1.33 quad =>$ *Maximum bei* $x = 5$
+
+]
 
 == Implikationen der Ableitungen
-Seien $f, g: [a, b] -> RR$ stetig & in $(a, b)$ differenzierbar und *für alle* $xi in [a, b]$ gilt:
+Seien $f, g: [a, b] -> RR$ stetig & in $(a, b)$ differenzierbar. Wenn für alle $xi in (a, b)$ gilt:
 - $f'(xi) = 0$, dann ist $f$ konstant.
-- $f'(xi) = g'(xi)$, dann gibt es $c in RR$ mit $f(x) = g(x) + c$
-- $exists M >= f'(xi)$, dann gilt $|f(x_1) - f(x_2)| <= M |x_1 - x_2|$. \
+- $f'(xi) = g'(xi)$, dann gibt es $c in RR$ mit $f(x) = g(x) + c$.
+- $exists M >= |f'(xi)|$, dann gilt $|f(x_1) - f(x_2)| <= M |x_1 - x_2|$. \
   #minitext[
-    Wenn Ableitung obere Schranke M hat, dann ist der Abstand der Funktionswerte immer kleiner als $M dot "Abstand der Argumente"$.
+    Wenn der Betrag der Ableitung die obere Schranke M hat, dann ist der Abstand der Funktionswerte immer kleiner/gleich $M dot "Abstand der Argumente"$.
   ]
 
 #table(
@@ -1495,8 +1589,8 @@ Seien $f, g: [a, b] -> RR$ stetig & in $(a, b)$ differenzierbar und *für alle* 
   [*$f(x)$*], [*$f'(x)$*], [*$f''(x)$*], [*$f'''(x)$*], [*Eigenschaft*],
   [$= 0$], [], [], [], [Nullstelle],
   [$= 0$], [$= 0$], [$!= 0$], [], [2-fache Nullstelle],
-  [], [$>= 0$], [], [], [Monoton Steigend (streng wenn "$>$")],
-  [], [$<= 0$], [], [], [Monoton Fallend (streng wenn "$<$")],
+  [], [$>= 0$], [], [], [Monoton Steigend (streng  "$>$" und 0 nur bei isol. Stellen)],
+  [], [$<= 0$], [], [], [Monoton Fallend (streng  "$<$" und 0 nur bei isol. Stellen)],
   [], [$= 0$], [$< 0$], [], [Lokales Maximum],
   [], [$= 0$], [$> 0$], [], [Lokales Minimum],
   [], [$!= 0$], [$= 0$], [$> 0$], [Wendepunkt r $->$ l],
@@ -1527,8 +1621,12 @@ Seien $f, g: [a, b] -> RR$ stetig & in $(a, b)$ differenzierbar und *für alle* 
     columns: (2.2fr, 1fr),
     gutter: 0.5em,
     [
-      Sei $f: [a, b] -> RR$ stetig und in $(a, b)$ differenzierbar. Dann gibt es $xi in (a, b)$ mit $f(b) - f(a) &= f'(xi)(b - a) \
-      (f(b) - f(a))/(b - a) &= f'(xi)$
+      Sei $f: [a, b] -> RR$ stetig und in $(a, b)$ differenzierbar. Dann existiert $xi in (a, b)$ mit
+      #v(-6pt)
+      $
+        quad quad quad quad quad quad quad quad quad quad f(b) - f(a) & = f'(xi)(b - a) \
+                                                (f(b) - f(a))/(b - a) & = f'(xi)
+      $
     ],
     [
       #v(-10pt)
@@ -1548,8 +1646,8 @@ Annäherung glatter Funktionen als Potenzreihen am Entwicklungspunkt $a$.
                     & = f(a) + f'(a) dot (x - a) + (f''(a))/(2!) dot (x - a)^2 + ...
   $
   #minitext[
-    Hinweis: $f^((k))(a)$ = $k$-te Ableitung von $f$ an der Stelle a.
-  ] // TODO: weglassen?
+    Hinweis: $f^((k))(a)$ = $k$-te Ableitung von $f$ an der Stelle $a$.
+  ]
 ]
 - Entwicklungspunkt $a$ ist Punkt wo die Annäherung startet.
 - $x$ ist der Punkt welchen man annähern möchte.
@@ -1684,11 +1782,7 @@ Annäherung glatter Funktionen als Potenzreihen am Entwicklungspunkt $a$.
     $
 ]
 
-#howtobox(title: "Rezept: Approximiere Punkt")[
-  // TODO: Weglassen?
-  Approximiere $f$ mit Entwicklungspunkt $a$ an Stelle $x$ mit Taylor von Ordnung $n$:
-  *1. *Leite $f$ $n$-mal ab, *2. *Bilde Taylorpolynom durch Einsetzen von $a$ und $x$
-]
+
 
 #howtobox(title: "Rezept: Finde Fehler von Taylorpolynom")[
   Gegeben Taylorpolynom $T_(n f) (x; a)$ mit $n$-Ordnung.
@@ -1703,7 +1797,7 @@ Annäherung glatter Funktionen als Potenzreihen am Entwicklungspunkt $a$.
 
   + *$(n markhl(+1))$-te Ableitung bilden:*
     $f(x) = e^x -> f^(markhl(3))(x) = e^x$.
-  + *Restpolynom aufstellen:* \
+  + *Restpolynom aufstellen:*
     Wir setzen $n=2, a=0$ & $x=1$ in die Restglied-Formel ein: \
     $ R_2 = (f^((3))(xi))/(3!) (x - a)^3 = (e^xi)/(6) (1 - 0)^3 = (e^xi)/6 $
   + *Maximales $xi$ wählen (Worst-Case):*
@@ -1712,20 +1806,13 @@ Annäherung glatter Funktionen als Potenzreihen am Entwicklungspunkt $a$.
     Da $e^x$ monoton wächst, ist Wert am rechten Rand $xi = 1$ am grössten.
     Wir setzen Worst-Case $xi = 1$ ein & schätzen ab ($e < 3$): \
     #v(-10pt)
-    $ |R_2| <= (e^1)/6 < 3/6 = 1/2 = 0.5 $
+    $
+      quad quad quad quad quad quad quad quad quad quad quad quad quad quad quad quad quad quad quad quad quad quad |R_2| <= (e^1)/6 < 3/6 = 1/2 = 0.5
+    $
   *Fazit:* Wenn wir $e^1$ nur mit einem simplen Polynom 2. Grades annähern, ist garantiert, dass Ergebnis höchstens um $0.5$ vom exakten Wert abweicht.
 ]
 
 = Riemann Integral
-
-#howtobox(title: "Bestimmtes Integral berechnen")[
-  #set enum(numbering: "1.")
-  + Bruch vereinfachen (Faktorisieren, Erweitern, etc.)
-  + Bekannte Ableitungen einsetzen
-  + Produkt von Funktionen? $->$ Partielle Integration
-  + Verkettete Funktion? $->$ Substitution
-]
-
 == Riemann-Summe
 #grid(
   columns: (4fr, 1fr),
@@ -1839,10 +1926,13 @@ Flächeninhalt unter der Kurve zwischen den Punkten $a$ und $b$
     columns: (6fr, 1fr),
     [
       $f: [a, b] -> RR$ stetig \
-      $==> exists xi in [a, b]$ mit $integral_a^b f(x) d x = f(xi) (b - a)$. \
-      Somit für $f, g: [a, b] -> RR$, $g$ beschränkt integrierbar und $g(x) >= 0$ \ $forall x in [a, b] ==> exists xi in [a, b], integral_a^b f(x)g(x) d x = f(xi) integral_a^b g(x) d x$.
+      $==> exists c in [a, b]$ mit $integral_a^b f(x) d x = f(c) (b - a)$. \
+      Somit für $f, g: [a, b] -> RR$, $g$ beschränkt integrierbar und $g(x) >= 0$ \ $forall x in [a, b] ==> exists c in [a, b], integral_a^b f(x)g(x) d x = f(c) integral_a^b g(x) d x$.
     ],
-    image("img/riemannmittelwertsatz.jpeg", width: 100%),
+    [
+      #v(-1em);
+      #image("img/riemannmittelwertsatz.jpeg", width: 100%);
+    ]
   )
 ]
 
@@ -1861,7 +1951,7 @@ $f(x) = cases(
 == Hauptsatz Differential-/Integralrechnung
 Für stetige Funktion existiert immer eine Stammfunktion.
 #mainbox(title: "Hauptsatz Differential-/Integralrechnung")[
-  $F(x) = integral_a^x f(t) d t$ ist Stammfunktion von $f$ in $[a, b]$. \
+  $F(x) = integral_a^x f(t) d t$ ist Stammfunktion von $f$ in $[a, b]$
   $<==> F'(x) = f(x) quad forall x in [a, b]$. \
   _Untere Grenze $a$ egal_ weil $F'(x) = (integral_a^x f(t) d t)' = [F(x) - F(a)]' = f(x) - 0$ \
   #minitext[
@@ -1875,28 +1965,33 @@ Bestimmtes Integral von $f$ im Intervall $[a, b]$ berechnen:
 $sum_a^b F'(x) Delta x =$
 $integral_a^b f(x) d x = F(b) - F(a)$
 
-== Integrale Berechnen
-// #howtobox(title: "Vorgehen Teil 1")[
-// + Verkettete Funktion? $->$ Substitution
-// + Produkt von Funktionen? $->$ Partielle Integration. $sin, cos$ immer $g$' und e immer $f$.
-// + Produkt von Funktionen mit $exp(x) = e^x, sin, cos$? $->$ (Mehrmals) Partielle Integration.
-// + Uneigentliches Integral? $->$ nicht kompaktes Intervall Trick/unbeschränkte Funktion Trick mit anderen Werkzeugen kombinieren.
-// + Umformen: Produktregel, Kettenregel, etc.
-// + Bruchform: Vereinfachen bis Nenner von leicht integrierbaren Teilfunktionen. Partialbruchzerlegung. $(u')/(2 sqrt(u))$ oder $(u')/u$ erkennen ($sqrt(u) + C, log|u| + C$).
-// + Komplizierter Ausdruck mit Potenzen
-// + $integral_a^b (f(x))^c d x$ auflösen in $integral_a^b (f(x))^(c-1) dot f(x) d x$ um partielle Integration anzuwenden.
-// + $integral_a^b (f(x))^c dot 1$ Trick anwenden um partielle Integration zu benutzen.
-// + Exponentenform
-//   + e / log Trick anwenden wenn Variable $x$ in Exponent ist.
-//   + z.B. $3^x = e^(log(3) dot x)$
-// + Summe im Integral: Summe aus dem Integral herausziehen. Die Reihe muss dazu gleichmässig konvergieren! \
-// Bsp. $integral_0^oo sum_(n=0)^oo ((-1)^n t^(2n))/((2n+1)!) d t = sum_(n=0)^oo ((-1)^n)/((2n+1)!) integral_0^x t^(2n) d t = sum_(n=0)^oo ((-1)^n x^(2n+1))/((2n+1)!(2n+1))$
-// ]
+#bspbox(title: "Berechne Tangente an " + $x_0$ + " (Tangentengleichung an eine Integralfunktion)")[
+  Sei $f(x) = integral_0^(x^3) g(t) dif t$ mit $g(t) = t e^(t^2)$.
+  Gesucht: Tangentengleichung an den Graphen von $f$ an der Stelle $x_0 = 1$.
 
+  *Schritt 1: Den Funktionswert $y_0 = f(x_0)$ berechnen* \
+  Wir berechnen $f(1)$ durch Einsetzen und Substitution ($u = t^2 => dif u = 2t dif t$ bzw. $d t = 1/(2t) dif u$):
+  $f(1) = integral_0^(1^3) t e^(t^2) dif t = 1/2 integral_0^1 e^u dif u = 1/2 [e^u]_0^1 = 1/2 (e - 1) = y_0$
+  Der Punkt wo die Tangente die Funktion $f$ berührt ist somit $P(1, 1/2(e - 1))$.
+
+  *Schritt 2: Die Steigung $m = f'(x_0)$ berechnen:*
+  Wir wissen allgemein: $f'(x) = (integral_0^x^3g(t) d t)'= g(x^3) dot 3x^2$. Wir setzen $g(x^3)$ ein:
+  $f'(x) = (x^3 e^((x^3)^2)) dot 3x^2 = x^3 e^(x^6) dot 3x^2 = 3x^5 e^(x^6)$
+  Einsetzen von $x_0 = 1$ liefert die Steigung an dieser Stelle: \
+  $f'(1) = 3(1)^5 e^((1^6)) = 3e = m$
+
+  *Schritt 3: Tangentengleichung aufstellen:*
+  Die Punkt-Steigungs-Form einer Tangente lautet $T(x) = m dot (x - x_0) + y_0$.
+  Einsetzen unserer Werte liefert die fertige Gleichung:
+  $ T(x) = 3e dot (x - 1) + 1/2 (e - 1) = 3e x - 3e + 0.5e - 0.5 = 3e x - 2.5e - 0.5 $
+]
+
+== Integrale Berechnen
 #howtobox(title: "Rezept: Integral-Checkliste (Schritt-für-Schritt)")[
   + *Umformen & Muster erkennen (Immer zuerst prüfen!)*
-    - Kosmetik: Ausmultiplizieren, Brüche trennen, Exponenten umschreiben ($a^x = e^(ln(a) dot x)$).
+    - Kosmetik: Ausmultiplizieren, faktorisieren, erweitern, Brüche trennen, Exponenten umschreiben ($a^x = e^(ln(a) dot x)$).
     - Bruchform-Muster erkennen oder erschaffen: \ $(u'(x))/(u(x)) ==> ln|u(x)| + C, quad quad quad (u'(x))/(2 sqrt(u(x))) ==> sqrt(u(x)) + C$
+    - Bekannte Ableitungen einsetzen
 
   + *Verkettete Funktion? Substitution (Kettenregel rückwärts)*
     - Gibt es eine verkettete Funktion *und* steht ihre innere Ableitung (bis auf eine Konstante) als Faktor davor? $->$ $u$ substituieren.
@@ -2294,6 +2389,21 @@ Dann $y_p (x)$ ableiten und $y_p, y_p^', y_p^'', ...$ in Aufgabengleichung einse
 == Stationäre Lösung
 Eine Gleichgewichtslösung (oder stationäre Lösung) ist ein Zustand, in dem sich ein System im Laufe der Zeit nicht mehr verändert ($==> y'(x) =^! 0$). Somit einfach $y'(x)$ auf 0 setzen und nach $y$ auflösen.
 
+#subbox(title: "Phasentransformation (Elektrotechniker-Trick)")[
+  Linearkombination aus Sinus und Cosinus derselben Frequenz lässt sich in eine einzige phasenverschobene Schwingung umformen:
+  $a sin(omega t) + b cos(omega t) = A sin(omega t + phi)$ \
+  *Amplitude:* $A = sqrt(a^2 + b^2)$, *Phase:* $phi in [0, 2pi)$ ist eindeutig bestimmt durch:
+  $ cos(phi) = a/A quad "und" quad sin(phi) = b/A $
+
+  #line(length: 100%, stroke: 0.5pt + luma(200))
+  *Beweis über Additionstheoreme:* 
+  Wende das Additionstheorem $sin(x + y) = sin(x) cos(y) + cos(x) sin(y)$ an:
+  $A sin(omega t + phi) = A (sin(omega t) cos(phi) + cos(omega t) sin(phi)) = underbrace(A cos(phi), a) sin(omega t) + underbrace(A sin(phi), b) cos(omega t)$
+  Durch Koeffizientenvergleich mit $a sin(omega t) + b cos(omega t)$ folgt:  1. $a = A cos(phi) ==> cos(phi) = a/A, quad  quad$  2. $b = A sin(phi) ==> sin(phi) = b/A$
+  Quadrieren und addieren eliminiert $phi$ dank $sin^2(phi) + cos^2(phi) = 1$:
+  $ a^2 + b^2 = A^2 cos^2(phi) + A^2 sin^2(phi) = A^2 (cos^2(phi) + sin^2(phi)) = A^2 ==> A = sqrt(a^2 + b^2) $
+]
+
 = Komplexe Zahlen $i = sqrt(-1)$
 #mainbox(title: "Formen & Operationen")[
   $z = a + i b$ #minitext[ Kartesische Form ],
@@ -2352,7 +2462,6 @@ Eine Gleichgewichtslösung (oder stationäre Lösung) ist ein Zustand, in dem si
   )
 ]
 
-// TODO: ab hier fehler korrektur vornehmen!
 = Tabellen
 == Grenzwerte von Referenzfolgen
 #minitext[
@@ -2386,7 +2495,7 @@ Eine Gleichgewichtslösung (oder stationäre Lösung) ist ein Zustand, in dem si
 )
 
 == Trivial stetige Funktionen
-$f(x) = c$ ($c$ ist Konstante), $f(x) = x$, $f(x) = x^n$, $f(x) = a_n x^n + ... + a_1 x + a_0$, $f(x) = m x + b$, $f(x) = ln(x)$, $f(x) = exp(x)$
+$f(x) = c, x, x^n, a_n x^n + ... + a_1 x + a_0, m x + b, ln(x), exp(x), sin(x), cos(x), ...$
 
 == Bekannte Reihen
 #table(
@@ -2406,7 +2515,7 @@ $f(x) = c$ ($c$ ist Konstante), $f(x) = x$, $f(x) = x^n$, $f(x) = a_n x^n + ... 
   [$sum_(k=1)^oo 1/k$], [$1 + 1/2 + 1/3 + dots$], [$oo$], [], [ja],
   [$sum_(k=1)^oo 1/k^2$], [$1 + 1/4 + 1/9 + dots$], [$pi^2/6$], [ja, abs], [],
   [$sum_(k=1)^oo 1/k^4$], [$1 + 1/16 + 1/81 + dots$], [$pi^4/90$], [ja, abs], [],
-  [$sum_(k=1)^oo 1/k^a$], [$1 + 1/2^a + 1/3^a + dots$], [siehe Ref.], [$a > 1$, abs], [$a <= 1$],
+  [$sum_(k=1)^oo 1/k^a$], [$1 + 1/2^a + 1/3^a + dots$], [n/a], [$a > 1$, abs], [$a <= 1$],
 
   table.cell(colspan: 5, fill: luma(240), align: left)[*Alternierende Harmonische Reihe*],
   [$sum_(k=1)^oo (-1)^(k+1)/k$], [$1 - 1/2 + 1/3 - dots$], [$ln 2$], [ja], [],
@@ -2550,3 +2659,15 @@ $
 *(IS):* Zu zeigen: Behauptung gilt auch für $n+1$.
 $n -> n + 1$: [...] $=^("IH")$ [...].
 *(CC):* Nach Prinzip der vollst. Induktion gilt Behauptung somit für alle $n >= 1$.
+
+== Lässige Aufgaben
+*Beweis der Ungleichung $e^x >= 1 + x$:* Wir definieren Hilfsfunktion $f(x) = e^x - x - 1$.
++ *Kritische Punkte (Erste Ableitung):* $f'(x) = e^x - 1 = 0 quad => quad x = 0$
+
++ *Krümmung (Zweite Ableitung):* $f''(x) = e^x > 0 quad "für alle" x in bb(R) $
+  Da $f''(x)$ strikt positiv ist, ist $f$ auf ganz $bb(R)$ streng konvex. Somit ist die Nullstelle $x=0$ zwingend das globale Minimum. Man könnte auch argumentieren dass $lim_(x->+oo) f(x) = +oo$ und $lim_(x->-oo) f(x) = +oo$, weil entweder $e^x$ ins unendliche wächst oder $-(-x)$ die Funktion ins Unendliche treibt. Da $f$ stetig muss sie ein Min. annehmen bei $x=0$, weil $f'(0)=0$.
+
++ *Funktionswert im Minimum:* $f(0) = e^0 - 0 - 1 = 0$
+
++ *Schlussfolgerung:* Da das globale Minimum den Wert $0$ hat, gilt für alle $x in bb(R)$: \
+  $f(x) &>= 0 quad ==> quad e^x - x - 1 &>= 0 quad ==> quad e^x &>= 1 + x quad square $
