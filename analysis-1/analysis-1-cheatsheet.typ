@@ -2074,8 +2074,6 @@ $integral_a^b f(x) d x = F(b) - F(a)$
 - *Unbestimmtes Integral (ohne Grenzen):* Hier gibt es keine Grenzen zum Anpassen. Dafür muss am Ende zwingend *rücksubstituiert* werden!
   $integral f(phi(t)) phi'(t) d t = (integral f(x) d x) |_(x=phi(t)) = F(x)+C |_(x=phi(t)) = F(phi(t))+C$
 
-// TODO: Hier irgendwo SADI Methode einfügen (Gilt nur für unbestimmte Integrale)
-
 #bspbox(title: $integral_0^1(1+t^2)^2022 dot t dot d t$ + " mit Substitution (Links nach Rechts)")[
   #set enum(numbering: "1.")
   + Innere Funktion substituieren und $dx$ berechnen: \
@@ -2094,7 +2092,7 @@ $integral_a^b f(x) d x = F(b) - F(a)$
     $phi(t) = 1/t = x, quad phi'(t) = -1/t^2 = (d x)/(d t) ==> markhl(d x = -1/t^2 d t)$
   + Erkenne Muster der linken Seite. $phi'(t)$ ist in $1/t^2$ versteckt: \
     $integral e^(1/t) dot 1/t^2 d t = integral e^(1/t) dot (-1) dot markhl((-1/t^2) d t)$
-  + Substitutionsregel & Rücksubstitution: \
+  + Substitutionsregel & Rücksubstitution: 
     $= -1 dot integral e^x d x = -e^x + C = -e^(1/t) + C$
 ]
 
@@ -2283,7 +2281,7 @@ $integral_a^b f(x) d x = F(b) - F(a)$
 #subbox(title: "Aufstellen von Differentialgleichungen")[
   Typische Situation: Es sind verschiedene Informationen gegeben und gesucht ist die Entwicklung einer bestimmten Grösse in einem kleinen Zeitintervall $Delta t$.
   - *Population:* $y'(t) = B(t) - T(t)$ (Geburtenrate minus Sterberate).
-  - *Beschränktes Wachstum:* $u'(t) = k dot u(t) (1 - u(t)/L)$ (wobei L die Schranke ist). $bullet$ *Mechanische Probleme:* Nutzen oft die Formel für Kräfte \ $F = m dot y'' = m a$ nach Newton.
+  - *Beschränktes Wachstum:* $u'(t) = k dot u(t) (1 - u(t)/L)$ (wobei L die Schranke ist). $bullet$ *Mechanische Probleme:* Nutzen oft die Formel für Kräfte $F = m dot y'' = m a$ nach Newton.
 ]
 
 == DGL 1. Ordnung lösen
@@ -2291,7 +2289,7 @@ $integral_a^b f(x) d x = F(b) - F(a)$
 #mainbox(title: "Trennung der Variablen (führt direkt zur allgemeinen Lösung)")[
   Eignet sich besonders für DGLs der Form $y'(x) = f(x) dot g(y)$.
   *Grundidee:* Alle Ausdrücke mit der unabhängigen Variablen ($x$) auf eine Seite und alle Ausdrücke mit der abhängigen Variablen ($y$) auf die andere Seite bringen.
-  $ (d y)/(d x) = f(x) dot g(y) ==> 1/g(y) d y = f(x) d x ==> integral 1/g(y) d y = integral f(x) d x $
+  $ y'(x) = (d y)/(d x) = f(x) dot g(y) ==> 1/g(y) d y = f(x) d x ==> integral 1/g(y) d y = integral f(x) d x $
   Anschliessend werden beide Seiten unbestimmt integriert $-->$ allg. Lösung
 ]
 
@@ -2300,12 +2298,12 @@ $integral_a^b f(x) d x = F(b) - F(a)$
   Die lineare Substitution $u = a x + b y + c$ überführt die Gleichung in eine Differentialgleichung mit trennbaren Variablen.
 ]
 
-#mainbox(title: "Variation der Konstanten")[
-  Für lineare, inhomogene DGL 1. Ordnung, die sich auf die Standardform $y' + p(x)y = s(x)$ bringen lassen.
+#mainbox(title: "Variation der Konstante")[
+  Für lineare, inhomogene DGL 1. Ordnung, die sich auf Form $y'markhl(+) p(x)y = s(x)$ bringen lassen.
   + *Zuerst homogene Gleichung:* #minitext[
-      *Prüfungs-Hack für homogene Lösung:* Man muss die Variablen nicht mühsam trennen! Die homogene Lösung lässt sich immer direkt ablesen durch die Formel: $markhl(y_h (x) = C dot e^(-integral p(x) d x))$
+      *Prüfungs-Hack für homogene Lösung:* Man muss die Variablen nicht mühsam trennen! Die homogene Lösung lässt sich immer direkt ablesen durch die Formel: $markhl(y_h (x) = C dot e^(-integral p(x) d x))$ Achtung beim Vorzeichen bei $p(x)$!
     ]
-  + *Variation der Konstante:* In der Lösung der homogenen DGL ($y_h$) wird die auftretende Konstante $C$ durch eine Funktion $K(x)$ ersetzt. _Beispiel:_ Ist die homogene Lösung $y_h(x) = C e^x$, lautet der Ansatz $y_p (x) = K(x)e^x$.
+  + *Variation der Konstante:* In der Lösung der homogenen DGL ($y_h$) wird die auftretende Konstante $C$ durch eine Funktion $K(x)$ ersetzt. _Beispiel:_ Ist die homogene Lösung $y_h (x) = C e^x$, lautet der Ansatz $y_p (x) = K(x)e^x$.
   + *Einfügen in Aufgabengleichung:* Setzt man den Ansatz in die DGL ein (e.g. $y_p (x) = K(x)e^x ==> y_p^' (x) = K'(x)e^x + K(x)e^x$), erhält man eine Gleichung für $K'(x)$ #minitext[($K(x)$ muss sich wegkürzen!)]. Dann $K(x) = integral K'(x) d x$
     - Integriert man zu $K(x)$ *ohne* Integrationskonstante $+C$, erhält man nur $y_p$. Die Lösung ist dann $y = y_h + y_p$.
     - Integriert man zu $K(x)$ *mit* Integrationskonstante $+C$, liefert das Einsetzen in den Ansatz *direkt* die allgemeine Lösung $y(x)$!
