@@ -310,7 +310,7 @@ Folgen können rekursiv definiert werden. Sei $(a_k)_(k >= 1): a_1 = c, a_(k+1) 
     $sin(x) <= x quad forall x >= 0 ==> a_(k+1) <= a_k ==>$ monoton fallend
   + *Beschränktheit zeigen: *
     $sin(x) >= 0 quad forall x in [0, pi] ==> a_k >= 0, forall k >= 1 ==>$ n.u.b
-  + *Weierstrass Monoton Konvergenzsatz:* 
+  + *Weierstrass Monoton Konvergenzsatz:*
     $1. "und" 2. ==> a_k$ monoton fallend & n.u.b \
     $==> limn (a_n) = inf(a_k : k >= 1) = 0$
 ]
@@ -324,8 +324,8 @@ Folgen können rekursiv definiert werden. Sei $(a_k)_(k >= 1): a_1 = c, a_(k+1) 
 - *Limes Log:* Limes der Form $oo^0$ oder $1^oo$ kann man mit $f(x)^g(x) = e^(g(x) dot ln(f(x)))$ lösen. Dann l'Hospital ($e$ ist stetig, daher betrachten wir nur den Exponenten) anwenden oder vereinfachen.
 
 #bspbox(title: "Grenzwert berechnen mit Fixpunktgleichung")[
-  Sei $(x_n)_(n >= 1)$ rekursiv gegeben durch $x_1 = 1 "und" x_(n+1) := 1+ 1/x_n quad forall n >= 1$. Berechne den Grenzwert $g$. \
-  Für genug grosse $n$ gilt irgendwann $x_n = x_(n+1)$. Grenzwerte einsetzen und auflösen ergibt Grenzwert. \
+  Sei $(x_n)_(n >= 1)$ rekursiv gegeben durch $x_1 = 1 "und" x_(n+1) := 1+ 1/x_n quad forall n >= 1$. Berechne den Grenzwert $g$.
+  Für genug grosse $n$ gilt irgendwann $x_n = x_(n+1)$. Grenzwerte einsetzen und auflösen ergibt Grenzwert.
   $x_n = x_(n+1) -> g = 1 + 1/g -> g^2 - g - 1 = 0 -> g = (1 plus.minus sqrt(5))/2$
 ]
 
@@ -359,7 +359,7 @@ Abschätzen durch nur schnellstwachsende Terme prüfen.
 
 == Konvergente Reihe
 #mainbox(title: "Konvergente Reihe")[
-  Folge aller Partialsummen $(S_n)_(n >= 1)$ konvergiert \
+  Folge aller Partialsummen $(S_n)_(n >= 1)$ konvergiert
   $<==>$ Reihe $sum_(k=1)^oo a_k$ konvergiert.
 ]
 *Achtung!* Grenzwert ändert sich wenn wir bei *Reihen* Glieder weglassen. *Konvergenz* bleibt aber unverändert.
@@ -370,8 +370,8 @@ Abschätzen durch nur schnellstwachsende Terme prüfen.
 - Für $a_k >= 0$: Reihe $sumk a_k$ konvergent $<==>$ Folge $(S_n)_(n >= 1)$ n.o.b.
 - *Reihe* bleibt konvergent/divergent bei Verschiebungen um $k$, so wie die Folgen (aber bei Folgen würde auch noch der Grenzwert gleich bleiben). #minitext[Falls *Folge* $(a_n)$ gegen $l$ konvergiert, so konvergiert auch $b_n := a_(n+k)$ gegen $l$.] // TODO: Weglassen?
 
-#mainbox(title: "Cauchy-Kriterium")[
-  Reihe $sumk a_k$ konvergent \
+#mainbox(title: "Cauchy-Kriterium für Reihen")[
+  Reihe $sumk a_k$ konvergent
   $<==> forall epsilon > 0, exists N >= 1$ mit $|S_n - S_m| < epsilon, forall m, n >= N$. \
   _Hinweis:_ $|S_n - S_m| = |sum_(k=n)^m a_k|$ für $n <= m$ \
   #minitext[
@@ -380,7 +380,7 @@ Abschätzen durch nur schnellstwachsende Terme prüfen.
 ]
 
 #mainbox(title: "Nullfolgenkriterium (schnell prüfen, ob Reihe divergent ist)")[
-  - Reihe $sum_(k=1)^oo a_k$ konvergent $==>$ dazugehörige Folge $(a_n)_(n >= 1)$ hat $limn a_n = 0$ (_ist Nullfolge_). \
+  - Reihe $sum_(k=1)^oo a_k$ konvergent $==>$ dazugehörige Folge $(a_n)_(n >= 1)$ hat $limn a_n = 0$ (_ist Nullfolge_).
     #minitext[
       Wenn Reihe konvergiert $==>$ Folge aller Partialsummen konvergiert $==>$ Partialsummen werden immer kleiner $==>$ $(a_n)$ konv. gegen 0.
     ]
@@ -517,7 +517,7 @@ $notimpliedby$ Gibt Bsp. wo Wurzelk. funktioniert & Quotientenk. nicht.
 == Doppelreihen Satz
 #subbox(title: "Doppelreihen Satz (Cauchy)")[
   Falls $exists B > 0$ sodass $sum_(j=0)^m sum_(i=0)^m |c_(i j)| >= B quad forall m >= 0$.
-  Dann ist jede lineare Anordnung der Doppelreihe $sum_(i, j) c_(i j)$ _absolut konvergent_ und es gilt: \
+  Dann ist jede lineare Anordnung der Doppelreihe $sum_(i, j) c_(i j)$ _absolut konvergent_ und es gilt:
   $sum_(j=0)^oo sum_(i=0)^oo |c_(i j)| = sum_(i=0)^oo sum_(j=0)^oo |c_(i j)|$
 ]
 
@@ -545,12 +545,6 @@ $forall x in DD$: $(RR^DD, +, dot)$ ist ein Vektorraum.
 - *Quotient von Funktionen*: Sei $f, g: DD -> RR$ und $tilde(DD) = {x in DD | g(x) != 0}$. $(f/g)(x) = f(x)/g(x)$
 - *Komposition: Verkettung von Funktionen*: Zuerst $f$, dann $g$. Sei $f: DD -> RR$ & $g: E -> RR ==> g compose f: DD -> RR$ mit $(g compose f)(x) = g(f(x))$.
 
-== Beschränktheit // TODO: weglassen?
-$f: DD -> RR$ ist:
-- *nach oben beschränkt*: falls Resultat von $f(DD) subset RR$ n.o.b.
-- *nach unten beschänkt*: falls Resultat von $f(DD) subset RR$ n.u.b.
-- *beschränkt*: falls Resultat von $f(DD) subset RR$ n.o.b & n.u.b.
-
 == Kompaktes Intervall
 Ist ein Intervall $I subset RR$ falls $I = [a, b], a <= b$.
 - Für $(x_n)_(n in NN), lim_(n -> oo) x_n in RR, a <= b$. \
@@ -560,7 +554,6 @@ Ist ein Intervall $I subset RR$ falls $I = [a, b], a <= b$.
   ]
 
 == Monotonie von Funktionen
-
 - Gerade Funktionen (e.g. $cos(x)$) sind nie monoton (und nie injektiv).
 - $f$ streng monoton $==> f$ injektiv.
 
@@ -680,13 +673,14 @@ Ist ein Intervall $I subset RR$ falls $I = [a, b], a <= b$.
 #mainbox(title: $f$ + " stetig")[
   $f$ ist für alle $x_0 in DD$ punktweise stetig.
 ]
-- Für nicht-kompaktes Intervall $DD = (a, b)$ : \
+- Für nicht-kompaktes Intervall $DD = (a, b)$ : 
   Punktweise stetig $==>$ stetig im Intervall.
 - Für kompaktes Intervall $DD = [a, b]$ :
-  Punktweise stetig + Beweis stetig in Randpunkten $==>$ stetig im Intervall. \
+  Punktweise stetig + Beweis stetig in Randpunkten $==>$ stetig im Intervall.
   #minitext[
     Für die Randpunkte zeigen dass $lim_(x -> a^+) f(x) = f(a)$ und $lim_(x -> b^-) f(x) = f(b)$.
   ]
+  Und: Stetige Funktionen auf kompakten Intervallen sind beschränkt.
 - $f$ stetig $notimplies$ $f$ differenzierbar
 - $f$ stetig auf _kompaktem Intervall_ $==>$ $f$ beschränkt
 
@@ -697,6 +691,14 @@ Ist ein Intervall $I subset RR$ falls $I = [a, b], a <= b$.
 ]
 - gleichmässig stetig $==>$ stetig $==>$ in $x_0$ stetig
 - $f: [a, b] -> RR$ stetig im Kompakten Intervall $==>$ $f$ ist in $[a, b]$ gleichmässig stetig.
+
+#subbox(title: "Lipschitz-Stetigkeit")[
+  Eine stärkere Form der gleichmässigen Stetigkeit, bei der die Differenz der Funktionswerte linear durch die Differenz der Argumente abgeschätzt werden kann:
+  $ exists L >= 0 quad "s.t." quad forall x, y in DD: |f(x) - f(y)| <= L |x - y| $
+  
+  - *Zusammenhang:* Lipschitz-stetig $==>$ gleichmässig stetig $==>$ stetig.
+  - *Wichtige Spezialfälle (aus Serie 7):* *Klassisch:* Gilt die Bedingung $forall x, y in R$, impliziert dies die *Stetigkeit* (Wähle $delta = epsilon / L$). *Nur für grosse Abstände:* $|f(x) - f(y)| <= C |x-y|$ für $|x-y| >= 1$ $notimplies$ *stetig*! #minitext[Gegenbeispiel: Die Sprungfunktion $f(x) = cases(0 & "für" x < 0, 1 & "für" x >= 0)$ ist in $x_0 = 0$ unstetig, erfüllt aber die Bedingung für alle $|x-y| >= 1$ mit $C=1$.] *Quadratisch für kleine Abstände:* $|f(x) - f(y)| <= C |x-y|^2$ für $|x-y| <= 1$ $==>$ *stetig*. #minitext[Wähle $delta = min(sqrt(epsilon/C), 1)$. *Zusatzwissen:* Jede Funktion, die diese Bedingung erfüllt, ist sogar konstant!]
+]
 
 === Polynomiale Funktionen
 Polynomiale Funktionen $P(x)$ sind auf ganz $RR$ stetig. \
@@ -751,17 +753,17 @@ Für $DD subset RR, f, g: DD -> RR, x_0 in DD$.
     $X$ ist nicht leer (da $a in X$) und beschränkt ($X subset [a,b]$). \
     Nach dem Vollständigkeitsaxiom existiert somit das Supremum $x := sup(X)$.
 
-  + *Zeige $f(x) <= c$ (Folgenstetigkeit):* \
-    Da $x = sup(X)$ ist, existiert eine Folge $(x_n) in X$ mit $limn x_n = x$. \
-    Wegen der Stetigkeit von $f$ konvergiert die Bildfolge: $limn f(x_n) = f(x)$. \
+  + *Zeige $f(x) <= c$ (Folgenstetigkeit):*
+    Da $x = sup(X)$ ist, existiert eine Folge $(x_n) in X$ mit $limn x_n = x$.
+    Wegen der Stetigkeit von $f$ konvergiert die Bildfolge: $limn f(x_n) = f(x)$.
     Da für alle Folgenglieder $f(x_n) <= c$ gilt (da sie in $X$ liegen), muss logischerweise auch der Grenzwert $f(x) <= c$ sein.
 
-  + *Zeige $f(x) = c$ (per Widerspruch):* \
-    Annahme: $markhl(f(x) < c)$. (Daraus folgt sofort $x < b$, da $c <= f(b)$). \
+  + *Zeige $f(x) = c$ (per Widerspruch):*
+    Annahme: $markhl(f(x) < c)$. (Daraus folgt sofort $x < b$, da $c <= f(b)$).
     Wir wählen den Abstand $epsilon = c - f(x) > 0$. Wegen der Stetigkeit von $f$ existiert nun ein $delta > 0$, sodass sich $f$ im Bereich $[x, x+delta]$ um weniger als $epsilon$ verändert.
-    Es gilt dort also: $markhl(f(y) < f(x) + epsilon = c)$. \
+    Es gilt dort also: $markhl(f(y) < f(x) + epsilon = c)$.
     Das bedeutet, das Intervall $(x, x+delta) inter [a,b]$ liegt komplett in $X$. \
-    *Widerspruch!* Wir hätten Elemente in $X$ gefunden, die echt grösser als unser definiertes Supremum $x$ sind. \
+    *Widerspruch!* Wir hätten Elemente in $X$ gefunden, die echt grösser als unser definiertes Supremum $x$ sind.
     $==>$ Die Annahme ist falsch, es muss zwingend $f(x) = c$ gelten.
 ]
 
@@ -815,7 +817,7 @@ Sei $f: I -> RR$ stetig und streng monoton. Dann ist $f^(-1): J -> I$ stetig und
   gutter: 0.5em,
   [
     Exponentialfunktion $exp: RR -> (0, +oo)$. \
-    $e^(x) = sum_(k=0)^oo x^k / k! = 1 + x + x^2 / 2! + ... >= 1$ \
+    $e^(x) = sum_(k=0)^oo x^k / k! = 1 + x + x^2 / 2! + ... >= 1+x$ \
     $e^x$ ist streng monoton wachsend, stetig, surjektiv ($==>$ bijektiv)
     - $e^(x + y) = e^(x) dot e^(y) quad quad forall x, y in CC$
     - $e^(x - y) = e^(x) / e^(y) quad quad quad quad forall x, y in CC$
@@ -854,9 +856,18 @@ Sei $f_n$ eine der Funktionen für ein $n$, also die Abbildung: $n -> f_n: DD ->
   Beispiel: $f_n(x) = n x: f_1(x) = x, f_2(x) = 2x$, etc.
 ] \
 Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jedes $x$ den Grenzwert der Funktionenfolge an. \
-#image("img/funktionenfolgenundgrenzwertfunktion.jpg", width: 50%)
-
-
+#grid(
+  columns: (2fr, 1fr, 1fr),
+  [
+    #image("img/funktionenfolgenundgrenzwertfunktion.jpg")
+  ],
+  [
+    #image("img/konvpunktweise_nicht_gleichmaessig.jpg")
+  ],
+  [
+    #image("img/konvpunktweise_und_gleichmaessig.jpg")
+  ]
+)
 #mainbox(title: $(f_n)_(n >= 1)$ + " konvergiert punktweise (" + $epsilon$ + "-Kriterium)")[
   Funktionenfolge $(f_n)_(n >= 1)$ konvergiert punktweise gegen Funktion $f: DD -> RR$ \ $<==>$
   $markhl(forall x in DD", " forall epsilon > 0", " exists N in NN " s.t. " forall n >= N): |f_n (x) - f(x)| < epsilon$. \
@@ -867,7 +878,7 @@ Sei $f(x) = limn f_n (x)$ die *Grenzwertfunktion* von $(f_n)$. Sie gibt für jed
 ]
 
 #mainbox(title: $(f_n)_(n >= 1)$ + " konvergiert punktweise (Folgenkriterium)")[
-  Funktionenfolge $(f_n)_(n >= 1)$ konvergiert punktweise gegen Funktion $f: DD -> RR$ \ $ <==> forall x in DD: f(x) = limn f_n (x)$. \
+  Funktionenfolge $(f_n)_(n >= 1)$ konvergiert punktweise gegen Funktion $f: DD -> RR$ \ $<==> forall x in DD: f(x) = limn f_n (x)$. \
   #minitext[
     Konv. punktweise $<==>$ Für jedes $x$ konv. die Funktionenfolge $f_n (x)$ gegen  Grenzfkt $f(x)$.
   ]
@@ -1350,10 +1361,10 @@ cos: RR -> RR "stetig", quad cos(z) &= 1 - z^2/2! + z^4/4! - ... = sum_(n=0)^oo 
 
 == Abbildungseigenschaften
 #image("img/injectivityAndSurjectivity.png")
-- *$f$ Injektiv*, $f: X -> Y$ \
+- *$f$ Injektiv*, $f: X -> Y$.
   Keine $2$ versch. Elemente in $X$ haben gleichen Funktionswert in $Y$. \
   $forall x_1, x_2 in X: x_1 != x_2 ==> f(x_1) != f(x_2)$
-- *$f$ Surjektiv*, $f: X -> Y$ \
+- *$f$ Surjektiv*, $f: X -> Y$.
   Jedes Element in $Y$ wird mind. einmal angenommen. \
   $forall y in Y, exists x in X: f(x) = y$ (für mindestens ein $x$)
 - *$f$ Bijektiv (= Injektiv & Surjektiv)*, $f: X -> Y$ \
@@ -1377,7 +1388,7 @@ cos: RR -> RR "stetig", quad cos(z) &= 1 - z^2/2! + z^4/4! - ... = sum_(n=0)^oo 
 == Definition Differenzierbarkeit von $f$
 Funktion ist differenzierbar $<==> forall x_i$ eine Tangente gelegt werden kann
 #mainbox(title: $f "in" x_0 "differenzierbar"$)[
-  $f$ ist in $x_0$ differenzierbar wenn Grenzwert $f'(x_0)$ existiert:$ lim_(x -> x_0) (f(x) - f(x_0))/(x - x_0) = lim_(h -> 0) (f(x_0 + h) - f(x_0))/h = f'(x_0) $
+  $f$ ist in $x_0$ differenzierbar wenn Grenzwert $f'(x_0)$ existiert (bzw. nicht $plus.minus oo$ ist):$ lim_(x -> x_0) (f(x) - f(x_0))/(x - x_0) = lim_(h -> 0) (f(x_0 + h) - f(x_0))/h = f'(x_0) $
 ]
 - $f$ in $x_0$ differenzierbar, dann $f$ linear durch Tangente annäherbar
 - $f$ differenzierbar in $x_0 ==> f$ stetig in $x_0$. Achtung! $notimpliedby$
@@ -1411,7 +1422,7 @@ Für $DD subset RR$, Häufungspunkt $x_0 in DD$ und $f, g: DD -> RR$ in $x_0$ di
 - $bold((f + g)'(x_0)) = f'(x_0) + g'(x_0)$.
 - $bold((f g)'(x_0)) = f'(x_0)g(x_0) markhl(+) f(x_0)g'(x_0)$.
 - $bold((f/g)'(x_0)) = (f'(x_0)g(x_0) markhl(-) f(x_0)g'(x_0)) / g(x_0)^2, quad g(x_0) != 0$.
-- $bold((g compose f)'(x_0)) = (g(f(x)))' = g'(f(x_0)) dot f'(x_0)$ 
+- $bold((g compose f)'(x_0)) = (g(f(x)))' = g'(f(x_0)) dot f'(x_0)$
   Für $f: DD -> E, g: E -> RR, DD, E subset RR$, Häufungspunkt $x_0 in DD$ und $f$ differenzierbar in $x_0$ und $g$ differenzierbar in $f(x_0)$.
 - $bold((f^(-1))'(y_0)) = 1/(f'(x_0)) = 1/(f'(f^(-1)(y_0)))$ \
   Für $f: DD -> E$ bijektiv, $x_0$ Häufungspunkt, $f$ in $x_0$ differenzierbar, $f'(x_0) != 0, f^(-1)$ in $y_0 = f(x_0)$ stetig $==> y_0$ ist ein Häufungspunkt von E und $f^(-1)$ ist in $y_0$ differenzierbar.
@@ -1555,20 +1566,21 @@ Die erste Ableitung ungleich 0, sei die $(n+1)$-te Ableitung. Dann gilt: (_Hinwe
 #v(-2pt)
 _Achtung 🚨: Sollen globale Extrema in $[a, b]$ gefunden werden, nicht nur Stellen $f'(x) = 0$ untersuchen, sondern immer auch Randwerte $f(a)$ und $f(b)$ prüfen!_
 
-#bspbox(title: "Globale Extrema auf kompaktem Intervall "+$[0,5]$ +" bei "+ $markhl(f(x)) = sqrt(1+x) - 1/2 sqrt(x)$)[
+#bspbox(
+  title: "Globale Extrema auf kompaktem Intervall " + $[0,5]$ + " bei " + $markhl(f(x)) = sqrt(1+x) - 1/2 sqrt(x)$,
+)[
 
-_Die 2. Ableitung kostet hier nur Zeit (und ist eine Fehlerquelle)!_
+  _Die 2. Ableitung kostet hier nur Zeit (und ist eine Fehlerquelle)!_
 
-+ *Kritische Punkte finden:* $f'(x) =^! 0$ berechnen. $f'(x) = 1/(2sqrt(1+x)) - 1/(4sqrt(x)) =^! 0 ==> x = 1/3$
+  + *Kritische Punkte finden:* $f'(x) =^! 0$ berechnen. $f'(x) = 1/(2sqrt(1+x)) - 1/(4sqrt(x)) =^! 0 ==> x = 1/3$
 
-+ *y-Werte berechnen:* Setze alle kritischen Punkte *UND* Randstellen ($0$ & $5$) in $markhl(f(x))$ ein.
-$f(0) = sqrt(1) - 1/2 sqrt(0) = 1, quad 
-  f(1/3) = sqrt(4/3) - 1/2 sqrt(1/3) = 3/(2 sqrt(3)) = (sqrt(3))/2 approx 0.866,$ \ $
-  f(5) = sqrt(6) - 1/2 sqrt(5) approx 2.45 - 1.12 approx 1.33$
+  + *y-Werte berechnen:* Setze alle kritischen Punkte *UND* Randstellen ($0$ & $5$) in $markhl(f(x))$ ein.
+  $f(0) = sqrt(1) - 1/2 sqrt(0) = 1, quad
+  f(1/3) = sqrt(4/3) - 1/2 sqrt(1/3) = 3/(2 sqrt(3)) = (sqrt(3))/2 approx 0.866,$ \ $f(5) = sqrt(6) - 1/2 sqrt(5) approx 2.45 - 1.12 approx 1.33$
 
-*3. Fazit durch reinen Vergleich:* 
-Der kleinste Wert ist $0.866 quad =>$ *Minimum bei* $x = 1/3$ \
-Der grösste Wert ist $1.33 quad =>$ *Maximum bei* $x = 5$
+  *3. Fazit durch reinen Vergleich:*
+  Der kleinste Wert ist $0.866 quad =>$ *Minimum bei* $x = 1/3$ \
+  Der grösste Wert ist $1.33 quad =>$ *Maximum bei* $x = 5$
 
 ]
 
@@ -1745,19 +1757,27 @@ Annäherung glatter Funktionen als Potenzreihen am Entwicklungspunkt $a$.
 ]
 
 #howtobox(title: "Rezept: Taylorpolynom durch Standardreihen (Substitution)")[
-  *Wann?* Bei Funktionen der Form $x^m dot g(x^k)$ (z.B. $x cos(x^3)$). Viel schneller und weniger fehleranfällig als direktes, mehrfaches Ableiten!
+  *Wann?* Bei Funktionen wie $x^m dot g(z(x))$ (z.B. $x cos(x^3)$). Viel schneller und weniger fehleranfällig als direktes, mehrfaches Ableiten!
 
-  + #highlight[*Standardreihe notieren:*] Schreibe Maclaurin-Reihe der bekannten "Basis-Funktion" $g(z)$ bis zur gesuchten Ordnung auf.
-    #minitext[E.g. $cos(z)$: $quad 1 - z^2/(2!) + z^4/(4!) - ...$]
-  + *Substitution:* Ersetze das $z$ in Reihe durch das eigentliche innere Argument (z.B. $z = x^3$).
-    #minitext[E.g. $cos(x^3)$: $quad 1 - (x^3)^2/2 + ... = 1 - x^6/2 + ...$]
-  + *Multiplizieren:* Multipliziere äussere Faktoren (z.B. $x$) in gesamte Reihe. \
-    #minitext[E.g. $x dot cos(x^3)$: $quad x dot (1 - x^6/2) = x - x^7/2 + ...$]
-  + *Koeffizient ablesen:* Vergleiche fertige Polynom mit allgemeiner Form $sum alpha_n x^n$. Der Faktor vor dem $x^n$ ist dein $alpha_n$.
-    #minitext[E.g. $f(x) = alpha_0x^0 + alpha_1 x^1+ alpha_2 x^2+ ...$. Gesucht $alpha_3$: Da im Polynom $x - x^7/2$ kein $x^3$ vorkommt, ist $alpha_3 = 0$.]
+  + *Voraussetzung prüfen (wichtig!):*
+    Nutzt man Maclaurin-Reihen ($a =^! 0$), muss der innere Term $z(x)$, den man substituieren will, an der Entwicklungsstelle $a$ zwingend *Null* ergeben ($z(a) = 0$)!
+    #minitext[Falle $e^(x^2+1)$ um $a=0$: $x^2+1$ ergibt hier $1$, nicht $0$. Direkte Substitution verboten!  Lösung durch Umformen: $e^(x^2+1) = e dot e^(x^2)$. Das neue $z(x) = x^2$ ergibt bei $x=0$ nun $0$.]
+
+  + #highlight[*Standardreihe notieren:*] Schreibe die Maclaurin-Reihe der bekannten "Basis-Funktion" $g(z)$ bis zur gesuchten Ordnung auf.     #minitext[E.g. $cos(z)$: $quad 1 - z^2/(2!) + z^4/(4!) - ...$]
+
+
+  + *Entwicklungspunkt verschieben (falls $a != 0$):*
+    Möchtet man um $a != 0$ entwickeln, formt man den Term so um, dass die geforderte Klammer $(x-a)$ entsteht ("nahrhaftes Null"-Trick: $+a -a$).
+    #minitext[E.g. $e^x$ um $a=2$: Ersetzt man $x$ durch $((x-2)+2)$. Dann ist $e^x = e^((x-2)+2) = e^2 dot e^(x-2)$. Nun kann $z = (x-2)$ in die Reihe substituiert werden. Da $z(2) = 0$, ist das wieder absolut erlaubt!]
+
+  + *Substitution:* Ersetze das $z$ in der notierten Reihe durch dein vorbereitetes Argument. #minitext[E.g. $cos(x^3)$: $quad 1 - (x^3)^2/2 + ... = 1 - x^6/2 + ...$]
+
+  + *Multiplizieren:* Multipliziere eventuelle äussere Faktoren (wie das $e^2$ von oben oder ein vorgezogenes $x$) in gesamte Reihe hinein.     #minitext[E.g. $x dot cos(x^3)$: $quad x dot (1 - x^6/2) = x - x^7/2 + ...$]
+
+  + *Koeffizient ablesen:* Vergleiche das fertige Polynom mit der allgemeinen Form $sum alpha_n (x-a)^n$. Der Faktor vor der $n$-ten Klammer ist dein $alpha_n$. #minitext[E.g. $f(x) = alpha_0x^0 + alpha_1 x^1+ alpha_2 x^2+ ...$. Gesucht $alpha_3$: Da im Polynom $x - x^7/2$ kein $x^3$ vorkommt, ist $alpha_3 = 0$.]
 ]
 
-#bspbox(title: "Taylor Approximation für " + $f(x) = x^x$)[
+#bspbox(title: "Taylor Approximation via Ableiten für " + $f(x) = x^x$)[
   Sei $f(x) = x^x$, der Grad $N = 3$, Entwicklungspunkt $x_0 = 1$. \
   Gesucht: Approx. für $(7/5)^(7/5)$, also werten wir Polynom an $x = 7/5$ aus.
 
@@ -1789,7 +1809,7 @@ Annäherung glatter Funktionen als Potenzreihen am Entwicklungspunkt $a$.
   #set enum(numbering: "1.")
   + Leite $f^((n))$ ab (= rechne $f^((n+1))$ aus).
   + Bilde Restpolynom $R_N (f, x, a) = (f^((n+1))(xi))/((n + 1)!)(x - a)^(n + 1)$
-  + Select $xi in (a, x]$ so das $R_N (f, x, a)$ maximal ist
+  + Wähle $xi in (a, x]$ so das $R_N (f, x, a)$ maximal ist
 ]
 
 #bspbox(title: "Fehlerabschätzung für " + $f(x) = e^x$)[
@@ -1932,7 +1952,7 @@ Flächeninhalt unter der Kurve zwischen den Punkten $a$ und $b$
     [
       #v(-1em);
       #image("img/riemannmittelwertsatz.jpeg", width: 100%);
-    ]
+    ],
   )
 ]
 
@@ -1957,6 +1977,12 @@ Für stetige Funktion existiert immer eine Stammfunktion.
   #minitext[
     Hinweis: $f$ ist stetig und Stammfunktion $F$ ist in $[a, b]$ stetig differenzierbar.
   ]
+]
+
+#howtobox(title: "Rezept: Ableiten von Integralen (mit variablen Grenzen)")[
+  #highlight[*Prüfungs-Falle:*] Niemals versuchen, zuerst mühsam (oder unmöglich) die Stammfunktion zu bilden! *Lösung:* Nutze den Hauptsatz in Kombination mit der *Kettenregel*:
+  $d/(d x) integral_(h(x))^(g(x)) f(t) d t = f(g(x)) dot g'(x) - f(h(x)) dot h'(x)$
+  #minitext[Hinweis: Ist eine Grenze eine Konstante (z.B. $-1$ oder $0$), fällt ihr gesamter Teil weg, da die Ableitung der Konstanten $0$ ist!]
 ]
 
 == Fundamentalsatz der Analysis
@@ -2016,12 +2042,10 @@ $integral_a^b f(x) d x = F(b) - F(a)$
 ]
 
 #mainbox(title: "Partielle Integration")[
-  Seien $f, g$ stetig differenzierbar.
-
-  $ integral f'(x) g(x) d x = f(x) g(x) - integral f(x) g'(x) d x $
+  Seien $f, g$ stetig differenzierbar. $integral f'(x) g(x) d x = f(x) g(x) - integral f(x) g'(x) d x$
 
   Für ein Intervall $[a, b]$ gilt entsprechend:
-  $ integral_a^b f'(x)g(x) d x = [f(x)g(x)]_a^b - integral_a^b f(x)g'(x) d x $
+  $integral_a^b f'(x)g(x) d x = [f(x)g(x)]_a^b - integral_a^b f(x)g'(x) d x$
 ]
 
 
@@ -2056,7 +2080,7 @@ $integral_a^b f(x) d x = F(b) - F(a)$
   Für $a < b, phi: [a, b] -> RR$ stetig differenzierbar, Intervall $I subset RR$ mit $phi([a, b]) subset I$ und $f: I -> RR$ stetig.
   Sei $F$ eine Stammfunktion von $f$ (d.h. $F' = f$):
   $
-    #text(fill: luma(50%))[ $integral_a^b d/(d t) [F(phi(t))] d t &= integral_a^b F'(phi(t)) phi'(t) d t$]\
+    #text(fill: luma(50%))[ $integral_a^b d/(d t) [F(phi(t))] d t &= integral_a^b F'(phi(t)) phi'(t) d t$]
     &= integral_a^b f(phi(t)) phi'(t) d t = integral_(phi(a))^(phi(b)) f(x) d x
   $
 ]
@@ -2092,7 +2116,7 @@ $integral_a^b f(x) d x = F(b) - F(a)$
     $phi(t) = 1/t = x, quad phi'(t) = -1/t^2 = (d x)/(d t) ==> markhl(d x = -1/t^2 d t)$
   + Erkenne Muster der linken Seite. $phi'(t)$ ist in $1/t^2$ versteckt: \
     $integral e^(1/t) dot 1/t^2 d t = integral e^(1/t) dot (-1) dot markhl((-1/t^2) d t)$
-  + Substitutionsregel & Rücksubstitution: 
+  + Substitutionsregel & Rücksubstitution:
     $= -1 dot integral e^x d x = -e^x + C = -e^(1/t) + C$
 ]
 
@@ -2179,7 +2203,7 @@ $integral_a^b f(x) d x = F(b) - F(a)$
     Sei $f(x)$ auf $[a, oo)$ stetig, monoton fallend und $lim_(x -> oo) f(x) = 0$. \
     $==>$ Dann konvergieren $integral_a^oo f(x)sin(x) d x$ und $integral_a^oo f(x)cos(x) d x$.
 
-  + *Gestauchte Schwingung an der Grenze $a$:* \
+  + *Gestauchte Schwingung an der Grenze $a$:*
     Sei $f(x)$ auf $(a,b]$ stetig. Integrale der Form $integral_a^b f(x)sin(1/(x-a)) d x$ schwingen nahe $a$ unendlich dicht. \
     *Regel:* Ist die Dämpfung $f(x)(x-a)^2$ monoton wachsend (wachsend, da wir uns von rechts nach links an $a$ annähern) und gilt $lim_(x -> a^+) f(x)(x-a)^2 = 0$ $==>$ Dann konvergieren $integral_a^b f(x)sin(1/(x-a)) d x$ und $integral_a^b f(x)cos(1/(x-a)) d x$. \
 
@@ -2225,17 +2249,17 @@ $integral_a^b f(x) d x = F(b) - F(a)$
 ]
 
 == Partialbruchzerlegung
-#mainbox(title: "Generic Partialbruchzerlegung " + $f(x) = 1/(4k^2 - 1)$)[
+
+#bspbox(title: "PBZ mit Linearfaktoren (Einsetzmethode): " + $f(x) = 1/(4k^2 - 1)$)[
   #set enum(numbering: "1.")
-  + Nenner faktorisieren $f(x) = 1/((2k-1)(2k+1))$.
-  + Konstrukt der Dekomposition erstellen: $1/((2k-1)(2k+1)) = A/(2k-1) + B/(2k+1)$
-  + A und B berechnen: $1 = A(2k+1)+B(2k-1)$ \
-    Koeffizienzvergleich: $1=2k A + A + 2k B - B = 2k(A+B) + (A-B)$ \
-    $A+B = 0$ (kein $k$ auf der LHS) \
-    $A-B = 1$ (wenn $A+B = 0$, dann muss $A-B =^! 1$) \
-    Addiert man beide Gleichungen, erhält man: \
-    $2A = 1 ==> A = 1/2, quad quad 1/2 + B = 0 ==> B = -1/2$
-  + A und B einfügen um Partialbruchzerlegung zu erhalten: \
+  + *Nenner faktorisieren & Ansatz aufstellen:* $f(x) = 1/((2k-1)(2k+1)) = A/(2k-1) + B/(2k+1)$
+  + *Hauptgleichung:* Mit Nenner durchmultiplizieren:
+    $1 = markhl(A(2k+1), color: #rgb("#ffff00")) + markhl(B(2k-1), color: #rgb("#00ff00"))$
+  + *Parameter bestimmen (10-Sekunden-Hack):*
+    Anstatt Koeffizienten zu vergleichen, setze Nullstellen der Klammern direkt für $k$ ein, um jeweils eine Variable zu eliminieren!
+    $"Setze" k &= 1/2 && 1 = markhl(A(2(1/2)+1), color: #rgb("#ffff00")) + markhl(0, color: #rgb("#00ff00")) quad &&& ==> &&&& quad 1 = 2A &&&&& quad==> A = 1/2 \
+    "Setze" k &= -1/2 quad quad && 1 = markhl(0, color: #rgb("#ffff00")) + markhl(B(2(-1/2)-1), color: #rgb("#00ff00")) quad &&& quad ==> &&&&quad 1 = -2B &&&&& quad ==> B = -1/2$
+  + *Einsetzen um PBZ zu erhalten:*
     $f(x) = (1\/2)/(2k-1) - (1\/2)/(2k+1) = 1/(2(2k-1)) - 1/(2(2k+1))$
 ]
 
@@ -2254,7 +2278,7 @@ $integral_a^b f(x) d x = F(b) - F(a)$
     - _Koeffizientenvergleich:_ Ausmultiplizieren, nach $x$-Potenzen sortieren und lineares Gleichungssystem lösen (funktioniert immer).
 ]
 
-#mainbox(title: "Beispiel PBZ: " + $integral (x^2-1)/(x^3+x) d x$)[
+#bspbox(title: "Beispiel PBZ: " + $integral (x^2-1)/(x^3+x) d x$)[
   + *Faktorisieren:* $x^3 + x = x(x^2 + 1)$.
     Wir haben einen linearen Faktor ($x$) und einen irreduziblen quadratischen Faktor ($x^2+1$).
   + *Ansatz aufstellen:* $x^2+1$ erfordert einen linearen Zähler! \
@@ -2329,7 +2353,7 @@ $integral_a^b f(x) d x = F(b) - F(a)$
 
 === Partikuläre Lösung ($y_p$)
 Für die Lösung einer #markhl("inhomogenen DGL") muss ein geeigneter Ansatz für die partikuläre Lösung gewählt werden. Der Ansatz richtet sich nach der Störfunktion $s(x)$ (der rechten Seite der DGL).
-Dann $y_p (x)$ ableiten und $y_p, y_p^', y_p^'', ...$ in Aufgabengleichung einsetzen.
+Dann $y_p (x)$ ableiten und $y_p, y_p^', y_p^'', ...$ in Aufgabengleichung einsetzen und mit Störfunktion gleichsetzen, um dann mit Koeffizientenvergleich die Konstanten des Ansatzes heraus zu finden.
 
 #howtobox(title: "Resonanzfall")[
   Liegt vor, wenn $s(x)$ (die rechte Seite) oder ein Teil davon in Form und Exponent bereits in der homogenen Lösung auftaucht.
@@ -2394,10 +2418,10 @@ Eine Gleichgewichtslösung (oder stationäre Lösung) ist ein Zustand, in dem si
   $ cos(phi) = a/A quad "und" quad sin(phi) = b/A $
 
   #line(length: 100%, stroke: 0.5pt + luma(200))
-  *Beweis über Additionstheoreme:* 
+  *Beweis über Additionstheoreme:*
   Wende das Additionstheorem $sin(x + y) = sin(x) cos(y) + cos(x) sin(y)$ an:
   $A sin(omega t + phi) = A (sin(omega t) cos(phi) + cos(omega t) sin(phi)) = underbrace(A cos(phi), a) sin(omega t) + underbrace(A sin(phi), b) cos(omega t)$
-  Durch Koeffizientenvergleich mit $a sin(omega t) + b cos(omega t)$ folgt:  1. $a = A cos(phi) ==> cos(phi) = a/A, quad  quad$  2. $b = A sin(phi) ==> sin(phi) = b/A$
+  Durch Koeffizientenvergleich mit $a sin(omega t) + b cos(omega t)$ folgt:  1. $a = A cos(phi) ==> cos(phi) = a/A, quad quad$  2. $b = A sin(phi) ==> sin(phi) = b/A$
   Quadrieren und addieren eliminiert $phi$ dank $sin^2(phi) + cos^2(phi) = 1$:
   $ a^2 + b^2 = A^2 cos^2(phi) + A^2 sin^2(phi) = A^2 (cos^2(phi) + sin^2(phi)) = A^2 ==> A = sqrt(a^2 + b^2) $
 ]
@@ -2482,10 +2506,10 @@ Eine Gleichgewichtslösung (oder stationäre Lösung) ist ein Zustand, in dem si
   [$lim_(x->plus.minus oo) (1 + 1/x)^x = e$], [$limxi (1-1/x)^x = 1/e$],
   [$markhl(lim_(x->plus.minus oo) (1 + k/x)^(m x) = e^(k m))$], [$limxi (x/(x+k))^x = e^(-k)$],
   [$limxo (a^x -1)/x = ln(a) quad forall a > 0$], [$limxi x^a q^x = 0 quad forall 0 <= q < 1$],
-  [$limxo (sin x)/x = 1$], [$limxo (sin k x)/x = k$],
-  [$limxo 1/cos x = 1$], [$limxo (cos x -1)/x = 0$],
+  [$limxo (sin (x))/x = 1$], [$limxo (sin (k x))/x = k$],
+  [$limxo 1/cos(x) = 1$], [$limxo (cos (x) -1)/x = 0$],
   [$limxo ln(1 - x)/x = -1$], [$lim_(x->0^+) x ln(x) = 0$],
-  [$limxo (1 - cos x)/x^2 = 1/2$], [$limxo (e^x-1)/x = 1$],
+  [$limxo (1 - cos (x))/x^2 = 1/2$], [$limxo (e^x-1)/x = 1$],
   [$limxo x/arctan(x) = 1$], [$limxi arctan(x) = pi/2$],
   [$limxo (e^(a x)-1)/x = a$], [$limxo ln(x+1)/x = 1$],
   [$lim_(x->1) ln(x)/(x-1) = 1$], [$limxi ln(x)/x^a = 0 quad forall a > 0$],
@@ -2580,11 +2604,9 @@ $f(x) = sum_(k=0)^oo c_k (x - x_0)^k = c_0 + c_1(x-x_0) + c_2(x-x_0)^2 +dots$
 === Alternierende Reihe $==>$ siehe Leibniz-Kriterium
 
 === Basics
-$
-          1 + 2 + ... + n = sum_(i=1)^n i & = (n(n + 1))/2 space "For any n. n could be" sqrt(n), n^4 \
-  1^2 + 2^2 + ... + n^2 = sum_(i=1)^n i^2 & = (n(n + 1)(2n + 1))/6 \
-  1^3 + 2^3 + ... + n^3 = sum_(i=1)^n i^3 & = (n^2(n + 1)^2)/2^2 = (sum_(i=1)^n i)^2 \
-$
+$1 + 2 + ... + n = sum_(i=1)^n i & = (n(n + 1))/2 space "For any n. n could be" sqrt(n), n^4 \
+1^2 + 2^2 + ... + n^2 = sum_(i=1)^n i^2 & = (n(n + 1)(2n + 1))/6 \
+1^3 + 2^3 + ... + n^3 = sum_(i=1)^n i^3 & = (n^2(n + 1)^2)/2^2 = (sum_(i=1)^n i)^2$
 
 == Ableitungen & Stammfunktionen
 #minitext[
@@ -2602,7 +2624,7 @@ $
   [$x^(-a+1)/(-a+1)$], [$1/x^a$], [$-a/x^(a+1)$],
   [$x^(a+1)/(a+1)$], [$markhl(x)^a quad (a != -1)$], [$a dot x^(a-1)$],
   [$1/(k ln(a)) a^(k x)$], [$a^(k dot markhl(x))$], [$k a^(k x) ln(a)$],
-  [---], [$x^x = e^(\x ln x) med (x>0)$], [$x^x (1+ln x)$ ],
+  [---], [$x^x = e^(x ln x) med (x>0)$], [$x^x (1+ln x)$ ],
   [$ln |x|$], [$1/x$], [$-1/x^2$],
   [$2/3 x^(3/2)$], [$sqrt(x)$], [$1/(2 sqrt(x))$],
   [$-cos(x)$], [$sin(x)$], [$cos(x)$],
@@ -2612,7 +2634,7 @@ $
   [$-ln|cos(x)|$], [$tan(x)$], [$1/(cos^2(x)) = 1+tan^2(x)$],
   [$ln(cosh(x))$], [$tanh(x)$], [$1/(cosh^2(x))$],
   [$ln |sin(x)|$], [$cot(x)$], [$-1/(sin^2(x)) = -csc^2(x)$],
-  [$ln |1/cos(x) + tan(x)|$], [$1/cos(x)=sec(x)$], [$sin(x)/cos^2(x)$],
+  [$ln |1/cos(x) + tan(x)|$], [$1/cos(x)=sec(x)$], [$sin(x)/(cos^2(x))$],
   [$ln |1/sin(x) - cot(x)|$], [$1/sin(x)=csc(x)$], [$-cos(x)/sin^2(x)$],
   [$1/c dot e^(c x)$], [$e^(c x)$], [$c dot e^(c x)$],
   [$x(ln |x| - 1)$], [$ln |x|$], [$1/x$],
@@ -2658,14 +2680,47 @@ $
 $n -> n + 1$: [...] $=^("IH")$ [...].
 *(CC):* Nach Prinzip der vollst. Induktion gilt Behauptung somit für alle $n >= 1$.
 
-== Lässige Aufgaben
+== Lässige Aufgaben & Beweise
 *Beweis der Ungleichung $e^x >= 1 + x$:* Wir definieren Hilfsfunktion $f(x) = e^x - x - 1$.
 + *Kritische Punkte (Erste Ableitung):* $f'(x) = e^x - 1 = 0 quad => quad x = 0$
 
-+ *Krümmung (Zweite Ableitung):* $f''(x) = e^x > 0 quad "für alle" x in bb(R) $
++ *Krümmung (Zweite Ableitung):* $f''(x) = e^x > 0 quad "für alle" x in bb(R)$
   Da $f''(x)$ strikt positiv ist, ist $f$ auf ganz $bb(R)$ streng konvex. Somit ist die Nullstelle $x=0$ zwingend das globale Minimum. Man könnte auch argumentieren dass $lim_(x->+oo) f(x) = +oo$ und $lim_(x->-oo) f(x) = +oo$, weil entweder $e^x$ ins unendliche wächst oder $-(-x)$ die Funktion ins Unendliche treibt. Da $f$ stetig muss sie ein Min. annehmen bei $x=0$, weil $f'(0)=0$.
 
 + *Funktionswert im Minimum:* $f(0) = e^0 - 0 - 1 = 0$
 
 + *Schlussfolgerung:* Da das globale Minimum den Wert $0$ hat, gilt für alle $x in bb(R)$: \
-  $f(x) &>= 0 quad ==> quad e^x - x - 1 &>= 0 quad ==> quad e^x &>= 1 + x quad square $
+  $f(x) &>= 0 quad ==> quad e^x - x - 1 &>= 0 quad ==> quad e^x &>= 1 + x quad square$
+
+
+*Beweis: Jede konvergente Folge ist beschränkt*
+Sei $(a_n)$ konvergent mit $lim_(n -> oo) a_n = L$.
+
++ *Grenzwert-Def. ($epsilon$ > 0):*
+  Es existiert ein Index $N$, sodass für alle $n > N$ gilt: $|a_n - L| < epsilon$
+
++ *Dreiecksungleichung (für $n > N$):*
+  Durch Einfügen einer "nahrhaften Null" $(-L+L)$ folgt: $|a_n| = |a_n - L + L| <= |a_n - L| + |L| < epsilon + |L|$
+
++ *Globale Schranke $C$ definieren:*
+  Wir fassen die ersten $N$ Folgenglieder und die obere Schranke des Rests in einer Maximums-Menge zusammen. Um eine *strikte* Ungleichung zu garantieren, addieren wir $1$: $C = max(|a_0|, |a_1|, ..., |a_N|, |L| + epsilon) + 1$
+
++ *Fazit:*
+  Da $C$ strikt grösser ist als alle Glieder bis $N$ und auch strikt grösser als die Schranke aller Glieder ab $N$, gilt: $|a_n| < C quad "für alle" n in bb(N)_0 quad square$
+
+*Sinusfunktion $x^a dot sin(1/x)$*
+Für Funktionen dieser Form mit zusätzlich $f(0) = 0$ in Def. hängt das Verhalten an der kritischen Stelle $x = 0$ *ausschliesslich* vom Exponenten $a$ ab: *Stetigkeit:* $f$ ist stetig $<=> a > 0$. *Differenzierbarkeit:* $f'$ existiert $<=> a > 1$, und diese Ableitung $f'$ ist auch noch stetig $<=> a > 2$. Jede Stufe mehr "Gutartigkeit" (Stetig $->$ Ableitbar $->$ Stetig ableitbar) kostet genau $+1$ im Exponenten!
+
+*Cauchy-Schwarz-Ungleichung*
+$|integral_0^1 g(x) h(x) d x| <= (integral_0^1 [g(x)]^2 d x)^(1/2) (integral_0^1 [h(x)]^2 d x)^(1/2)$
+
+
+*Beweis: $f$ stetig auf $I union J$ (für $I inter J != emptyset$)*
+Sei $epsilon > 0$. Fixiere Brückenpunkt $x_1 in I inter J$.
+*1. Fall $x_0 in I \\ J$:* $f$ stetig auf $I: exists delta_1 > 0$ s.t. $|x-x_0| < delta_1 ==> |f(x)-f(x_0)| < epsilon/2 quad (forall x in I)$.
+$f$ stetig auf $J: exists delta_2 > 0$ s.t. $|x-x_1| < delta_2 ==> |f(x)-f(x_1)| < epsilon/2 quad (forall x in J)$.
+Setze $delta := min(delta_1, delta_2)$. Betrachte $x in J \\ I$ mit $|x - x_0| < delta$.
+Da $I, J$ Intervalle, liegt $x_1$ zwingend zwischen $x_0$ und $x$.
+$==> |x_1 - x_0| < |x - x_0| < delta_1 quad "und" quad |x - x_1| < |x - x_0| < delta_2$.
+Via Dreiecksungleichung:
+$|f(x) - f(x_0)| <= |f(x) - f(x_1)| + |f(x_1) - f(x_0)| < epsilon/2 + epsilon/2 = epsilon$. *2. Fall $x_0 in J \\ I$:* Folgt analog (Symmetrie). *3. Fall $x_0 in I inter J$:* $exists delta_1$ (für $I$) und $delta_2$ (für $J$) direkt für Toleranz $epsilon$. Wähle $delta := min(delta_1, delta_2) ==> |f(x)-f(x_0)| < epsilon quad forall x in I union J quad square$
