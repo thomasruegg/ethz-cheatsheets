@@ -1,5 +1,7 @@
 #import "config.typ": *
 
+#set text(10pt)
+
 == Verteilungen
 #align(center)[
   #table(
@@ -84,7 +86,7 @@
     [$cases(1/(b-a) quad & a <= x <= b, 0 & "sonst")$],
     [$cases(0 & x <= a, (t-a)/(b-a) quad & a < x < b, 1 & x >= b)$],
 
-    [Exponentialverteilung #minitext()[Dauer zwischen zufälligen Ereignissen]],
+    [Exponentialverteilung #minitext()[Dauer zwischen zufälligen Ereignissen (stetiges Äquivalent zur Geometrischen Verteilung)]],
     [$Exp(lambda)$],
     [$lambda: 1/EE[X]$],
     [$1/lambda$],
