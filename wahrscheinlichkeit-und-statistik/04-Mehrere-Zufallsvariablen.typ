@@ -22,9 +22,9 @@ $
 ]
 
 *Randdichte/Randgewicht.* Seien $X_1, ..., X_n$ diskrete ZV mit gemeinsamer Gewichtsfkt. $p$. Für jedes $k in {1, ..., n}$ und jedes $x in W_k$ gilt:
-#v(-10pt)
+#v(-1em)
 $ PP(X_k = x) = sum_(x_ell in W_ell \ ell in {1, ..., n} without {k}) p(x_1, ..., x_(k-1), underbrace(x, x_k "locked"), x_(k+1), ..., x_n) $
-#v(-10pt)
+
 *Der Erwartungswert des Bildes der Funktion* $phi: RR^n -> RR$ ist:
 $ EE[phi(X_1, ..., X_n)] = sum_(x_1, ..., x_n) phi(x_1, ..., x_n) p(x_1, ..., x_n) $
 
@@ -41,7 +41,7 @@ Seien $X_1, ..., X_n$ diskrete ZV mit gemeinsamer Verteilung ${p(x_1, ..., x_n)}
 
 *Randverteilung.* Haben $X, Y$ die gemeinsame Verteilungsfunktion $F_(X,Y)$, so ist $F_X: RR -> [0,1]$:
 $ F_X (x) := PP(X <= x) = PP(X <= x, Y <= oo) = lim_(y -> oo) F_(X,Y)(x,y) $
-die Vertsfkt. der Randverteilung von $X$. _Analog für $F_Y$._
+die Verteilungsfnkt der Randverteilung von $X$. _Analog für $F_Y$._
 
 *Randdichte.* Seien $X, Y$ ZV mit gemeinsamer Dichte $f(x,y)$:
 $ f_X (x) = integral_(-oo)^oo f(x,y) dif y quad "bzw." quad f_Y (y) = integral_(-oo)^oo f(x,y) dif x $
@@ -71,6 +71,25 @@ Dann sind folgende Aussagen *äquivalent*:
     = integral_(-1)^1 1/8 dot bb(1)_(y in [0,4]) dif x
     = 1/4 dot bb(1)_(y in [0,4])
   $
+]
+
+#subbox(title: "🚨 Doppelintegrale mit abhängigen Grenzen")[
+  Bei Berechnung von gemeinsamen Dichten oder Randdichten über Bereich mit *abhängigen* Variablen (z.B. $0 < y < x$) gilt die *Goldene Regel*: 
+  *Die Grenzen des äußersten Integrals müssen immer Konstanten (Zahlen oder $oo$) sein!* Nur innere Integrale dürfen Variablen in Grenzen haben, und zwar nur jene der äusseren Integrale.
+
+  *E.g:* Bestimme $c$ für Dichte $f_(X,Y)(x,y) = c e^(-x)$ auf Bereich $0 < y < x$.
+
+*Weg 1: Zuerst nach $y$ integrieren (oft einfacher)*
+- *Äußere Grenzen ($x$):* Welche Werte nimmt $x$ insgesamt an? $x in (0, oo)$.
+- *Innere Grenzen ($y$):* Für ein festes $x$, wo läuft $y$? Von $0$ bis $x$.
+$c integral_0^oo ( integral_0^x e^(-x) dif y ) dif x = c integral_0^oo [y e^(-x)]_0^x dif x = c integral_0^oo x e^(-x) dif x = 1  ==> c = 1$
+
+*Weg 2: Zuerst nach $x$ integrieren*
+- *Äußere Grenzen ($y$):* Welche Werte nimmt $y$ insgesamt an? $y in (0, oo)$.
+- *Innere Grenzen ($x$):* Für ein festes $y$, wo läuft $x$? Von $y$ bis $oo$ (da $y < x$).
+$c integral_0^oo ( integral_0^oo e^{-x} dif x ) dif y = c integral_0^oo [-e^{-x}]_y^oo dif y = c integral_0^oo e^{-y} dif y = 1 ==> c = 1$
+
+*Sanity Check für die Prüfung:* Wenn das finale Resultat eines bestimmten Doppelintegrals über den ganzen Bereich noch Variablen (wie $x$ oder $y$) enthält (z.B. $c = 1/x$), wurden die Grenzen falsch gesetzt!
 ]
 
 == Stetiger Fall - Bedingte Dichte

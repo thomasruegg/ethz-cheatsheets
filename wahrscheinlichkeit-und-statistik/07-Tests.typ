@@ -84,7 +84,6 @@ $mu$-Schätzer: $overline(X)_n = 1/n sum_(i=1)^n X_i$ \
     => K = (-infinity, -z_(1-alpha/2)) union (z_(1-alpha/2), infinity)$
 + *Dualität zum Konfidenzintervall (zweiseitig):* \
   Die Nullhypothese wird genau dann *nicht* verworfen, wenn $T in K^c$, also:
-  #v(-18pt)
   $ |T| <= z_(1-alpha/2) <=> |(overline(X)_n - mu_0)/(sigma / sqrt(n))| <= z_(1-alpha/2) $
   $ <=> -z_(1-alpha/2) dot sigma/sqrt(n) <= overline(X)_n - mu_0 <= z_(1-alpha/2) dot sigma/sqrt(n) $
   $ <=> overline(X)_n - z_(1-alpha/2) dot sigma/sqrt(n) <= mu_0 <= overline(X)_n + z_(1-alpha/2) dot sigma/sqrt(n) $
@@ -108,7 +107,7 @@ $sigma^2$-Schätzer: $S^2 = 1/(n-1) sum_(i=1)^n (X_i - overline(X)_n)^2$ \
     => K = (-infinity, -t_(n-1, 1-alpha/2)) union (t_(n-1, 1-alpha/2), infinity)$
 + *Dualität zum Konfidenzintervall (zweiseitig):* \
   Äquivalent zum z-Test durch Umformen von $|T| <= t_(n-1, 1-alpha/2)$ nach $mu_0$:
-  #v(-15pt)
+  #v(-1em)
   $ overline(X)_n - t_(n-1, 1-alpha/2) dot sqrt(S^2/n) <= mu_0 <= overline(X)_n + t_(n-1, 1-alpha/2) dot sqrt(S^2/n) $
   $==>$ $I = [overline(X)_n - t_(n-1, 1-alpha/2) dot sqrt(S^2/n), overline(X)_n + t_(n-1, 1-alpha/2) dot sqrt(S^2/n)]$
 
@@ -144,7 +143,7 @@ Sei $X_1,...,X_n ~ cal(N)(mu_X, sigma^2)$ und $Y_1,...,Y_m ~ cal(N)(mu_Y, sigma^
 
 #subbox(title: "Visualisierung: Strenges Niveau (" + $alpha=1%$ + ")")[
   Hier wird Grenze des Verwerfungsbereichs $K$ durch das tiefe Signifikanzniveau so weit nach rechts "gedrückt", dass die Realisation $T in K$ gerade noch ausreicht, um $H_0$ zu verwerfen ($alpha = 1%$).
-  #v(-4em)
+  #v(-3em)
   #align(center)[
     #cetz.canvas({
       import cetz.draw: *

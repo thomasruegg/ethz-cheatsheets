@@ -29,7 +29,7 @@
   Also (aus Vorlesung):
   $
     EE[X] >= 0 & <== X >= 0 "gilt immer" \
-              & "und" \
+               & "und" \
      EE[X] = 0 & <=> X = 0 "fast sicher, also" PP(X != 0) = 0
   $
 ]
@@ -40,9 +40,9 @@
   $
     limn PP((S_n - n dot markhl(mu, color: #rgb("#ffff00"))) / (sqrt(markhl(sigma^2, color: #rgb("#00ff00"))) dot sqrt(n)) markhl(<=) med x) = Phi(x) quad forall x in RR
   $
-  #v(-12pt)
+  #v(-1em)
   also:
-  #v(-10pt)
+  #v(-1em)
   $
     text(#rgb("#969696"), ((1/n S_n - markhl(mu, color: #rgb("#ffff00"))) / sqrt(markhl(sigma^2, color: #rgb("#00ff00")) / n) =)) (S_n - n dot markhl(mu, color: #rgb("#ffff00"))) / (sqrt(markhl(sigma^2, color: #rgb("#00ff00"))) dot sqrt(n)) arrow.r.long^d cal(N)(0, 1)
   $
@@ -54,7 +54,7 @@ Man verwendet auch oft die Form für $overline(X)_n = 1/n S_n$ als:
 $
   (overline(X)_n - markhl(mu, color: #rgb("#ffff00"))) / (sqrt(markhl(sigma^2, color: #rgb("#00ff00")) / n)) arrow.r.long^d cal(N)(0,1) #h(1fr) (star)
 $
-#v(-12pt)
+#v(-1em)
 beziehungsweise:
 $
   S_n ~ cal(N)(n dot markhl(mu, color: #rgb("#ffff00")), n dot markhl(sigma^2, color: #rgb("#00ff00"))) " und " overline(X)_n ~ markhl(cal(N)(mu, 1/n sigma^2)) #h(1fr) (star)
@@ -62,7 +62,9 @@ $
 
 *Generelles Standardisieren*:
 Sei $T_n$ eine Summe oder skalierter Durchschnitt oder sonst irgendwas von $n$ verschiedenen i.i.d. Zufallsvariablen. Dann gilt:
-$ (T_n - markhl(EE[T_n], color: #rgb("#ffff00"))) / sqrt(markhl(Var(T_n), color: #rgb("#00ff00"))) arrow.r.long^d cal(N)(0,1) "und" T_n ~ cal(N)(EE[T_n], Var(T_n)) $
+$
+  (T_n - markhl(EE[T_n], color: #rgb("#ffff00"))) / sqrt(markhl(Var(T_n), color: #rgb("#00ff00"))) arrow.r.long^d cal(N)(0,1) "und" T_n ~ cal(N)(EE[T_n], Var(T_n))
+$
 
 === Beispielrechnung
 Seien $(X_i)_(i >= 1)$, $(Y_i)_(i >= 1)$ und $(Z_i)_(i >= 1)$ Folgen von i.i.d. ZV mit:
@@ -80,7 +82,7 @@ $ PP(S_n^((x)) <= a sqrt(n)) = PP(S_n^((x)) / sqrt(n) <= a) arrow.r^(n -> oo) Ph
 und somit auch:
 $
   PP(|S_n^((x))| <= a sqrt(n)) & = PP(S_n^((x)) <= a sqrt(n)) - PP(S_n^((x)) <= - a sqrt(n)) \
-                              & arrow.r^(n -> oo) Phi(a) - Phi(-a) = 2 Phi(a) - 1
+                               & arrow.r^(n -> oo) Phi(a) - Phi(-a) = 2 Phi(a) - 1
 $
 Sei $alpha = 1/2 + beta, beta > 0$. Dann instanziieren wir mit $a = n^beta$:
 $ PP(|S_n^((x))| <= n^alpha) = PP(|S_n^((x))| <= n^beta sqrt(n)) -> limn (2 Phi(n^beta) - 1) = 1 $
