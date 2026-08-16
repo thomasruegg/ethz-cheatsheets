@@ -87,3 +87,13 @@ $A, B$ unabh. $<=> PP(A | B) = PP(A) <=> PP(B | A) = PP(B)$
   Eine Kollektion von Ereignissen $(A_i)_(i in I)$ heisst *(stochastisch) unabhängig*, wenn
   $ J subset.eq I "endlich" => PP(inter.big_(i in J) A_i) = product_(i in J) PP(A_i) $
 ]
+
+*Achtung: Disjunkt $!=$ Unabhängig!* \
+Diese beiden Konzepte werden oft verwechselt, bedeuten aber völlig unterschiedliche Dinge:
+
+- *Disjunkt (unvereinbar):* Zwei Ereignisse $A$ und $B$ können *nicht gleichzeitig* eintreten. Die Schnittmenge ist leer ($A inter B = emptyset$), es folgt $bb(P)(A inter B) = 0$.
+- *Unabhängig:* Das Eintreten von $A$ liefert *keine Information* über das Eintreten von $B$. Es gilt $bb(P)(A inter B) = bb(P)(A) dot bb(P)(B)$.
+
+*Der wichtige Zusammenhang:* 
+Wenn zwei Ereignisse $A$ und $B$ disjunkt sind (und beide eine Wahrscheinlichkeit $> 0$ haben), dann sind sie *garantiert abhängig*! 
+*Warum?* Wenn wir wissen, dass $A$ eingetreten ist, wissen wir mit 100%iger Sicherheit, dass $B$ *nicht* eingetreten sein kann. Das ist eine extrem starke Form der Abhängigkeit. Disjunkt und unabhängig schliessen sich also für Ereignisse mit positiver Wahrscheinlichkeit gegenseitig aus!

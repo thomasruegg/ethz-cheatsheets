@@ -53,6 +53,18 @@ $ T_("ML") = t_("ML")(X_1, ..., X_n) in limits(op("arg max"))_(vartheta in Theta
   + $l''(vartheta) < 0$ oder anderes Argument, dass wir das Maximum $vartheta^*$ gefunden haben (evtl. Randstellen überprüfen!). _"$vartheta^*$ ist Maximum, da die Ableitung für $vartheta < vartheta^*$ strikt positiv, an Stelle $vartheta^*$ gleich Null und für $vartheta > vartheta^*$ strikt negativ ist._
 ]
 
+#subbox(title: "🚨 MLE über Randstellen (Indikatorfunktionen)")[
+  Wenn beim Ableiten der Log-Likelihood-Funktion $l'(vartheta)$ der Parameter $vartheta$ komplett *verschwindet* (z.B. $l'(vartheta) = n$ oder $-n$), hat $l'(vartheta) = 0$ keine Lösung! \
+  
+  *Vorgehen in diesem Fall:*
+  Die Log-Likelihood-Funktion ist streng monoton (steigt oder fällt durchgehend). Das Maximum liegt zwingend am *Rand des Definitionsbereichs*. 
+  
+  + *Indikatorfunktion prüfen:* Schaue auf die Bedingung (z.B. $1_{x_i >= vartheta}$).
+  + *Monotonie ausnutzen:*
+    - Ist $l'(vartheta) > 0$ (steigend), wähle $vartheta$ *so gross wie möglich*, ohne die Bedingung zu verletzen. E.g. aus $x_i >= vartheta, forall i quad ==> quad accent(vartheta, hat)_"ML" = min(X_1, ..., X_n)$
+    - Ist $l'(vartheta) < 0$ (fallend), wähle $vartheta$ *so klein wie möglich*, ohne die Bedingung zu verletzen. E.g. aus $x_i <= vartheta forall i quad ==> quad accent(vartheta, hat)_"ML" = max(X_1, ..., X_n)$
+]
+
 == Momentenmethode /-schätzer
 + Sei $X_1, ..., X_n$ i.i.d. eine Stichprobe.
 + Sei $vartheta$ ein $m$-dimensionaler Parameterraum.

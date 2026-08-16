@@ -77,6 +77,13 @@ $ p(k) := PP(X = k) = binom(n, k) · p^k · (1-p)^(n-k) quad forall k in {0, 1, 
 Warten auf den ersten Erfolg.
 $ p(k) := PP(X = k) = (1-p)^(k-1) · p quad forall k in NN without {0} $
 
+#mainbox(title: "Gedächtnislosigkeit")[
+  Sei $T ~ "Geom"(p)$ mit $p in (0,1)$. Dann gilt für alle $n >= 0$ und alle $k >= 1$:
+  $ PP(T >= n+k | T > n) = PP(T >= k) . $
+
+  ($star$) Hält auch für $T ~ "Exp"(lambda)$.
+]
+
 *Poisson-Verteilung:* $X ~ "Poisson"(lambda)$\
 Grenzwert der Binomialverteilung für grosse $n$ und kleine $p$.
 $ p(k) := PP(X = k) = lambda^k / (k!) · e^(-lambda) quad forall k in NN_0, lambda > 0 $
@@ -112,13 +119,6 @@ $ f_(mu, sigma)(x) = 1 / sqrt(2 pi sigma^2) e^(- (x-mu)^2 / (2 sigma^2)) $
 + Für $X ~ cal(N)(mu, sigma^2)$ gilt $(X-mu)/sigma ~ cal(N)(0,1)$, also:
   $ F_X (x) = PP((X-mu)/sigma <= (x-mu)/sigma) = Phi((x-mu)/sigma) . $
 + $Phi(-x) = 1 - Phi(x)$
-
-#mainbox(title: "Gedächtnislosigkeit")[
-  Sei $T ~ "Geom"(p)$ mit $p in (0,1)$. Dann gilt für alle $n >= 0$ und alle $k >= 1$:
-  $ PP(T >= n+k | T > n) = PP(T >= k) . $
-
-  ($star$) Hält auch für $T ~ "Exp"(lambda)$.
-]
 
 Hier noch zum Thema MLE-Schätzer und dessen Eigenschaften, siehe @sec:mle-schaetzer für eine Übersicht der Schätzer.
 

@@ -77,11 +77,18 @@ $mu$-Schätzer: $overline(X)_n = 1/n sum_(i=1)^n X_i$ \
   - *Rechtsseitig* ($H_A: mu_A > mu_0$): Ansatz $K = (c_>, infinity)$ für ein $c_> in RR$.
     Finde $c_>$ s.t. $PP_(mu_0)[T > c_>] = alpha$ \
     $=> 1 - PP_(mu_0)[T <= c_>] = alpha => PP_(mu_0)[T <= c_>] = 1 - alpha => c_> = z_(1-alpha) => K = (z_(1-alpha), infinity)$
-  - *Zweiseitig* ($H_A: mu_A != mu_0$): Ansatz $K = (-infinity, -c_=) union (c_=, infinity)$ für ein $c_= in RR$
-    Finde $c_=$ s.t. \ $PP_(mu_0)[T in K] = alpha \
-    => PP_(mu_0)[-c_= < T < c_=] = 1 - alpha => 2 Phi(c_=) - 1 = 1 - alpha \
-    => Phi(c_=) = 1 - alpha/2 => c_= = z_(1-alpha/2) \
-    => K = (-infinity, -z_(1-alpha/2)) union (z_(1-alpha/2), infinity)$
+  - *Zweiseitig* ($H_A: mu_A != mu_0$): Ansatz $K = (-infinity, -c_=) union (c_=, infinity)$ für ein $c_= in RR$.
+    Finde $c_=$ sodass
+    $ PP_(mu_0)[T in K] &= alpha \
+    PP_(mu_0)[T in.not K] &= 1 - alpha \
+    PP_(mu_0)[-c_= < T < c_=] &= 1 - alpha \
+    Phi(c_=) - Phi(-c_=) &= 1 - alpha \
+    Phi(c_=) - (1 - Phi(c_=)) &= 1 - alpha \
+    2 Phi(c_=) - 1 &= 1 - alpha \
+    2 Phi(c_=) &= 2 - alpha \
+    Phi(c_=) &= 1 - alpha/2 \
+    c_= &= z_(1-alpha/2) \
+    => K &= (-infinity, -z_(1-alpha/2)) union (z_(1-alpha/2), infinity) $
 + *Dualität zum Konfidenzintervall (zweiseitig):* \
   Die Nullhypothese wird genau dann *nicht* verworfen, wenn $T in K^c$, also:
   $ |T| <= z_(1-alpha/2) <=> |(overline(X)_n - mu_0)/(sigma / sqrt(n))| <= z_(1-alpha/2) $
