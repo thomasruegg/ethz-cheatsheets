@@ -146,7 +146,7 @@ Seien $X_1, ..., X_n$ i.i.d. $~ cal(N)(mu, sigma^2)$. Wir erinnern uns an die No
       content((x, 0.4), text(10pt)[#label])
     }
 
-    // Plot sin and cos
+    // 1. Plot sin and cos
     let sin-pts = ()
     let cos-pts = ()
     for i in range(120) {
@@ -154,11 +154,10 @@ Seien $X_1, ..., X_n$ i.i.d. $~ cal(N)(mu, sigma^2)$. Wir erinnern uns an die No
       sin-pts.push((x, calc.sin(x)))
       cos-pts.push((x, calc.cos(x)))
     }
-
     line(..sin-pts, stroke: 1pt + rgb("#fa0064"))
     line(..cos-pts, stroke: 1pt + rgb("#0c2896"))
 
-    // Plot tan (avoiding asymptotes by splitting into segments)
+    // 2. Plot tan (avoiding asymptotes by splitting into segments)
     for k in (-2, -1, 0, 1, 2) {
       let tan-pts = ()
       for i in range(50) {
@@ -168,9 +167,33 @@ Seien $X_1, ..., X_n$ i.i.d. $~ cal(N)(mu, sigma^2)$. Wir erinnern uns an die No
       line(..tan-pts, stroke: 1pt + rgb("#0c6400"))
     }
 
+    // 3. Plot arctan (Domain: R)
+    let arctan-pts = ()
+    for i in range(120) {
+      let x = -6.5 + 13.0 * i / 119
+      arctan-pts.push((x, calc.atan(x).rad()))
+    }
+    line(..arctan-pts, stroke: 1pt + rgb("#17becf")) // Cyan
+
+    // 4. Plot arcsin and arccos (Domain: [-1, 1])
+    let arcsin-pts = ()
+    let arccos-pts = ()
+    for i in range(50) {
+      let x = -1.0 + 2.0 * i / 49
+      arcsin-pts.push((x, calc.asin(x).rad()))
+      arccos-pts.push((x, calc.acos(x).rad()))
+    }
+    line(..arcsin-pts, stroke: 1pt + rgb("#ff7f0e")) // Orange
+    line(..arccos-pts, stroke: 1pt + rgb("#9467bd")) // Violett
+
+    // --- Labels ---
     content((3, 1.2), text(10pt, fill: rgb("#fa0064"))[$sin(x)$])
     content((3.3, -1.5), text(10pt, fill: rgb("#0c2896"))[$cos(x)$])
     content((2.2, 2.5), text(10pt, fill: rgb("#0c6400"))[$tan(x)$])
+
+    content((2, 1.9), text(10pt, fill: rgb("#ff7f0e"))[$arcsin(x)$])
+    content((-1.6, 2.8), text(10pt, fill: rgb("#9467bd"))[$arccos(x)$])
+    content((6, 1.7), text(10pt, fill: rgb("#17becf"))[$arctan(x)$])
   })
 ]
 
