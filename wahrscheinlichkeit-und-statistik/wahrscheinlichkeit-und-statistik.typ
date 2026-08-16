@@ -5,7 +5,7 @@
   numbering: "1 / 1",
   number-align: center,
 )
-#set text(10pt, lang: "de")
+#set text(8pt, lang: "de")
 #set heading(numbering: "1.1")
 #set par(justify: true)
 #set list(marker: ([•], [◦]))
