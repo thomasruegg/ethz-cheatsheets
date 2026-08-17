@@ -71,6 +71,26 @@ $ PP(X_1 > X_2, X_1 > X_3, ..., X_1 > X_n) = ((n-1)!) / (n!) $
 
 === Aufgabe 3
 === Aufgabe 4
+#subbox(title: "Gerätekalibration (ML-Schätzer für Geometrische Verteilung)")[
+  *Geg.:* $X_1, ..., X_n ~ "Geo"(vartheta)$ i.i.d. mit $PP_vartheta [X=k] = vartheta (1-vartheta)^(k-1), vartheta in (0,1]$
+
+  #set enum(numbering: "a)")
+  + *Likelihood & Log-Likelihood:* \
+    $L(vartheta) = product_(i=1)^n vartheta (1-vartheta)^(x_i - 1) = vartheta^n (1-vartheta)^(sum_(i=1)^n x_i - n) \ l(vartheta) = ln(L(vartheta)) = n ln(vartheta) + (sum_(i=1)^n x_i - n) ln(1-vartheta)$ \
+    *Randpunkt $vartheta = 1$:* Jedes Gerät braucht zwingend genau 1 Kalibrierung (da $p=1$ beim 1. Versuch). Sobald ein $x_i > 1$ beobachtet wird, ist $L(1) = 0$ und $l(1)$ undefiniert.
+
+  + *Maximum-Likelihood-Schätzer $T_("ML")$:*
+    Ableiten & $=^! 0$:
+    $l'(vartheta) = n/vartheta - (sum x_i - n)/(1-vartheta) &=^! 0 quad ==> quad
+    n(1-vartheta) &= vartheta(sum x_i - n) quad ==> quad
+    n - n vartheta &= vartheta sum x_i - n vartheta quad ==> quad
+    n &= vartheta sum x_i quad ==> quad accent(vartheta, hat) = n / (sum_(i=1)^n x_i) quad ==> quad T_("ML") = n / (sum_(i=1)^n X_i)$
+
+  + *Realisierter Schätzwert:*
+    Für Daten $x = (3, 1, 4, 2, 2, 5)$ ist $n=6$ und $sum x_i = 17$.
+    $t_("ML") = accent(vartheta, hat) = 6/17 approx 0.353$
+]
+
 
 #subbox(title: "Approximativer Z-Test für Bernoulli/Binomial")[
   *Gegeben:* $X_1, ..., X_72 ~ "Ber"(vartheta)$ i.i.d., $n=72$, beobachtet $s_72 = 32$. \
@@ -85,15 +105,15 @@ $ PP(X_1 > X_2, X_1 > X_3, ..., X_1 > X_n) = ((n-1)!) / (n!) $
   + *Realisierter Wert der Teststatistik:* \
     Werte einsetzen ($S_n = s_72 = 32$): $quad quad t = T(omega) = (32 - 24) / 4 = 8 / 4 = 2$
 
-  + *Test auf Signifikanzniveau $alpha = 5%$:* 
-    Da $H_A: vartheta > 1/3$ (rechtsseitig), ist der kritische Bereich $K = (z_(1-alpha), oo)$. 
-    Mit $z_0.95 = 1.645$ folgt $K = (1.645, oo)$. 
+  + *Test auf Signifikanzniveau $alpha = 5%$:*
+    Da $H_A: vartheta > 1/3$ (rechtsseitig), ist der kritische Bereich $K = (z_(1-alpha), oo)$.
+    Mit $z_0.95 = 1.645$ folgt $K = (1.645, oo)$.
     *Entscheidung:* Da $t = 2 in K$ (weil $2 > 1.645$), $H_0$ verworfen.
 
-  + *Approximativer p-Wert:* 
+  + *Approximativer p-Wert:*
     Für einen rechtsseitigen Test gilt: $p = PP[Z >= t] = 1 - Phi(t)$ für $Z ~ cal(N)(0,1)$. $p = 1 - Phi(2) approx 1 - 0.977 = 0.023$. Da $t=2$ hätte $K$ anstelle $(1.645, oo)$ auch nur $(2, oo)$ sein dürfen $=>$ tiefstes Signifikanzniveau um $T in K$ und $H_0$ noch verwerfen zu können ist $0.023$.
 
-  + *Entscheidung in Worten:* 
+  + *Entscheidung in Worten:*
     Da der p-Wert ($0.023$) kleiner als $alpha = 0.05$ ist (bzw. die Teststatistik $t$ in $K$ liegt), wird $H_0$ auf dem 5%-Niveau signifikant verworfen. Die Daten deuten darauf hin, dass der Parameter $vartheta > 1/3$ ist.
 ]
 
