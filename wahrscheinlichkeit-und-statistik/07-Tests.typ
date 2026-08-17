@@ -139,7 +139,7 @@ Sei $X_1,...,X_n ~ cal(N)(mu_X, sigma^2)$ und $Y_1,...,Y_m ~ cal(N)(mu_Y, sigma^
 #mainbox(title: "Definition " + $p$ + "-Wert")[
   Sei $H_0 : theta = theta_0$ eine einfache Nullhypothese. Sei $(T, K_t)_(t >= 0)$ eine geordnete Familie von Tests. Der $p$-Wert ist definiert als ZV $G(omega)$, wobei $ G : Omega |-> [0,1], space space space space G(omega) = PP_(theta_0)[T in K_(t(X_1(omega),...,X_n(omega)))] $
 ]
-*Intuitiv*: Kleinstes Signifikanzniveau $p$, bei welchem die Nullhypothese verworfen wird (anhand der Teststatistik mit effektiver Realisation $omega$). *Ansatz*: Berechne kleinsten Verwerfungsbereich $K$, sodass $T in K$ und löse $PP_(theta_0)[T in K] >= 1 - alpha$ auf. Wie müsste ich mein Signifikanzniveau wählen, sodass mein beobachteter Wert $T$ exakt auf der Grenze von $K$ liegt?
+*Intuitiv*: Kleinstes Signifikanzniveau $p$, bei welchem die Nullhypothese verworfen wird (anhand der Teststatistik mit effektiver Realisation $omega$). *Ansatz*: Berechne kleinsten Verwerfungsbereich $K$, sodass $T in K$ und löse $PP_(theta_0)[T in K] = p$ auf. Wie müsste ich mein Signifikanzniveau wählen, sodass mein beobachteter Wert $T$ exakt auf der Grenze von $K$ liegt?
 
 - *Linksseitig:* $K=(-infinity, c) --> p = PP[Z <= T(omega)]$
 - *Rechtsseitig:* $K=(c, infinity) --> p = PP[Z >= T(omega)]$
