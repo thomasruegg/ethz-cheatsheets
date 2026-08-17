@@ -36,7 +36,7 @@
 
 == Zentraler Grenzwertsatz
 #mainbox(title: "Zentraler Grenzwertsatz")[
-  Sei $(X_n)_(n in NN)$ eine Folge von i.i.d. Zufallsvariablen mit \ $markhl(EE[X_i] = mu, color: #rgb("#ffff00")) < oo$ und $markhl(Var(X_i) = sigma^2, color: #rgb("#00ff00")) < oo$ ($EE$ und $Var$ sind _von der einzelnen Variable_ $X_i$). Dann gilt:
+  Sei $(X_n)_(n in NN)$ eine Folge von i.i.d. Zufallsvariablen mit $markhl(EE[X_i] = mu, color: #rgb("#ffff00")) < oo$ und $markhl(Var(X_i) = sigma^2, color: #rgb("#00ff00")) < oo$ ($EE$ und $Var$ sind _von der einzelnen Variable_ $X_i$). Dann gilt:
   $
     limn PP((S_n - n dot markhl(mu, color: #rgb("#ffff00"))) / (sqrt(markhl(sigma^2, color: #rgb("#00ff00"))) dot sqrt(n)) markhl(<=) med x) = Phi(x) quad forall x in RR
   $
