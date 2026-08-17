@@ -50,26 +50,114 @@ $ PP(X_1 > X_2, X_1 > X_3, ..., X_1 > X_n) = ((n-1)!) / (n!) $
       &= c [-x e^(-x) - e^(-x)]_0^oo = c (0 - (-1)) = c = 1 quad => c=1
     $
 
-  + *Randdichten $f_X(x)$ und $f_Y(y)$ berechnen:*
+  + *Randdichten $f_X(x)$ und $f_Y(y)$ berechnen:* #markhl("Träger nicht vergessen!", color: rgb("#ff0000")) \
     $x$ festhalten, über $y$ integrieren (innere Grenzen $0$ bis $x$): \
-    $f_X (x) = integral_0^x e^(-x) dif y = [y e^(-x)]_0^x = x e^(-x) dot 11_(x>0) quad => X ~ "Gamma"(2,1)$ \
+    $f_X (x) = integral_0^x e^(-x) dif y = [y e^(-x)]_0^x = x e^(-x) markhl(dot bb(1)_(x>0), color: #rgb("#ff0000")) quad => X ~ "Gamma"(2,1)$ \
     $y$ festhalten, über $x$ integrieren (innere Grenzen $y$ bis $oo$): \
-    $f_Y (y) = integral_y^oo e^(-x) dif x = [-e^(-x)]_y^oo = e^(-y) dot 11_(y>0) quad => Y ~ "Exp"(1)$
+    $f_Y (y) = integral_y^oo e^(-x) dif x = [-e^(-x)]_y^oo = e^(-y) markhl(dot bb(1)_(y>0), color: #rgb("#ff0000")) quad => Y ~ "Exp"(1)$
 
   + *Sind $X$ und $Y$ unabhängig?* \
     *Nein.* Es gibt zwei Begründungen (eine genügt in der Prüfung):
-    + *Träger-Argument (schnellster Weg):* Der Träger ist kein Rechteck, da die Grenzen voneinander abhängen ($0 < y < x$). Dies schliesst Unabhängigkeit sofort aus.
+    + *Träger-Argument (schnell):* Der Träger ist kein Rechteck, da die Grenzen voneinander abhängen ($0 < y < x$). Dies schliesst Unabhängigkeit sofort aus.
     + *Rechnerisch:* $f_X (x) dot f_Y (y) = x e^(-x) dot e^(-y) != e^(-x) = f_(X,Y)(x,y)$
 
   + *Bedingte Dichte $f_(X|Y) (x|y)$ für $y>0$ und Verteilung erkennen:* \
     Bedingte Dichte = Gemeinsame Dichte geteilt durch Randdichte von $Y$.
-    $f_(X|Y) (x|y) = (f_(X,Y) (x,y)) / (f_Y (y)) = e^(-x) / e^(-y) = e^(-(x-y)) dot 11_(x>y)$
+    $f_(X|Y) (x|y) = (f_(X,Y) (x,y)) / (f_Y (y)) = e^(-x) / e^(-y) = e^(-(x-y)) dot bb(1)_(x>y)$
     *Verteilung erkennen:* Substituieren wir $z = x - y > 0$, hat $z$ die Dichte $e^(-z)$.
     Das entspricht der Dichte einer $Exp(1)$-Verteilung in der Variablen $z$.
     *Fazit:* Gegeben $Y=y$ gilt $X - y ~ Exp(1)$, oder äquivalent: $X | (Y=y) ~ y + "Exp"(1)$.
 ]
 
+#subbox(title: "Gemeinsame Dichte, Erwartungswert & Kovarianz")[
+  *Gegeben:* $f(x,y) = cases(c(x+y) &"für" 0 < x < y < 1, 0 &"sonst")$
+
+  #set enum(numbering: "a)")
+  + *Konstante $c$ bestimmen:*
+    _Pro-Tipp:_ Integriere zuerst nach $x$ (innere Grenzen $0$ bis $y$). Die untere Grenze $0$ spart viel Rechenarbeit!
+    $integral_0^1 integral_0^y c(x+y) dif x dif y = c integral_0^1 [x^2/2 + x y]_(x=0)^(x=y) dif y = c integral_0^1 (y^2/2 + y^2) dif y = c integral_0^1 3/2 y^2 dif y = c [y^3/2]_0^1 = c/2 =^! 1 quad => quad c = 2$
+
+  + *Randdichten $f_X$ und $f_Y$:*
+    Für $f_X(x)$ halte $x$ fest, integriere $y$ von $x$ bis $1$:
+    $f_X (x) = integral_x^1 2(x+y) dif y = [2x y + y^2]_x^1 = (2x + 1) - (2x^2 + x^2) = 2x + 1 - 3x^2 quad markhl(text("für ") x in (0,1), color: #rgb("#ff0000"))$ \
+    Für $f_Y(y)$ halte $y$ fest, integriere $x$ von $0$ bis $y$:
+    $f_Y (y) = integral_0^y 2(x+y) dif x = [x^2 + 2x y]_0^y = y^2 + 2y^2 - 0 = 3y^2 quad markhl(text("für ") y in (0,1), color: #rgb("#ff0000"))$
+
+  + *Erwartungswerte $EE[X]$ und $EE[Y]$:*
+    $EE[X] = integral_0^1 x dot f_X (x) dif x = integral_0^1 (2x^2 + x - 3x^3) dif x = [2/3 x^3 + 1/2 x^2 - 3/4 x^4]_0^1 = 2/3 + 1/2 - 3/4 = 5/12$ \
+    $EE[Y] = integral_0^1 y dot f_Y (y) dif y = integral_0^1 3y^3 dif y = [3/4 y^4]_0^1 = 3/4$
+
+  + *Kovarianz $cov(X, Y)$:*
+    Berechne zuerst $EE[X Y]$. Auch hier wieder der Trick: Zuerst nach $x$ integrieren!
+    $EE[X Y] = integral_0^1 integral_0^y x y dot 2(x+y) dif x dif y = integral_0^1 2y integral_0^y (x^2 + x y) dif x dif y
+    = integral_0^1 2y [x^3/3 + (x^2 y)/2]_(x=0)^(x=y) dif y = integral_0^1 2y (y^3/3 + y^3/2) dif y = integral_0^1 2y (5/6 y^3) dif y = integral_0^1 5/3 y^4 dif y = [1/3 y^5]_0^1 = 1/3$
+    $cov(X, Y) = EE[X Y] - EE[X]EE[Y] = 1/3 - (5/12 dot 3/4) = 1/3 - 15/48 = 16/48 - 15/48 = 1/48$
+
+  + *Sind $X$ und $Y$ unabhängig?*
+    *Nein.* Zwei Begründungen (eine reicht aus): \
+    1. Der Träger $0 < x < y < 1$ ist kein Rechteck (die Grenzen hängen voneinander ab). \
+    2. $f_X (x) dot f_Y (y) != f(x,y)$ im Allgemeinen.
+]
+
 === Aufgabe 3
+
+#subbox(title: "Chebyshev-Ungleichung & Stichprobenmittel")[
+  *Gegeben:* $X_1, ..., X_n$ i.i.d., $E[X_i] = 72$, $Var(X_i) = 25$. \
+  Stichprobenmittel: $overline(X)_n = 1/n sum_(i=1)^n X_i$.
+
+  #set enum(numbering: "a)")
+
+  + *Parameter des Stichprobenmittels:* \
+    $EE[overline(X)_n] = 1/n dot n dot E[X_i] = 72 quad "und" quad Var(overline(X)_n) = 1/n^2 dot n dot Var(X_i) = 25/n$
+
+  + *Untere Schranke von $P[ |overline(X)_625 - 72| < 1]$ mit Chebyshev:*
+    Für eine ZV $Y$ mit $EE[Y]$ und Abweichung $b>0$ gilt:
+    $PP[ |Y - EE[Y]| >= b] <= Var(Y) / b^2$. \
+    $
+      markhl(PP[ |overline(X)_625 - E[overline(X)_625]| >= 1]) & <= Var(overline(X)_625) / 1^2 = 25/625=0.04 \
+                   markhl(1 - PP[ |overline(X)_625 - 72| < 1]) & <= 0.04 quad || -1 \
+                             - PP[ |overline(X)_625 - 72| < 1] & <= -0.96 quad || dot (-1) "🚨 Zeichen dreht!" \
+                               PP[ |overline(X)_625 - 72| < 1] & >= 0.96
+    $
+
+  + *Stichprobengrösse $n$ finden, sodass $PP[ |overline(X)_n - 72| < 0.5] >= 0.99$:*
+    $
+      markhl(PP[ |overline(X)_n - 72| >= 0.5]) &<= (Var(overline(X)_n)) / (0.5^2) &&= (25/n) / 0.25 = 100/n \
+      markhl(1 - PP[ |overline(X)_n - 72| < 0.5]) &<= 100/n &&|| -1 \
+      -PP[ |overline(X)_n - 72| < 0.5] &<= 100/n - 1 &&|| dot (-1) "🚨 Zeichen dreht!" \
+      PP[ |overline(X)_n - 72| < 0.5] &>= 1 - 100/n &&>=^! 0.99 || -1, "dann" dot (-1) "🚨" \
+      & quad quad quad 100 / n &&<= 0.01 \
+      & quad quad 10'000 &&<= n
+    $
+  + *Schwaches Gesetz der grossen Zahlen:*
+    Es besagt: $overline(X)_n limits(->)^PP EE[X_i]$ für $n -> oo$.
+    Qualitativ: Bei steigendem $n$ rückt Durchschnitt $overline(X)_n$ immer näher an wahren Erwartungswert $EE[X_i]$. Wahrscheinlichkeit für eine Abweichung wird beliebig klein. Chebyshev-Rechnungen oben geben konkrete, konservative Zahlen für diesen Effekt.
+]
+
+#subbox(title: "Zentraler Grenzwertsatz (ZGS) für Summen (100 Teile in 1 Box)")[
+  *Gegeben:* $X_1, ..., X_n$ i.i.d. mit $EE[X_i] = 8$ und $Var(X_i) = sigma^2 = 1.44$. \
+  Summe $S_n = sum_(i=1)^n X_i$ mit $n=100$.
+
+  #set enum(numbering: "a)")
+  + *Erwartungswert & Varianz der Summe:* \
+    $EE[S_n] = n dot EE[X_i] = 100 dot 8 = 800,
+    Var(S_n) = n dot Var(X_i) = 100 dot 1.44 = 144 quad => quad text("Standardabweichung ") sqrt(Var(S_n)) = sqrt(144) = 12$
+
+  + *Wahrscheinlichkeit eines Intervalls (Standardisieren):* \
+    $PP[788 <= S_n <= 824] &= PP[ markhl((788 - 800)/12, color: #rgb("#ff00ff")) <= underbrace((S_n - EE[S_n])/sqrt(Var(S_n)), Z) <= markhl((824 - 800)/12, color: #rgb("#00ff00")) ] \
+    &= PP[markhl(-1, color: #rgb("#ff00ff")) <= Z <= markhl(2, color: #rgb("#00ff00"))] = PP[Z <= markhl(2, color: #rgb("#00ff00"))] - PP[Z >= markhl(-1, color: #rgb("#ff00ff"))] \ &= Phi(2) - Phi(1) = 0.8185$
+
+  + *Wahrscheinlichkeit für "zu gross" (Gegenereignis):*
+    $PP[S_n > 824] = 1 - PP[S_n <= 824] = 1 - PP[Z <= (824-800)/12] = 1 - Phi(2) = 0.0228$
+
+  + *Rückwärts rechnen (Wert $r$ für gewünschte Wahrsch'keit finden):*
+    Gesucht ist $r$ sodass
+
+    $PP[S_n <= 800 + r] & approx 0.99 \ PP[ underbrace((S_n - 800)/12, Z) <= (800+r-800)/12 ] &approx 0.99 \
+    Phi(r/12) &approx 0.99 \
+    r/12 & approx Phi^(-1) (0.99) = 2.33 quad ==> r = 27.96$
+]
+
 === Aufgabe 4
 #subbox(title: "Gerätekalibration (ML-Schätzer für Geometrische Verteilung)")[
   *Geg.:* $X_1, ..., X_n ~ "Geo"(vartheta)$ i.i.d. mit $PP_vartheta [X=k] = vartheta (1-vartheta)^(k-1), vartheta in (0,1]$
@@ -165,10 +253,8 @@ Beantworten die Frage: "Welcher Wert hat einen Anteil $p$ der Daten unter sich?"
 *Quantile einer allgemeinen Normalverteilung ($X ~ cal(N)(mu, sigma^2)$)* \
 Das $p$-Quantil von $X$ ist gegeben durch: $mu + sigma z_p$
 
-*Herleitung durch Standardisierung:*
-$
-  bb(P)[X <= c] = p & <=> bb(P)[(X-mu)/sigma <= (c-mu)/sigma] = p \
-                    & <=> bb(P)[Z <= (c-mu)/sigma] = p \
-                    & <=> (c-mu)/sigma = z_p \
-                    & <=> c = sigma z_p + mu
-$
+*Herleitung durch Standardisierung:* \
+$bb(P)[X <= c] = p & <==> bb(P)[(X-mu)/sigma <= (c-mu)/sigma] = p
+<==> bb(P)[Z <= (c-mu)/sigma] = p \
+& <==> (c-mu)/sigma = z_p
+<==> c = sigma z_p + mu$

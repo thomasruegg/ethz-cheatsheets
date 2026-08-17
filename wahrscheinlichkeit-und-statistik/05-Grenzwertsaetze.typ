@@ -1,6 +1,6 @@
 #import "config.typ": *
 
-= Konvergenz von Wahr'keiten
+= Konvergenz von Wahrscheinlichkeiten
 
 #mainbox(title: "Konvergenz in Verteilung")[
   Seien $(X_n)_(n in NN)$ und $X$ Zufallsvariablen mit Verteilungsfunktionen $(F_n)_(n in NN)$ und $F$. $(X_n)_(n in NN)$ konvergiert *in Verteilung* gegen $X$, geschrieben $X_n arrow.r^d X$ für $n -> oo$, falls für jeden Stetigkeitspunkt $x in RR$ von $F$ gilt:
@@ -48,9 +48,7 @@
   $
 ]
 
-*Bemerkungen:*
-
-Man verwendet auch oft die Form für $overline(X)_n = 1/n S_n$ als:
+*Bemerkungen:* Man verwendet auch oft die Form für $overline(X)_n = 1/n S_n$ als:
 $
   (overline(X)_n - markhl(mu, color: #rgb("#ffff00"))) / (sqrt(markhl(sigma^2, color: #rgb("#00ff00")) / n)) arrow.r.long^d cal(N)(0,1) #h(1fr) (star)
 $
@@ -66,40 +64,37 @@ $
   (T_n - markhl(EE[T_n], color: #rgb("#ffff00"))) / sqrt(markhl(Var(T_n), color: #rgb("#00ff00"))) arrow.r.long^d cal(N)(0,1) "und" T_n ~ cal(N)(EE[T_n], Var(T_n))
 $
 
-=== Beispielrechnung
-Seien $(X_i)_(i >= 1)$, $(Y_i)_(i >= 1)$ und $(Z_i)_(i >= 1)$ Folgen von i.i.d. ZV mit:
-$ PP(X_1 = 1) = PP(X_1 = -1) = 1/2 $
+=== Beispielrechnung zufällige Irrfahrt
+Seien $(X_i)_(i >= 1)$, $(Y_i)_(i >= 1)$ und $(Z_i)_(i >= 1)$ Folgen von i.i.d. ZV mit: \
+$PP(X_1 = 1) = PP(X_1 = -1) = 1/2$
 und analog für $Y_1$ und $Z_1$. Wir definieren:
 $ S_n^((x)) := sum_(i=1)^n X_i, quad S_n^((y)) := sum_(i=1)^n Y_i, quad S_n^((z)) := sum_(i=1)^n Z_i $
 Die Folge $((S_n^((x)), S_n^((y)), S_n^((z))))_(n >= 1)$ wird zufällige Irrfahrt in $ZZ^3$ genannt. Sei $alpha > 1/2$. Zeige, dass:
-$ PP(norm((S_n^((x)), S_n^((y)), S_n^((z))))_2 <= n^alpha) -> 1 " für " n -> oo, $
+$PP(norm((S_n^((x)), S_n^((y)), S_n^((z))))_2 <= n^alpha) -> 1 " für " n -> oo,$
 wobei $norm((x,y,z))_2 := sqrt(x^2 + y^2 + z^2)$ die euklidische Norm ist.
 
-_Schritt 1:_ $forall alpha > 1/2$ zeigen wir $PP(|S_n^((x))| <= n^alpha) arrow.r^(n -> oo) 1$.
++ *Schritt:* $forall alpha > 1/2$ zeigen wir $PP(|S_n^((x))| <= n^alpha) arrow.r^(n -> oo) 1$.
 
-Da $EE[X_i] = 0$ und $Var(X_i) = 1$ folgt für beliebige $a in RR$ per ZGS:
-$ PP(S_n^((x)) <= a sqrt(n)) = PP(S_n^((x)) / sqrt(n) <= a) arrow.r^(n -> oo) Phi(a) $
-und somit auch:
-$
-  PP(|S_n^((x))| <= a sqrt(n)) & = PP(S_n^((x)) <= a sqrt(n)) - PP(S_n^((x)) <= - a sqrt(n)) \
-                               & arrow.r^(n -> oo) Phi(a) - Phi(-a) = 2 Phi(a) - 1
-$
-Sei $alpha = 1/2 + beta, beta > 0$. Dann instanziieren wir mit $a = n^beta$:
-$ PP(|S_n^((x))| <= n^alpha) = PP(|S_n^((x))| <= n^beta sqrt(n)) -> limn (2 Phi(n^beta) - 1) = 1 $
-Dies gilt analog für $S_n^((y))$ und $S_n^((z))$.
+  Da $EE[X_i] = 0$ und $Var(X_i) = 1$ folgt für beliebige $a in RR$ per ZGS: \
+  $PP(S_n^((x)) <= a sqrt(n)) = PP(S_n^((x)) / sqrt(n) <= a) arrow.r^(n -> oo) Phi(a)$
+  und somit auch: \
+  $PP(|S_n^((x))| <= a sqrt(n)) & = PP(S_n^((x)) <= a sqrt(n)) - PP(S_n^((x)) <= - a sqrt(n)) \
+  & arrow.r^(n -> oo) Phi(a) - Phi(-a) = 2 Phi(a) - 1$ \
+  Sei $alpha = 1/2 + beta, beta > 0$. Dann instanziieren wir mit $a = n^beta$: \
+  $PP(|S_n^((x))| <= n^alpha) = PP(|S_n^((x))| <= n^beta sqrt(n)) -> limn (2 Phi(n^beta) - 1) = 1 $ \
+  Dies gilt analog für $S_n^((y))$ und $S_n^((z))$.
 
-_Schritt 2:_ $forall alpha > 1/2, PP(norm((S_n^((x)), S_n^((y)), S_n^((z))))_2 <= n^alpha) arrow.r^(n -> oo) 1$
++ *Schritt:* $forall alpha > 1/2, PP(norm((S_n^((x)), S_n^((y)), S_n^((z))))_2 <= n^alpha) arrow.r^(n -> oo) 1$
 
-Sei $alpha' in (1/2, alpha)$. Dann folgt:
-$
-  {|S_n^((x))| <= n^(alpha') and |S_n^((y))| <= n^(alpha') and |S_n^((z))| <= n^(alpha')} \ subset.eq {norm((S_n^((x)), S_n^((y)), S_n^((z))))_2 <= sqrt(3) · n^(alpha')}
-$
-Da $n^alpha >= sqrt(3) n^(alpha')$ für grosse $n$, folgt:
-$
-  & limn PP(norm((S_n^((x)), S_n^((y)), S_n^((z))))_2 <= n^alpha) \
-  & >= limn PP(norm((S_n^((x)), S_n^((y)), S_n^((z))))_2 <= sqrt(3) · n^(alpha')) \
-  & >= limn PP(|S_n^((x))| <= n^(alpha'), |S_n^((y))| <= n^(alpha'), |S_n^((z))| <= n^(alpha')) = 1
-$
+  Sei $alpha' in (1/2, alpha)$. Dann folgt:
+  $
+    {|S_n^((x))| <= n^(alpha') and |S_n^((y))| <= n^(alpha') and |S_n^((z))| <= n^(alpha')} subset.eq {norm((S_n^((x)), S_n^((y)), S_n^((z))))_2 <= sqrt(3) · n^(alpha')}
+  $
+  Da $n^alpha >= sqrt(3) dot n^(alpha')$ für grosse $n$, folgt: \
+  $limn PP(norm((S_n^((x)), S_n^((y)), S_n^((z))))_2 <= n^alpha) \
+    >= limn PP(norm((S_n^((x)), S_n^((y)), S_n^((z))))_2 <= sqrt(3) · n^(alpha')) \
+    >= limn PP(|S_n^((x))| <= n^(alpha'), |S_n^((y))| <= n^(alpha'), |S_n^((z))| <= n^(alpha')) = 1
+  $
 
 #subbox(title: "Momenterzeugende Funktion")[
   Die momenterzeugende Funktion einer Zufallsvariablen $X$ ist für $t in RR$ definiert durch:

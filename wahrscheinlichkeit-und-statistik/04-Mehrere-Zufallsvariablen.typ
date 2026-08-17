@@ -81,7 +81,7 @@ Dann sind folgende Aussagen *äquivalent*:
 
   *E.g:* Bestimme $c$ für Dichte $f_(X,Y)(x,y) = c e^(-x)$ auf Bereich $0 < y < x$.
 
-  *Weg 1: Zuerst nach $y$ integrieren (oft einfacher)*
+  *Weg 1: Zuerst nach $y$ integrieren (nimm das wo Grenzen öfters 0 sind)*
   - *Äußere Grenzen ($x$):* Welche Werte nimmt $x$ insgesamt an? $x in (0, oo)$.
   - *Innere Grenzen ($y$):* Für ein festes $x$, wo läuft $y$? Von $0$ bis $x$.
   $c integral_0^oo ( integral_0^x e^(-x) dif y ) dif x = c integral_0^oo [y e^(-x)]_0^x dif x = c integral_0^oo x e^(-x) dif x = 1 => c = 1$

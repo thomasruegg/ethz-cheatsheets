@@ -12,7 +12,7 @@
   Der *Allgemeine Erwartungswert* für eine reellwertige ZV $X$ mit $EE[ |X| ] < oo$ ist definiert als:
   $
     EE[X] & = EE[X_+] - EE[X_-] quad "mit" X_(plus.minus) = max(plus.minus X, 0) \
-         & = integral_0^oo (1 - F_X (x)) dif x - integral_(-oo)^0 F_X (x) dif x
+          & = integral_0^oo (1 - F_X (x)) dif x - integral_(-oo)^0 F_X (x) dif x
   $
 ]
 
@@ -99,6 +99,9 @@ $
 + $cov(X, X) = Var(X)$
 + $X, Y$ unabhängig $=> cov(X, Y) = 0$ ($markhl(arrow.double.l.not)$)
 + $markhl(Var(X plus.minus Y) = Var(X) + Var(Y) plus.minus 2 cov(X, Y), color: #rgb("#ffff00"))$
++ $Var(a X + b Y + c) = a^2 Var(X) + b^2 Var(Y) + 2 a b cov(X, Y)$
++ $Var(a X + b Y + c Z + d) = a^2 Var(X) + b^2 Var(Y) + c^2 Var(Z) + 2 a b cov(X, Y) + 2 a c cov(X, Z) + 2 b c cov(Y, Z)$ \
+  _Wichtig für Formel 4 & 5:_ Es steht bewusst überall "+". Ein Minus in Aufgabe (z.B. $X - 3Y$) soll in die Konstante gepackt ($b = -3$) werden $==>$ Keine Fehler!
 + ($star$) $cov(sum_(i=1)^n X_i, sum_(j=1)^n Y_j) = sum_(i=1)^n sum_(j=1)^n cov(X_i, Y_j)$
 
 *Korrelationen*
