@@ -72,6 +72,31 @@ $ PP(X_1 > X_2, X_1 > X_3, ..., X_1 > X_n) = ((n-1)!) / (n!) $
 === Aufgabe 3
 === Aufgabe 4
 
+#subbox(title: "Approximativer Z-Test für Bernoulli/Binomial")[
+  *Gegeben:* $X_1, ..., X_72 ~ "Ber"(vartheta)$ i.i.d., $n=72$, beobachtet $s_72 = 32$. \
+  *Hypothesen:* $H_0: vartheta = 1/3 quad "gegen" quad H_A: vartheta > 1/3 quad ("rechtsseitig")$
+
+  #set enum(numbering: "a)")
+  + *Geeignete Teststatistik (ZGS):*
+    Da die Varianz unter $H_0$ *bekannt* ist ($vartheta_0 (1-vartheta_0)$), verwenden wir den Z-Test: \
+    $T = (S_n - n vartheta_0) / sqrt(n vartheta_0 (1-vartheta_0)) = (S_72 - 72 dot 1/3) / sqrt(72 dot 1/3 dot 2/3) = (S_72 - 24) / sqrt(16) = (S_72 - 24) / 4$
+    Unter $H_0$ ist $T$ approximativ standardnormalverteilt: $T ~ cal(N)(0,1)$.
+
+  + *Realisierter Wert der Teststatistik:* \
+    Werte einsetzen ($S_n = s_72 = 32$): $quad quad t = T(omega) = (32 - 24) / 4 = 8 / 4 = 2$
+
+  + *Test auf Signifikanzniveau $alpha = 5%$:* 
+    Da $H_A: vartheta > 1/3$ (rechtsseitig), ist der kritische Bereich $K = (z_(1-alpha), oo)$. 
+    Mit $z_0.95 = 1.645$ folgt $K = (1.645, oo)$. 
+    *Entscheidung:* Da $t = 2 in K$ (weil $2 > 1.645$), $H_0$ verworfen.
+
+  + *Approximativer p-Wert:* 
+    Für einen rechtsseitigen Test gilt: $p = PP[Z >= t] = 1 - Phi(t)$ für $Z ~ cal(N)(0,1)$. $p = 1 - Phi(2) approx 1 - 0.977 = 0.023$. Da $t=2$ hätte $K$ anstelle $(1.645, oo)$ auch nur $(2, oo)$ sein dürfen $=>$ tiefstes Signifikanzniveau um $T in K$ und $H_0$ noch verwerfen zu können ist $0.023$.
+
+  + *Entscheidung in Worten:* 
+    Da der p-Wert ($0.023$) kleiner als $alpha = 0.05$ ist (bzw. die Teststatistik $t$ in $K$ liegt), wird $H_0$ auf dem 5%-Niveau signifikant verworfen. Die Daten deuten darauf hin, dass der Parameter $vartheta > 1/3$ ist.
+]
+
 #subbox(title: "ML-Schätzer & Erwartungstreue (Poisson)")[
   *Gegeben:* $X_1, ..., X_n ~ "Poi"(lambda)$ i.i.d. mit $p_X (x; lambda) = (lambda^x / x!) e^(-lambda)$
 
