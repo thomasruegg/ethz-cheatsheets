@@ -38,12 +38,12 @@ Seien $X_1, ..., X_n$ diskrete ZV mit gemeinsamer Verteilung ${p(x_1, ..., x_n)}
 == Stetiger Fall - Gemeinsame Dichte
 #mainbox(title: "Gemeinsame Dichte")[
   Falls die gemeinsame Verteilungsfunktion von $n$ Zufallsvariablen $X_1, ..., X_n$ sich schreiben lässt als:
-  $ F(x_1, ..., x_n) = integral_(-oo)^(x_1) ... integral_(-oo)^(x_n) f(t_1, ..., t_n) dif t_n ... dif t_1 $
+  $ PP[X_1 <= x_1, dots.c , X_n <= x_n]=F(x_1, ..., x_n) = integral_(-oo)^(x_1) ... integral_(-oo)^(x_n) f(t_1, ..., t_n) dif t_n ... dif t_1 $
 ]
 
 *Randverteilung.* Haben $X, Y$ die gemeinsame Verteilungsfunktion $F_(X,Y)$, so ist $F_X: RR -> [0,1]$:
 $ F_X (x) := PP(X <= x) = PP(X <= x, Y <= oo) = lim_(y -> oo) F_(X,Y)(x,y) $
-die Verteilungsfnkt der Randverteilung von $X$. _Analog für $F_Y$._
+die Verteilungsfunktion der Randverteilung von $X$. _Analog für $F_Y$._
 
 *Randdichte.* Seien $X, Y$ ZV mit gemeinsamer Dichte $f(x,y)$:
 $ f_X (x) = integral_(-oo)^oo f(x,y) dif y quad "bzw." quad f_Y (y) = integral_(-oo)^oo f(x,y) dif x $
@@ -56,12 +56,14 @@ Dann sind folgende Aussagen *äquivalent*:
 
 #subbox(title: "Beispiel Randdichten")[
   Rechteck $R = [-1, 1] times [0, 4]$. Seien $X, Y$ ZV mit gemeinsamer Dichte $f: RR^2 -> RR_+$:
+  #v(-2em)
   $
     f(x,y) = 1/8 dot bb(1)_(x in [-1,1]) dot bb(1)_(y in [0,4]) = cases(
       1/8 & "falls" (x,y) in R,
       0 & "falls" (x,y) in.not R.
     )
   $
+  #v(-1em)
 
   Randdichte von $X$ bzw. $Y$:
   $

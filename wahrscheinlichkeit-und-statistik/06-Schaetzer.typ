@@ -55,10 +55,10 @@ $ T_("ML") = t_("ML")(X_1, ..., X_n) in limits(op("arg max"))_(vartheta in Theta
 
 #subbox(title: "🚨 MLE über Randstellen (Indikatorfunktionen)")[
   Wenn beim Ableiten der Log-Likelihood-Funktion $l'(vartheta)$ der Parameter $vartheta$ komplett *verschwindet* (z.B. $l'(vartheta) = n$ oder $-n$), hat $l'(vartheta) = 0$ keine Lösung! \
-  
+
   *Vorgehen in diesem Fall:*
-  Die Log-Likelihood-Funktion ist streng monoton (steigt oder fällt durchgehend). Das Maximum liegt zwingend am *Rand des Definitionsbereichs*. 
-  
+  Die Log-Likelihood-Funktion ist streng monoton (steigt oder fällt durchgehend). Das Maximum liegt zwingend am *Rand des Definitionsbereichs*.
+
   + *Indikatorfunktion prüfen:* Schaue auf die Bedingung (z.B. $1_{x_i >= vartheta}$).
   + *Monotonie ausnutzen:*
     - Ist $l'(vartheta) > 0$ (steigend), wähle $vartheta$ *so gross wie möglich*, ohne die Bedingung zu verletzen. E.g. aus $x_i >= vartheta, forall i quad ==> quad accent(vartheta, hat)_"ML" = min(X_1, ..., X_n)$
@@ -74,7 +74,7 @@ $ T_("ML") = t_("ML")(X_1, ..., X_n) in limits(op("arg max"))_(vartheta in Theta
 
 *Momentenschätzer.* \
 Der Schätzer $T = (T_1, T_2)$ ist allgemein in jedem Modell $PP_vartheta$, in dem $X_1, ..., X_n$ i.i.d. sind, der sogenannte Momentenschätzer für:
-$ T = (T_1, T_2) = (EE_vartheta [X], Var_vartheta [X]) $
+$ T = (T_1, T_2) approx (EE_vartheta [X], Var_vartheta [X]) $
 Dieser Schätzer ist allerdings nicht erwartungstreu für $(EE_vartheta [X], Var_vartheta [X])$. Es gilt zwar:
 $
   EE_vartheta [T_1] = EE_vartheta [overline(X)_n] = EE_vartheta [X] quad "(erwartungstreu ✓)" \
@@ -98,14 +98,14 @@ $
   T'_(1) & = overline(X)_n quad ==> EE_vartheta [T'_1] = EE_vartheta [X] "✓" \
   T'_(2) & = n/(n-1) dot T_2 = n/(n-1) dot 1/n sum_(k=1)^n (X_k - overline(X)_n)^2 \
          & = 1/(n-1) sum_(k=1)^n [X_k^2 - 2 X_k overline(X)_n + overline(X)_n^2] \
-         & = 1/(n-1) ( sum_(k=1)^n [X_k^2] quad - 2 n overline(X)_n^2+ overline(X)_n^2 ) \
+         & = 1/(n-1) ( sum_(k=1)^n [X_k^2] quad - 2 n overline(X)_n^2 + n overline(X)_n^2 ) \
          & = 1/(n-1) sum_(k=1)^n [X_k^2] - n/(n-1) (overline(X)_n)^2 ==> EE_vartheta [T'_2] = Var_vartheta [X] "✓"
 $
 $T'_(2)$ ist die (korrigierte) #highlight[*empirische Varianz*] $S^2$:
 $ S^2 = 1/(n-1) sum_(k=1)^n (X_k - overline(X)_n)^2 $
 
 #subbox(title: "Gammafunktion")[
-  Die Funktion $Gamma$ nennt man (Eulersche) Gammafunktion und sie ist für $x >= 0$ definiert durch:
+  Die Funktion $Gamma$ nennt man (Eulersche) Gammafunktion und sie ist für $x > 0$ definiert durch:
   $ Gamma(x) = integral_0^oo t^(x-1) e^(-t) dif t $
   $Gamma$ hat eine grundlegende Verbindung zur Fakultätsfunktion, denn:
   $ Gamma(n+1) = n! quad "für" n in NN_0 . $
@@ -116,7 +116,7 @@ Eine stetige Zufallsvariable $X$ heisst $t$-verteilt mit $m$ Freiheitsgraden, fa
 $ f_X (x) = Gamma((m+1)/2) / (sqrt(m pi) Gamma(m/2)) (1 + x^2/m)^(- (m+1)/2) $
 
 *Entstehung der $t$-Verteilung:* Sind $X ~ cal(N)(0,1)$ und $Y ~ chi_m^2$ unabhängig, so ist der Quotient:
-$ X / sqrt(1/m Y) ~ t_m $
+$ X / sqrt(Y / m) ~ t_m $
 + Für $m=1$ ergibt sich eine Cauchy-Verteilung.
 + Für $m -> oo$ erhält man asymptotisch eine $cal(N)(0,1)$-Verteilung.
 + Die $t$-Verteilung ist symmetrisch um 0, aber langschwänziger als die $cal(N)(0,1)$-Verteilung; die Dichte geht langsamer gegen 0, je kleiner $m$ ist.

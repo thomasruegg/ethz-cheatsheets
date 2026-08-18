@@ -31,12 +31,17 @@ Wir wollen nun anhand der Daten $(X_1 (omega), ..., X_n (omega))$ entscheiden, o
 
 == Signifikanzniveau und Macht
 Ein Test hat Signifikanzniveau $alpha in [0,1]$ falls:
-$ forall theta in Theta_0 quad PP_theta (T in K) <= alpha $
-Es ist meist unser primäres Ziel, die Fehler 1. Art zu minimieren.
+$ forall theta_0 in Theta_0 quad PP_theta_0 (T in K) <= alpha $
+Es ist meist unser primäres Ziel, die Wahrscheinlichkeit für den Fehler 1. Art durch ein festes $alpha$ nach oben zu begrenzen.
 
-Das sekundäre Ziel ist, Fehler 2. Art zu vermeiden. Hierfür definieren wir die Macht eines Tests als Funktion:
-$ beta : Theta_A -> [0,1], quad theta |-> PP_theta (T in K) $
-Zu beachten ist, dass eine kleine Wahrscheinlichkeit für einen Fehler 2. Art einem *grossen* $beta$ entspricht.
+Das sekundäre Ziel ist, Fehler 2. Art zu vermeiden. Hierfür definieren wir die Macht (Gütefunktion) eines Tests als:
+$ "\"Macht\"" beta : Theta_A -> [0,1], quad theta_A |-> PP_theta_A (T in K) $
+Da $beta(theta_A) = 1 - PP_theta_A ("Fehler 2. Art")$, entspricht eine kleine Wahrscheinlichkeit für einen Fehler 2. Art einer *grossen* Macht $beta$. Unser Ziel ist also eine möglichst grosse Macht.
+
+*Der fundamentale Trade-off (Kompromiss):*
+- *Kleines $alpha$ (z.B. 1%, streng):* $=>$ kleine Wahrscheinlichkeit Fehler 1. Art, *aber* grosse Wahrscheinlichkeit Fehler 2. Art (kleinere Macht). Der kritische Bereich $K$ ist klein.
+- *Grosses $alpha$ (z.B. 10%, tolerant):* $=>$ grosse Wahrscheinlichkeit Fehler 1. Art, *aber* kleine Wahrscheinlichkeit Fehler 2. Art (grössere Macht). Der kritische Bereich $K$ ist gross.
+
 
 == Konstruktion von Tests
 Wir nehmen an, dass $X_1, ..., X_n$ diskret oder gemeinsam stetig unter $PP_(theta_0)$ und $PP_(theta_A)$ sind, wobei $Theta_0 inter Theta_A = empty$ einfach sind ($theta_0 in Theta_0 and theta_A in Theta_A$).
@@ -59,9 +64,9 @@ Wenn $R >> 1$, so gilt $H_A > H_0$ und analog $R << 1 => H_A < H_0$.
 
 *Neyman-Pearson-Lemma*
 
-Sei $Theta_0 = {vartheta_0}$ und $Theta_A = {vartheta_A}$. Sei $(T, K)$ ein Likelihood-Quotienten-Test mit Parameter $c$ und Signifikanzniveau $alpha^* := PP_(vartheta_0)[T in K]$. Ist $(T', K')$ ein anderer Test mit Signifikanzniveau $alpha := PP_(vartheta_0)[T' in K'] <= alpha^*$, so gilt:
+Sei $Theta_0 = \{vartheta_0\}$ und $Theta_A = \{vartheta_A\}$. Sei $(T, K)$ ein Likelihood-Quotienten-Test mit Parameter $c$ und Signifikanzniveau $alpha^* := PP_(vartheta_0)[T in K]$. Ist $(T', K')$ ein anderer Test mit Signifikanzniveau $alpha := PP_(vartheta_0)[T' in K'] <= alpha^*$, so gilt für die Macht:
 $ PP_(vartheta_A)[T' in K'] <= PP_(vartheta_A)[T in K] . $
-Das bedeutet, jeder andere Test mit kleinerem Signifikanzniveau hat auch geringere Macht bzw. eine größere Wahrscheinlichkeit für einen Fehler 2. Art.
+Das bedeutet: Jeder andere Test mit kleinerem (oder gleichem) Signifikanzniveau hat auch eine geringere Macht bzw. eine grössere Wahrscheinlichkeit für einen Fehler 2. Art.
 
 == Konkrete Tests
 === z-Test / Gauss-Test
@@ -76,6 +81,7 @@ $mu$-Schätzer: $overline(X)_n = 1/n sum_(i=1)^n X_i$ \
     $=> c_< = z_alpha = -z_(1-alpha) => K = (-infinity, -z_(1-alpha))$
   - *Rechtsseitig* ($H_A: mu_A > mu_0$): Ansatz $K = (c_>, infinity)$ für ein $c_> in RR$.
     Finde $c_>$ s.t.
+    #v(-1em)
     $
            PP_(mu_0)[T > c_>] & = alpha \
       1 - PP_(mu_0)[T <= c_>] & = alpha \

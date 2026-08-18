@@ -25,6 +25,14 @@ $
                      & = 1 - (1 - F_X (z)) (1 - F_Y (z))
 $
 
+Sei $X_1, X_2, ..., X_n$ i.i.d., und $Y = min(X_1, X_2, ..., X_n)$:
+$
+                      F_Y (y) & = PP[Y <= y] = 1 - PP[X_1 > y, ..., X_n > y] \
+                              & #h(-2pt) =^"i.i.d." 1 - (PP[X_1 > y])^n = 1 - (1 - F_X (y))^n \
+  EE[min(X_1, X_2, ..., X_n)] & = integral_(-oo)^oo y dot n (1 - F_X (y))^(n-1) f_X (y) dif y
+$
+
+
 $ PP(X + Y = t) = integral_0^t f_X (k) f_Y (t - k) dif k quad (t >= 0) $
 
 Für $L = min(X_1, ..., X_n)$ und $M = max(X_1, ..., X_n)$:
@@ -92,11 +100,6 @@ $ PP(X_1 > X_2, X_1 > X_3, ..., X_1 > X_n) = ((n-1)!) / (n!) $
     $EE[X Y] = integral_0^1 integral_0^y x y dot 2(x+y) dif x dif y = integral_0^1 2y integral_0^y (x^2 + x y) dif x dif y
     = integral_0^1 2y [x^3/3 + (x^2 y)/2]_(x=0)^(x=y) dif y = integral_0^1 2y (y^3/3 + y^3/2) dif y = integral_0^1 2y (5/6 y^3) dif y = integral_0^1 5/3 y^4 dif y = [1/3 y^5]_0^1 = 1/3$
     $cov(X, Y) = EE[X Y] - EE[X]EE[Y] = 1/3 - (5/12 dot 3/4) = 1/3 - 15/48 = 16/48 - 15/48 = 1/48$
-
-  + *Sind $X$ und $Y$ unabhängig?*
-    *Nein.* Zwei Begründungen (eine reicht aus): \
-    1. Der Träger $0 < x < y < 1$ ist kein Rechteck (die Grenzen hängen voneinander ab). \
-    2. $f_X (x) dot f_Y (y) != f(x,y)$ im Allgemeinen.
 ]
 
 === Aufgabe 3

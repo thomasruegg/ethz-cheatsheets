@@ -13,15 +13,15 @@
     + $A_1, A_2, ... in cal(F) ==> union.big_i A_i in cal(F)$
   + *Wahrscheinlichkeitsmass* $P$ auf $(Omega, cal(F))$ ist eine Abbildung $P: cal(F) |-> [0,1]$, wobei gilt:
     + $P(Omega) = 1$
-    + $A_1, A_2, ... in cal(F), forall i != j: A_i inter A_j = empty \ ==> P(union.big_i A_i) = sum_(i=1)^oo P(A_i)$
+    + $A_1, A_2, ... in cal(F), forall i != j: A_i inter A_j = empty  
+        ==> P(union.big_i A_i) = sum_(i=1)^oo P(A_i)$
 ]
 
-*De-Morgan*
-
+*De-Morgan:*
 Sei $(A_i)_(i >= 1)$ eine Folge von beliebigen Mengen. Dann gilt
 $ (union.big_(i=1)^oo A_i)^c = inter.big_(i=1)^oo A_i^c $
 
-Daraus folgt
+Daraus folgt:
 + $A_1, A_2, ... in cal(F) => inter.big_(i=1)^oo A_i in cal(F)$
 + $A, B in cal(F) => (A union B), (A inter B) in cal(F)$
 

@@ -52,9 +52,7 @@ $ PP(X >= c) <= EE[g(X)] / g(c) quad limits(==>)^(t > 0) quad PP(X >= t) <= EE[X
 Sei $Y$ eine ZV mit endlicher Varianz. Für jedes $b > 0$ gilt dann:
 $ PP(|Y - EE[Y]| >= b) <= Var(Y) / b^2 $
 
-*Chernoff-Ungleichung*\  //TODO: REDUNDANT! Siehe anderes Kapitel
-Seien $X_1, ..., X_n$ unabhängig mit $X_k tilde "Ber"(p_k)$ und sei $S_n = sum_(k=1)^n X_k$. Sei $mu_n = EE[S_n] = sum_(k=1)^n p_k$ und $delta > 0$, dann gilt
-$ bb(P)[S_n >= (1 + delta)mu_n] <= (e^delta / (1 + delta)^(1 + delta))^(mu_n) $
+*Chernoff-Ungleichung*: Siehe Kapitel 5.1.
 
 
 *Jensen-Ungleichung*\

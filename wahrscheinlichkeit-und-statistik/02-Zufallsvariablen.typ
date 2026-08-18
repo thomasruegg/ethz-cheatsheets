@@ -22,16 +22,16 @@ Die Funktion erfüllt folgende Eigenschaften:
 
 === Rechenregeln für Intervalle (Verteilungsfunktion)
 $bb(P)[a <= X <= b] = bb(P)[X <= b] - bb(P)[X < a] = F_X (b) - F_X (a^-)$ \
-     _(Ausgefüllter Punkt bei b, offener Punkt bei a)_
+_(Ausgefüllter Punkt bei b, offener Punkt bei a)_
 
 $bb(P)[a < X <= b] = bb(P)[X <= b] - bb(P)[X <= a] = F_X (b) - F_X (a)$ \
-     _(Ausgefüllter Punkt bei b, ausgefüllter Punkt bei a)_
+_(Ausgefüllter Punkt bei b, ausgefüllter Punkt bei a)_
 
 $bb(P)[a <= X < b] = bb(P)[X < b] - bb(P)[X < a] = F_X (b^-) - F_X (a^-)$ \
-     _(Offener Punkt bei b, offener Punkt bei a)_
+_(Offener Punkt bei b, offener Punkt bei a)_
 
 $bb(P)[a < X < b] = bb(P)[X < b] - bb(P)[X <= a] = F_X (b^-) - F_X (a)$ \
-     _(Offener Punkt bei b, ausgefüllter Punkt bei a)_
+_(Offener Punkt bei b, ausgefüllter Punkt bei a)_
 
 *Linksstetigkeit*
 
@@ -99,26 +99,78 @@ $ p(k) := PP(X = k) = lambda^k / (k!) · e^(-lambda) quad forall k in NN_0, lamb
 ]
 *Intuition:* $f_X (t) dif t$ ist die Wahrscheinlichkeit, dass $X in [t, t + dif t]$.
 
+#subbox(title: "Prüfungs-Checkliste: Ist Funktion " + $f(x)$ + " eine gültige Dichte?")[
+  Damit $f(x)$ eine Wahrscheinlichkeitsdichte sein darf, muss *beides*  erfüllt sein:
+  + *Nicht-negativ:* $f(x) >= 0$ für alle $x$. (Wahrscheinlichkeiten können nicht negativ sein. Achtung: Wird bei Polynomen oft fies im Träger versteckt!)
+  + *Normiert:* Integral über gesamten Träger muss 1 sein: $integral_(-oo)^oo f(x) dif x = 1$.
+]
+
 == Stetige Verteilungen
-*Gleichverteilung:* $X ~ cal(U)([a,b])$\
-Die Dichte ist auf dem Intervall $[a, b]$ konstant.
-$ f_(a,b)(x) = cases(0 & x in.not [a,b], 1/(b-a) & x in [a,b]) $
+#grid(
+  columns: (2fr, 1fr),
+  gutter: 1em,
+  align: horizon,
+  [
+    *Gleichverteilung:* $X ~ cal(U)([a,b])$\
+    Die Dichte ist auf dem Intervall $[a, b]$ konstant.
+  ],
+  [
+    $ f_(a,b)(x) = cases(0 & x in.not [a,b], 1/(b-a) & x in [a,b]) $
+  ],
+)
 
-*Exponentialverteilung:* $T ~ "Exp"(lambda)$\
-Lebensdauer oder Wartezeit eines allgemeinen Ereignisses (stetiges Äquivalent zur Geometrischen Verteilung).
-$ f_lambda (x) = cases(lambda e^(-lambda x) & x >= 0, 0 & x < 0) $
+#grid(
+  columns: (2fr, 1fr),
+  gutter: 1em,
+  align: horizon,
+  [
+    *Exponentialverteilung:* $T ~ "Exp"(lambda)$\
+    Lebensdauer oder Wartezeit eines allgemeinen Ereignisses (stetiges Äquivalent zur Geometrischen Verteilung).
+  ],
+  [
+    $ f_lambda (x) = cases(lambda e^(-lambda x) & x >= 0, 0 & x < 0) $
+  ],
+)
 
-*Normalverteilung:* $X ~ cal(N)(mu, sigma^2)$\
-Häufig verwendete Verteilung. Undefiniert für $sigma = 0$.
-$ f_(mu, sigma)(x) = 1 / sqrt(2 pi sigma^2) e^(- (x-mu)^2 / (2 sigma^2)) $
-+ Seien $X_1, ..., X_n$ *unabhängige* normalverteilte ZV mit Parametern $(mu_1, sigma_1^2), ..., (mu_n, sigma_n^2)$, dann ist
-  $ Z = mu_0 + lambda_1 X_1 + ... + lambda_n X_n $
+#grid(
+  columns: (2fr, 1fr),
+  gutter: 1em,
+  align: horizon,
+  [
+    *Normalverteilung:* $X ~ cal(N)(mu, sigma^2)$\
+    Häufig verwendete Verteilung. \
+    Undefiniert für $sigma = 0$. Dann $X = "Konstante" mu$.
+  ],
+  [
+    $ f_(mu, sigma)(x) = 1 / sqrt(2 pi sigma^2) e^(- (x-mu)^2 / (2 sigma^2)) $
+  ],
+)
+
++ Seien $X_1, ..., X_n$ *unabhängige* normalverteilte ZV mit Parametern $(mu_1, sigma_1^2), ..., (mu_n, sigma_n^2)$, dann ist \
+  $Z = mu_0 + lambda_1 X_1 + ... + lambda_n X_n$
   eine normalverteilte ZV mit Parametern \ $mu = mu_0 + lambda_1 mu_1 + ... + lambda_n mu_n$ und $sigma^2 = lambda_1^2 sigma_1^2 + ... + lambda_n^2 sigma_n^2$.
 + Sei $Z ~ cal(N)(0,1)$ eine *standardnormalverteilte* Zufallsvariable. Dann gilt für $X ~ cal(N)(mu, sigma^2)$:
-  $ X = mu + sigma · Z $
+  $X = mu + sigma dot Z$
 + Für $X ~ cal(N)(mu, sigma^2)$ gilt $(X-mu)/sigma ~ cal(N)(0,1)$, also:
   $ F_X (x) = PP((X-mu)/sigma <= (x-mu)/sigma) = Phi((x-mu)/sigma) . $
 + $Phi(-x) = 1 - Phi(x)$
+
+#subbox(title: "Gesetz der grossen Zahlen & Momente (Prüfungstrick)")[
+  Oft wird nach dem Grenzwert eines Durchschnitts $limn 1/n sum_(k=1)^n g(X_k)$ gefragt.
+  *Schritt 1:* Nach dem Gesetz der grossen Zahlen konvergiert das immer gegen den Erwartungswert $EE[g(X)]$. *Nicht integrieren!*
+
+  *Momente der zentrierten Normalverteilung $X ~ cal(N)(0, sigma^2)$:*
+  + *Ungerade Potenzen (Symmetrie):* \
+    Da die Kurve symmetrisch um 0 ist, heben sich Plus und Minus exakt auf.
+    $ EE[X] = 0, quad EE[X^3] = 0, quad EE[X^5] = 0, quad dots $
+
+  + *Gerade Potenzen ("Produkt der ungeraden Zahlen"):*
+    Multipliziere einfach alle ungeraden Zahlen, die kleiner als der Exponent sind.
+    $
+      EE[X^2] & = 1 dot sigma^2,                        && EE[X^6] = 5 dot 3 dot 1 dot sigma^6 = 15 sigma^6, \
+      EE[X^4] & = 3 dot 1 dot sigma^4 = 3 sigma^4, quad && EE[X^8] = 7 dot 5 dot 3 dot 1 dot sigma^8 = 105 sigma^8
+    $
+]
 
 Hier noch zum Thema MLE-Schätzer und dessen Eigenschaften, siehe @sec:mle-schaetzer für eine Übersicht der Schätzer.
 

@@ -217,7 +217,7 @@ Seien $X_1, ..., X_n$ i.i.d. $~ cal(N)(mu, sigma^2)$. Wir erinnern uns an die No
     [$sin(x)$], [$cos(x)$], [$-sin(x)$],
     [$1/2 (x - 1/2 sin(2x))$], [$sin^2(x)$], [$2 sin(x) cos(x)$],
     [$1/2 (x + 1/2 sin(2x))$], [$cos^2(x)$], [$-2 sin(x) cos(x)$],
-    [$-ln |cos(x)|$], [$tan(x)$], [$1/cos^2(x)$ \ $1 + tan^2(x)$],
+    [$-ln |cos(x)|$], [$tan(x)$], [$1/cos^2(x)$ = \ $1 + tan^2(x)$],
     [$cosh(x)$], [$sinh(x)$], [$cosh(x)$],
     [$log(cosh(x))$], [$tanh(x)$], [$1/cosh^2(x)$],
     [$ln |sin(x)|$], [$cot(x)$], [$-1/sin^2(x)$],
