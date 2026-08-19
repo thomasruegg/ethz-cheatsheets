@@ -74,7 +74,7 @@ Wenn $R >> 1$, so gilt $H_A > H_0$ und analog $R << 1 => H_A < H_0$.
 
 Sei $Theta_0 = \{vartheta_0\}$ und $Theta_A = \{vartheta_A\}$. Sei $(T, K)$ ein Likelihood-Quotienten-Test mit Parameter $c$ und Signifikanzniveau $alpha^* := PP_(vartheta_0)[T in K]$. Ist $(T', K')$ ein anderer Test mit Signifikanzniveau $alpha := PP_(vartheta_0)[T' in K'] <= alpha^*$, so gilt für die Macht:
 $ PP_(vartheta_A)[T' in K'] <= PP_(vartheta_A)[T in K] . $
-Das bedeutet: Jeder andere Test mit kleinerem (oder gleichem) Signifikanzniveau hat auch eine geringere Macht bzw. eine grössere Wahrscheinlichkeit für einen Fehler 2. Art.
+Das bedeutet: Jeder andere Test mit kleinerem (oder gleichem) Signifikanzniveau hat auch eine geringere Macht bzw. eine grössere Wahrscheinlichkeit für einen Fehler 2. Art. #highlight[Benutzen wenn einfache Hypothesen und "mächtigster Test" Frage.]
 
 == Konkrete Tests
 === z-Test / Gauss-Test

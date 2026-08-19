@@ -42,9 +42,7 @@
   $
     limn PP((S_n - n dot markhl(mu, color: #rgb("#ffff00"))) / (sqrt(markhl(sigma^2, color: #rgb("#00ff00"))) dot sqrt(n)) markhl(<=) med x) = Phi(x) quad forall x in RR
   $
-  #v(-1em)
   also:
-  #v(-1em)
   $
     text(#rgb("#969696"), ((1/n S_n - markhl(mu, color: #rgb("#ffff00"))) / sqrt(markhl(sigma^2, color: #rgb("#00ff00")) / n) =)) (S_n - n dot markhl(mu, color: #rgb("#ffff00"))) / (sqrt(markhl(sigma^2, color: #rgb("#00ff00"))) dot sqrt(n)) arrow.r.long^d cal(N)(0, 1)
   $
