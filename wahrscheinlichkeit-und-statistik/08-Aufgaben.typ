@@ -29,9 +29,9 @@ Sei $X_1, X_2, ..., X_n$ i.i.d., und $Y = min(X_1, X_2, ..., X_n)$:
 $
                       F_Y (y) & = PP[Y <= y] = 1 - PP[X_1 > y, ..., X_n > y] \
                               & #h(-2pt) =^"i.i.d." 1 - (PP[X_1 > y])^n = 1 - (1 - F_X (y))^n \
-  EE[min(X_1, X_2, ..., X_n)] & = integral_(-oo)^oo y dot n (1 - F_X (y))^(n-1) f_X (y) dif y
+  EE[min(X_1, X_2, ..., X_n)] & = integral_(-oo)^oo y dot underbrace(n (1 - F_X (y))^(n-1) f_X (y), F'_Y (y) = f_Y (y)) dif y
 $
-
+#v(-1em)
 
 $ PP(X + Y = t) = integral_0^t f_X (k) f_Y (t - k) dif k quad (t >= 0) $
 
@@ -48,7 +48,7 @@ $ PP(X_1 > X_2, X_1 > X_3, ..., X_1 > X_n) = ((n-1)!) / (n!) $
 == Evgeny 🐐
 === Aufgabe 2
 #subbox(title: "Gemeinsame Dichte")[
-  *Gegeben:* $f_(X,Y)(x,y) = cases(c e^(-x) &"für" 0 < y < x, 0 &"sonst")$
+  *Gegeben:* $f_(X,Y) (x,y) = cases(c e^(-x) &"für" 0 < y < x, 0 &"sonst")$
 
   #set enum(numbering: "a)")
   + *Konstante $c$ bestimmen:*
@@ -58,7 +58,7 @@ $ PP(X_1 > X_2, X_1 > X_3, ..., X_1 > X_n) = ((n-1)!) / (n!) $
       &= c [-x e^(-x) - e^(-x)]_0^oo = c (0 - (-1)) = c = 1 quad => c=1
     $
 
-  + *Randdichten $f_X(x)$ und $f_Y(y)$ berechnen:* #markhl("Träger nicht vergessen!", color: rgb("#ff0000")) \
+  + *Randdichten $f_X (x)$ und $f_Y (y)$ berechnen:* #markhl("Träger nicht vergessen!", color: rgb("#ff0000")) \
     $x$ festhalten, über $y$ integrieren (innere Grenzen $0$ bis $x$): \
     $f_X (x) = integral_0^x e^(-x) dif y = [y e^(-x)]_0^x = x e^(-x) markhl(dot bb(1)_(x>0), color: #rgb("#ff0000")) quad => X ~ "Gamma"(2,1)$ \
     $y$ festhalten, über $x$ integrieren (innere Grenzen $y$ bis $oo$): \
@@ -70,7 +70,7 @@ $ PP(X_1 > X_2, X_1 > X_3, ..., X_1 > X_n) = ((n-1)!) / (n!) $
     + *Rechnerisch:* $f_X (x) dot f_Y (y) = x e^(-x) dot e^(-y) != e^(-x) = f_(X,Y)(x,y)$
 
   + *Bedingte Dichte $f_(X|Y) (x|y)$ für $y>0$ und Verteilung erkennen:* \
-    Bedingte Dichte = Gemeinsame Dichte geteilt durch Randdichte von $Y$.
+    Bedingte Dichte = Gemeinsame Dichte durch Randdichte von $Y$. \
     $f_(X|Y) (x|y) = (f_(X,Y) (x,y)) / (f_Y (y)) = e^(-x) / e^(-y) = e^(-(x-y)) dot bb(1)_(x>y)$
     *Verteilung erkennen:* Substituieren wir $z = x - y > 0$, hat $z$ die Dichte $e^(-z)$.
     Das entspricht der Dichte einer $Exp(1)$-Verteilung in der Variablen $z$.
@@ -86,9 +86,9 @@ $ PP(X_1 > X_2, X_1 > X_3, ..., X_1 > X_n) = ((n-1)!) / (n!) $
     $integral_0^1 integral_0^y c(x+y) dif x dif y = c integral_0^1 [x^2/2 + x y]_(x=0)^(x=y) dif y = c integral_0^1 (y^2/2 + y^2) dif y = c integral_0^1 3/2 y^2 dif y = c [y^3/2]_0^1 = c/2 =^! 1 quad => quad c = 2$
 
   + *Randdichten $f_X$ und $f_Y$:*
-    Für $f_X(x)$ halte $x$ fest, integriere $y$ von $x$ bis $1$:
+    Für $f_X (x)$ halte $x$ fest, integriere $y$ von $x$ bis $1$:
     $f_X (x) = integral_x^1 2(x+y) dif y = [2x y + y^2]_x^1 = (2x + 1) - (2x^2 + x^2) = 2x + 1 - 3x^2 quad markhl(text("für ") x in (0,1), color: #rgb("#ff0000"))$ \
-    Für $f_Y(y)$ halte $y$ fest, integriere $x$ von $0$ bis $y$:
+    Für $f_Y (y)$ halte $y$ fest, integriere $x$ von $0$ bis $y$:
     $f_Y (y) = integral_0^y 2(x+y) dif x = [x^2 + 2x y]_0^y = y^2 + 2y^2 - 0 = 3y^2 quad markhl(text("für ") y in (0,1), color: #rgb("#ff0000"))$
 
   + *Erwartungswerte $EE[X]$ und $EE[Y]$:*
@@ -96,10 +96,10 @@ $ PP(X_1 > X_2, X_1 > X_3, ..., X_1 > X_n) = ((n-1)!) / (n!) $
     $EE[Y] = integral_0^1 y dot f_Y (y) dif y = integral_0^1 3y^3 dif y = [3/4 y^4]_0^1 = 3/4$
 
   + *Kovarianz $cov(X, Y)$:*
-    Berechne zuerst $EE[X Y]$. Auch hier wieder der Trick: Zuerst nach $x$ integrieren!
+    Berechne zuerst $EE[X Y]$. Auch hier wieder der Trick: Zuerst nach $x$ integrieren! \
     $EE[X Y] = integral_0^1 integral_0^y x y dot 2(x+y) dif x dif y = integral_0^1 2y integral_0^y (x^2 + x y) dif x dif y
-    = integral_0^1 2y [x^3/3 + (x^2 y)/2]_(x=0)^(x=y) dif y = integral_0^1 2y (y^3/3 + y^3/2) dif y = integral_0^1 2y (5/6 y^3) dif y = integral_0^1 5/3 y^4 dif y = [1/3 y^5]_0^1 = 1/3$
-    $cov(X, Y) = EE[X Y] - EE[X]EE[Y] = 1/3 - (5/12 dot 3/4) = 1/3 - 15/48 = 16/48 - 15/48 = 1/48$
+    = integral_0^1 2y [x^3/3 + (x^2 y)/2]_(x=0)^(x=y) dif y = integral_0^1 2y (y^3/3 + y^3/2) dif y = integral_0^1 2y (5/6 y^3) dif y = integral_0^1 5/3 y^4 dif y = [1/3 y^5]_0^1 = 1/3$, \
+    $cov(X, Y) = EE[X Y] - EE[X]EE[Y] = 1/3 - (5/12 dot 3/4) = 1/3 - 15/48 = 1/48$
 ]
 
 === Aufgabe 3
@@ -138,7 +138,7 @@ $ PP(X_1 > X_2, X_1 > X_3, ..., X_1 > X_n) = ((n-1)!) / (n!) $
 ]
 
 #subbox(title: "Zentraler Grenzwertsatz (ZGS) für Summen (100 Teile in 1 Box)")[
-  *Gegeben:* $X_1, ..., X_n$ i.i.d. mit $EE[X_i] = 8$ und $Var(X_i) = sigma^2 = 1.44$. \
+  *Gegeben:* $X_1, ..., X_n$ i.i.d. mit $EE[X_i] = 8$ und $Var(X_i) = 1.44$. \
   Summe $S_n = sum_(i=1)^n X_i$ mit $n=100$.
 
   #set enum(numbering: "a)")
@@ -178,8 +178,7 @@ $ PP(X_1 > X_2, X_1 > X_3, ..., X_1 > X_n) = ((n-1)!) / (n!) $
     n &= vartheta sum x_i quad ==> quad accent(vartheta, hat) = n / (sum_(i=1)^n x_i) quad ==> quad T_("ML") = n / (sum_(i=1)^n X_i)$
 
   + *Realisierter Schätzwert:*
-    Für Daten $x = (3, 1, 4, 2, 2, 5)$ ist $n=6$ und $sum x_i = 17$.
-    $t_("ML") = accent(vartheta, hat) = 6/17 approx 0.353$
+    Für Daten $x = (3, 1, 4, 2, 2, 5)$ ist $n=6$ und $sum x_i = 17. quad quad quad t_("ML") = accent(vartheta, hat) = 6/17 approx 0.353$
 ]
 
 
@@ -220,7 +219,7 @@ $ PP(X_1 > X_2, X_1 > X_3, ..., X_1 > X_n) = ((n-1)!) / (n!) $
   + *Maximum-Likelihood-Schätzer $T_("ML")$ bestimmen:* \
     Ableiten & Null setzen: $(partial l) / (partial lambda) = -n + 1/lambda sum_(i=1)^n x_i =^! 0 quad => quad accent(lambda, hat) = 1/n sum_(i=1)^n x_i$ \
     *Prüfung auf Maximum:* $l''(lambda) = - 1/lambda^2 sum x_i < 0 quad =>$ Maximum. \
-    *Schätzer (Zufallsvariable, Grossbuchstaben!):* $T_("ML") = 1/n sum_(i=1)^n X_i = overline(X)_n$
+    *Schätzer (Zufallsvariable, Grossbuchst.!):* $T_("ML") = 1/n sum_(i=1)^n X_i = overline(X)_n$
 
   + *Realisierter Schätzwert:*
     Werte einsetzen: $t_("ML") = accent(lambda, hat) = 1/10 (1+2+0+3+2+4+1+2+3+2) = 20/10 = 2$

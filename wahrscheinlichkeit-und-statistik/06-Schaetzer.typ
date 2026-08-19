@@ -19,6 +19,7 @@ Ein Schätzer $T$ ist *erwartungstreu*, falls für alle $vartheta in Theta$ gilt
 $ EE_vartheta [T] = vartheta $
 
 Sei $vartheta in Theta$ und $T$ ein Schätzer. Der *Bias* (erwartete Schätzfehler) von $T$ im Modell $PP_vartheta$ is definiert als:
+#v(-1em)
 $ EE_vartheta [T] - vartheta $
 
 == Mittlerer quadratischer Schätzfehler (MSE)
@@ -29,6 +30,7 @@ $
 $
 
 Eine Folge von Schätzern $T^((n)), n in NN$, heisst *konsistent* für $vartheta$, falls $T^((n))$ für $n -> oo$ in $PP_vartheta$-Wahrscheinlichkeit gegen $vartheta$ konvergiert, d.h. für jedes $vartheta in Theta$ und jedes $epsilon > 0$ gilt:
+#v(-1em)
 $ lim_(n -> oo) PP_vartheta (|T^((n)) - vartheta| > epsilon) = 0 $
 
 == Maximum-Likelihood-Methode
@@ -61,8 +63,8 @@ $ T_("ML") = t_("ML")(X_1, ..., X_n) in limits(op("arg max"))_(vartheta in Theta
 
   + *Indikatorfunktion prüfen:* Schaue auf die Bedingung (z.B. $1_{x_i >= vartheta}$).
   + *Monotonie ausnutzen:*
-    - Ist $l'(vartheta) > 0$ (steigend), wähle $vartheta$ *so gross wie möglich*, ohne die Bedingung zu verletzen. E.g. aus $x_i >= vartheta, forall i quad ==> quad accent(vartheta, hat)_"ML" = min(X_1, ..., X_n)$
-    - Ist $l'(vartheta) < 0$ (fallend), wähle $vartheta$ *so klein wie möglich*, ohne die Bedingung zu verletzen. E.g. aus $x_i <= vartheta forall i quad ==> quad accent(vartheta, hat)_"ML" = max(X_1, ..., X_n)$
+    - Ist $l'(vartheta) > 0$ ($l(vartheta)$ steigend), wähle $vartheta$ *so gross wie möglich*, ohne die Bedingung zu verletzen. E.g. aus $x_i >= vartheta, forall i quad ==> quad accent(vartheta, hat)_"ML" = min(X_1, ..., X_n)$
+    - Ist $l'(vartheta) < 0$ ($l(vartheta)$ fallend), wähle $vartheta$ *so klein wie möglich*, ohne die Bedingung zu verletzen. E.g. aus $x_i <= vartheta forall i quad ==> quad accent(vartheta, hat)_"ML" = max(X_1, ..., X_n)$
 ]
 
 == Momentenmethode /-schätzer
@@ -78,7 +80,7 @@ $ T = (T_1, T_2) approx (EE_vartheta [X], Var_vartheta [X]) $
 Dieser Schätzer ist allerdings nicht erwartungstreu für $(EE_vartheta [X], Var_vartheta [X])$. Es gilt zwar:
 $
   EE_vartheta [T_1] = EE_vartheta [overline(X)_n] = EE_vartheta [X] quad "(erwartungstreu ✓)" \
-  EE_vartheta [T_2] = EE_vartheta [1/n sum_(i=1)^n (X_i - overline(X)_n)^2] = markhl(EE_vartheta [1/n sum_(i=1)^n [X_i^2] - (overline(X)_n)^2], color: #rgb("#00ff00"))
+  EE_vartheta [T_2] = EE_vartheta [1/n sum_(i=1)^n (X_i - overline(X)_n)^2] = markhl(EE_vartheta [1/n sum_(i=1)^n [X_i^2] quad - (overline(X)_n)^2], color: #rgb("#00ff00"))
 $
 
 aber gemäss ($Var[Y] = EE[Y^2] - EE[Y]^2$) angewandt auf $overline(X)_n$ gilt:
@@ -90,7 +92,9 @@ $
 $
 Daraus folgt direkt für die Verzerrung des zweiten Moments:
 $
-  EE_vartheta [T_2] = markhl(EE_vartheta [X^2] - EE_vartheta [(overline(X)_n)^2], color: #rgb("#00ff00")) = (n-1)/n dot Var_vartheta [X] != Var_vartheta [X]
+  EE_vartheta [T_2] & = markhl(EE_vartheta [X^2] - EE_vartheta [(overline(X)_n)^2], color: #rgb("#00ff00")) \
+                    & = EE_vartheta [X^2] - (1/n EE_vartheta [X^2] + (n-1)/n EE_vartheta [X]^2) \
+                    & = (n-1)/n dot Var_vartheta [X] quad quad != Var_vartheta [X]
 $
 
 Um einen erwartungstreuen Schätzer $T'$ für $(EE_vartheta [X], Var_vartheta [X])$ zu erhalten, verwendet man:
@@ -106,6 +110,8 @@ $ S^2 = 1/(n-1) sum_(k=1)^n (X_k - overline(X)_n)^2 $
 
 #subbox(title: "Gammafunktion")[
   Die Funktion $Gamma$ nennt man (Eulersche) Gammafunktion und sie ist für $x > 0$ definiert durch:
+  #v(-1em)
+
   $ Gamma(x) = integral_0^oo t^(x-1) e^(-t) dif t $
   $Gamma$ hat eine grundlegende Verbindung zur Fakultätsfunktion, denn:
   $ Gamma(n+1) = n! quad "für" n in NN_0 . $
@@ -116,7 +122,8 @@ Eine stetige Zufallsvariable $X$ heisst $t$-verteilt mit $m$ Freiheitsgraden, fa
 $ f_X (x) = Gamma((m+1)/2) / (sqrt(m pi) Gamma(m/2)) (1 + x^2/m)^(- (m+1)/2) $
 
 *Entstehung der $t$-Verteilung:* Sind $X ~ cal(N)(0,1)$ und $Y ~ chi_m^2$ unabhängig, so ist der Quotient:
-$ X / sqrt(Y / m) ~ t_m $
+#v(-1em)
+$ X / sqrt(1 / m dot Y) ~ t_m $
 + Für $m=1$ ergibt sich eine Cauchy-Verteilung.
 + Für $m -> oo$ erhält man asymptotisch eine $cal(N)(0,1)$-Verteilung.
 + Die $t$-Verteilung ist symmetrisch um 0, aber langschwänziger als die $cal(N)(0,1)$-Verteilung; die Dichte geht langsamer gegen 0, je kleiner $m$ ist.

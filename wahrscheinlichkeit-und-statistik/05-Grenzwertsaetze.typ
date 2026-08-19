@@ -10,7 +10,7 @@
 #mainbox(title: "Schwaches Gesetz der grossen Zahlen")[
   Sei $X_1, X_2, ...$ eine Folge von #highlight[unabhängigen] Zufallsvariablen mit gleichen Erwartungswerten $EE[X_k] = mu$ und Varianzen $Var[X_k] = sigma^2$. Sei
   $ overline(X)_n = 1/n S_n = 1/n sum_(i=1)^n X_i $
-  Dann konvergiert $overline(X)_n$ für $n -> oo$ #markhl()[in Wahrscheinlichkeit] gegen $mu = EE[X_i]$, d.h. für jedes $epsilon > 0$ gilt:
+  Dann #markhl("konvergiert") $overline(X)_n$ für $n -> oo$ #markhl()[in Wahrscheinlichkeit] gegen $mu = EE[X_i]$, d.h. für jedes $epsilon > 0$ gilt:
   #v(-1em)
   $ PP(|overline(X)_n - mu| > epsilon) arrow.r^(n -> oo) 0 . $
 ]
@@ -21,7 +21,7 @@
   $ overline(X)_n = 1/n S_n = 1/n sum_(i=1)^n X_i $
   #v(-2em)
   gilt dann:
-  $ overline(X)_n arrow.r^(n -> oo) mu quad markhl(P "-fast sicher"), $
+  $ overline(X)_n arrow.r^(n -> oo) mu quad markhl("konvergiert " P "-fast sicher"), $
   das bedeutet:
   #v(-1em)
   $ PP({omega in Omega | overline(X)_n (omega) arrow.r^(n -> oo) mu}) = 1 . $
@@ -69,7 +69,9 @@ $
 
 #subbox(title: "Momenterzeugende Funktion")[
   Die momenterzeugende Funktion einer Zufallsvariablen $X$ ist für $t in RR$ definiert durch:
+  #v(-1.5em)
   $ M_X (t) = EE[e^(t X)] = integral_(-oo)^oo e^(t x) f_X (x) dif x . $
+  #v(-0.5em)
   Immer wohldefiniert in $[0, oo]$, kann aber $+oo$ werden.
 ]
 

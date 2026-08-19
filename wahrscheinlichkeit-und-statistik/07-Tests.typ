@@ -3,9 +3,9 @@
 = Tests
 
 #subbox()[
-  Die *Nullhypothese* $H_0$ und die *Alternativhypothese* $H_A$ sind zwei Teilmengen $Theta_0 subset.eq Theta, Theta_A subset.eq Theta$ wobei $Theta_0 inter Theta_A = empty$.
+  Die *Nullhypothese* $H_0$ und die *Alternativhypothese* $H_A$ sind zwei disjunkte Teilmengen $Theta_0 subset.eq Theta, Theta_A subset.eq Theta$ wobei $Theta_0 inter Theta_A = empty$.
 
-  Falls keine explizite Alternativhypothese spezifiziert ist, so hat man $Theta_A = Theta without Theta_0$.
+  Falls keine explizite Alternativhypothese spezifiziert ist, so ist $Theta_A = Theta without Theta_0$.
 
   Eine Hypothese heisst _einfach_, falls die Teilmenge aus einem einzelnen Wert besteht; sonst _zusammengesetzt_.
 ]
@@ -22,9 +22,12 @@ Wir wollen nun anhand der Daten $(X_1 (omega), ..., X_n (omega))$ entscheiden, o
 
 #subbox()[
   Ein *Fehler 1. Art* ist, wenn $H_0$ fälschlicherweise verworfen wird, obwohl sie richtig ist.
-  $ PP_theta (T in K), quad theta in Theta_0 $
+  #v(-1em)
+  $ PP_(theta_0) (T in K), quad text("für ") theta_0 in Theta_0 $
+
   Ein *Fehler 2. Art* ist, wenn $H_0$ fälschlicherweise akzeptiert wird, obwohl sie falsch ist.
-  $ PP_theta (T in.not K) = 1 - PP_theta (T in K), quad theta in Theta_A $
+  #v(-1em)
+  $ PP_(theta_A) (T in.not K) = 1 - PP_(theta_A) (T in K), quad text("für ") theta_A in Theta_A $
 ]
 
 *Bemerkung:* Da $T$ eine ZV und somit bezüglich dem Mass $PP_theta : cal(F) -> [0,1]$ messbar ist, gilt ${T in K} in cal(F)$ und somit ist $PP_theta (T in K)$ wohldefiniert.
@@ -38,10 +41,9 @@ Das sekundäre Ziel ist, Fehler 2. Art zu vermeiden. Hierfür definieren wir die
 $ "\"Macht\"" beta : Theta_A -> [0,1], quad theta_A |-> PP_theta_A (T in K) $
 Da $beta(theta_A) = 1 - PP_theta_A ("Fehler 2. Art")$, entspricht eine kleine Wahrscheinlichkeit für einen Fehler 2. Art einer *grossen* Macht $beta$. Unser Ziel ist also eine möglichst grosse Macht.
 
-*Der fundamentale Trade-off (Kompromiss):*
+*Der fundamentale Kompromiss:*
 - *Kleines $alpha$ (z.B. 1%, streng):* $=>$ kleine Wahrscheinlichkeit Fehler 1. Art, *aber* grosse Wahrscheinlichkeit Fehler 2. Art (kleinere Macht). Der kritische Bereich $K$ ist klein.
 - *Grosses $alpha$ (z.B. 10%, tolerant):* $=>$ grosse Wahrscheinlichkeit Fehler 1. Art, *aber* kleine Wahrscheinlichkeit Fehler 2. Art (grössere Macht). Der kritische Bereich $K$ ist gross.
-
 
 == Konstruktion von Tests
 Wir nehmen an, dass $X_1, ..., X_n$ diskret oder gemeinsam stetig unter $PP_(theta_0)$ und $PP_(theta_A)$ sind, wobei $Theta_0 inter Theta_A = empty$ einfach sind ($theta_0 in Theta_0 and theta_A in Theta_A$).
@@ -58,8 +60,14 @@ $
 Wenn $R >> 1$, so gilt $H_A > H_0$ und analog $R << 1 => H_A < H_0$.
 
 #subbox()[
-  Der *Likelihood-Quotient-Test (LQ-Test)* mit Parameter $c >= 0$ ist definiert durch:
+  Der *Likelihood-Quotient-Test (LQ-Test)* mit Schwellenwert $c >= 0$ nutzt die Teststatistik $T$ und den Verwerfungsbereich $K$:
+  #v(-0.5em)
   $ T = R(X_1, ..., X_n) quad "und" quad K = (c, oo] $
+
+  *Entscheidungsregel:*  $H_0$ wird verworfen, falls $T in K$, also wenn:
+  #v(-0.5em)
+  $ R(x_1, ..., x_n) > c $
+  _(Intuitiv: Wenn der Quotient grösser als $c$ ist, spricht die Stichprobe stark für $H_A$.)_
 ]
 
 *Neyman-Pearson-Lemma*
@@ -76,37 +84,38 @@ $mu$-Schätzer: $overline(X)_n = 1/n sum_(i=1)^n X_i$ \
 + Hypothesen: $H_0: mu = mu_0$ gegen $H_A: mu != mu_0$ ($mu < mu_0$ oder $mu > mu_0$) mit Signifikanzniveau $alpha$.
 + Teststatistik $T := (overline(X)_n - mu_0)/(sigma / sqrt(n)) ~ cal(N)(0,1)$ unter $PP_(mu_0)$
 + Kritischer Bereich $K$: Ansatz für $c$ finden, sodass $PP_(mu_0)[T in K] = alpha$ gilt.
-  - *Linksseitig* ($H_A: mu_A < mu_0$): Ansatz $K = (-infinity, c_<)$ für ein $c_< in RR$.
-    Finde $c_<$ s.t. $PP_(mu_0)[T < c_<] = alpha$ \
-    $=> c_< = z_alpha = -z_(1-alpha) => K = (-infinity, -z_(1-alpha))$
-  - *Rechtsseitig* ($H_A: mu_A > mu_0$): Ansatz $K = (c_>, infinity)$ für ein $c_> in RR$.
-    Finde $c_>$ s.t.
-    #v(-1em)
+  - *Linksseitig* ($H_A: mu_A < mu_0$): Ansatz $K = (-infinity, c_<)$. Finde $c_< in RR$ sodass
+
+    $
+      PP_(mu_0)[T < c_<] & = alpha \
+                     c_< & = z_alpha = -z_(1-alpha) quad ==> quad K = (-infinity, -z_(1-alpha))
+    $
+  - *Rechtsseitig* ($H_A: mu_A > mu_0$): Ansatz $K = (c_>, infinity)$. Finde $c_> in RR$ sodass
     $
            PP_(mu_0)[T > c_>] & = alpha \
       1 - PP_(mu_0)[T <= c_>] & = alpha \
           PP_(mu_0)[T <= c_>] & = 1 - alpha \
-                          c_> & = z_(1-alpha) => K = (z_(1-alpha), infinity)
+                          c_> & = z_(1-alpha) quad ==> quad  K = (z_(1-alpha), infinity)
     $
-  - *Zweiseitig* ($H_A: mu_A != mu_0$): Ansatz $K = (-infinity, -c_=) union (c_=, infinity)$ für ein $c_= in RR$.
-    Finde $c_=$ sodass
+  - *Zweiseitig* ($H_A: mu_A != mu_0$): Ansatz $K = (-infinity, -c_=) union (c_=, infinity)$. Finde $c_= in RR$ sodass
+    #v(-1em)
     $
               PP_(mu_0)[T in K] & = alpha \
           PP_(mu_0)[T in.not K] & = 1 - alpha \
       PP_(mu_0)[-c_= < T < c_=] & = 1 - alpha \
-           Phi(c_=) - Phi(-c_=) & = 1 - alpha \
-      Phi(c_=) - (1 - Phi(c_=)) & = 1 - alpha \
-                 2 Phi(c_=) - 1 & = 1 - alpha \
+           Phi(c_=) - Phi(-c_=) & = 1 - alpha \ 
+      Phi(c_=) - (1 - Phi(c_=)) & = 1 - alpha \ 
+                 2 Phi(c_=) - 1 & = 1 - alpha \ $$
                      2 Phi(c_=) & = 2 - alpha \
                        Phi(c_=) & = 1 - alpha/2 \
-                            c_= & = z_(1-alpha/2) \
-                           => K & = (-infinity, -z_(1-alpha/2)) union (z_(1-alpha/2), infinity)
+                            c_= & = z_(1-alpha/2) 
+                           ==> K & = (-infinity, -z_(1-alpha/2)) union (z_(1-alpha/2), infinity)
     $
 + *Dualität zum Konfidenzintervall (zweiseitig):* \
   Die Nullhypothese wird genau dann *nicht* verworfen, wenn $T in K^c$, also:
   $ |T| <= z_(1-alpha/2) <=> |(overline(X)_n - mu_0)/(sigma / sqrt(n))| &<= z_(1-alpha/2) \
-    <=> -z_(1-alpha/2) dot sigma/sqrt(n) &<= overline(X)_n - mu_0 &&<= z_(1-alpha/2) dot sigma/sqrt(n) \
-    <=> overline(X)_n - z_(1-alpha/2) dot sigma/sqrt(n) &<= space space space space mu_0 &&<= overline(X)_n + z_(1-alpha/2) dot sigma/sqrt(n) $ Das Intervall $I = [overline(X)_n - z_(1-alpha/2) dot sigma/sqrt(n), overline(X)_n + z_(1-alpha/2) dot sigma/sqrt(n)]$ enthält genau alle hypothetischen Werte $mu_0$, die mit den Beobachtungen kompatibel sind (95%-KI für $alpha = 0.05$).
+  <=> -z_(1-alpha/2) dot sigma/sqrt(n) &<= overline(X)_n - mu_0 &&<= z_(1-alpha/2) dot sigma/sqrt(n) \
+  <=> overline(X)_n - z_(1-alpha/2) dot sigma/sqrt(n) &<= space space space space mu_0 &&<= overline(X)_n + z_(1-alpha/2) dot sigma/sqrt(n) $ Das Intervall $I = [overline(X)_n - z_(1-alpha/2) dot sigma/sqrt(n), overline(X)_n + z_(1-alpha/2) dot sigma/sqrt(n)]$ enthält genau alle hypothetischen Werte $mu_0$, die mit den Beobachtungen kompatibel sind (95%-KI für $alpha = 0.05$).
 
 === t-Test
 *Sample i.i.d. normalverteilt, Test für $mu$; $sigma^2$ UNbekannt* \
@@ -131,10 +140,16 @@ $sigma^2$-Schätzer: $S^2 = 1/(n-1) sum_(i=1)^n (X_i - overline(X)_n)^2$ \
   $==>$ $I = [overline(X)_n - t_(n-1, 1-alpha/2) dot sqrt(S^2/n), overline(X)_n + t_(n-1, 1-alpha/2) dot sqrt(S^2/n)]$
 
 === Gepaarter Zweistichprobentest
-Sei $X_1,...,X_n ~ cal(N)(mu_X, sigma^2)$ i.i.d. und $Y_1,...,Y_n ~ cal(N)(mu_Y, sigma^2)$, wobei $X_i, Y_i$ unabhängig. \
-Dann ist für $Z_i := X_i - Y_i$ die ZV $Z_1,...,Z_n ~ cal(N)(mu_X - mu_Y, 2 sigma^2)$. \
-Falls $sigma$ bekannt $=>$ z-Test auf $Z_i$ \
-Falls $sigma$ unbekannt $=>$ t-Test auf $Z_i$
+Vergleich von verbundenen Stichproben (z.B. Vorher-Nachher-Messung am selben Objekt). Die Stichprobengrösse beider Sets ist zwingend gleich ($n$).
+Wir reduzieren die Daten direkt auf die paarweise Differenz $Z_k := X_k - Y_k$.
+- *Spezialfall (Unabhängigkeit):* Wenn $X_k, Y_k$ unabhängig sind ($rho = 0$), gilt: \
+  $Z_k ~ cal(N)(mu_X - mu_Y, 2 sigma^2)$.
+- *Allgemeiner Fall (Abhängigkeit):* Meistens sind die Paare korreliert mit $rho in (-1, 1)$. Dann gilt für die Differenzen: 
+  $ Z_1, ..., Z_n "i.i.d." ~ cal(N)(mu_X - mu_Y, 2(1 - rho)sigma^2) $
+
+Da das Problem auf die eindimensionale Variable $Z_k$ reduziert wurde, nutzen wir die bisherigen Einstichprobentests:
+- Falls Varianz der Differenz bekannt $=>$ *z-Test* auf Daten $Z_k$ 
+- Falls Varianz der Differenz unbekannt $=>$ *t-Test* auf Daten $Z_k$
 
 === Ungepaarter Zweistichprobentest
 Sei $X_1,...,X_n ~ cal(N)(mu_X, sigma^2)$ und $Y_1,...,Y_m ~ cal(N)(mu_Y, sigma^2)$, wobei $m != n, X_i$ und $Y_j$ paarweise unabhängig für $i in [n], j in [m]$
@@ -143,9 +158,12 @@ Sei $X_1,...,X_n ~ cal(N)(mu_X, sigma^2)$ und $Y_1,...,Y_m ~ cal(N)(mu_Y, sigma^
 - *$sigma^2$ unbekannt*, t-Test mit: \
   Empirische Varianz der einzelnen beiden Datensätzen \
   $S_X^2 = 1/(n-1) sum_(i=1)^n (X_i - overline(X)_n)^2$ und \ $S_Y^2 = 1/(m-1) sum_(i=1)^m (Y_i - overline(Y)_m)^2$
-  werden zu einer empirischen Varianz kombiniert: \
+  werden zu einer empirischen Varianz kombiniert: 
+  #v(-1.5em)
   $ S^2 := (1)/(m + n - 2) ((n-1)S^2_X + (m-1)S^2_Y) $
+    #v(-0.5em)
   $ T := ((overline(X)_n - overline(Y)_n) - (mu_X - mu_Y))/(S sqrt(1/n + 1/m)) ~ t_(m+n-2) $
+    #v(-1.5em)
 
 == $p$-Wert
 #mainbox(title: "Definition " + $p$ + "-Wert")[

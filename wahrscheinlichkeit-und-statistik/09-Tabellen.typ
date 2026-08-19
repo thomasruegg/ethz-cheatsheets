@@ -23,8 +23,7 @@
 
 #mainbox(title: "Partielle Integration")[
   Seien $f, g$ stetig differenzierbar.
-
-  $ integral f'(x) g(x) d x = f(x) g(x) - integral f(x) g'(x) d x $
+$integral f'(x) g(x) d x = f(x) g(x) - integral f(x) g'(x) d x $
 
   Für ein Intervall $[a, b]$ gilt entsprechend:
   $ integral_a^b f'(x)g(x) d x = [f(x)g(x)]_a^b - integral_a^b f(x)g'(x) d x $
@@ -35,21 +34,20 @@
 - Wenn wir durch mehrfache partielle Integration wieder beim ursprünglichen Integral landen, können wir die erhaltene Gleichung nach diesem Integral auflösen.
 
 #mainbox(title: "Substitution")[
-  Um $integral_a^b f(g(x)) dif x$ zu berechnen: Ersetze $g(x)$ durch $u$ und integriere $integral_(g(a))^(g(b)) f(u) (dif u) / g'(x)$.
+  Standardform: Setze $u = g(x) quad ==> quad (dif u) / (dif x) = g'(x) quad ==> quad dif x = 1 / (g'(x)) dot dif u$
+  $ integral_a^b f(g(x)) dot g'(x) dif x = integral_(g(a))^(g(b)) f(u) dif u $
 ]
-- $g'(x)$ muss sich herauskürzen, sonst nutzlos.
-- Grenzen substituieren nicht vergessen.
-- Man kann auch das Theorem in die andere Richtung anwenden:
-  $ integral_a^b f(u) dif u = integral_(g^(-1)(a))^(g^(-1)(b)) f(g(x)) g'(x) dif x $
-- Sei $cal(X), Y$ kompakt, $f: Y subset.eq RR^n -> RR$ stetig. Sei $gamma: cal(X) -> Y$ mit $cal(X) = cal(X)_0 union B$, $Y = Y_0 union C$ ($B, C$ Rand von $cal(X), Y$).
-  Wenn $gamma: cal(X)_0 -> Y_0$ bijektiv und $C^1$ mit $det(J_gamma (x)) != 0, forall x in cal(X)_0$, dann gilt:
-  $ integral_Y f(y) dif y = integral_(cal(X)) f(gamma(x)) |det(J_gamma (x))| dif x $
+- $g'(x)$ muss sich beim Einsetzen herauskürzen bzw. durch $u$ darstellbar sein.
+- Grenzen substituieren nicht vergessen ($a -> g(a)$, $b -> g(b)$).
+- Man kann das Theorem auch in die andere Richtung anwenden ($u = g(x)$):
+  $ integral_a^b f(u) dif u = integral_(g^(-1)(a))^(g^(-1)(b)) f(g(x)) dot g'(x) dif x $
 
 #align(center)[
   #table(
     columns: (1fr, 1fr, 1.3fr),
     align: horizon + center,
     stroke: 0.5pt + luma(150),
+    inset: 0.5em,
     table.cell(colspan: 3, fill: luma(240))[*Polarkoordinaten*],
     [$x = r cos theta$],
     [$0 <= r < oo$],
@@ -246,6 +244,17 @@ Seien $X_1, ..., X_n$ i.i.d. $~ cal(N)(mu, sigma^2)$. Wir erinnern uns an die No
   )
 ]
 
+== Definite Integrale
+#align(center)[
+  $ integral_0^(2 pi) sin(x) dif x = integral_0^(2 pi) cos(x) dif x = 0, quad quad integral_0^(2 pi) sin^2(x) dif x = integral_0^(2 pi) cos^2(x) dif x = pi $
+]
+
+#subbox(title: "Gaußsche Glockenkurve")[
+  Für das uneigentliche Integral über die _gaußsche Glockenkurve_ gilt:
+  $ integral_(-oo)^oo e^(-x^2 / (2 sigma^2)) dif x = sqrt(2 pi sigma^2) $
+]
+
+
 == Weitere Ableitungen
 #align(center)[
   #table(
@@ -294,17 +303,6 @@ Seien $X_1, ..., X_n$ i.i.d. $~ cal(N)(mu, sigma^2)$. Wir erinnern uns an die No
     [$integral 1/(x^2 - a^2) dif x$], [$1/(2 a) ln|(x-a)/(x+a)|$],
     [$integral sqrt(a^2 + x^2) dif x$], [$x/2 f(x) + a^2/2 ln(x + f(x))$],
   )
-]
-
-== Definite Integrale
-#align(center)[
-  $ integral_0^(2 pi) sin(x) dif x = integral_0^(2 pi) cos(x) dif x = 0 $
-  $ integral_0^(2 pi) sin^2(x) dif x = integral_0^(2 pi) cos^2(x) dif x = pi $
-]
-
-#subbox(title: "Gaußsche Glockenkurve")[
-  Für das uneigentliche Integral über die _gaußsche Glockenkurve_ gilt:
-  $ integral_(-oo)^oo e^(-x^2 / (2 sigma^2)) dif x = sqrt(2 pi sigma^2) $
 ]
 
 
