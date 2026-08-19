@@ -82,14 +82,12 @@ Seien $X_1, ..., X_n$ i.i.d. $~ cal(N)(mu, sigma^2)$. Wir erinnern uns an die No
 + $ (overline(X)_n - mu) / (S / sqrt(n)) = ((overline(X)_n - mu) / (sigma / sqrt(n))) / sqrt(S^2 / sigma^2) ~ t_(n-1) $
 
 == MLE Schätzer <sec:mle-schaetzer>
-- $X_1, ..., X_n ~ Exp(theta)$ i.i.d.: $T = n / (sum_(i=1)^n X_i) = 1 / overline(X)_n$
-- $X_1, ..., X_n ~ Geo(theta)$ i.i.d.: $T = n / (sum_(i=1)^n X_i) = 1 / overline(X)_n$
-
-- $X_1, ..., X_n ~ Bin(N, theta)$ i.i.d.: $T = 1/N (sum_(i=1)^n X_i) / n$
 - $X_1, ..., X_n ~ Ber(p)$ i.i.d.: $T = (sum_(i=1)^n X_i) / n$
+- $X_1, ..., X_n ~ Bin(N, theta)$ i.i.d.: $T = 1/N (sum_(i=1)^n X_i) / n$
+- $X_1, ..., X_n ~ Geo(theta)$ i.i.d.: $T = n / (sum_(i=1)^n X_i) = 1 / overline(X)_n$
 - $X_1, ..., X_n ~ Poisson(theta)$ i.i.d.: $T = (sum_(i=1)^n X_i) / n = overline(X)_n$
 - $X_1, ..., X_n ~ cal(U)([theta_1, theta_2])$ i.i.d.: $T_(theta_1) = min(X_i)$, $T_(theta_2) = max(X_i)$
-- $X_1, ..., X_n ~ Exp(theta)$ i.i.d.: $T = n / sum_(i=1)^n X_i = 1 / overline(X)_n$
+- $X_1, ..., X_n ~ Exp(theta)$ i.i.d.: $T = n / (sum_(i=1)^n X_i) = 1 / overline(X)_n$
 - $X_1, ..., X_n ~ cal(N)(theta_1, theta_2)$ i.i.d.: $T_(theta_1) = overline(X)_n$, $T_(theta_2) = S^2$
 
 #align(center)[
