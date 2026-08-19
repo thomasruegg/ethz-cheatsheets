@@ -104,12 +104,9 @@ $mu$-Schätzer: $overline(X)_n = 1/n sum_(i=1)^n X_i$ \
     $
 + *Dualität zum Konfidenzintervall (zweiseitig):* \
   Die Nullhypothese wird genau dann *nicht* verworfen, wenn $T in K^c$, also:
-  $
-    |T| <= z_(1-alpha/2) <=> |(overline(X)_n - mu_0)/(sigma / sqrt(n))| <= z_(1-alpha/2) \
+  $ |T| <= z_(1-alpha/2) <=> |(overline(X)_n - mu_0)/(sigma / sqrt(n))| &<= z_(1-alpha/2) \
     <=> -z_(1-alpha/2) dot sigma/sqrt(n) &<= overline(X)_n - mu_0 &&<= z_(1-alpha/2) dot sigma/sqrt(n) \
-    <=> overline(X)_n - z_(1-alpha/2) dot sigma/sqrt(n) &<= space space space space mu_0 &&<= overline(X)_n + z_(1-alpha/2) dot sigma/sqrt(n)
-  $
-  Das Intervall $I = [overline(X)_n - z_(1-alpha/2) dot sigma/sqrt(n), overline(X)_n + z_(1-alpha/2) dot sigma/sqrt(n)]$ enthält genau alle hypothetischen Werte $mu_0$, die mit den Beobachtungen kompatibel sind (95%-KI für $alpha = 0.05$).
+    <=> overline(X)_n - z_(1-alpha/2) dot sigma/sqrt(n) &<= space space space space mu_0 &&<= overline(X)_n + z_(1-alpha/2) dot sigma/sqrt(n) $ Das Intervall $I = [overline(X)_n - z_(1-alpha/2) dot sigma/sqrt(n), overline(X)_n + z_(1-alpha/2) dot sigma/sqrt(n)]$ enthält genau alle hypothetischen Werte $mu_0$, die mit den Beobachtungen kompatibel sind (95%-KI für $alpha = 0.05$).
 
 === t-Test
 *Sample i.i.d. normalverteilt, Test für $mu$; $sigma^2$ UNbekannt* \
