@@ -12,7 +12,7 @@ Für $n$ diskrete ZV $X_1, ..., X_n$ definieren wir ihre *gemeinsame Gewichtsfun
 $ p(x_1, ..., x_n) := PP(X_1 = x_1, ..., X_n = x_n) $
 Dann ist die *gemeinsame Verteilungsfunktion*:
 $
-  F(x_1, ..., x_n) & = PP(X_1 <= x_1, ..., X_n <= x_n) \
+  F(x_1, ..., x_n) & = PP(X_1 <= x_1, ..., X_n <= x_n) 
                    & = sum_(y_1 <= x_1, ..., y_n <= x_n) p(y_1, ..., y_n)
 $
 
@@ -21,7 +21,7 @@ $
   $ PP(Z = z) = sum_(x_1 in W_1, ..., x_n in W_n \ phi(x_1, ..., x_n)=z) PP(X_1 = x_1, ..., X_n = x_n) $
 ]
 
-*Randdichte/Randgewicht.* Seien $X_1, ..., X_n$ diskrete ZV mit gemeinsamer Gewichtsfkt. $p$. Für jedes $k in {1, ..., n}$ und jedes $x in W_k$ gilt:
+*Randdichte/Randgewicht:* Seien $X_1, ..., X_n$ diskrete ZV mit gemeinsamer Gewichtsfunktion $p$. Für jedes $k in {1, ..., n}$ und jedes $x in W_k$ gilt:
 #v(-1em)
 $
   PP(X_k = x) = sum_(x_ell in W_ell \ ell in {1, ..., n} without {k}) p(x_1, ..., x_(k-1), underbrace(x, x_k "locked"), x_(k+1), ..., x_n)
@@ -30,14 +30,14 @@ $
 *Der Erwartungswert des Bildes der Funktion* $phi: RR^n -> RR$ ist:
 $ EE[phi(X_1, ..., X_n)] = sum_(x_1, ..., x_n) phi(x_1, ..., x_n) p(x_1, ..., x_n) $
 
-Seien $X_1, ..., X_n$ diskrete ZV mit gemeinsamer Verteilung ${p(x_1, ..., x_n)}_(x_1 in W_1, ..., x_n in W_n)$. Dann ist *äquivalent*:
-- (i) $X_1, ..., X_n$ sind unabhängig,
-- (ii) für alle $x_1 in W_1, ..., x_n in W_n$ gilt:
+Seien $X_1, ..., X_n$ diskrete ZV mit gemeinsamer Verteilung $p(x_1, ..., x_n)_(x_1 in W_1, ..., x_n in W_n)$. Dann ist *äquivalent*: \
+$X_1, ..., X_n$ sind unabhängig $<==>$ für alle $x_1 in W_1, ..., x_n in W_n$ gilt:
   $ p(x_1, ..., x_n) = PP(X_1 = x_1) · ... · PP(X_n = x_n) $
 
 == Stetiger Fall - Gemeinsame Dichte
 #mainbox(title: "Gemeinsame Dichte")[
   Falls die gemeinsame Verteilungsfunktion von $n$ Zufallsvariablen $X_1, ..., X_n$ sich schreiben lässt als:
+  #v(-1em)
   $ PP[X_1 <= x_1, dots.c , X_n <= x_n]=F(x_1, ..., x_n) = integral_(-oo)^(x_1) ... integral_(-oo)^(x_n) f(t_1, ..., t_n) dif t_n ... dif t_1 $
 ]
 

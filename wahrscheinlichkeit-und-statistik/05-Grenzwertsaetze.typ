@@ -5,24 +5,23 @@
 #mainbox(title: "Konvergenz in Verteilung")[
   Seien $(X_n)_(n in NN)$ und $X$ Zufallsvariablen mit Verteilungsfunktionen $(F_n)_(n in NN)$ und $F$. $(X_n)_(n in NN)$ konvergiert *in Verteilung* gegen $X$, geschrieben $X_n arrow.r^d X$ für $n -> oo$, falls für jeden Stetigkeitspunkt $x in RR$ von $F$ gilt:
   $ lim_(n -> oo) F_n (x) = PP(X_n <= x) = F(x) $
-  Notation: $X_n arrow.r^w X$ oder $X_n arrow.r^L X$, wobei $d, w, L$ für _convergence in distribution_, _weak convergence_ bzw. _convergence in law_ stehen. (Nicht in Vorlesung)
 ]
 
 #mainbox(title: "Schwaches Gesetz der grossen Zahlen")[
-  Sei $X_1, X_2, ...$ eine Folge von unabhängigen Zufallsvariablen mit gleichen Erwartungswerten $EE[X_k] = mu$ und Varianzen $Var[X_k] = sigma^2$. Sei
+  Sei $X_1, X_2, ...$ eine Folge von #highlight[unabhängigen] Zufallsvariablen mit gleichen Erwartungswerten $EE[X_k] = mu$ und Varianzen $Var[X_k] = sigma^2$. Sei
   $ overline(X)_n = 1/n S_n = 1/n sum_(i=1)^n X_i $
-  Dann konvergiert $overline(X)_n$ für $n -> oo$ *in Wahrscheinlichkeit* gegen $mu = EE[X_i]$, d.h. für jedes $epsilon > 0$ gilt:
+  Dann konvergiert $overline(X)_n$ für $n -> oo$ #markhl()[in Wahrscheinlichkeit] gegen $mu = EE[X_i]$, d.h. für jedes $epsilon > 0$ gilt:
   #v(-1em)
   $ PP(|overline(X)_n - mu| > epsilon) arrow.r^(n -> oo) 0 . $
 ]
 
 #mainbox(title: "Starkes Gesetz der grossen Zahlen")[
-  Sei $X_1, X_2, ...$ eine Folge von u.i.v. (unabhängig und identisch verteilten) Zufallsvariablen. Sei $EE[ |X_1| ] < oo$ und $mu = EE[X_1]$. Für
+  Sei $X_1, X_2, ...$ eine Folge von #highlight[i.i.d.] ZVs. Sei $EE[ |X_1| ] < oo$ und $mu = EE[X_1]$. Für
   #v(-0.5em)
   $ overline(X)_n = 1/n S_n = 1/n sum_(i=1)^n X_i $
   #v(-2em)
   gilt dann:
-  $ overline(X)_n arrow.r^(n -> oo) mu quad P"-fast sicher," $
+  $ overline(X)_n arrow.r^(n -> oo) mu quad markhl(P "-fast sicher"), $
   das bedeutet:
   #v(-1em)
   $ PP({omega in Omega | overline(X)_n (omega) arrow.r^(n -> oo) mu}) = 1 . $

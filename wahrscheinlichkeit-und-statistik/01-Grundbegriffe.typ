@@ -35,7 +35,8 @@ Sei $A_1, A_2, ... in cal(F)$, dann gilt:\
 $ PP(union.big_(i=1)^oo A_i) <= sum_(i=1)^oo PP(A_i) $
 *Siebformel*
 $ PP(union.big_(i=1)^n A_i) = sum_(k=1)^n (-1)^(k+1) sum_(1 <= i_1 < ... < i_k <= n) PP(inter.big_(j=1)^k A_(i_j)) $
-Für $n=2$: $quad PP(A union B) = PP(A) + PP(B) - PP(A inter B)$
+Für $n=2$: $quad PP(A union B) = PP(A) + PP(B) - PP(A inter B)$ \
+Für $n=3$: $quad PP(A union B union C) = PP(A) + PP(B) + PP(C) - (PP(A inter B) + PP(A inter C) + PP(B inter C)) + PP(A inter B inter C)$
 
 == Bedingte Wahrscheinlichkeiten
 
@@ -55,18 +56,12 @@ $ PP(A) = sum_(n=1)^N PP(A | B_n) PP(B_n) = sum_(n=1)^N PP(A inter B_n) $
 
 Aus der Definition der bedingten W'keit folgt sofort die Bayessche Formel, welche den Zusammenhang zwischen $PP(A | B)$ und $PP(B | A)$ beschreibt:
 $ PP(B | A) = (PP(A | B) PP(B)) / PP(A) $
-Mit dem _Satz der totalen W'keit_ erhalten wir:
+Mit dem _Satz der totalen Wahrscheinlichkeit_ erhalten wir:
 
 Sei $B_1, ..., B_N in cal(F)$ eine *Partition* von $Omega$ mit $PP(B_n) > 0$ für alle $n$. Für jedes Ereignis $A$ mit $PP(A) > 0$ und jedes $n in {1, ..., N}$ gilt:
 $ PP(B_n | A) = (PP(A | B_n) PP(B_n)) / (sum_(k=1)^N PP(A | B_k) PP(B_k)) $
 
-*Intuition Bayessche Statistik*
 
-In dieser Form würde man $A$ als das *eingetretene Ereignis* und die $B_i$ als die verschiedenen *Hypothesen* verstehen.
-
-In der Bayesschen Statistik versucht man die Hypothese zu finden, so dass $PP(B_i | A)$ *maximiert* wird.
-
-(Wurde in der Vorlesung nicht weiter behandelt)
 
 == Unabhängigkeit
 
@@ -76,15 +71,16 @@ In der Bayesschen Statistik versucht man die Hypothese zu finden, so dass $PP(B_
 ]
 
 Es gilt ($star$):
-- $PP(A) in {0, 1} => A$ zu jedem Ereignis unabhängig
-- $A$ zu sich selbst unabhängig $=> PP(A) in {0,1}$
-- $A, B$ unabhängig $=> A, B^c$ unabhängig
+- $PP(A) in {0, 1} ==> A$ zu jedem Ereignis unabhängig
+- $A$ zu sich selbst unabhängig $==> PP(A) in {0,1}$
+- $A, B$ unabhängig $==> A, B^c$ unabhängig
 
 Wenn $PP(A) > 0, PP(B) > 0$ gilt:\
-$A, B$ unabh. $<=> PP(A | B) = PP(A) <=> PP(B | A) = PP(B)$
+$A, B$ unabh. $<==> PP(A | B) = PP(A) <==> PP(B | A) = PP(B)$
 
 #mainbox()[
   Eine Kollektion von Ereignissen $(A_i)_(i in I)$ heisst *(stochastisch) unabhängig*, wenn
+  #v(-1.5em)
   $ J subset.eq I "endlich" => PP(inter.big_(i in J) A_i) = product_(i in J) PP(A_i) $
 ]
 

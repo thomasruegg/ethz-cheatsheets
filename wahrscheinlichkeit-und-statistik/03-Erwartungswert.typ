@@ -28,32 +28,32 @@ $
 $
 
 == Rechnen mit Erwartungswerten
-*Linearität des Erwartungswertes*:
 
-Seien $X, Y: Omega -> RR$ ZV mit $lambda in RR$. Falls die Erwartungswerte wohldefiniert sind, gilt:
-$ EE[lambda · X + Y] = lambda · EE[X] + EE[Y] $
+*Linearität des Erwartungswertes*: Seien $X, Y: Omega -> RR$ ZV mit $lambda in RR$. Falls die Erwartungswerte wohldefiniert sind, gilt:
+$EE[lambda · X + Y] = lambda · EE[X] + EE[Y]$
 
 Falls $X, Y$ *unabhängig* sind, dann gilt auch:
-$ EE[X · Y] = EE[X] · EE[Y] $
+$EE[X · Y] = EE[X] · EE[Y]$
 
 Generell: $X_1, X_2, ..., X_n$ unabhängig und endlich:
-$ EE[product_(k=1)^n X_k] = product_(k=1)^n EE[X_k] $
+$EE[product_(k=1)^n X_k] = product_(k=1)^n EE[X_k]$
 
 == Ungleichungen
 *Monotonie*\
 Seien $X, Y$ ZV mit $X <= Y$ f.s., dann gilt:
 $EE[X] <= EE[Y]$
 
-*Markow-Ungleichung*\
+*Markov-Ungleichung*\
 Sei $X$ eine ZV und ferner $g: X(Omega) -> [0, +oo)$ eine wachsende Funktion. Für jedes $c in RR$ mit $g(c) > 0$ gilt dann:
-$ PP(X >= c) <= EE[g(X)] / g(c) quad limits(==>)^(t > 0) quad PP(X >= t) <= EE[X] / t $
+$
+  PP(X >= c) <= EE[g(X)] / g(c) quad limits(==>)^(t > 0) quad PP(X >= t) <= EE[X] / t "bzw." PP(X >= t dot EE[X]) <= 1/t
+$
 
 *Chebyshev-Ungleichung*\
 Sei $Y$ eine ZV mit endlicher Varianz. Für jedes $b > 0$ gilt dann:
-$ PP(|Y - EE[Y]| >= b) <= Var(Y) / b^2 $
+$ PP(|Y - EE[Y]| >= b) <= Var(Y) / b^2 quad "bzw." quad PP(|Y - EE[Y]| >= b dot sqrt(Var(Y))) <= 1 / b^2 $
 
 *Chernoff-Ungleichung*: Siehe Kapitel 5.1.
-
 
 *Jensen-Ungleichung*\
 Sei $X$ eine ZV und $phi: RR -> RR$ eine  Funktion, dann gilt:
@@ -79,12 +79,12 @@ $
 #mainbox(title: "Varianz")[
   Sei $X$ eine ZV, sodass $EE[X^2] < oo$. Die *Varianz* von $X$ ist definiert durch:
   $ Var(X) = sigma_X^2 = EE[(X - EE[X])^2] = EE[X^2] - EE[X]^2 $
-  wobei $m = EE[X]$. Dabei wird $sigma_X$ als *Standardabweichung* von $X$ bezeichnet und beschreibt den Erwartungswert für die Distanz von $X$ zu $EE[X]$.
+  wobei $mu = EE[X]$. Dabei wird $sigma_X$ als *Standardabweichung* von $X$ bezeichnet und beschreibt den Erwartungswert für die Distanz von $X$ zu $EE[X]$.
 ]
 
 + Sei $X$ ein ZV, sodass $EE[X^2] < oo$ und $a, b in RR$:
   $ Var(a · X + b) = a^2 · Var(X) $
-+ Seien $X_1, ..., X_n$ paarweise unabhängig. Dann gilt:
++ Seien $X_1, ..., X_n$ *paarweise unabhängig*. Dann gilt:
   $ Var(X_1 + ... + X_n) = Var(X_1) + ... + Var(X_n) $
 
 #mainbox(title: "Kovarianz")[
@@ -103,9 +103,9 @@ $
 + ($star$) $cov(sum_(i=1)^n X_i, sum_(j=1)^n Y_j) = sum_(i=1)^n sum_(j=1)^n cov(X_i, Y_j)$
 
 *Korrelationen*
-- $cov(X, Y) > 0 =>$ positiv korreliert
-- $cov(X, Y) = 0 =>$ unkorreliert
-- $cov(X, Y) < 0 =>$ negativ korreliert / antikorreliert
+- $cov(X, Y) > 0 ==>$ positiv korreliert
+- $cov(X, Y) = 0 ==>$ unkorreliert
+- $cov(X, Y) < 0 ==>$ negativ korreliert / antikorreliert
 
 Es gilt: $X_i, X_j$ unabhängig $=> X_i, X_j$ unkorreliert. \
 Sowie: $X_i, X_j$ korreliert $=> X_i, X_j$ abhängig.

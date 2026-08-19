@@ -89,8 +89,27 @@ Seien $X_1, ..., X_n$ i.i.d. $~ cal(N)(mu, sigma^2)$. Wir erinnern uns an die No
 - $X_1, ..., X_n ~ Ber(p)$ i.i.d.: $T = (sum_(i=1)^n X_i) / n$
 - $X_1, ..., X_n ~ Poisson(theta)$ i.i.d.: $T = (sum_(i=1)^n X_i) / n = overline(X)_n$
 - $X_1, ..., X_n ~ cal(U)([theta_1, theta_2])$ i.i.d.: $T_(theta_1) = min(X_i)$, $T_(theta_2) = max(X_i)$
+- $X_1, ..., X_n ~ Exp(theta)$ i.i.d.: $T = n / sum_(i=1)^n X_i = 1 / overline(X)_n$
 - $X_1, ..., X_n ~ cal(N)(theta_1, theta_2)$ i.i.d.: $T_(theta_1) = overline(X)_n$, $T_(theta_2) = S^2$
 
+#align(center)[
+  #table(
+    columns: (1.5fr, 1.5fr, 1.2fr),
+    align: horizon + center,
+    stroke: 0.5pt + luma(150),
+    inset: 0.3em,
+    [*Verteilung*], [*Erwartungstreu*], [*Konsistent*],
+    [Bernoulli], [Ja], [Ja],
+    [Binomial], [Nur $p$], [$n$ und $p$],
+    [Geometrisch], [Nein], [Ja],
+    [Poisson], [Ja], [Ja],
+    [Gleichverteilung], [Nein], [Ja],
+    [Exponentiell], [Ja], [Ja],
+    [Normalverteilung], [Nur $mu$], [$mu$ und $sigma^2$],
+  )
+]
+
+== Trigonometrische Funktionen
 #block[
   #show table.cell.where(y: 0): set text(size: 9.2pt)
 

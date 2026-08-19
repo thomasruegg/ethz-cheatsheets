@@ -33,9 +33,7 @@ _(Offener Punkt bei b, offener Punkt bei a)_
 $bb(P)[a < X < b] = bb(P)[X < b] - bb(P)[X <= a] = F_X (b^-) - F_X (a)$ \
 _(Offener Punkt bei b, ausgefüllter Punkt bei a)_
 
-*Linksstetigkeit*
-
-Die Verteilungsfunktion ist nicht immer linksstetig.
+*Linksstetigkeit:* Die Verteilungsfunktion ist nicht immer linksstetig.
 Sei $F_X (a^-) := lim_(h -> 0^+) F_X (a-h)$ für beliebige $a in RR$.
 Dann gilt:
 $ PP(X = a) = F_X (a) - F_X (a^-) $
@@ -115,7 +113,7 @@ $ p(k) := PP(X = k) = lambda^k / (k!) · e^(-lambda) quad forall k in NN_0, lamb
     Die Dichte ist auf dem Intervall $[a, b]$ konstant.
   ],
   [
-    $ f_(a,b)(x) = cases(0 & x in.not [a,b], 1/(b-a) & x in [a,b]) $
+    $ f_(a,b)(x) = cases(1/(b-a) quad & x in [a,b], 0 & x in.not [a,b]) $
   ],
 )
 
@@ -128,7 +126,7 @@ $ p(k) := PP(X = k) = lambda^k / (k!) · e^(-lambda) quad forall k in NN_0, lamb
     Lebensdauer oder Wartezeit eines allgemeinen Ereignisses (stetiges Äquivalent zur Geometrischen Verteilung).
   ],
   [
-    $ f_lambda (x) = cases(lambda e^(-lambda x) & x >= 0, 0 & x < 0) $
+    $ f_lambda (x) = cases(lambda e^(-lambda x) quad & x >= 0, 0 & x < 0) $
   ],
 )
 
@@ -149,10 +147,13 @@ $ p(k) := PP(X = k) = lambda^k / (k!) · e^(-lambda) quad forall k in NN_0, lamb
 + Seien $X_1, ..., X_n$ *unabhängige* normalverteilte ZV mit Parametern $(mu_1, sigma_1^2), ..., (mu_n, sigma_n^2)$, dann ist \
   $Z = mu_0 + lambda_1 X_1 + ... + lambda_n X_n$
   eine normalverteilte ZV mit Parametern \ $mu = mu_0 + lambda_1 mu_1 + ... + lambda_n mu_n$ und $sigma^2 = lambda_1^2 sigma_1^2 + ... + lambda_n^2 sigma_n^2$.
+
 + Sei $Z ~ cal(N)(0,1)$ eine *standardnormalverteilte* Zufallsvariable. Dann gilt für $X ~ cal(N)(mu, sigma^2)$:
   $X = mu + sigma dot Z$
+
 + Für $X ~ cal(N)(mu, sigma^2)$ gilt $(X-mu)/sigma ~ cal(N)(0,1)$, also:
-  $ F_X (x) = PP((X-mu)/sigma <= (x-mu)/sigma) = Phi((x-mu)/sigma) . $
+  $ F_X (x) = PP(X <=x) =PP((X-mu)/sigma <= (x-mu)/sigma) = Phi((x-mu)/sigma) . $
+
 + $Phi(-x) = 1 - Phi(x)$
 
 #subbox(title: "Gesetz der grossen Zahlen & Momente (Prüfungstrick)")[
@@ -170,23 +171,4 @@ $ p(k) := PP(X = k) = lambda^k / (k!) · e^(-lambda) quad forall k in NN_0, lamb
       EE[X^2] & = 1 dot sigma^2,                        && EE[X^6] = 5 dot 3 dot 1 dot sigma^6 = 15 sigma^6, \
       EE[X^4] & = 3 dot 1 dot sigma^4 = 3 sigma^4, quad && EE[X^8] = 7 dot 5 dot 3 dot 1 dot sigma^8 = 105 sigma^8
     $
-]
-
-Hier noch zum Thema MLE-Schätzer und dessen Eigenschaften, siehe @sec:mle-schaetzer für eine Übersicht der Schätzer.
-
-#align(center)[
-  #table(
-    columns: (1.5fr, 1.5fr, 1.2fr),
-    align: horizon + center,
-    stroke: 0.5pt + luma(150),
-    inset: 0.3em,
-    [*Verteilung*], [*Erwartungstreu*], [*Konsistent*],
-    [Bernoulli], [Ja], [Ja],
-    [Binomial], [Nur $p$], [$n$ und $p$],
-    [Geometrisch], [Nein], [Ja],
-    [Poisson], [Ja], [Ja],
-    [Gleichverteilung], [Nein], [Ja],
-    [Exponentiell], [Ja], [Ja],
-    [Normalverteilung], [Nur $mu$], [$mu$ und $sigma^2$],
-  )
 ]
