@@ -14,13 +14,11 @@
 #set par(justify: true)
 #set list(marker: ([•], [◦]))
 
-// 1. Globale vertikale Abstände minimieren
 #set par(spacing: 0.4em)
 #set block(spacing: 0.4em)
-#set list(tight: true) // Zieht Listenpunkte näher zusammen
-#show math.equation.where(block: true): set block(above: 0.3em, below: 0.3em) // Formel-Abstände
+#set list(tight: true)
+#show math.equation.where(block: true): set block(above: 0.3em, below: 0.3em)
 
-// 2. Überschriften enger fassen (ersetzt deine auskommentierten Zeilen)
 #show heading: set block(above: 0.6em, below: 0.3em)
 
 #let basebox(title: "", body, color) = block(
@@ -34,14 +32,14 @@
       #block(
         fill: color.lighten(60%),
         width: 100%,
-        inset: 0.25em, // <--- HIER reduziert, vorher 0.5em
+        inset: 0.25em,
         radius: (top: 1pt, bottom: 0mm),
         below: 0pt,
         strong(title),
       )
     ]#block(
       width: 100%,
-      inset: (top: 0.25em, right: 0.25em, bottom: 0.4em, left: 0.25em), // <--- HIER reduziert, vorher 0.5em
+      inset: (top: 0.25em, right: 0.25em, bottom: 0.4em, left: 0.25em),
       above: 0pt,
       body,
     )
@@ -64,7 +62,6 @@
 #let bspbox(title: "", body) = basebox(title: title, body, mypurple)
 #let subbox(title: "", body) = basebox(title: title, body, mysub)
 
-// Math settings
 #let limn = $lim_(n->oo)$
 #let limxo = $lim_(x->markhl(0))$
 #let limxi = $lim_(x->oo)$
@@ -368,7 +365,7 @@ Abschätzen durch nur schnellstwachsende Terme prüfen.
 ]
 
 - Für $a_k >= 0$: Reihe $sumk a_k$ konvergent $<==>$ Folge $(S_n)_(n >= 1)$ n.o.b.
-- *Reihe* bleibt konvergent/divergent bei Verschiebungen um $k$, so wie die Folgen (aber bei Folgen würde auch noch der Grenzwert gleich bleiben). #minitext[Falls *Folge* $(a_n)$ gegen $l$ konvergiert, so konvergiert auch $b_n := a_(n+k)$ gegen $l$.] // TODO: Weglassen?
+- *Reihe* bleibt konvergent/divergent bei Verschiebungen um $k$, so wie die Folgen (aber bei Folgen würde auch noch der Grenzwert gleich bleiben). #minitext[Falls *Folge* $(a_n)$ gegen $l$ konvergiert, so konvergiert auch $b_n := a_(n+k)$ gegen $l$.]
 
 #mainbox(title: "Cauchy-Kriterium für Reihen")[
   Reihe $sumk a_k$ konvergent
@@ -743,7 +740,6 @@ Für $DD subset RR, f, g: DD -> RR, x_0 in DD$.
 - Für $f: [a, b] -> RR$ stetig und $f(a) dot f(b) < 0 ==> exists c in (a, b): f(c) = 0$.
 
 #mainbox(title: "Beweis Zwischenwertsatz (via Supremum)")[
-  // TODO: weglassen?
   _Voraussetzung:_ $f: [a,b] -> RR$ stetig, o.B.d.A. $f(a) < c < f(b)$. \
   _Ziel:_ Zeigen, dass ein $x = sup(X)$ existiert mit $f(x) = c$.
 
@@ -779,7 +775,7 @@ Für $DD subset RR, f, g: DD -> RR, x_0 in DD$.
   $==> exists x in (0, 1)$ s.t. $g(x) = 0 ==> f(x) - e^x = 0 ==> f(x) = e^x$.
 ]
 
-=== Satz von Darboux (Zwischenwertsatz für Ableitungen) // TODO: Weglassen?
+=== Satz von Darboux (Zwischenwertsatz für Ableitungen)
 Sei $f: [a, b] -> RR$ eine differenzierbare Funktion. Dann nimmt die Ableitungsfunktion $f'$ jeden Wert zwischen $f'(a)$ und $f'(b)$ an.
 
 #minitext[Ist $y$ eine Zahl zwischen $f'(a)$ und $f'(b)$, so existiert mindestens ein $c in (a, b)$ mit:
@@ -1349,13 +1345,6 @@ cos: RR -> RR "stetig", quad cos(z) &= 1 - z^2/2! + z^4/4! - ... = sum_(n=0)^oo 
   )
 ]
 
-// - Nullstellen von $sin(x) = {k dot pi | k in ZZ}$ \
-//   - $sin(x) > 0, quad forall x in (2k pi, (2k+1) pi)$
-//   - $sin(x) < 0, quad forall x in ((2k+1) pi, (2k+2) pi)$
-// - Nullstellen von $cos(x) = {pi/2 + k dot pi | k in ZZ}$
-//   - $cos(x) > 0, quad forall x in (-pi/2 + 2k pi, pi/2 + 2k pi)$
-//   - $cos(x) < 0, quad forall x in (pi/2 + 2k pi, 3pi/2 + 2k pi)$
-
 / Tangens: $tan(z) := sin(z)/cos(z), z in.not {pi/2 + k dot pi}$
 / Cotangens: $cot(z) := cos(z)/sin(z), z in.not {k dot pi}$
 
@@ -1396,26 +1385,6 @@ Funktion ist differenzierbar $<==> forall x_i$ eine Tangente gelegt werden kann
 #mainbox(title: $f$ + " ist differenzierbar")[
   $f$ differenzierbar $<==> f$ für jedes $x_0 in DD$ differenzierbar.
 ]
-
-// TODO: darf man weglassen? Ist glaub ich eigentlich nur 1. Taylorpolynom?
-// === Differenzierbarkeit nach Weierstrass
-// #subbox(title: "Differenzierbarkeit nach Weierstrass")[
-//   Sei $f: D -> RR, x_0 in D$ ein Häufungspunkt von $D$. Dann gilt: $f$ ist in $x_0$ differenzierbar $<==>$ Es gibt $c in RR$ und $r: D -> RR$ mit:
-//   #set enum(numbering: "1.")
-//   + $f(x) = f(x_0) + c(x - x_0) + r(x)(x - x_0)$
-//   + $r(x_0) = 0$ und r stetig in $x_0$
-//   Falls dies zutrifft ist $c = f'(x_0)$ eindeutig bestimmt.
-// ]
-
-// Same here:
-// === Alternative Differenzierbarkeit ohne Limes
-// Sei $Phi(x) = f'(x_0) + r(x)$:
-// - $f: D -> RR$ ist in $x_0$ differenzierbar $<==> exists Phi: D -> RR$ welche
-//   #set enum(numbering: "1.")
-//   + In $x_0$ stetig ist
-//   + $f(x) = f(x_0) + Phi(x)(x - x_0) quad forall c in D$.
-//   + In diesem Fall $Phi(x_0) = f'(x_0)$
-// - Für $f: D -> RR$ und $x_0 in D$ Häufigkeitspunkt von D. f in $x_0$ differenzierbar $==> f$ ist in $x_0$ stetig.
 
 == Rechenregeln Ableitung
 Für $DD subset RR$, Häufungspunkt $x_0 in DD$ und $f, g: DD -> RR$ in $x_0$ differenzierbar:
@@ -1489,7 +1458,7 @@ Für Intervall $I subset RR$ und $f: I -> RR$. $f$ ist:
   $f$ ist (streng) konkav $<==> f'$ (streng) mon. fallend
 - Für $f: (a, b) -> RR$ zwei mal differenzierbar. \
   $f''(x) >= 0 <==> f$ ist konvex (streng wenn $f''(x) > 0$) \
-  $f''(x) <= 0 <==> f$ ist konkav (streng wenn $f''(x) < 0$) // TODO: Weglassen weil in Tabelle?
+  $f''(x) <= 0 <==> f$ ist konkav (streng wenn $f''(x) < 0$)
 
 == Höhere Ableitungen, Definition $f$ Glatt
 #mainbox(title: "Höhere Ableitungen")[
