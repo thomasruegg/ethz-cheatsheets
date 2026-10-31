@@ -1,3 +1,5 @@
+#import "@preview/mannot:0.3.0": markhl
+
 #set page(
   paper: "a4",
   margin: (x: 0.45cm, y: 0.45cm),
@@ -122,7 +124,7 @@
   - *Setup*: Group $GG$ of prime order $q$, generators $g, h in GG$ with $h = g^x$ ($x = log_g h$ unknown).
   - *Commit*: $"Commit"(m, r) := g^m h^r in GG$ for $m, r in ZZ_q$.
   - *Linear Homomorphism*: $"Commit"(m_0, r_0) dot "Commit"(m_1, r_1) = g^(m_0 + m_1) h^(r_0 + r_1) = "Commit"(m_0 + m_1, r_0 + r_1)$.
-  - *Perfectly (Statistically) Hiding*: Since $c = g^m (g^x)^r = g^(m + x r)$, for any $c = g^alpha$ and any $m' in ZZ_q$, there is a unique $r' = (alpha - m') x^(-1) mod q$. As $r <-^"$" ZZ_q$, $c$ is uniform in $GG$.
+  - *Perfectly (Statistically) Hiding*: Since $c = g^m (g^x)^r = g^(m + x r)$, for any $c = g^alpha$ and any $m' in ZZ_q$, there is a unique $r' = (alpha - m') x^(-1) mod q$. As $r <-^"$" ZZ_q$, $c$ is also uniform in $GG$.
   - *Computationally Binding under DLP*: Suppose $cal(A)$ outputs $(m_0, r_0), (m_1, r_1)$ with $m_0 != m_1$ and $g^(m_0) h^(r_0) = c = g^(m_1) h^(r_1)$ (note: implies $r_0 != r_1 mod q$). Then:
     $g^(m_0 - m_1) = h^(r_1 - r_0) = g^(x(r_1 - r_0)) => x = frac(m_0 - m_1, r_1 - r_0) mod q$.
     Thus $"AdvDLP"(cal(B), GG) = "AdvBind"(cal(A), GG)$. (Requires *DLP*, which is weaker than DDH!).
@@ -134,7 +136,7 @@
     inset: 2pt,
     stroke: 0.4pt + gray,
     [*Scheme*], [*Hiding?*], [*Binding?*], [*Why / Attack*],
-    [$H(r)^m in GG$], [Neither], [Neither], [$m=0 => c=1$ (not hiding). Unbounded $cal(A)$ picks $r_1, r_2$, solves $m_i = log_(H(r_i)) c$ (not stat. binding).],
+    [$H(r)^m in GG$], [Neither], [Neither], [If $m=0 => c=1$ (not hiding). Unbounded $cal(A)$ picks $r_1, r_2$, solves $m_i = log_(H(r_i)) c$ (not stat. binding).],
     [$m plus.o r$], [Stat. Yes], [No], [OTP is perfectly hiding. Open to any $m'$ via $r' = c plus.o m'$.],
     [Pedersen ($h=g^x$, $x$ *known*)], [Perfect (Stat.)], [No], [$r = (alpha - m)/x$ still uniform. Open to any $m'$ via $r' = r + (m - m')/x mod q$.],
     [ElGamal: $(g^r, g^m h^r)$], [Comp. (if $x$ unknown); *No* if $x$ known], [*Stat. Binding ALWAYS*], [$g^r$ uniquely fixes $r$, which uniquely fixes $m$ in $g^m h^r$! If $x$ known, recover $g^m = c_2 dot (c_1)^(-x)$.]
@@ -145,13 +147,15 @@
   - *Syntax*: $"Commit"(m_1, dots, m_n) -> c$; $"Open"(c, i, m_i) -> pi_i$; $"Verify"(c, i, m_i, pi_i) in {0,1}$.
   - *Position Binding*: No PPT $cal(A)$ can find $(c, i, m != m', pi, pi')$ s.t. $"Verify"(c, i, m, pi) = "Verify"(c, i, m', pi') = 1$.
   - *Naïve VC (HW1.4a)*: $c = (H(m_1, r_1), dots, H(m_n, r_n))$, $|c| = n dot lambda$, $pi_i = r_i$, $|pi_i| = O(lambda)$.
-  - *Merkle Tree VC (HW1.4b)*: Binary hash tree of depth $log_2 n$. Leaves $u_(i) = H(m_i, r_i)$; internal nodes $u = H(u_"left" || u_"right")$; commitment $c = u_"root"$ ($|c| = lambda$). Opening $pi_i$ = $r_i$ + the $log_2 n$ sibling hashes on path to root ($|pi_i| = O(lambda log n)$). Breaking position binding requires a hash collision in $H$.
+  - *Merkle Tree VC (HW1.4c)*: Binary hash tree of depth $log_2 n$. Leaves $u_(i) = H(m_i, r_i)$; internal nodes $u = H(u_"left" || u_"right")$; commitment $c = u_"root"$ ($|c| = lambda$). Opening $pi_i$ = $r_i$ + the $log_2 n$ sibling hashes on path to root ($|pi_i| = O(lambda log n)$). Breaking position binding requires a hash collision in $H$.
+  #image("img/merkle-tree.png", width: 100%, height: 2cm, fit: "stretch")
+  // TODO: Remove img?
 ]
 
 #sec-hdr[2. PRFs, DDH & Tight ROM Reductions (Lec 4, HW1.3)]
 
 #box-def[Pseudorandom Functions (PRF) & DDH Problem:][
-  - *PRF ($F: cal(K) times cal(X) -> cal(Y)$)*: Deterministic, efficient. Secure if indistinguishable from $f <-^"$" "Funcs"[cal(X), cal(Y)]$: \
+  - *PRF ($F: cal(K) times cal(X) -> cal(Y)$)*: Deterministic & efficient functions that look random. Secure if indistinguishable from $f <-^"$" "Funcs"[cal(X), cal(Y)]$: \
     $"AdvPRF"(cal(A), F) = |Pr[cal(A)^(F(k, dot)) = 1 : k <-^"$" cal(K)] - Pr[cal(A)^(f(dot)) = 1 : f <-^"$" "Funcs"[cal(X), cal(Y)]]| <= "negl"(lambda)$.
   - *DDH in $GG$ (prime order $q$, gen $g$)*: Distinguish real vs random triples: \
     $D_0 = {(g^alpha, g^beta, g^(alpha beta)) : alpha, beta <-^"$" ZZ_q} quad "vs" quad D_1 = {(g^alpha, g^beta, g^gamma) : alpha, beta, gamma <-^"$" ZZ_q}$.
@@ -160,28 +164,30 @@
 
 #box-dia[PRF Security Game & DDH-based PRF $F(k, x) = H(x)^k$ in ROM:][
   #grid(
-    columns: (1fr, 1.3fr),
+    columns: (1fr, 1.6fr),
     gutter: 4pt,
-    rect(inset: 2.5pt, stroke: 0.4pt + c-dia-bd)[
+    rect(inset: 2.5pt, stroke: 0.4pt + c-dia-bd, width: 100%)[
       *PRF Game ($b in {0,1}$)*: \
       If $b=0$: $k <-^"$" cal(K), f := F(k, dot)$ \
       If $b=1$: $f <-^"$" "Funcs"[cal(X), cal(Y)]$ \
-      $cal(A)$ queries $x_i ->$ gets $y_i = f(x_i)$, outputs $b'$.
+      $cal(A)$ queries $x_i in cal(X) ->$ gets $y_i = f(x_i)$, outputs $b'$.
     ],
-    rect(inset: 2.5pt, stroke: 0.4pt + c-dia-bd)[
+    rect(inset: 2.5pt, stroke: 0.4pt + c-dia-bd, width: 100%)[
       *ROM PRF*: $F(k, x) = H(x)^k$ ($k in ZZ_q$, $H: cal(X) -> GG$ RO). \
-      *Lecture Loose Proof (1 PRF query)*: $cal(B)$ gets $(X, Y, Z) = (g^alpha, g^beta, g^gamma)$, guesses $i^* <-^"$" [Q_"RO"]$, programs $H(x_(i^*)) = X$ (others $g^(r_i)$), answers PRF query $x_(i^*)$ with $Z$. $"AdvDDH" >= "AdvPRF" / Q_"RO"$.
+      *Lecture Loose Proof (1 PRF query)*: $cal(B)$ gets $(X, Y, Z) = (g^alpha, g^beta, g^gamma)$, guesses $i^* <-^"$" [Q_"RO"]$, programs $H(x_(i^*)) = X = g^alpha$ (others $g^(r_i)$), answers PRF query $x_(i^*)$ with $Z = g^alpha beta$ OR $Z = g^gamma$ (fake). $"AdvDDH" >= "AdvPRF" / Q_"RO"$.
     ]
   )
+  #image("img/DDH-to-PRF-reduction.png")
 ]
 
 #box-hw[HW1.3: Tight DDH-to-PRF Reduction (Random Self-Reducibility):][
   - *1.3b Re-randomizing a DDH Triple (1 Query)*: Given $(X, Y, Z) = (g^alpha, g^beta, g^gamma)$, sample $r <-^"$" ZZ_q$ and set:
     $X' = X dot g^r = g^(alpha + r), quad Z' = Z dot Y^r = g^(gamma + r beta)$.
-    Since $r$ is uniform, $X'$ is uniform in $GG$. If $(X, Y, Z) in D_0$ ($gamma = alpha beta$), then $Z' = g^(alpha beta + r beta) = (X')^beta$ (real DDH triple). If $(X, Y, Z) in D_1$ ($gamma$ random), $Z' = g^(gamma + r beta)$ is uniform in $GG$ (fake triple).
-  - *1.3c Tight Simulation (1 PRF Query)*: On $i$-th RO query $m_i$, $cal(B)$ samples $r_i <-^"$" ZZ_q$, *programs RO* $H(m_i) := X dot g^(r_i)$, stores $(m_i, r_i)$. On PRF query $m_j$, $cal(B)$ returns $Z dot Y^(r_j)$.
-    - If $(X,Y,Z) in D_0$: $Z dot Y^(r_j) = g^(alpha beta + r_j beta) = (X g^(r_j))^beta = H(m_j)^beta = F(beta, m_j)$ (real PRF with key $k = beta$).
-    - If $(X,Y,Z) in D_1$: $Z dot Y^(r_j) = g^(gamma + r_j beta)$ is uniform in $GG$. Thus $"AdvDDH"(cal(B), GG) = "AdvPRF"(cal(A), F)$ (no $1 / Q_"RO"$ loss!).
+    Since $r$ is uniform, $X'$ is uniform in $GG$. If $(X, Y, Z) in D_0$ ($gamma = alpha beta$), then $Z' = g^(alpha beta + r beta) = (g^(alpha +r ))^beta = (X')^beta$ (real DDH triple). \ 
+    If $(X, Y, Z) in D_1$ ($gamma$ random), $Z' = g^(gamma + r beta) !=(g^(alpha + r))^beta $ and is uniform in $GG$ (fake triple).
+  - *1.3c Tight Simulation $"AdvDDH"(cal(B), GG) = "AdvPRF"(cal(A), F)$  (1 PRF Query)*: When $cal(A)$ eventually makes its single PRF query on some message $m^*$, $cal(B)$ has no way of knowing in advance which of the $Q_"RO"$ random oracle queries will be the one $cal(A)$ chooses to query the PRF on. Thus, $cal(B)$ just stores $(m_i, r_i)$ in a list so it remembers the randomness used for every RO query. I.e. on $i$-th RO query $m_i$, $cal(B)$ samples $r_i <-^"$" ZZ_q$, *programs RO* $H(m_i) := X dot g^(r_i)$, stores $(m_i, r_i)$. On PRF query $m_j$, $cal(B)$ returns $Z dot Y^(r_j)$.
+    - If $(X,Y,Z) in D_0$ (real): $Z dot Y^(r_j) = g^(alpha beta + r_j beta) = (X dot g^(r_j))^beta = H(m_j)^beta = F(beta, m_j)$ (real PRF with key $k = beta$).
+    - If $(X,Y,Z) in D_1$ (fake): $Z dot Y^(r_j) = g^(gamma + r_j beta)$ is uniform in $GG$. Thus $"AdvDDH"(cal(B), GG) = "AdvPRF"(cal(A), F)$ (no $1 / Q_"RO"$ loss anymore!).
   - *1.3d Bonus (Multiple PRF Queries)*: Using $Z' = Z dot Y^(r_i)$ for $>1$ queries *fails* when $b=1$ ($Z = g^gamma$ fake) because $gamma$ is reused:
     $frac(log_g f(m_i) - log_g f(m_j), log_g H(m_i) - log_g H(m_j)) = frac((r_i - r_j) beta, r_i - r_j) = beta$ (not independent!).
     *Fix*: For each query $m_i$, sample *two* scalars $u_i, v_i <-^"$" ZZ_q$, set $H(m_i) = X^(u_i) g^(v_i) = g^(alpha u_i + v_i)$ and $f(m_i) = Z^(u_i) Y^(v_i)$. If $Z = g^(alpha beta)$, $f(m_i) = H(m_i)^beta$. If $Z = g^gamma$ ($gamma != alpha beta$), exponents $gamma u_i + beta v_i$ are pairwise independent and uniform!
@@ -191,50 +197,53 @@
 
 #box-def[Interactive Proofs, ZK & Proof of Knowledge (PoK):][
   - *Interactive Proof $(P, V)$ for $L$*:
-    - *Completeness*: $forall x in L, Pr[chevron.l P, V chevron.r (x) = 1] >= 2/3$ (often $1$).
-    - *Soundness*: $forall x not in L, forall P^*, Pr[chevron.l P^*, V chevron.r (x) = 1] <= 1/3$ (error $epsilon$). Sequential repetition $O(lambda)$ times gives error $epsilon^lambda = "negl"(lambda)$. (Note: If $V$ is deterministic, $L in "NP"$).
+    - *Completeness*: $forall x in L, Pr[chevron.l P, V chevron.r (x) = 1] >= 2/3$ (arbitrary, often $1$, not linked to soundness).
+    - *Soundness*: $forall x in.not L, forall P^*, Pr[chevron.l P^*, V chevron.r (x) = 1] <= 1/3$ (error $epsilon$). Sequential repetition $O(lambda)$ times gives error $epsilon^lambda = "negl"(lambda)$. (Note: If $V$ is deterministic, $L in "NP"$).
   - *Zero-Knowledge (ZK)*: $forall "PPT" V^*, exists "PPT" "Sim"$ such that $forall x in L$:
     $"View"[chevron.l P(x, w), V^*(x) chevron.r] approx^c "Sim"^(V^*)(x)$ (where $"Sim"^(V^*)$ has oracle/rewinding access to $V^*$).
   - *Proof of Knowledge (PoK) with knowledge error $epsilon$*: $exists "PPT" "Ext"$ (with rewinding access to $P^*$) s.t. $forall x, forall P^*$:
-    $Pr[M(x, w) = 1 : w <- "Ext"^(P^*)(x)] >= Pr[chevron.l P^*, V chevron.r (x) = 1] - epsilon$.
+    $underbrace(Pr[M(x, w) = 1 : w <- "Ext"^(P^*)(x)], "Extractor Success Prob") >= underbrace(Pr[chevron.l P^*, V chevron.r (x) = 1], "Prover Success Prob") - underbrace(epsilon, "Knowledge Err")$. I.e. $M$ checks if $w$ is a valid witness for $x in L$. (Note: PoK implies soundness, but not vice versa!) If a $w$ is extractable, then $x in L$ for sure. Thus if $epsilon$ (knowledge error) is neglible, then there's only a neglible prob for $P^*$ to convince $V$ on a false statement.
 ]
 
 #box-def[Graph Hamiltonicity ZK Protocol (Lec 5):][
   - *Protocol*: $P$ picks random vertex permutation $Pi$, commits to adjacency matrix of $Pi(G)$ and to $Pi$. $V$ sends $c <-^"$" {0,1}$. If $c=0$, $P$ opens all matrix cells and $Pi$ ($V$ checks $Pi(G)$ is isomorphic to $G$). If $c=1$, $P$ opens only the edges of the Hamiltonian cycle in $Pi(G)$ ($V$ checks they form an $n$-cycle).
-  - *Security*: Needs *perfectly binding* (for soundness against unbounded $P^*$, error $1/2$) & *comp. hiding* commitment.
-  - *Simulator $"Sim"^(V^*)(G)$*: Guesses $hat(c) <-^"$" {0,1}$. If $hat(c)=0$, commits to random $Pi(G)$; if $hat(c)=1$, commits to complete graph $K_n$. Sends commitments to $V^*$ to get $c$. If $c = hat(c)$ (prob $1/2$), opens as requested; else *rewinds* $V^*$ and repeats!
+  - *Security*: Needs *perfectly binding* (for soundness against unbounded $P^*$, error $1/2$ because $P^*$ can only fake one of the two c's) & *computationally hiding* commitment.
+  - *Simulator $"Sim"^(V^*)(G)$*: Its theoretical existence proves that $V$ learns nothing about $w$. $"Sim"^(V^*)(G)$ guesses $hat(c) <-^"$" {0,1}$. If $hat(c)=0$, commits to random $Pi(G)$; if $hat(c)=1$, commits to complete graph $K_n$. Sends commitments $u$ to $V^*$ to get $c$. If $c = hat(c)$ (prob $1/2$), opens as requested; else *rewinds* $V^*$ and repeats!
 ]
 
 #box-dia[Sigma ($Sigma$) Protocols & Schnorr Identification (Lec 7, HW2.3):][
   #grid(
-    columns: (1.15fr, 1.35fr),
+    columns: (1fr, 1.35fr),
     gutter: 4pt,
     rect(inset: 2.5pt, stroke: 0.4pt + c-dia-bd)[
       *3-Move Public-Coin $Sigma$-Protocol*: \
       1. $P(x, w) -> V$: Commitment $u$ \
-      2. $V -> P$: Random challenge $c <-^"$" cal(C)$ \
+      2. $V -> P$: Random challenge $c <-^"$" markhl(cal(C))$ \
       3. $P -> V$: Response $z$ \
       4. $V$: Det. $"verif"(x, u, c, z) in {0,1}$ \
       *3 Required Properties*: \
       - *Perfect Completeness*: $Pr = 1$. \
-      - *Special Soundness*: Given $(u, c, z)$ and $(u, c', z')$ with $c != c'$, $"Ext"$ computes $w$ in poly-time ($=> "soundness error" <= 1/|cal(C)|$). \
-      - *HVZK*: $"Sim"(x, c) -> (u, c, z)$ indistinguishable from honest $V$ view.
+      - *Special Soundness*: Given $(u, c, z)$ and $(u, c', z')$ with $c != c'$, $exists "PPT" "Ext"$ computes $w$ in poly-time ($=> "soundness error" <= 1/abs(markhl(cal(C)))$). \
+      - *HVZK*: $ exists "PPT" "Sim"(x, c) -> (u, c, z)$ indistinguishable from honest $V$ view. Thus $V$ learnt nthin
     ],
     rect(inset: 2.5pt, stroke: 0.4pt + c-dia-bd)[
-      *Schnorr Protocol ($h = g^x in GG$, witness $x in ZZ_q$)*: \
+      *Schnorr Protocol ($h = g^x in GG$, witness $x in ZZ_q$)* \
       1. $P$: $r <-^"$" ZZ_q$, sends $u = g^r$. \
       2. $V$: Sends $c <-^"$" ZZ_q$. \
       3. $P$: Sends $z = r + c x mod q$. \
       4. $V$: Accepts iff $g^z = u dot h^c$. \
-      *HVZK $"Sim"(h, c)$*: Pick $z <-^"$" ZZ_q$, set $u = g^z dot h^(-c)$, output $(u, c, z)$ (identical distribution!). \
-      *PoK $"Ext"^(P^*)(h)$*: Run $P^* -> u$. Send $c <-^"$" ZZ_q -> z$. *Rewind* $P^*$ to after $u$, send $c' <-^"$" ZZ_q -> z'$. If $c != c'$ (prob $1 - 1/q$), $g^(z-z') = h^(c-c') => x = frac(z - z', c - c') mod q$.
+      *HVZK $"Sim"(h, c)$*: Pick $z <-^"$" ZZ_q$ _first_, set $u = g^z dot h^(-c)$, output $(u, c, z)$ (identical distribution!). \
+      *PoK $"Ext"^(P^*)(h)$*: Run $P^* -> u$. Send $c <-^"$" ZZ_q$, get $z$ from prover. _Rewind_ $P^*$ to after $u$, send $c' <-^"$" ZZ_q$, get $z'$. If $c != c'$ (prob $1 - 1/q$), then:
+      $g^z = u dot h^c$ and $g^z' = u dot h^c'$
+      $==> u = g^z h^(-c) = g^z' h^(-c') ==> h^(c-c') = g^(z-z') ==> h = g^frac(z - z', c - c')$.
+      Since $h=g^x$, it follows $x = frac(z - z', c - c') mod q$.
     ]
   )
 ]
 
 #box-hw[HW2.2 & HW2.4: Composition Rules & Circuit SAT (CSAT) ZK:][
-  - *Sequential Composition ($lambda$ times)*: Soundness error $epsilon^lambda$. *Preserves general ZK* (simulate each independent execution one-by-one sequentially).
-  - *Parallel Composition ($lambda$ times)*: Soundness error $epsilon^lambda$. *Preserves HVZK and PoK*, but *FAILS general ZK* against malicious $V^*$! ($V^*$ can choose $c_1, dots, c_lambda$ adaptively as a hash of all $u_1, dots, u_lambda$; $"Sim"$ would have to guess all $lambda$ challenges simultaneously with prob $2^(-lambda)$).
+  - *Sequential Composition ($lambda$ times)*: Soundness error $epsilon^lambda$ ($P^*$ would need to fake $lambda$ independent executions each with soundness error $epsilon$). *Preserves general ZK* because we simulate each execution one-by-one sequentially, and each execution is _independent_.
+  - *Parallel Composition ($lambda$ times)*: Soundness error $epsilon^lambda$. *Preserves HVZK and PoK*, but *FAILS general ZK* against malicious $V^*$! ($V^*$ can choose $c_1, dots, c_lambda$ dependently of all incoming $u_1, dots, u_lambda$; $"Sim"$ would have to guess all $lambda$ challenges $c_1, ..., c_lambda$ at once with prob$ (1/2)^lambda$)
   - *HW2.4 CSAT ZK from $Sigma_"XOR"$ & $Sigma_"AND"$*: Given perfectly binding, comp. hiding bit commitment:
     1. $P$ commits to every wire $w$ in circuit ($c_w = "Commit"(b_w, r_w)$) and sends 1st move $a_j$ of $Sigma_"XOR" / Sigma_"AND"$ for every gate $j in [N]$.
     2. $V$ sends random challenges $e_j$ for all gates; $P$ replies with $z_j$ for all gates *and opens final output wire* $c_"out"$ to $1$.
@@ -250,10 +259,11 @@
     $V_"NI" (x, pi): c <- H(x, u), quad "output" "verif"(x, u, c, z) in {0,1}$.
   - *NIZK Zero-Knowledge ($"Sim"'$)*: Given $x$, sample $c <-^"$" cal(C)$, run HVZK $"Sim"(x, c) -> (u, c, z)$, *program RO* so $H(x, u) := c$, output $pi = (u, z)$. (Achieves *full ZK* against malicious verifiers from mere *HVZK* because there is no interaction!).
   - *NIZK PoK ($"Ext"'$)*: Run $P^*$ until it queries RO on $(x, u)$; program $H(x, u) := c <-^"$" cal(C)$ to get $(u, c, z)$. *Rewind* $P^*$ to that RO query, reprogram $H(x, u) := c' <-^"$" cal(C)$ to get $(u, c', z')$, then extract $w$ via Special Soundness!
+  #image("img/fiat-shamir.png")
 ]
 
 #box-hw[HW3.2 & HW3.3: Fiat-Shamir Soundness Traps & Transferability:][
-  - *Schnorr NIZK Soundness (HW3.2c)*: For $x not in L$ (or forging without witness), for any $u = g^r$ queried to $H(h, u)$, at most *one* $c in ZZ_q$ satisfies $g^z = u h^c$. Since $H$ outputs uniform $c in ZZ_q$, each of $P^*$'s $Q$ RO queries succeeds with prob $1/q$. By union bound, soundness error $<= Q / q$ (or $(Q+1)/q$).
+  - *Schnorr NIZK Soundness (HW3.2c)*: For $x in.not L$ (or forging without witness), for any $u = g^r$ queried to $H(h, u)$, at most *one* $c in ZZ_q$ satisfies $g^z = u h^c$. Since $H$ outputs uniform $c in ZZ_q$, each of $P^*$'s $Q$ RO queries succeeds with prob $1/q$. By union bound, soundness error $<= Q / q$ (or $(Q+1)/q$).
   - *Transferability (HW3.2d)*: *NIZK is transferable* ($V$ can forward static $pi$ to $V'$). *Interactive ZK is NOT transferable* (since $"Sim"$ can generate an identical transcript without a witness, $V'$ isn't convinced by $V$'s transcript).
   - *Why Base Soundness $1/2$ Fails in FS (HW3.3a)*: In NIZK, there is no interactive repetition, so soundness error *must be negligible*. If $Sigma$ has soundness error $1/2$, $P'$ generates $u$ using $P^*$, hashes $c = H(x, u)$, and gets a valid $z$ with probability $1/2$ on a single try!
   - *Parallel vs Sequential FS Repetition (HW3.3b)*:
@@ -353,7 +363,7 @@
     rect(inset: 2pt, stroke: 0.4pt + c-dia-bd)[
       *1-Server LHE PIR* \
       *(Comp. Security)* \
-      Requires LHE: $"Enc"(m_1) plus.square "Enc"(m_2) = "Enc"(m_1 + m_2)$. \
+      Requires LHE: $"Enc"(m_1) + "Enc"(m_2) = "Enc"(m_1 + m_2)$. \
       DB $X in {0,1}^(sqrt(n) times sqrt(n))$, $i=(r,c)$. \
       Client sends $q = "Enc"(k, e_c)$ ($sqrt(n)$ ciphertexts). \
       Server computes $a = X dot q = "Enc"(k, X e_c)$ ($sqrt(n)$ ciphertexts via homomorphic $+$). \
@@ -428,7 +438,7 @@
   6. *$"Commit"(m, r) = H(m, r)$ is provably secure when $H$ is SHA-3.* $->$ *FALSE* (Only provably secure when $H$ is modeled as a Random Oracle).
   7. *In an interactive ZK proof with perfect completeness, $V^*$ interacting with honest $P$ on $x in L$ always accepts.* $->$ *FALSE* (Completeness only binds honest $V$; malicious $V^*$ can always output 0).
   8. *In an interactive ZK proof, honest $V$ interacting with malicious $P^*$ is zero-knowledge.* $->$ *FALSE* (ZK protects honest $P$; malicious $P^*$ can just send its witness $w$ in the clear to $V$).
-  9. *If an interactive proof has soundness error $> 1/3$, it cannot be a PoK with knowledge error $< 1/3$.* $->$ *TRUE* (Otherwise $"Ext"$ could extract a valid witness $w$ for a false statement $x not in L$ with prob $> 1/3 - 1/3 = 0$, impossible!).
+  9. *If an interactive proof has soundness error $> 1/3$, it cannot be a PoK with knowledge error $< 1/3$.* $->$ *TRUE* (Otherwise $"Ext"$ could extract a valid witness $w$ for a false statement $x in.not L$ with prob $> 1/3 - 1/3 = 0$, impossible!).
   10. *In the Standard Model (no RO), NIZKs exist for all languages in $P$.* $->$ *TRUE* (Empty proof is a NIZK for $L in P$).
   11. *In the Standard Model (no RO, no CRS), we can build NIZKs for all NP languages.* $->$ *(Likely) FALSE* (Standard-model NIZK without setup implies $L in "BPP"$, which would collapse $"NP" subset.eq "BPP"$).
   12. *Fiat-Shamir applied to a $Sigma$-protocol yields a NIZK with statistical ZK.* $->$ *FALSE* ($P^*$ with unbounded RO queries can distinguish; FS NIZK only gives computational ZK in ROM).
