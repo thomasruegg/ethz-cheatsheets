@@ -1,9 +1,3 @@
-// ============================================================================
-// PRIVACY ENHANCING TECHNOLOGIES (PETs) - ULTIMATE MIDTERM CHEATSHEET
-// Merged & Expanded Edition (Lectures 1-19 + All Homeworks + T/F Exam Bank)
-// Compile with: typst compile pets_midterm_cheatsheet.typ
-// ============================================================================
-
 #set page(
   paper: "a4",
   margin: (x: 0.45cm, y: 0.45cm),
@@ -11,7 +5,8 @@
   flipped: true,
 )
 #set text(font: "New Computer Modern", size: 6pt)
-#set par(leading: 0.34em, justify: true, spacing: 0.42em)
+#set par(leading: 0.34em,  spacing: 0.42em)
+#set columns(gutter: 0.5cm)
 
 // Color Palette for Panic-Mode Scannability
 #let c-def-bg = rgb("#eef5ff")
@@ -106,28 +101,28 @@
 
 #box-def[Homomorphic Encryption & Bootstrapping (Lec 1):][
   - *SHE over Integers (van Dijk et al.)*: Secret key = large odd prime $p$.
-    - $"Enc"_p (b) = p q + 2 r + b$ ($q$ random large int, noise $r "ll" p$, bit $b in {0,1}$).
+    - $"Enc"_p (b) = p q + 2 r + b$ ($q$ random large int, noise $r << p$, bit $b in {0,1}$).
     - $"Dec"_p (c) = (c mod p) mod 2 = (2 r + b) mod 2 = b$ (if $|2 r + b| < p / 2$).
     - *Addition*: $c_1 + c_2 = p(q_1 + q_2) + 2(r_1 + r_2) + (b_1 + b_2)$ (noise *doubles*).
     - *Multiplication*: $c_1 c_2 = p(dots) + 2(2 r_1 r_2 + r_1 b_2 + r_2 b_1) + b_1 b_2$ (noise *squares*).
-  - *Bootstrapping (Gentry)*: Turn SHE into FHE by sending $c' = "Enc"_"pk" (c)$ and homomorphically evaluating $"Dec"_p$ using $"Enc"_"pk" ("sk")$ to reset noise.
-  - *Exam Trap*: $"Eval"(f, "Enc"(m)) != "Enc"(f(m))$! (Would violate IND-CPA since $"Enc"$ is randomized; we only guarantee $"Dec"("Eval"(f, c)) = f(m)$).
+  - *Bootstrapping (Gentry)*: Turn SHE into FHE by sending $c' = "Enc"_"pk" (c)$ and homomorphically evaluating $"Dec"_p$ using $"Enc"_"pk" ("sk")$ to reset noise (new indep. of old noise).
+  - *Exam Trap*: $c="Eval"(f, "Enc"(m)) != "Enc"(f(m))$ = c'! The ciphertexts may differ because Enc uses random noise each time. However, the underlying plaintexts are the same: $"Dec"("Eval"(f, "Enc"(m))) = "Dec"("Enc"(f(m)))$.
 ]
 
 #box-def[Commitment Schemes ($"Commit": cal(M) times cal(R) -> cal(C)$):][
   - *(Statistical) Hiding*: Commitment $c$ leaks nothing about $m$:
-    $forall m_0, m_1 in cal(M), quad {"Commit"(m_0, r) : r <-^ cal(R)} equiv {"Commit"(m_1, r) : r <-^ cal(R)}$.
+    $forall m_0, m_1 in cal(M), quad {"Commit"(m_0, r) : r <-^"$" cal(R)} equiv {"Commit"(m_1, r) : r <-^"$" cal(R)}$.
   - *(Computational) Binding*: Cannot open $c$ to two distinct messages:
     $forall "PPT" cal(A), quad Pr[(m_0, r_0, m_1, r_1) <- cal(A)(1^lambda) : m_0 != m_1 and "Commit"(m_0, r_0) = "Commit"(m_1, r_1)] <= "negl"(lambda)$.
   - *Impossibility*: Cannot be *both* statistically hiding and statistically binding! (If stat. hiding, for any $c = "Commit"(m_0, r_0)$ and $m_1 != m_0$, an unbounded $cal(A)$ can brute-force an $r_1$ such that $"Commit"(m_1, r_1) = c$).
-  - *ROM Construction*: $"Commit"(m, r) := H(m, r)$ where $|cal(R)|, |cal(C)| = 2^("poly"(lambda))$. Comp. hiding (needs $Q / |cal(R)|$ queries to guess $r$) & comp. binding (collision resistance of RO; unbounded $cal(A)$ breaks in $2^lambda$ queries). *Not* provably secure if $H$ is instantiated with plain SHA-3 without ROM!
+  - *ROM Construction*: $"Commit"(m, r) := H(m, r)$ where $|cal(R)|, |cal(C)| = 2^("poly"(lambda))$. Comp. hiding (needs $Q / (|cal(R)|)$ queries to guess $r$) & comp. binding (collision resistance of RO; unbounded $cal(A)$ breaks in $2^lambda$ queries). *Not* provably secure if $H$ is instantiated with plain SHA-3 without ROM!
 ]
 
 #box-def[Pedersen Commitment (No ROM Needed! Lec 3):][
   - *Setup*: Group $GG$ of prime order $q$, generators $g, h in GG$ with $h = g^x$ ($x = log_g h$ unknown).
   - *Commit*: $"Commit"(m, r) := g^m h^r in GG$ for $m, r in ZZ_q$.
   - *Linear Homomorphism*: $"Commit"(m_0, r_0) dot "Commit"(m_1, r_1) = g^(m_0 + m_1) h^(r_0 + r_1) = "Commit"(m_0 + m_1, r_0 + r_1)$.
-  - *Perfectly (Statistically) Hiding*: Since $c = g^m (g^x)^r = g^(m + x r)$, for any $c = g^alpha$ and any $m' in ZZ_q$, there is a unique $r' = (alpha - m') x^(-1) mod q$. As $r <-^ ZZ_q$, $c$ is uniform in $GG$.
+  - *Perfectly (Statistically) Hiding*: Since $c = g^m (g^x)^r = g^(m + x r)$, for any $c = g^alpha$ and any $m' in ZZ_q$, there is a unique $r' = (alpha - m') x^(-1) mod q$. As $r <-^"$" ZZ_q$, $c$ is uniform in $GG$.
   - *Computationally Binding under DLP*: Suppose $cal(A)$ outputs $(m_0, r_0), (m_1, r_1)$ with $m_0 != m_1$ and $g^(m_0) h^(r_0) = c = g^(m_1) h^(r_1)$ (note: implies $r_0 != r_1 mod q$). Then:
     $g^(m_0 - m_1) = h^(r_1 - r_0) = g^(x(r_1 - r_0)) => x = frac(m_0 - m_1, r_1 - r_0) mod q$.
     Thus $"AdvDLP"(cal(B), GG) = "AdvBind"(cal(A), GG)$. (Requires *DLP*, which is weaker than DDH!).
@@ -149,17 +144,17 @@
 #box-def[Vector Commitments (VC) & Merkle Trees (Lec 3, HW1.4):][
   - *Syntax*: $"Commit"(m_1, dots, m_n) -> c$; $"Open"(c, i, m_i) -> pi_i$; $"Verify"(c, i, m_i, pi_i) in {0,1}$.
   - *Position Binding*: No PPT $cal(A)$ can find $(c, i, m != m', pi, pi')$ s.t. $"Verify"(c, i, m, pi) = "Verify"(c, i, m', pi') = 1$.
-  - *Naïve VC (HW1.4a)*: $c = (H(m_1, r_1), dots, H(m_n, r_n))$, $|c| = n lambda$, $pi_i = r_i$, $|pi_i| = O(lambda)$.
+  - *Naïve VC (HW1.4a)*: $c = (H(m_1, r_1), dots, H(m_n, r_n))$, $|c| = n dot lambda$, $pi_i = r_i$, $|pi_i| = O(lambda)$.
   - *Merkle Tree VC (HW1.4b)*: Binary hash tree of depth $log_2 n$. Leaves $u_(i) = H(m_i, r_i)$; internal nodes $u = H(u_"left" || u_"right")$; commitment $c = u_"root"$ ($|c| = lambda$). Opening $pi_i$ = $r_i$ + the $log_2 n$ sibling hashes on path to root ($|pi_i| = O(lambda log n)$). Breaking position binding requires a hash collision in $H$.
 ]
 
 #sec-hdr[2. PRFs, DDH & Tight ROM Reductions (Lec 4, HW1.3)]
 
 #box-def[Pseudorandom Functions (PRF) & DDH Problem:][
-  - *PRF ($F: cal(K) times cal(X) -> cal(Y)$)*: Deterministic, efficient. Secure if indistinguishable from $f <-^ "Funcs"[cal(X), cal(Y)]$:
-    $"AdvPRF"(cal(A), F) = |Pr[cal(A)^(F(k, dot)) = 1 : k <-^ cal(K)] - Pr[cal(A)^(f(dot)) = 1 : f <-^ "Funcs"[cal(X), cal(Y)]]| <= "negl"(lambda)$.
-  - *DDH in $GG$ (prime order $q$, gen $g$)*: Distinguish real vs random triples:
-    $D_0 = {(g^alpha, g^beta, g^(alpha beta)) : alpha, beta <-^ ZZ_q} quad "vs" quad D_1 = {(g^alpha, g^beta, g^gamma) : alpha, beta, gamma <-^ ZZ_q}$.
+  - *PRF ($F: cal(K) times cal(X) -> cal(Y)$)*: Deterministic, efficient. Secure if indistinguishable from $f <-^"$" "Funcs"[cal(X), cal(Y)]$: \
+    $"AdvPRF"(cal(A), F) = |Pr[cal(A)^(F(k, dot)) = 1 : k <-^"$" cal(K)] - Pr[cal(A)^(f(dot)) = 1 : f <-^"$" "Funcs"[cal(X), cal(Y)]]| <= "negl"(lambda)$.
+  - *DDH in $GG$ (prime order $q$, gen $g$)*: Distinguish real vs random triples: \
+    $D_0 = {(g^alpha, g^beta, g^(alpha beta)) : alpha, beta <-^"$" ZZ_q} quad "vs" quad D_1 = {(g^alpha, g^beta, g^gamma) : alpha, beta, gamma <-^"$" ZZ_q}$.
   - *Hardness Hierarchy*: $"DDH Hard" => "CDH Hard" => "DLP Hard"$. (Contrapositive: $"DLP Easy" => "DDH Easy"$).
 ]
 
@@ -169,27 +164,27 @@
     gutter: 4pt,
     rect(inset: 2.5pt, stroke: 0.4pt + c-dia-bd)[
       *PRF Game ($b in {0,1}$)*: \
-      If $b=0$: $k <-^ cal(K), f := F(k, dot)$ \
-      If $b=1$: $f <-^ "Funcs"[cal(X), cal(Y)]$ \
+      If $b=0$: $k <-^"$" cal(K), f := F(k, dot)$ \
+      If $b=1$: $f <-^"$" "Funcs"[cal(X), cal(Y)]$ \
       $cal(A)$ queries $x_i ->$ gets $y_i = f(x_i)$, outputs $b'$.
     ],
     rect(inset: 2.5pt, stroke: 0.4pt + c-dia-bd)[
       *ROM PRF*: $F(k, x) = H(x)^k$ ($k in ZZ_q$, $H: cal(X) -> GG$ RO). \
-      *Lecture Loose Proof (1 PRF query)*: $cal(B)$ gets $(X, Y, Z) = (g^alpha, g^beta, g^gamma)$, guesses $i^* <-^ [Q_"RO"]$, programs $H(x_(i^*)) = X$ (others $g^(r_i)$), answers PRF query $x_(i^*)$ with $Z$. $"AdvDDH" >= "AdvPRF" / Q_"RO"$.
+      *Lecture Loose Proof (1 PRF query)*: $cal(B)$ gets $(X, Y, Z) = (g^alpha, g^beta, g^gamma)$, guesses $i^* <-^"$" [Q_"RO"]$, programs $H(x_(i^*)) = X$ (others $g^(r_i)$), answers PRF query $x_(i^*)$ with $Z$. $"AdvDDH" >= "AdvPRF" / Q_"RO"$.
     ]
   )
 ]
 
 #box-hw[HW1.3: Tight DDH-to-PRF Reduction (Random Self-Reducibility):][
-  - *1.3b Re-randomizing a DDH Triple (1 Query)*: Given $(X, Y, Z) = (g^alpha, g^beta, g^gamma)$, sample $r <-^ ZZ_q$ and set:
+  - *1.3b Re-randomizing a DDH Triple (1 Query)*: Given $(X, Y, Z) = (g^alpha, g^beta, g^gamma)$, sample $r <-^"$" ZZ_q$ and set:
     $X' = X dot g^r = g^(alpha + r), quad Z' = Z dot Y^r = g^(gamma + r beta)$.
     Since $r$ is uniform, $X'$ is uniform in $GG$. If $(X, Y, Z) in D_0$ ($gamma = alpha beta$), then $Z' = g^(alpha beta + r beta) = (X')^beta$ (real DDH triple). If $(X, Y, Z) in D_1$ ($gamma$ random), $Z' = g^(gamma + r beta)$ is uniform in $GG$ (fake triple).
-  - *1.3c Tight Simulation (1 PRF Query)*: On $i$-th RO query $m_i$, $cal(B)$ samples $r_i <-^ ZZ_q$, *programs RO* $H(m_i) := X dot g^(r_i)$, stores $(m_i, r_i)$. On PRF query $m_j$, $cal(B)$ returns $Z dot Y^(r_j)$.
+  - *1.3c Tight Simulation (1 PRF Query)*: On $i$-th RO query $m_i$, $cal(B)$ samples $r_i <-^"$" ZZ_q$, *programs RO* $H(m_i) := X dot g^(r_i)$, stores $(m_i, r_i)$. On PRF query $m_j$, $cal(B)$ returns $Z dot Y^(r_j)$.
     - If $(X,Y,Z) in D_0$: $Z dot Y^(r_j) = g^(alpha beta + r_j beta) = (X g^(r_j))^beta = H(m_j)^beta = F(beta, m_j)$ (real PRF with key $k = beta$).
     - If $(X,Y,Z) in D_1$: $Z dot Y^(r_j) = g^(gamma + r_j beta)$ is uniform in $GG$. Thus $"AdvDDH"(cal(B), GG) = "AdvPRF"(cal(A), F)$ (no $1 / Q_"RO"$ loss!).
   - *1.3d Bonus (Multiple PRF Queries)*: Using $Z' = Z dot Y^(r_i)$ for $>1$ queries *fails* when $b=1$ ($Z = g^gamma$ fake) because $gamma$ is reused:
     $frac(log_g f(m_i) - log_g f(m_j), log_g H(m_i) - log_g H(m_j)) = frac((r_i - r_j) beta, r_i - r_j) = beta$ (not independent!).
-    *Fix*: For each query $m_i$, sample *two* scalars $u_i, v_i <-^ ZZ_q$, set $H(m_i) = X^(u_i) g^(v_i) = g^(alpha u_i + v_i)$ and $f(m_i) = Z^(u_i) Y^(v_i)$. If $Z = g^(alpha beta)$, $f(m_i) = H(m_i)^beta$. If $Z = g^gamma$ ($gamma != alpha beta$), exponents $gamma u_i + beta v_i$ are pairwise independent and uniform!
+    *Fix*: For each query $m_i$, sample *two* scalars $u_i, v_i <-^"$" ZZ_q$, set $H(m_i) = X^(u_i) g^(v_i) = g^(alpha u_i + v_i)$ and $f(m_i) = Z^(u_i) Y^(v_i)$. If $Z = g^(alpha beta)$, $f(m_i) = H(m_i)^beta$. If $Z = g^gamma$ ($gamma != alpha beta$), exponents $gamma u_i + beta v_i$ are pairwise independent and uniform!
 ]
 
 #sec-hdr[3. Zero-Knowledge, PoK & Sigma Protocols (Lec 5–7, HW2)]
@@ -205,9 +200,9 @@
 ]
 
 #box-def[Graph Hamiltonicity ZK Protocol (Lec 5):][
-  - *Protocol*: $P$ picks random vertex permutation $Pi$, commits to adjacency matrix of $Pi(G)$ and to $Pi$. $V$ sends $c <-^ {0,1}$. If $c=0$, $P$ opens all matrix cells and $Pi$ ($V$ checks $Pi(G)$ is isomorphic to $G$). If $c=1$, $P$ opens only the edges of the Hamiltonian cycle in $Pi(G)$ ($V$ checks they form an $n$-cycle).
+  - *Protocol*: $P$ picks random vertex permutation $Pi$, commits to adjacency matrix of $Pi(G)$ and to $Pi$. $V$ sends $c <-^"$" {0,1}$. If $c=0$, $P$ opens all matrix cells and $Pi$ ($V$ checks $Pi(G)$ is isomorphic to $G$). If $c=1$, $P$ opens only the edges of the Hamiltonian cycle in $Pi(G)$ ($V$ checks they form an $n$-cycle).
   - *Security*: Needs *perfectly binding* (for soundness against unbounded $P^*$, error $1/2$) & *comp. hiding* commitment.
-  - *Simulator $"Sim"^(V^*)(G)$*: Guesses $hat{c} <-^ {0,1}$. If $hat{c}=0$, commits to random $Pi(G)$; if $hat{c}=1$, commits to complete graph $K_n$. Sends commitments to $V^*$ to get $c$. If $c = hat{c}$ (prob $1/2$), opens as requested; else *rewinds* $V^*$ and repeats!
+  - *Simulator $"Sim"^(V^*)(G)$*: Guesses $hat(c) <-^"$" {0,1}$. If $hat(c)=0$, commits to random $Pi(G)$; if $hat(c)=1$, commits to complete graph $K_n$. Sends commitments to $V^*$ to get $c$. If $c = hat(c)$ (prob $1/2$), opens as requested; else *rewinds* $V^*$ and repeats!
 ]
 
 #box-dia[Sigma ($Sigma$) Protocols & Schnorr Identification (Lec 7, HW2.3):][
@@ -217,7 +212,7 @@
     rect(inset: 2.5pt, stroke: 0.4pt + c-dia-bd)[
       *3-Move Public-Coin $Sigma$-Protocol*: \
       1. $P(x, w) -> V$: Commitment $u$ \
-      2. $V -> P$: Random challenge $c <-^ cal(C)$ \
+      2. $V -> P$: Random challenge $c <-^"$" cal(C)$ \
       3. $P -> V$: Response $z$ \
       4. $V$: Det. $"verif"(x, u, c, z) in {0,1}$ \
       *3 Required Properties*: \
@@ -227,12 +222,12 @@
     ],
     rect(inset: 2.5pt, stroke: 0.4pt + c-dia-bd)[
       *Schnorr Protocol ($h = g^x in GG$, witness $x in ZZ_q$)*: \
-      1. $P$: $r <-^ ZZ_q$, sends $u = g^r$. \
-      2. $V$: Sends $c <-^ ZZ_q$. \
+      1. $P$: $r <-^"$" ZZ_q$, sends $u = g^r$. \
+      2. $V$: Sends $c <-^"$" ZZ_q$. \
       3. $P$: Sends $z = r + c x mod q$. \
       4. $V$: Accepts iff $g^z = u dot h^c$. \
-      *HVZK $"Sim"(h, c)$*: Pick $z <-^ ZZ_q$, set $u = g^z dot h^(-c)$, output $(u, c, z)$ (identical distribution!). \
-      *PoK $"Ext"^(P^*)(h)$*: Run $P^* -> u$. Send $c <-^ ZZ_q -> z$. *Rewind* $P^*$ to after $u$, send $c' <-^ ZZ_q -> z'$. If $c != c'$ (prob $1 - 1/q$), $g^(z-z') = h^(c-c') => x = frac(z - z', c - c') mod q$.
+      *HVZK $"Sim"(h, c)$*: Pick $z <-^"$" ZZ_q$, set $u = g^z dot h^(-c)$, output $(u, c, z)$ (identical distribution!). \
+      *PoK $"Ext"^(P^*)(h)$*: Run $P^* -> u$. Send $c <-^"$" ZZ_q -> z$. *Rewind* $P^*$ to after $u$, send $c' <-^"$" ZZ_q -> z'$. If $c != c'$ (prob $1 - 1/q$), $g^(z-z') = h^(c-c') => x = frac(z - z', c - c') mod q$.
     ]
   )
 ]
@@ -253,8 +248,8 @@
   - *Idea*: Replace $V$'s random challenge with RO hash of statement & first message:
     $P_"NI" (x, w): u <- P_1(x, w), quad c <- H(x, u), quad z <- P_2(x, w, r_P, c), quad "output" pi = (u, z)$.
     $V_"NI" (x, pi): c <- H(x, u), quad "output" "verif"(x, u, c, z) in {0,1}$.
-  - *NIZK Zero-Knowledge ($"Sim"'$)*: Given $x$, sample $c <-^ cal(C)$, run HVZK $"Sim"(x, c) -> (u, c, z)$, *program RO* so $H(x, u) := c$, output $pi = (u, z)$. (Achieves *full ZK* against malicious verifiers from mere *HVZK* because there is no interaction!).
-  - *NIZK PoK ($"Ext"'$)*: Run $P^*$ until it queries RO on $(x, u)$; program $H(x, u) := c <-^ cal(C)$ to get $(u, c, z)$. *Rewind* $P^*$ to that RO query, reprogram $H(x, u) := c' <-^ cal(C)$ to get $(u, c', z')$, then extract $w$ via Special Soundness!
+  - *NIZK Zero-Knowledge ($"Sim"'$)*: Given $x$, sample $c <-^"$" cal(C)$, run HVZK $"Sim"(x, c) -> (u, c, z)$, *program RO* so $H(x, u) := c$, output $pi = (u, z)$. (Achieves *full ZK* against malicious verifiers from mere *HVZK* because there is no interaction!).
+  - *NIZK PoK ($"Ext"'$)*: Run $P^*$ until it queries RO on $(x, u)$; program $H(x, u) := c <-^"$" cal(C)$ to get $(u, c, z)$. *Rewind* $P^*$ to that RO query, reprogram $H(x, u) := c' <-^"$" cal(C)$ to get $(u, c', z')$, then extract $w$ via Special Soundness!
 ]
 
 #box-hw[HW3.2 & HW3.3: Fiat-Shamir Soundness Traps & Transferability:][
@@ -288,33 +283,33 @@
 ]
 
 #box-dia[IOPs & Polynomial Magic (Schwartz-Zippel, Equality, ZeroTest):][
-  - *Linear IOP*: Proof $pi in FF^n$; $V$ queries linear combinations $chevron.l q, pi chevron.r$. (Strong HVZK: $"Sim"_"IOP"()$ takes *no input* and outputs transcript identical to $V$'s view).
-  - *Poly-IOP*: $P$ puts degree-$<= d$ polynomials $f in FF[X]_(<= d)$ in "oracle box"; $V$ queries $f(r)$ at $r <-^ FF$.
-  - *Schwartz-Zippel Lemma*: Non-zero $f in FF[X]_(<= d)$ has $<= d$ roots ($Pr_(r <-^ S)[f(r) = 0] <= d / |S|$). *(Requires $FF$ to be a field! Fails over rings like $ZZ_6$ since $2 X^2 + 4 X = 2 X(X+2)$ has roots $0, 1, 3, 4 mod 6$)*.
+  - *Linear IOP*: Proof $pi in FF^n$; $V$ queries linear combinations $chevron.l q, pi chevron.r$. (Strong HVZK: $"Sim"_"IOP" ()$ takes *no input* and outputs transcript identical to $V$'s view).
+  - *Poly-IOP*: $P$ puts degree-$<= d$ polynomials $f in FF[X]_(<= d)$ in "oracle box"; $V$ queries $f(r)$ at $r <-^"$" FF$.
+  - *Schwartz-Zippel Lemma*: Non-zero $f in FF[X]_(<= d)$ has $<= d$ roots ($Pr_(r <-^"$" FF)[f(r) = 0] <= d / abs(FF)$, or $<= d / abs(S)$ for any $S subset.eq FF$). *(Requires $FF$ to be a field! Fails over rings like $ZZ_6$ since $2 X^2 + 4 X = 2 X(X+2)$ has roots $0, 1, 3, 4 mod 6$)*.
   #grid(
     columns: (1fr, 1.35fr),
-    gutter: 4pt,
-    rect(inset: 2.5pt, stroke: 0.4pt + c-dia-bd)[
+    gutter: 2pt,
+    rect(inset: 2.5pt, stroke: 0.4pt + c-dia-bd, width: 100%)[
       *Equality Test ($f equiv g$, deg $<= d$)*: \
       $P$ commits $f, g$ to box. \
-      $V$ picks $r <-^ FF$, queries $f(r), g(r)$, accepts iff $f(r) = g(r)$. \
-      *Soundness error*: $<= d / |FF|$.
+      $V$ picks $r <-^"$" FF$, queries $f(r), g(r)$, accepts iff $f(r) = g(r)$. \
+      *Soundness error*: $<= d / abs(FF)$.
     ],
-    rect(inset: 2.5pt, stroke: 0.4pt + c-dia-bd)[
+    rect(inset: 2.5pt, stroke: 0.4pt + c-dia-bd, width: 100%)[
       *ZeroTest ($f(a) = 0 quad forall a in Omega subset FF$)*: \
       Vanishing poly $Z_Omega (X) = product_(a in Omega) (X - a)$ (known to both $P, V$). \
-      $P$ commits $f(X)$ and quotient $q(X) = f(X) / Z_Omega (X)$ to box. \
-      $V$ picks $r <-^ FF$, checks $f(r) = q(r) dot Z_Omega (r)$. \
-      *Soundness error*: $<= (d + |Omega|) / |FF| <= 2 d / |FF|$. \
+      $P$ commits $f(X)$ and quotient $q(X) = f(X) / (Z_Omega (X))$ to box. \
+      $V$ picks $r <-^"$" FF$, checks $f(r) = q(r) dot Z_Omega (r)$. \
+      *Soundness error*: $<= (d + |Omega|) / abs(FF) <= (2 d) / abs(FF)$. \
       *(If $Omega = {1, omega, dots, omega^(d-1)}$ roots of unity, $Z_Omega (X) = X^d - 1$, evaluated by $V$ in $O(log d)$ via repeated squaring!)*
     ]
   )
 ]
 
 #box-hw[HW4.2: Poly-IOPs for Coefficient & Inner Product Checks (DARK):][
-  - *4.2a No coeffs of degree $< i$*: $P$ sends $f$ (deg $d$) and $g$ (deg $d - i$). $V$ checks $f(r) = r^i dot g(r)$ at $r <-^ FF$. Soundness error $<= d / |FF|$.
-  - *4.2b $i$-th coeff of $f(X)$ is $beta$*: Write $f(X) = f_L (X) + beta X^i + X^(i+1) f_R (X)$ with $deg(f_L) <= i - 1$ and $deg(f_R) <= d - i - 1$. $P$ sends $f, f_L, f_R$ with degree bounds; $V$ checks $f(r) = f_L (r) + beta r^i + r^(i+1) f_R (r)$ at $r <-^ FF$. Soundness error $<= d / |FF|$.
-  - *4.2c Inner Product $chevron.l bold(a), bold(b) chevron.r = z$ ($bold(a), bold(b) in FF^(d+1)$)*: Encode $f(X) = sum_(j=0)^d a_j X^j$ and reversed $g(X) = sum_(j=0)^d b_(d-j) X^j$. In $h(X) = f(X) g(X)$ (deg $2 d$), the $d$-th coeff of $h(X)$ is $sum_(j=0)^d a_j b_j = chevron.l bold(a), bold(b) chevron.r$! $P$ sends $f, g, h$; $V$ checks $h(r) = f(r) g(r)$ (error $2 d / |FF|$) + runs 4.2b to check $d$-th coeff of $h$ is $z$ (error $2 d / |FF|$). Total soundness error $<= 4 d / |FF|$.
+  - *4.2a No coeffs of degree $< i$*: $P$ sends $f$ (deg $d$) and $g$ (deg $d - i$). $V$ checks $f(r) = r^i dot g(r)$ at $r <-^ FF$. Soundness error $<= d / abs(FF)$.
+  - *4.2b $i$-th coeff of $f(X)$ is $beta$*: Write $f(X) = f_L (X) + beta X^i + X^(i+1) f_R (X)$ with $deg(f_L) <= i - 1$ and $deg(f_R) <= d - i - 1$. $P$ sends $f, f_L, f_R$ with degree bounds; $V$ checks $f(r) = f_L (r) + beta r^i + r^(i+1) f_R (r)$ at $r <-^ FF$. Soundness error $<= d / abs(FF)$.
+  - *4.2c Inner Product $chevron.l bold(a), bold(b) chevron.r = z$ ($bold(a), bold(b) in FF^(d+1)$)*: Encode $f(X) = sum_(j=0)^d a_j X^j$ and reversed $g(X) = sum_(j=0)^d b_(d-j) X^j$. In $h(X) = f(X) g(X)$ (deg $2 d$), the $d$-th coeff of $h(X)$ is $sum_(j=0)^d a_j b_j = chevron.l bold(a), bold(b) chevron.r$! $P$ sends $f, g, h$; $V$ checks $h(r) = f(r) g(r)$ (error $2 d / abs(FF)$) + runs 4.2b to check $d$-th coeff of $h$ is $z$ (error $2 d / abs(FF)$). Total soundness error $<= 4 d / abs(FF)$.
 ]
 
 #box-def[Polynomial Commitment Scheme (PCS) & KZG (Lec 11, HW4.3):][
@@ -384,13 +379,13 @@
 
 #sec-hdr[7. Oblivious RAM (ORAM) (Lec 15–16)]
 
-#box-def[ORAM Model, $sqrt{n}$ ORAM & Tree-Based ORAM:][
+#box-def[ORAM Model, $sqrt(n)$ ORAM & Tree-Based ORAM:][
   - *Security*: Hides *which* address is accessed, *repeats/patterns*, and *Read vs Write* (all encrypted under IND-CPA); leaks *only* total number of accesses. *(Unlike PIR, ORAM client is stateful, supports writes, and encrypts DB)*.
   - *Batcher's Oblivious Sort*: Fixed data-independent sorting network in $O(n log^2 n)$ ops.
-  - *Square-Root ($sqrt{n}$) ORAM (Lec 15)*:
-    - *Layout*: Server holds $n$ real words + $sqrt{n}$ dummies permuted by random $pi$; Client holds local *stash* of size $sqrt{n}$.
+  - *Square-Root ($sqrt(n)$) ORAM (Lec 15)*:
+    - *Layout*: Server holds $n$ real words + $sqrt(n)$ dummies permuted by random $pi$; Client holds local *stash* of size $sqrt(n)$.
     - *Access (`addr`)*: Client checks stash. If `addr` *is in stash*, read next unread dummy $pi(n + t)$ on server; if *not in stash*, read $pi("addr")$ on server. Append (updated) word to stash.
-    - *Epoch Reshuffle*: Every $sqrt{n}$ accesses, obliviously sort & reshuffle stash + RAM under fresh $pi'$ in $O(n log^2 n)$. *Amortized cost*: $frac(O(n log^2 n), sqrt(n)) = O(sqrt(n) log^2 n) = tilde(O)(sqrt(n))$.
+    - *Epoch Reshuffle*: Every $sqrt(n)$ accesses, obliviously sort & reshuffle stash + RAM under fresh $pi'$ in $O(n log^2 n)$. *Amortized cost*: $frac(O(n log^2 n), sqrt(n)) = O(sqrt(n) log^2 n) = tilde(O)(sqrt(n))$.
   - *Modern Tree-Based ORAM (Lec 16)*:
     - *Layout*: Binary tree of depth $L = log_2 n$; each node (bucket) holds $Z = O(log^2 n)$ encrypted blocks. Client stores $"PosMap"[b] in [n]$ of size $n/2$ (recursively stored in smaller ORAMs to get $O(1)$ client memory!).
     - *Invariant*: Block $b = floor("addr"/2)$ is always on the path from root to leaf $"PosMap"[b]$.
