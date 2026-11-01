@@ -86,7 +86,7 @@
   width: 100%,
   below: 3pt,
   align(center)[
-    #text(fill: white, weight: "bold", size: 7.5pt)[PRIVACY ENHANCING TECHNOLOGIES — MIDTERM CHEATSHEET] \
+    #text(fill: white, weight: "bold", size: 7.5pt)[PRIVACY ENHANCING TECHNOLOGIES — MIDTERM] \
     #text(fill: rgb("#94a3b8"), size: 5.5pt)[
       *ROM*: Random Oracle Model | *PPT*: Prob. Poly-Time | *DLP/DDH*: Discrete Log / Decisional DH | *PRF/OPRF*: (Oblivious) Pseudorandom Func. | *HVZK*: Honest-Verifier ZK | *PoK*: Proof of Knowledge | *PCP/IOP*: Prob. Checkable / Interactive Oracle Proof | *PCS*: Poly. Commitment | *LHE/FHE*: (Linearly/Fully) Homomorphic Enc. | *PIR/DPF*: Private Info. Retrieval / Dist. Point Func.
     ]
@@ -214,6 +214,7 @@
     $"View"[chevron.l P(x, w), V^*(x) chevron.r] approx^c "Sim"^(V^*)(x)$ (where $"Sim"^(V^*)$ has oracle/rewinding access to $V^*$).
   - *Proof of Knowledge (PoK) with knowledge error $epsilon$*: $exists "PPT" "Ext"$ (with rewinding access to $P^*$) s.t. $forall x, forall P^*$:
     $underbrace(Pr[M(x, w) = 1 : w <- "Ext"^(P^*)(x)], "Extractor Success Prob") >= underbrace(Pr[chevron.l P^*, V chevron.r (x) = 1], "Prover Success Prob") - underbrace(epsilon, "Knowledge Err")$. I.e. $M$ checks if $w$ is a valid witness for $x in L$. (Note: PoK implies soundness, but not vice versa!) If a $w$ is extractable, then $x in L$ for sure. Thus if $epsilon$ (knowledge error) is neglible, then there's only a neglible prob for $P^*$ to convince $V$ on a false statement.
+  - *HVZK*: In a standard ZK protocol, hard part is dealing with a malicious $V^*$, bc $V^*$ could carefully calculate tricky adaptive challenges based on the commitments of $P$ to trap $P$ into leaking secrets. To then prove a protocol is ZK, we must build complex & inefficient simulators that can survive this trap. In weaker HVZK assumption, we assume $V$ is honest and choses $c <-^"$" cal(C)$. This allows $"Sim"$ to easily cheat by picking challenge randomly (like $V$ would) in advance and build the proof backwards.
 ]
 
 #box-def[Graph Hamiltonicity ZK Protocol (Lec 5):][
@@ -265,21 +266,21 @@
 #sec-hdr[4. NIZKs & The Fiat-Shamir Transform (Lec 8, HW3)]
 
 #box-dia[Fiat-Shamir Transform: $Sigma$-Protocol $->$ NIZK in ROM:][
-  - *Idea*: Replace $V$'s random challenge with RO hash of statement & first message:
-    $P_"NI" (x, w): u <- P_1(x, w), quad c <- H(x, u), quad z <- P_2(x, w, r_P, c), quad "output" pi = (u, z)$.
-    $V_"NI" (x, pi): c <- H(x, u), quad "output" "verif"(x, u, c, z) in {0,1}$.
-  - *NIZK Zero-Knowledge ($"Sim"'$)*: Given $x$, sample $c <-^"$" cal(C)$, run HVZK $"Sim"(x, c) -> (u, c, z)$, *program RO* so $H(x, u) := c$, output $pi = (u, z)$. (Achieves *full ZK* against malicious verifiers from mere *HVZK* because there is no interaction!).
-  - *NIZK PoK ($"Ext"'$)*: Run $P^*$ until it queries RO on $(x, u)$; program $H(x, u) := c <-^"$" cal(C)$ to get $(u, c, z)$. *Rewind* $P^*$ to that RO query, reprogram $H(x, u) := c' <-^"$" cal(C)$ to get $(u, c', z')$, then extract $w$ via Special Soundness!
+  - *Idea*: Replace $V$'s random challenge with RO hash of statement & first message: \
+    $P_"NI" (x, w): u <- P_1(x, w), quad c <- H(x, u), quad z <- P_2(x, w, r_P, c), quad "output" pi = (u, z)$. \
+    $V_"NI" (x, pi): c <- H(x, u), quad "output" "verif"(x, u, c, z) in {0,1}$. $quad quad r_P$ is $P$'s internal randomness. \
   #image("img/fiat-shamir.png")
+  - *NIZK Zero-Knowledge ($"Sim"'$)*: Given $x$, $"Sim"'$ samples $c <-^"$" cal(C)$, runs HVZK $"Sim"(x, c) -> (u, c, z)$, $"Sim"'$ *programs RO* so $H(x, u) := c$, and $"Sim"'$ outputs $pi = (u, z)$.  The output of $"Sim"$' is NOT shown to any real-world verifier. The simulator and its fake transcript are purely theoretical tools used to prove the protocol is secure, because $pi$ is indistinguishable from a real proof. (Standard HVZK protocols fail against malicious verifiers who break the rules. By removing interaction via Fiat-Shamir, the verifier cannot interfere, automatically upgrading the protocol to full ZK).
+  - *NIZK PoK ($"Ext"'$)*: Run $P^*$ until it queries RO on $(x, u)$; program $H(x, u) := c <-^"$" cal(C)$ to get $(u, c, z)$. *Rewind* $P^*$ to that RO query, reprogram $H(x, u) := c' <-^"$" cal(C)$ to get $(u, c', z')$, then extract $w$ via Special Soundness!
 ]
 
 #box-hw[HW3.2 & HW3.3: Fiat-Shamir Soundness Traps & Transferability:][
-  - *Schnorr NIZK Soundness (HW3.2c)*: For $x in.not L$ (or forging without witness), for any $u = g^r$ queried to $H(h, u)$, at most *one* $c in ZZ_q$ satisfies $g^z = u h^c$. Since $H$ outputs uniform $c in ZZ_q$, each of $P^*$'s $Q$ RO queries succeeds with prob $1/q$. By union bound, soundness error $<= Q / q$ (or $(Q+1)/q$).
-  - *Transferability (HW3.2d)*: *NIZK is transferable* ($V$ can forward static $pi$ to $V'$). *Interactive ZK is NOT transferable* (since $"Sim"$ can generate an identical transcript without a witness, $V'$ isn't convinced by $V$'s transcript).
-  - *Why Base Soundness $1/2$ Fails in FS (HW3.3a)*: In NIZK, there is no interactive repetition, so soundness error *must be negligible*. If $Sigma$ has soundness error $1/2$, $P'$ generates $u$ using $P^*$, hashes $c = H(x, u)$, and gets a valid $z$ with probability $1/2$ on a single try!
+  - *Schnorr NIZK Soundness (HW3.2c)*: For $x in.not L$ (or forging without witness), for any $u = g^r$ queried to $H(h, u)$, at most *one* $c in ZZ_q$ satisfies $g^z = u h^c$. Since $H$ outputs uniform $c in ZZ_q$, each of $P^*$'s $Q$ RO queries succeeds with prob $1/abs(ZZ_q)$. By union bound, soundness error $<= Q / abs(ZZ_q)$.
+  - *Transferability (HW3.2d)*: *NIZK is transferable*: $V$ can forward static $pi$ to $V'$. *Interactive ZK is NOT transferable*: Because the interactive $V$ uses their own private randomness to generate $c$, (which cannot be verified by $V'$), a simulator can generate an identical transcript without a witness simply by picking the $c$ in advance ($c$ would also seem randomly picked). Thus $V'$ isn't convinced by $V$ transcript. NIZKs overcome this by replacing the untrustworthy human coin flip with a publicly verifiable RO, ensuring transcript couldn't have been simulated out of order.
+  - *Why Base Soundness $1/2$ Fails in FS (HW3.3a)*: In NIZK, there is no interactive repetition, so soundness error *must be negligible*. If there's in interactive $Sigma$ setting a soundness error of $1/2$, there's a $y in.not cal(L)$ and a $P^*$ that can convince $V$ with probability $1/2$. Thus, a NIZK prover $P'$ can generate $u$ using $P^*$, hash $c = H(x, u)$, and gets a valid $z$ convincing a $V$ with probability $1/2$ on a single try! This breaks soundness.
   - *Parallel vs Sequential FS Repetition (HW3.3b)*:
-    - *Parallel (CORRECT)*: $P'$ generates $(u_1, dots, u_lambda)$, queries $(c_1, dots, c_lambda) = H(x, u_1, dots, u_lambda)$, outputs $(z_1, dots, z_lambda)$. Each RO query succeeds with prob $(1/2)^lambda =>$ total soundness error $<= Q dot 2^(-lambda) = "negl"(lambda)$.
-    - *Sequential / Independent Hashes (BROKEN)*: If $c_i = H(x, u_i)$, $P^*$ can grind each $u_i$ independently until $c_i$ works (2 tries per coordinate $=> 2 lambda$ RO queries total to forge!).
+    - *Parallel (CORRECT)*: $P'$ generates $(u_1, dots, u_lambda)$, queries $H(x, u_1, dots, u_lambda) = (c_1, dots, c_lambda)$, outputs $(z_1, dots, z_lambda)$. As a malicious $P^*$, each RO query would only succeed with prob $(1/2)^lambda =>$ total soundness error $<= Q dot (1/2)^lambda = "negl"(lambda)$, because $P^*$ would need to guess all $lambda$ challenges at once (hash is dependent on ALL $u_i$ inputs). \
+    - *Sequential / Independent Hashes (BROKEN)*: If $c_i = H(x, u_i)$, then because the hashes are not connected to each other (they are independent), $P^*$ can grind each $u_i$ independently until $c_i$ works (2 tries per coordinate $=> 2 lambda$ RO queries total to forge!).
 ]
 
 #sec-hdr[5. SNARGs, PCPs, Poly-IOPs, PCS & PLONK (Lec 9–12, HW3.4, HW4)]
@@ -287,31 +288,39 @@
 #box-def[SNARG & SNARK Blueprint:][
   - *SNARG*: Succinct Non-Interactive Argument. Proof size $|pi| = "poly"(lambda, log(|x| + |w|))$, verification time $O(|x| dot "poly"(lambda, log |w|))$. *SNARK* = SNARG + Knowledge Soundness (PoK).
   - *Pipeline*: $"PCP" => "IOP" => "Poly-IOP" + "PCS (Cryptographic Box)" + "Fiat-Shamir" => "SNARG"$.
-  - *PCP Theorem*: Any NP statement $x$ ($|x|=m$) has a proof $pi in {0,1}^("poly"(m))$ checkable by randomized $cal(V)_"PCP"$ reading $O(1)$ (e.g. 3) bits with completeness $1$ and soundness error $<= 1/2$.
+    We convert *PCPs* into *IOPs* by replacing the "bit access" with oracle queries, and then *IOPs* into *SNARGs* by commiting to oracles via polynomial commitment schemes.
+  - *PCP Theorem*: Any NP statement $x$ ($|x|=m$). There exist efficient $cal(P)_"PCP"$ and $cal(V)_"PCP"$ such that $cal(P)_"PCP" (x, w) -> pi in {0,1}^("poly"(m))$ checkable by randomized $cal(V)_"PCP" (x)$ which only has oracle access to $pi$ by reading just e.g. 3 bits which are chosen _nonadaptively_ (maybe dependent on $x$ but never on $pi$). Completeness $=1$ and soundness error $<= 1/2$.
 ]
 
+// TODO: here 
 #box-hw[HW3.4: SNARG from PCP + Merkle Vector Commitment (in ROM):][
-  1. *Commit*: $P$ runs $cal(P)_"PCP" (x, w) -> pi in {0,1}^("poly"(m))$, sends Merkle root $c = "Commit"(pi)$.
-  2. *Challenge*: $V$ runs $cal(V)_"PCP"$ $lambda$ times in parallel to pick $O(lambda)$ indices $I = (i_1, dots, i_ell)$ (in FS: $I = H(x, c)$).
-  3. *Open*: For each $i_j in I$, $P$ sends $(pi_(i_j), sigma_j <- "Open"(c, i_j, pi_(i_j)))$. $V$ checks all Merkle openings and $cal(V)_"PCP" = 1$.
-  - *Complexity*: Soundness $(1/2)^lambda$ (or $Q dot 2^(-lambda)$ in ROM); Proof size $O(lambda) dot O(lambda log m) = O(lambda^2 log m)$.
+
+  Construct a 3-round succinct argument system for $x$ using Merkle vector commitment scheme
+  1. *Commit*: $P$ runs $cal(P)_"PCP" (x, w)$ to get magic PCP proof $pi in {0,1}^("poly"(m))$, To commit, $P$ uses vector commitmemt scheme $"Commit"(pi) = c$ ($c$ is the Merkle root) and sends $c$ to $V$.
+  2. *Challenge*: $V$ runs $cal(V)_"PCP"$ $lambda$ times in parallel to pick $O(lambda)$ indices $I = (i_1, dots, i_ell)$, requesting these bits of the proof $pi$ (in Fiat-Shamir: $I = H(x, c)$, $I$ is thus unpredictable).
+  3. *Open*: For each requested bit $i_j in I$, prover $P$ must send the proof bits, but must also prove the bits are not made up (i.e. show how they were locked in commitment $c$). Thus $P$ runs $"Open"(c, i_j, pi_(i_j))-> sigma_j$ and sends ($pi_(i_j), sigma_j$) to $V$, where $sigma_j$ a short opening proof (which, in a Merkle tree, is just the path of sibling hashes up to the root) and $pi_(i_j)$ is the actual bit value. $V$ checks all Merkle openings with $"Verify"(c, i_j, pi_i_j, sigma_j)$. Once the trust on the proof bits is established, $V$ runs $cal(V)_"PCP"$  to check if all the $pi_(i_j)$ bits are consistent with a valid PCP proof.
+  - *Complexity*: Because $P$ needs to withstand $O(lambda)$ independent spot-checks: Soundness $(1/2)^lambda$ (or $Q dot 2^(-lambda)$ in ROM); Communication i.e. proof size = $O(lambda) dot O(lambda log m) = O(lambda^2 log m)$.
 ]
 
 #box-dia[IOPs & Polynomial Magic (Schwartz-Zippel, Equality, ZeroTest):][
-  - *Linear IOP*: Proof $pi in FF^n$; $V$ queries linear combinations $chevron.l q, pi chevron.r$. (Strong HVZK: $"Sim"_"IOP" ()$ takes *no input* and outputs transcript identical to $V$'s view).
-  - *Poly-IOP*: $P$ puts degree-$<= d$ polynomials $f in FF[X]_(<= d)$ in "oracle box"; $V$ queries $f(r)$ at $r <-^"$" FF$.
+  - *Linear IOP*: Proof $pi in FF^n$; $V$ queries _linear_ combinations $chevron.l q, pi chevron.r$. (Strong HVZK: $"Sim"_"IOP" ()$ takes *no input* and outputs transcript identical to $V$'s view).
+  - *Poly-IOP*: $P$ puts $<= d$ degree polynomials $f in FF[X]_(<= d)$ in oracle box; $V$ queries $f(r)$ at $r <-^"$" FF$
   - *Schwartz-Zippel Lemma*: Non-zero $f in FF[X]_(<= d)$ has $<= d$ roots ($Pr_(r <-^"$" FF)[f(r) = 0] <= d / abs(FF)$, or $<= d / abs(S)$ for any $S subset.eq FF$). *(Requires $FF$ to be a field! Fails over rings like $ZZ_6$ since $2 X^2 + 4 X = 2 X(X+2)$ has roots $0, 1, 3, 4 mod 6$)*.
-  #grid(
-    columns: (1fr, 1.35fr),
-    gutter: 2pt,
-    rect(inset: 2.5pt, stroke: 0.4pt + c-dia-bd, width: 100%)[
+    #grid(
+      columns: (1fr, 2.1fr),
+      gutter: 2pt,
+      rect(inset: 2.5pt, stroke: 0.4pt + c-dia-bd, width: 100%)[
       *Equality Test ($f equiv g$, deg $<= d$)*: \
-      $P$ commits $f, g$ to box. \
-      $V$ picks $r <-^"$" FF$, queries $f(r), g(r)$, accepts iff $f(r) = g(r)$. \
+      $P$ commits $f, g$ to oracle box. \
+      $V$ picks $r <-^"$" FF$ \ 
+      $V$ queries $f(r), g(r)$ \ 
+      $V$ accepts iff $f(r) = g(r)$ \
+      (difference poly $f(r) - g(r) = 0$ has $"deg" <= d$). \
       *Soundness error*: $<= d / abs(FF)$.
     ],
     rect(inset: 2.5pt, stroke: 0.4pt + c-dia-bd, width: 100%)[
-      *ZeroTest ($f(a) = 0 quad forall a in Omega subset FF$)*: \
+      *ZeroTest ($f(a) = 0 quad forall a in Omega subset.eq FF$)*: 
+      $P$ wants to prove that $f in FF[X]_(<= d)$ is zero on all points $a in Omega subset.eq FF$ with $|Omega| = k <= d$. \
       Vanishing poly $Z_Omega (X) = product_(a in Omega) (X - a)$ (known to both $P, V$). \
       $P$ commits $f(X)$ and quotient $q(X) = f(X) / (Z_Omega (X))$ to box. \
       $V$ picks $r <-^"$" FF$, checks $f(r) = q(r) dot Z_Omega (r)$. \
