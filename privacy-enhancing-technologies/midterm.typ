@@ -188,7 +188,7 @@
       *Lecture Loose Proof (1 PRF query)*: $cal(B)$ gets $(X, Y, Z) = (g^alpha, g^beta, g^gamma)$, guesses $i^* <-^"$" [Q_"RO"]$, programs $H(x_(i^*)) = X = g^alpha$ (others $g^(r_i)$), answers PRF query $x_(i^*)$ with $Z = g^alpha beta$ OR $Z = g^gamma$ (fake). $"AdvDDH" >= "AdvPRF" / Q_"RO"$.
     ],
   )
-  #image("img/DDH-to-PRF-reduction.png")
+  #image("img/DDH-to-PRF-reduction.png", width: 100%, height: 3.5cm, fit: "stretch")
 ]
 
 #box-hw[HW1.3: Tight DDH-to-PRF Reduction (Random Self-Reducibility):][
@@ -201,7 +201,7 @@
     - If $(X,Y,Z) in D_1$ (fake): $Z dot Y^(r_j) = g^(gamma + r_j beta)$ is uniform in $GG$. Thus $"AdvDDH"(cal(B), GG) = "AdvPRF"(cal(A), F)$ (no $1 / Q_"RO"$ loss anymore!).
   - *1.3d Bonus (Multiple PRF Queries)*: Using $Z' = Z dot Y^(r_i)$ for $>1$ queries *fails* when $b=1$ ($Z = g^gamma$ fake) because $gamma$ is reused:
     $frac(log_g f(m_i) - log_g f(m_j), log_g H(m_i) - log_g H(m_j)) = frac((r_i - r_j) beta, r_i - r_j) = beta$ (not independent!).
-    *Fix*: For each query $m_i$, sample *two* scalars $u_i, v_i <-^"$" ZZ_q$, set $H(m_i) = X^(u_i) g^(v_i) = g^(alpha u_i + v_i)$ and $f(m_i) = Z^(u_i) Y^(v_i)$. If $Z = g^(alpha beta)$, $f(m_i) = H(m_i)^beta$. If $Z = g^gamma$ ($gamma != alpha beta$), exponents $gamma u_i + beta v_i$ are pairwise independent and uniform!
+    *Fix*: For each query $m_i$, sample *two* scalars $u_i, v_i <-^("$") ZZ_q$, set $H(m_i) = X^(u_i) g^(v_i) = g^(alpha u_i + v_i)$ and $f(m_i) = Z^(u_i) Y^(v_i)$. If $Z = g^(alpha beta)$, $f(m_i) = H(m_i)^beta$. If $Z = g^gamma$ ($gamma != alpha beta$), exponents $gamma u_i + beta v_i$ are pairwise independent and uniform!
 ]
 
 #sec-hdr[3. Zero-Knowledge, PoK & Sigma Protocols (Lec 5–7, HW2)]
@@ -269,7 +269,7 @@
   - *Idea*: Replace $V$'s random challenge with RO hash of statement & first message: \
     $P_"NI" (x, w): u <- P_1(x, w), quad c <- H(x, u), quad z <- P_2(x, w, r_P, c), quad "output" pi = (u, z)$. \
     $V_"NI" (x, pi): c <- H(x, u), quad "output" "verif"(x, u, c, z) in {0,1}$. $quad quad r_P$ is $P$'s internal randomness. \
-  #image("img/fiat-shamir.png")
+  #image("img/fiat-shamir.png", width: 100%, height: 1.5cm, fit: "stretch")
   - *NIZK Zero-Knowledge ($"Sim"'$)*: Given $x$, $"Sim"'$ samples $c <-^"$" cal(C)$, runs HVZK $"Sim"(x, c) -> (u, c, z)$, $"Sim"'$ *programs RO* so $H(x, u) := c$, and $"Sim"'$ outputs $pi = (u, z)$.  The output of $"Sim"$' is NOT shown to any real-world verifier. The simulator and its fake transcript are purely theoretical tools used to prove the protocol is secure, because $pi$ is indistinguishable from a real proof. (Standard HVZK protocols fail against malicious verifiers who break the rules. By removing interaction via Fiat-Shamir, the verifier cannot interfere, automatically upgrading the protocol to full ZK).
   - *NIZK PoK ($"Ext"'$)*: Run $P^*$ until it queries RO on $(x, u)$; program $H(x, u) := c <-^"$" cal(C)$ to get $(u, c, z)$. *Rewind* $P^*$ to that RO query, reprogram $H(x, u) := c' <-^"$" cal(C)$ to get $(u, c', z')$, then extract $w$ via Special Soundness!
 ]
@@ -292,7 +292,6 @@
   - *PCP Theorem*: Any NP statement $x$ ($|x|=m$). There exist efficient $cal(P)_"PCP"$ and $cal(V)_"PCP"$ such that $cal(P)_"PCP" (x, w) -> pi in {0,1}^("poly"(m))$ checkable by randomized $cal(V)_"PCP" (x)$ which only has oracle access to $pi$ by reading just e.g. 3 bits which are chosen _nonadaptively_ (maybe dependent on $x$ but never on $pi$). Completeness $=1$ and soundness error $<= 1/2$.
 ]
 
-// TODO: here 
 #box-hw[HW3.4: SNARG from PCP + Merkle Vector Commitment (in ROM):][
 
   Construct a 3-round succinct argument system for $x$ using Merkle vector commitment scheme
@@ -307,43 +306,50 @@
   - *Poly-IOP*: $P$ puts $<= d$ degree polynomials $f in FF[X]_(<= d)$ in oracle box; $V$ queries $f(r)$ at $r <-^"$" FF$
   - *Schwartz-Zippel Lemma*: Non-zero $f in FF[X]_(<= d)$ has $<= d$ roots ($Pr_(r <-^"$" FF)[f(r) = 0] <= d / abs(FF)$, or $<= d / abs(S)$ for any $S subset.eq FF$). *(Requires $FF$ to be a field! Fails over rings like $ZZ_6$ since $2 X^2 + 4 X = 2 X(X+2)$ has roots $0, 1, 3, 4 mod 6$)*.
     #grid(
-      columns: (1fr, 2.1fr),
+      columns: (1fr, 2.4fr),
       gutter: 2pt,
       rect(inset: 2.5pt, stroke: 0.4pt + c-dia-bd, width: 100%)[
-      *Equality Test ($f equiv g$, deg $<= d$)*: \
-      $P$ commits $f, g$ to oracle box. \
-      $V$ picks $r <-^"$" FF$ \ 
-      $V$ queries $f(r), g(r)$ \ 
-      $V$ accepts iff $f(r) = g(r)$ \
-      (difference poly $f(r) - g(r) = 0$ has $"deg" <= d$). \
-      *Soundness error*: $<= d / abs(FF)$.
-    ],
-    rect(inset: 2.5pt, stroke: 0.4pt + c-dia-bd, width: 100%)[
-      *ZeroTest ($f(a) = 0 quad forall a in Omega subset.eq FF$)*: 
-      $P$ wants to prove that $f in FF[X]_(<= d)$ is zero on all points $a in Omega subset.eq FF$ with $|Omega| = k <= d$. \
-      Vanishing poly $Z_Omega (X) = product_(a in Omega) (X - a)$ (known to both $P, V$). \
-      $P$ commits $f(X)$ and quotient $q(X) = f(X) / (Z_Omega (X))$ to box. \
-      $V$ picks $r <-^"$" FF$, checks $f(r) = q(r) dot Z_Omega (r)$. \
-      *Soundness error*: $<= (d + |Omega|) / abs(FF) <= (2 d) / abs(FF)$. \
-      *(If $Omega = {1, omega, dots, omega^(d-1)}$ roots of unity, $Z_Omega (X) = X^d - 1$, evaluated by $V$ in $O(log d)$ via repeated squaring!)*
-    ],
-  )
+        *Equality Test ($f equiv g$, deg $<= d$)*: \
+        $P$ commits $f, g$ to oracle box. \
+        $V$ picks $r <-^"$" FF$ \
+        $V$ queries $f(r), g(r)$ \
+        $V$ accepts iff $f(r) = g(r)$ \
+        (difference poly $f(r) - g(r) = 0$ has $"deg" <= d$). \
+        *Soundness error*: $<= d / abs(FF)$.
+      ],
+      rect(inset: 2.5pt, stroke: 0.4pt + c-dia-bd, width: 100%)[
+        *ZeroTest ($f(a) = 0 quad forall a in Omega subset.eq FF$)*:
+        $P$ wants to prove that $f in FF[X]_(<= d)$ is zero on all points $a in Omega subset.eq FF$ with $|Omega| <= d$. \
+        Vanishing poly $Z_Omega (X) = product_(a in Omega) (X - a)$ (known to both $P, V$). \
+        $P$ commits $f(X)$ and quotient $q(X) = f(X) / (Z_Omega (X))$ to oracle box. \
+        $V$ picks $r <-^"$" FF$, checks $f(r) = q(r) dot Z_Omega (r)$. \
+        Difference polynomial $underbrace(f(X), #text($"deg" <= d$, fill: rgb("#808080"))) - underbrace(q(X) dot Z_Omega (X), \"f(X)\"", deg" <= d +|Omega|)$ has $"deg" <= 2d$, thus
+        *Soundness error*: $<= (2 d) / abs(FF)$. \
+        *(If $Omega = {1, omega, dots, omega^(d-1)}$ roots of unity, $Z_Omega (X) = X^d - 1$, evaluated by $V$ in $O(log d)$ via repeated squaring!)*
+      ],
+    )
 ]
 
-#box-hw[HW4.2: Poly-IOPs for Coefficient & Inner Product Checks (DARK):][
-  - *4.2a No coeffs of degree $< i$*: $P$ sends $f$ (deg $d$) and $g$ (deg $d - i$). $V$ checks $f(r) = r^i dot g(r)$ at $r <-^"$"FF$. Soundness error $<= d / abs(FF)$.
-  - *4.2b $i$-th coeff of $f(X)$ is $beta$*: Write $f(X) = f_L (X) + beta X^i + X^(i+1) f_R (X)$ with $deg(f_L) <= i - 1$ and $deg(f_R) <= d - i - 1$. $P$ sends $f, f_L, f_R$ with degree bounds; $V$ checks $f(r) = f_L (r) + beta r^i + r^(i+1) f_R (r)$ at $r <-^"$" FF$. Soundness error $<= d / abs(FF)$.
-  - *4.2c Inner Product $chevron.l bold(a), bold(b) chevron.r = z$ ($bold(a), bold(b) in FF^(d+1)$)*: Encode $f(X) = sum_(j=0)^d a_j X^j$ and reversed $g(X) = sum_(j=0)^d b_(d-j) X^j$. In $h(X) = f(X) g(X)$ (deg $2 d$), the $d$-th coeff of $h(X)$ is $sum_(j=0)^d a_j b_j = chevron.l bold(a), bold(b) chevron.r$! $P$ sends $f, g, h$; $V$ checks $h(r) = f(r) g(r)$ (error $2 d / abs(FF)$) + runs 4.2b to check $d$-th coeff of $h$ is $z$ (error $2 d / abs(FF)$). Total soundness error $<= 4 d / abs(FF)$.
+#box-hw[HW4.2: Poly-IOPs for Coefficient & Inner Product Checks:][
+  - *4.2a No coeffs of degree $< i$*: Since $f(X) = 0 X_0 + 0 X_1 + dots + 0 X^(i-1) + f_i X^i + dots + f_d X^d$, we have $f(X) = X^i dot (f_i + f_(i+1)X + dots + f_d X^(d-i)) = X^i dot g(X)$.
+    $P$ sends $f$ (deg $d$) and $g$ (deg $d - i$). $V$ checks $f(r) = r^i dot g(r)$ at $r <-^"$"FF$. Soundness error $<= d / abs(FF)$.
+  - *4.2b $i$-th coeff of $f(X)$ is $beta$*: Write $f(X) = f_L (X) + beta X^i + X^(i+1) f_R (X)$ with $deg(f_L) <= i - 1$ and $deg(f_R) <= d - i - 1$. $P$ sends $f, f_L, f_R$ with degree bounds; $V$ checks $f(r) = f_L (r) + beta r^i + r^(i+1) f_R (r)$ at $r <-^"$" FF$. Since difference polynomial deg $<= d$, soundness error is $<= d / abs(FF)$.
+  - *4.2c Inner Product $chevron.l bold(a), bold(b) chevron.r = z$ ($bold(a), bold(b) in FF^(d+1)$)*: Encode $f(X) = sum_(j=0)^d a_j X^j$ and reversed $g(X) = sum_(j=0)^d b_(d-j) X^j$. In $h(X) = f(X) g(X)$ (deg $2 d$), the $d$-th coeff of $h(X)$ is $sum_(j=0)^d a_j b_j = chevron.l bold(a), bold(b) chevron.r$! $P$ sends $f, g, h$; $V$ checks $h(r) = f(r) g(r)$ (error $(2 d) / abs(FF)$) + runs 4.2b to check $d$-th coeff of $h$ is $z$ (error $(2 d) / abs(FF)$). Total soundness error $<= (4 d) / abs(FF)$. OR $V$ checks $f(r) dot g(r) = h_L (r) + r^d dot z + r^(d+1) dot h_R (r)$ in one go, then diff polynomial has deg $<= 2 d$, thus soundness error $<= (2 d) / abs(FF)$.
 ]
 
-#box-def[Polynomial Commitment Scheme (PCS) & KZG (Lec 11, HW4.3):][
-  - *Syntax*: $"Setup"(1^lambda, d) -> "pp"$; $"Commit"("pp", f) -> c$; $"Open"("pp", f, z) -> pi$; $"Verify"("pp", c, z, y, pi) in {0,1}$.
-  - *Evaluation Binding*: No PPT $cal(A)$ can output $(c, z, y, pi, y', pi')$ with $y != y'$ such that both verify to $1$.
-  - *KZG Construction (HW4.3, over group $GG$ of prime order $p$ with pairing $"VerifProd"$)*:
-    - *Trusted Setup*: Sample secret $alpha <-^"$" ZZ_p^*$, output $"pp" = (g, g^alpha, g^(alpha^2), dots, g^(alpha^d))$ (then delete $alpha$!).
-    - *Commit*: For $f(X) = sum_(j=0)^d f_j X^j$, $P$ computes $c = g^(f(alpha)) = product_(j=0)^d (g^(alpha^j))^(f_j)$ *without knowing $alpha$*! (*Computationally binding* under $d$-SDH/DLP; *not* stat. binding as $p^(d+1) > p$).
-    - *Open at $f(z) = y$*: Since $f(z) = y <=> (X - z) | (f(X) - y)$, $P$ computes quotient $q(X) = frac(f(X) - y, X - z)$ and sends opening proof $pi = "Commit"("pp", q) = g^(q(alpha))$.
-    - *Verify $(c, z, y, pi)$*: Check $f(alpha) - y = q(alpha)(alpha - z)$ in the exponent via $"VerifProd"(pi, g^alpha dot g^(-z), c dot g^(-y)) = 1$.
+#box-def[Polynomial Commitment Scheme (PCS) (Lec 11):][
+  \
+  Instantiates abstract Poly-IOP's "oracle box". Allows $P$ to lock a large $f$ into a tiny succinct $c$. \
+  - *Syntax*: $"Setup"(d, lambda) -> "pp"$ (public parameters) ; $quad quad "Commit"("pp", f) -> c$ \ $"Open"("pp", f, z) -> pi$ (outputs proof $pi$ for evaluation $f(z) = y$) ; $quad "Verify"("pp", c, z, y, pi) in {0,1}$.
+  - *Evaluation Binding*: No PPT $cal(A)$ given $"pp"$ can output $(c, z, y, pi, y', pi')$ with $y != y'$ such that both verify to $1$.
+]
+
+#box-hw[HW4.3: KZG PCS Construction over $GG$ of prime order $p$ with pairing $"VerifProd"$][
+  - *Trusted Setup*: Sample secret $alpha <-^"$" ZZ_p^*$, output $"pp" = (g, g^alpha, g^(alpha^2), dots, g^(alpha^d))$ (then delete $alpha$!).
+  - *Commit*: For $f(X) = sum_(j=0)^d f_j X^j$, $P$ computes $c = g^(f(alpha)) = g^(sum_(j=0)^d f_j alpha^j) = product_(j=0)^d (g^(alpha^j))^(f_j)$ *without knowing $alpha$*! (*Computationally binding*, relies on q-strong Diffie-Hellman assumption, similar to DLP. But *not* stat. binding as unbounded $P^*$ could solve DLP, find out $alpha$ and craft fake polynomials and opening proofs).
+  - *Open at $f(z) = y$*: Since $f(z) = y <==> f(z) - y = 0 <==> (X - z) | (f(X) - y)$, \ $P$ computes quotient $q(X) = frac(f(X) - y, X - z)$ and sends opening proof $pi = g^(q(alpha))$.
+  - *Verify $(c, z, y, pi)$*: Check $f(alpha) - y = q(alpha)(alpha - z)$ in the exponent via \ $"VerifProd"(pi, g^alpha dot g^(-z), c dot g^(-y)) = "VerifProd"(g^q(alpha), g^alpha dot g^(-z), g^f(alpha) dot g^(-y)) = 1$.
+  - *Breaking Binding*: If $P$ can compute $g^(x/(alpha-z))$ given any $g^x$, $P$ computes $g^x = c / g^(y') = g^f(alpha) / g^(y') = g^(f(alpha) - y')$ to get fake opening $pi' = g^(x/(alpha-z)) = g^((f(alpha)-y')/(alpha-z)) = g^(q'(alpha))$ for some false output $y'$. \ $V$ falsely accepts because $"VerifProd"(g^(q'(alpha)), g^(alpha - z), g^(f(alpha) - y')) = 1$
 ]
 
 #box-def[PLONK Poly-IOP & SNARG (Lec 12):][
@@ -351,60 +357,53 @@
   - *Trace Polynomial $f_"trace" in FF[X]_(<= d)$*: Degree $d = 3|C| + |I|$ over roots of unity $Omega = {omega^j}$.
     - *Inputs*: $f_"trace" (omega^(-j)) = "input"_j$ for $j = 1, dots, |I|$.
     - *Gates ($k = 0, dots, |C|-1$)*: Left in $= f_"trace" (omega^(3k))$, Right in $= f_"trace" (omega^(3k+1))$, Out $= f_"trace" (omega^(3k+2))$.
-  - *Preprocessing ($O(|C|)$ time, circuit-specific)*: Commit to selector $f_"sel"$ ($f_"sel" (omega^(3k)) = 1$ for $+$, $0$ for $times$) and wiring permutation $f_"rot" : Omega -> Omega$.
+  - *Preprocessing ($O(|C|)$ time, circuit-specific)*: Commit to selector $f_"sel"$: \ ($f_"sel" (omega^(3k)) = 1$ for $+$, $0$ for $times$), and wiring permutation $f_"rot" : Omega -> Omega$.
   - *The 4 Verifier Checks*:
     1. *Output Check*: Final gate output is $0$: $f_"trace" (omega^(3|C|-1)) = 0$.
     2. *Public Input Check*: $V$ interpolates $f_"in" (X)$ (deg $<= |I_x|$) s.t. $f_"in" (omega^(-j)) = x_j$, runs ZeroTest on $f_"trace" (X) - f_"in" (X) = 0$ over $Omega_I = {omega^(-1), dots, omega^(-|I_x|)}$.
-    3. *Gate Evaluation Check*: ZeroTest over $Omega_"gates" = {omega^(3k)}_(k=0)^(|C|-1)$ on:
-      $f_"sel" (X)(f_"trace" (X) + f_"trace" (omega X)) + (1 - f_"sel" (X))(f_"trace" (X) dot f_"trace" (omega X)) - f_"trace" (omega^2 X) = 0$.
+    3. *Gate Evaluation Check*: ZeroTest over $Omega_"gates" = {omega^(3k)}_(k=0)^(|C|-1)$ on:\
+      $f_"sel" (X) dot [f_"trace" (X) + f_"trace" (omega X)] + (1 - f_"sel" (X)) dot [f_"trace" (X) dot f_"trace" (omega X)] - f_"trace" (omega^2 X) = 0$.
     4. *Wiring Check (Copy Constraints)*: Check $f_"trace" (x) = f_"trace" (f_"rot" (x)) quad forall x in Omega$.
   - *Note*: PLONK Poly-IOP is *information-theoretically sound* (holds even if $P = "NP"$!); compiling with KZG PCS + Fiat-Shamir makes it a *computationally sound* SNARG.
 ]
 
-#sec-hdr[6. Private Information Retrieval (PIR) & DPFs (Lec 13–14, HW4.4, HW5)]
+#sec-hdr[6. Private Information Retrieval (PIR) & DPFs (Lec 13–14, HW4.4/5)]
 
 #box-dia[2-Server IT-PIR vs Single-Server LHE/FHE/Recursive PIR:][
-  - *Goal*: Fetch $x_i$ from DB $x in {0,1}^n$ with comm $o(n)$ and privacy $"Query"(i) approx "Query"(j)$. *(1-server IT-PIR is impossible: requires $Omega(n)$ bits!)*.
-  #grid(
-    columns: (1fr, 1fr, 1fr),
-    gutter: 3pt,
-    rect(inset: 2pt, stroke: 0.4pt + c-dia-bd)[
-      *2-Server IT-PIR* \
-      *(Non-colluding)* \
-      - *Linear $O(n)$*: Sample $q_0 <-^"$" {0,1}^n$, $q_1 = q_0 plus.o e_i$. Server $b$ sends $a_b = chevron.l q_b, x chevron.r in {0,1}$. Output $a_0 plus.o a_1 = x_i$. \
-      - *Matrix $O(sqrt(n))$*: DB $X in {0,1}^(sqrt(n) times sqrt(n))$, $i=(r,c)$. Share $q_0 plus.o q_1 = e_c in {0,1}^(sqrt(n))$. Server $b$ sends col $a_b = X q_b in {0,1}^(sqrt(n))$. Output $(a_0 plus.o a_1)_r = X_(r,c)$.
-    ],
-    rect(inset: 2pt, stroke: 0.4pt + c-dia-bd)[
-      *1-Server LHE PIR* \
-      *(Comp. Security)* \
-      Requires LHE: $"Enc"(m_1) + "Enc"(m_2) = "Enc"(m_1 + m_2)$. \
-      DB $X in {0,1}^(sqrt(n) times sqrt(n))$, $i=(r,c)$. \
-      Client sends $q = "Enc"(k, e_c)$ ($sqrt(n)$ ciphertexts). \
-      Server computes $a = X dot q = "Enc"(k, X e_c)$ ($sqrt(n)$ ciphertexts via homomorphic $+$). \
-      Client decrypts $"Dec"(k, a_r) = X_(r,c)$. Comm: $O(lambda sqrt(n))$.
-    ],
-    rect(inset: 2pt, stroke: 0.4pt + c-dia-bd)[
-      *Recursive & FHE PIR* \
-      - *Recursive ($d$-dim)*: Reshape $X$ into $n^(1/d) times dots times n^(1/d)$. Send $q_1, dots, q_d$ ($d n^(1/d)$ cts). Server recursively indexes $a_0 -> a_1 -> dots$. *(Needs low ciphertext expansion $F$, else blows up as $F^d$; fails in 2-server IT-PIR!)*. \
-      - *FHE PIR (HW4.4)*: Send $"Enc"(i_1), dots, "Enc"(i_(log n))$. Server evaluates $sum_(j=1)^n X_j dot C_"EQ" (i, j)$. Upload $O(lambda log n)$, Download $O(lambda)$.
-    ],
-  )
+  - *Goal*: Fetch $x_i$ from DB $x in {0,1}^n$ with comm $o(n)$ and privacy $"Query"(i) approx "Query"(j)$. \  *(1-server IT-PIR impossible: requires $Omega(n)$ bits bc else server learns irrelev. bits)*
+  - *2-Server IT-PIR (Non-colluding) "IT" because of additive secret sharing* \
+    - *Linear $O(n)$*: Sample $q_0 <-^"$" {0,1}^n$, $q_1 = q_0 plus.o e_i$. Server $S_0$ sends $a_0 = chevron.l q_0, x chevron.r in {0,1}$, Server $S_1$ sends $a_1 = chevron.l q_1, x chevron.r in {0,1}$. Output $a_0 plus.o a_1 = x_i$. \
+    - *Matrix $O(sqrt(n))$*: DB $X in {0,1}^(sqrt(n) times sqrt(n))$, $i=(r,c)$. $q_0 <-^"$" ZZ_2^sqrt(n)$. Share $q_0 plus.o q_1 = e_c in {0,1}^(sqrt(n))$. Server $b$ sends col $a_b = X dot q_b in {0,1}^(sqrt(n))$. Output $(a_0 plus.o a_1)_r = X_(r,c)$.
+      Correctness: $(a_0 plus.o a_1)_i &= (X dot q_0 plus.o X dot q_1)_i
+      &= (X dot q_0 plus.o X dot (q_0 plus.o e_j))_i
+      &= (X dot q_0 plus.o X dot q_0 plus.o X dot e_j)_i
+      &= (X dot e_j)_i = X_(i j).$
+      #image("img/2-server-it-pir-sqrt-n.png", fit: "stretch", width: 100%, height: 2.5cm)
+  - *1-Server LHE PIR (additive secret sharing no longer works $=>$ Comp. Security)* \
+    Requires LHE: $"Enc"(k, m_1) + "Enc"(k, m_2) = "Enc"(k, m_1 + m_2)$.
+    DB $X in {0,1}^(sqrt(n) times sqrt(n))$, $i=(r,c)$. \
+    *Client* sends $q = "Enc"(k, e_c)$ ($sqrt(n)$ ciphertexts).
+    *Server* computes $a = X dot q = "Enc"(k, X dot e_c) = "Enc"(k, X_c)$ ($sqrt(n)$ ciphertexts via homomorphic $+$). \
+    *Client* decrypts $"Dec"(k, a)_r = X_(r,c)$. Comm: $|q| + |a| = lambda sqrt(n) + lambda sqrt(n) = O(lambda sqrt(n))$.
+  - *1-Server Recursive ($d$-dim)*: Reshape $X$ into $n^(1/d) times dots times n^(1/d)$. Send $q_1, dots, q_d$ ($d dot n^(1/d)$ cts). Server recursively indexes $a_0 -> a_1 -> dots$. *(Needs low ciphertext expansion $F$, else blows up as $F^d$; fails in 2-server IT-PIR, as queries are information-theoretically independent and cannot be recursively compressed without breaking privacy)*.
+    #image("img/1-server-recursive-pir.png", fit: "stretch", width: 100%, height: 1.2cm)
+  - *FHE PIR (HW4.4)*: Convert $i = i_1 i_2 dots i_log(n)$ (binary representation). Send encrypted bits $"Enc"(i_1), dots, "Enc"(i_(log n)), "Enc"(0), "Enc"(1)$. For each DB index $j = j_1 j_2 dots j_log(n)$, server replaces $j_k$ with corresponding ciphertext ("Enc"(0), "Enc"(1)) and evaluates $sum_(j=1)^n x_j dot underbrace(C_"EQ" (i, j), "0 or 1") = x_i$. \ #v(-7pt) Upload $O(lambda dot log n)$ bits, Download $O(lambda dot 1)$, with $lambda$ probably $=1$.
 ]
 
 #box-hw[HW5.2 & HW5.3: PIR Upload/Download Balancing & DPFs:][
-  - *HW5.2 Balancing Transform*: Given PIR with upload $U(n)$ and download $1$ bit: Split DB into $ell$ buckets of size $n / ell$. For $i = ("bucket" b in [ell], "offset" j in [n / ell])$, client generates *one* query $q <- "Query"(j)$ of size $U(n / ell)$. Server runs $"Answer"$ on all $ell$ buckets using $q$, returning $ell$ bits. Client takes $b$-th bit. *New Upload*: $U(n / ell)$, *New Download*: $ell$ bits.
+  - *HW5.3 Balancing Transform*: Given PIR with upload $U(n)$ and download $1$ bit: Split DB into $ell$ buckets of size $n / ell$. For $i = ("bucket" b in [ell], "offset" j in [n / ell])$, client generates *one* query $q <- "Query"(j)$ of size $U(n / ell)$. Server runs $"Answer"$ on all $ell$ buckets using $q$, returning $ell$ bits. Client picks the $b$-th bit. *New Upload*: $U(n / ell)$, *New Download*: $ell$ bits.
   - *Distributed Point Functions (DPF, Lec 14 & HW5.3)*:
     - $"Gen"(x, y) -> (k_0, k_1)$ with $|k_b| = O(lambda log |cal(X)|)$ (built via GGM PRG binary tree).
     - *Correctness*: $"Eval"(k_0, x') + "Eval"(k_1, x') = y$ if $x' = x$, else $0$.
     - *Secrecy*: Individual key $k_beta approx^c "Sim"_beta (|x|, |y|)$ leaks nothing about $x, y$.
     - *2-Server DPF PIR*: $(k_0, k_1) <- "Gen"(i, 1)$. Server $b$ sends $a_b = sum_(j=1)^n x_j dot "Eval"(k_b, j) mod 2$. Client outputs $a_0 plus.o a_1 = x_i$. Total comm: $O(lambda log n)$!
-    - *Keyword PIR*: For key-value pairs $(w_j, v_j)$ with $w_j in {0,1}^m$, client runs $"Gen"(w^*, 1)$ on domain $\{0,1\}^m$; server $b$ returns $sum_j v_j dot "Eval"(k_b, w_j)$.
+    - *Keyword PIR*: For key-value pairs $(w_j, v_j)$ with $w_j in {0,1}^m$, client runs $"Gen"(w^*, 1)$ on domain $\{0,1\}^m$; server $b$ returns $sum_j v_j dot "Eval"(k_b, w_j)$. Client sums server's results: \ $(sum_j v_j dot "Eval"(k_0, w_j)) xor (sum_j v_j dot "Eval"(k_1, w_j)) = sum_j v_j dot ("Eval"(k_0, w_j) xor "Eval"(k_1, w_j)) = sum_j v_j dot P_(w^*, 1)(w_j) = v_i$. If $w^*$ not in dict, $P_(w^*, 1)(w_j) = 0$ for all $j$ result is $0^v$.
 ]
 
 #sec-hdr[7. Oblivious RAM (ORAM) (Lec 15–16)]
 
 #box-def[ORAM Model, $sqrt(n)$ ORAM & Tree-Based ORAM:][
-  - *Security*: Hides *which* address is accessed, *repeats/patterns*, and *Read vs Write* (all encrypted under IND-CPA); leaks *only* total number of accesses. *(Unlike PIR, ORAM client is stateful, supports writes, and encrypts DB)*.
+  - *Security*: Hides *which* address is accessed, *repeats/patterns*, and *Read vs Write* (all encrypted under IND-CPA); leaks *only* total number of accesses. *(Unlike PIR, ORAM client has small state, supports writes, and encrypts & shuffles DB, only PRF)*.
   - *Batcher's Oblivious Sort*: Fixed data-independent sorting network in $O(n log^2 n)$ ops.
   - *Square-Root ($sqrt(n)$) ORAM (Lec 15)*:
     - *Layout*: Server holds $n$ real words + $sqrt(n)$ dummies permuted by random $pi$; Client holds local *stash* of size $sqrt(n)$.
@@ -429,35 +428,35 @@
 //       $[x y] = [c] + delta [b] + epsilon [a] + delta epsilon mod q$. *(Online phase is IT-secure against $n-1$ corruptions!)*.
 // ]
 
-// #box-hw[HW5/6: DH-OPRF & Private Set Intersection (PSI):][
-//   - *DH-OPRF for $F(k, x) = H(x)^k$ in $GG$ (prime order $p$)*:
-//     1. Client (input $x$): Samples $r <-^ZZ_p backslash {0}$, sends blinded $U = H(x)^r$ to Server.
-//     2. Server (key $k$): Sends $V = U^k = H(x)^(r k)$ to Client. Client unblinds: $V^(r^(-1) mod p) = H(x)^k$.
-//     - *Client Privacy (IT)*: Since $r != 0$ is uniform, $U = H(x)^r$ is uniform in $GG$. $"Sim"_"Server" (k)$ just samples $U <-^GG$.
-//     - *Server Privacy (ROM + DDH)*: $"Sim"_"Client" (x, y = F(k, x))$ responds to $U = H(x)^r$ with $V = y^r$ (using known $r$ from RO query $H(x)$).
-//   - *PSI from OPRF (Alice set $A$, Bob set $B$, $|A|=|B|=N$)*:
-//     1. Bob samples $k$, sends $Y_B = {F(k, b) : b in B}$ to Alice.
-//     2. Alice runs OPRF with Bob on each $a in A$ to learn $y_a = F(k, a)$, outputs $A inter B = {a in A : y_a in Y_B}$ and sends $A inter B$ to Bob.
-//     - *$"Sim"_B (B, A inter B)$*: Samples $k <-^cal(K)$, computes $Y_B$, runs $"Sim"_"Server"^"OPRF"$ $N$ times to get transcript $T$, outputs $(k, Y_B, T, A inter B)$.
-// ]
+#box-hw[HW5/Mock-Exam: DH-OPRF & Private Set Intersection (PSI):][
+  - *DH-OPRF for $F(k, x) = H(x)^k$ in $GG$ (prime order $p$)*:
+    1. Client (input $x$): Samples $r <-^ZZ_p backslash {0}$, sends blinded $U = H(x)^r$ to Server.
+    2. Server (key $k$): Sends $V = U^k = H(x)^(r k)$ to Client. Client unblinds: $V^(r^(-1) mod p) = H(x)^k$.
+    - *Client Privacy (IT)*: Since $r != 0$ is uniform, $U = H(x)^r$ is uniform in $GG$. $"Sim"_"Server" (k)$ just samples $U <-^"$" GG$.
+    - *Server Privacy (ROM + DDH)*: $"Sim"_"Client" (x, y = F(k, x))$ responds to $U = H(x)^r$ with $V = y^r$ (using known $r$ from RO query $H(x)$).
+  - *PSI from OPRF (Alice set $A$, Bob set $B$, $|A|=|B|=N$)*:
+    1. Bob samples $k$, sends $Y_B = {F(k, b) : b in B}$ to Alice.
+    2. Alice runs OPRF with Bob on each $a in A$ to learn $y_a = F(k, a)$, outputs $A inter B = {a in A : y_a in Y_B}$ and sends $A inter B$ to Bob.
+    - *$"Sim"_B (B, A inter B)$*: Samples $k <-^"$" cal(K)$, computes $Y_B$, runs $"Sim"_"Server"^"OPRF"$ $N$ times to get transcript $T$, outputs $(k, Y_B, T, A inter B)$.
+]
 
 #sec-hdr[9. True / False Exam Panic Bank (All Homeworks & Lectures)]
 
-#box-tf[16 High-Yield Conceptual True/False Statements:][
-  1. *If $P = "NP"$, secure PRFs / OWFs / IND-CPA encryption / FHE exist.* $->$ *FALSE* (All computational hardness assumptions collapse if $P = "NP"$).
+#box-tf[][
+  1. *If $P = "NP"$, secure PRFs / One-Way Functions / #highlight[IND-CPA] encryption / FHE exist.* $->$ *FALSE* (All computational hardness assumptions collapse if $P = "NP"$).
   2. *If $P = "NP"$, ZK proofs (and NIZKs) exist for all NP languages.* $->$ *TRUE* ($V$ can decide $x in L$ in poly-time by itself, so the *empty protocol* is a valid statistical ZK & NIZK proof!).
-  3. *If $P = "NP"$, all NP languages have a SNARG.* $->$ *FALSE* (Empty proof is succinct in size, but SNARG requires verification time sublinear in witness computation, which $P = "NP"$ does not guarantee).
-  4. *If $P = "NP"$, the PLONK Poly-IOP is still sound.* $->$ *TRUE* (PLONK Poly-IOP is purely *information-theoretically* sound via Schwartz-Zippel; only the PCS step is computational).
-  5. *In FHE, if $c = "Enc"(m)$, then $"Eval"(f, c) = "Enc"(f(m))$.* $->$ *FALSE* (Only $"Dec"("Eval"(f, c)) = f(m)$ holds; $"Enc"$ is randomized for IND-CPA).
-  6. *$"Commit"(m, r) = H(m, r)$ is provably secure when $H$ is SHA-3.* $->$ *FALSE* (Only provably secure when $H$ is modeled as a Random Oracle).
+  3. *If $P = "NP"$, all NP languages have a SNARG.* $->$ *FALSE* (Empty proof is succinct in size, but SNARG requires verification time #underline[sublinear] in witness computation, which $P = "NP"$ does not guarantee).
+  4. *If $P = "NP"$, the PLONK Poly-IOP is still sound.* $->$ *TRUE* (PLONK Poly-IOP is purely *IT* sound via Schwartz-Zippel; only the PCS step is computational).
+  5. *In FHE, if $c = "Enc"(m)$, then $"Eval"(f, c) = "Enc"(f(m))$.* $->$ *FALSE* (Only $"Dec"("Eval"(f, c)) = "Dec"("Enc"(f(m))) = f(m)$ holds (i.e. same underlaying plaintext $f(m)$). But $"Enc"$ is freshly randomized for #highlight[IND-CPA], so ciphertexts may differ).
+  6. *$"Commit"(m, r) = H(m, r)$ is #underline[provably] secure when $H$ is SHA-3.* $->$ *FALSE* (Only #underline[_provably_] secure when $H$ is modeled as a Random Oracle).
   7. *In an interactive ZK proof with perfect completeness, $V^*$ interacting with honest $P$ on $x in L$ always accepts.* $->$ *FALSE* (Completeness only binds honest $V$; malicious $V^*$ can always output 0).
   8. *In an interactive ZK proof, honest $V$ interacting with malicious $P^*$ is zero-knowledge.* $->$ *FALSE* (ZK protects honest $P$; malicious $P^*$ can just send its witness $w$ in the clear to $V$).
   9. *If an interactive proof has soundness error $> 1/3$, it cannot be a PoK with knowledge error $< 1/3$.* $->$ *TRUE* (Otherwise $"Ext"$ could extract a valid witness $w$ for a false statement $x in.not L$ with prob $> 1/3 - 1/3 = 0$, impossible!).
   10. *In the Standard Model (no RO), NIZKs exist for all languages in $P$.* $->$ *TRUE* (Empty proof is a NIZK for $L in P$).
-  11. *In the Standard Model (no RO, no CRS), we can build NIZKs for all NP languages.* $->$ *(Likely) FALSE* (Standard-model NIZK without setup implies $L in "BPP"$, which would collapse $"NP" subset.eq "BPP"$).
-  12. *Fiat-Shamir applied to a $Sigma$-protocol yields a NIZK with statistical ZK.* $->$ *FALSE* ($P^*$ with unbounded RO queries can distinguish; FS NIZK only gives computational ZK in ROM).
+  11. *In the Standard Model (no RO, no "pp"), we can build NIZKs for all NP languages.* $->$ *(Likely) FALSE* (Standard-model NIZK existence without RO/setup implies $L in "BPP"$, which would collapse $"NP" subset.eq "BPP"$ and would mean $"NP"$ is easy to solve).
+  12. *Fiat-Shamir applied to a $Sigma$-protocol yields a NIZK with #underline[statistical] ZK.* $->$ *FALSE* ($P^*$ with unbounded RO queries can distinguish; Fiat-Shamir NIZK only gives #underline[computational] ZK in ROM).
   13. *Over $ZZ_6$, $f(X) = 2 X^2 + 4 X$ has at most 2 roots.* $->$ *FALSE* ($6$ is not prime so $ZZ_6$ is not a field; $0, 1, 3, 4$ are all roots!).
-  14. *A secure ORAM protocol directly implies a secure 1-server PIR protocol.* $->$ *FALSE* (ORAM requires client state, private key encryption of DB, and mutates server layout on reads).
+  14. *A secure ORAM protocol directly implies a secure 1-server PIR protocol.* $->$ *FALSE* (ORAM & PIR have quite different setups. E.g. ORAM assumes client is stateful).
   15. *Single-server information-theoretic PIR with $o(n)$ communication exists.* $->$ *FALSE* (Requires downloading $Omega(n)$ bits; otherwise server learns which bits could not affect the answer).
   16. *Parallel composition of $Sigma$-protocols preserves HVZK and Special Soundness, and is safe for Fiat-Shamir.* $->$ *TRUE* (Whereas sequential FS without chaining hashes is insecure!).
 ]
